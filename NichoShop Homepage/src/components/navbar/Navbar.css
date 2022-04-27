@@ -1,0 +1,330 @@
+.nav-bar {
+  display: flex;
+  align-items: center;
+}
+
+.nav-bar img {
+  margin-left: 35px;
+}
+
+.nav-bar .dropdown {
+  margin-left: 25px;
+}
+
+.sell-btn {
+  width: 88px !important;
+  height: 41px !important;
+}
+
+.nav-bar .account-drop .dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: url(../../assets/icons/Account.png) !important;
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
+  position: relative;
+  top: 2.5px;
+}
+
+.nav-bar .notification-drop .dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 12.5px;
+  vertical-align: 0em;
+  content: url(../../assets/icons/Bell1920.png) !important;
+  border: none;
+  position: relative;
+  top: 2.5px;
+  filter: drop-shadow(0px 0px 15px rgba(114, 114, 114, 0.25));
+}
+
+.nav-bar .dropdown-item:focus,
+.dropdown-item:hover {
+  color: #1e2125;
+  background-color: transparent !important;
+}
+
+.nav-bar .btn-primary {
+  color: #fff;
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.nav-bar .btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.25rem transparent !important;
+}
+
+.nav-bar .signin-btn {
+  background-color: var(--accent-color-1);
+  color: white;
+  border: none;
+  width: 100px;
+  height: 37px;
+}
+
+.nav-bar .signin-btn:hover,
+.nav-bar .signin-btn:active,
+.nav-bar .signin-btn:focus {
+  background-color: var(--accent-color-2);
+  color: white;
+  border: none;
+  width: 100px;
+  height: 37px;
+}
+
+.nav-bar .register-btn {
+  border: 1px solid var(--light-gray) !important;
+  color: var(--accent-color-1);
+  border: none;
+  width: 100px;
+  height: 37px;
+}
+
+.nav-bar .register-btn:hover,
+.nav-bar .register-btn:active,
+.nav-bar .register-btn:focus {
+  color: var(--accent-color-1);
+  border: none;
+  width: 100px;
+  height: 37px;
+}
+
+.nav-bar .account-drop .dropdown-item {
+  display: block;
+  width: auto;
+  padding: 0.5rem 0.1rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-bar .notification-drop .dropdown-item {
+  display: block;
+  width: auto;
+  padding: 0;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  text-decoration: none;
+  white-space: wrap !important;
+  background-color: transparent;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown-item {
+  white-space: normal !important;
+}
+
+.nav-bar .notification-drop .dropdown-menu {
+  padding: 0;
+}
+
+.nav-bar .account-drop .dropdown-menu {
+  transform: translate(-60px, 12px) !important;
+}
+
+.nav-bar .notification-drop .dropdown-menu {
+  transform: translate(-350px, 17px) !important;
+}
+
+.search-mobile-btn {
+  border: none !important;
+  display: none !important;
+}
+
+.search-mobile-btn i {
+  font-size: 20px;
+  color: var(--gray);
+  color: #6b757c;
+}
+
+.search-mobile-btn:hover,
+.search-mobile-btn:active,
+.search-mobile-btn:focus {
+  background-color: transparent !important;
+}
+
+.nav-bar .btn-primary {
+  color: transparent !important;
+  background-color: transparent !important;
+}
+
+.trolly-icon {
+  width: 30px;
+}
+
+.bell-icon {
+  width: 20px;
+}
+
+@media screen and (max-width: 1366px) {
+  .nav-bar .dropdown-menu {
+    transform: translate(60px, 70px) !important;
+  }
+
+  .sell-btn {
+    width: 78px !important;
+    height: 35px !important;
+  }
+
+  .trolly-icon {
+    width: 30px;
+  }
+
+  .bell-icon {
+    width: 20px;
+  }
+
+  .nav-bar .dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: url(../../assets/icons/Account1280.png) !important;
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+    width: 23px;
+  }
+
+  .nav-bar img {
+    margin-left: 25px;
+  }
+
+  .nav-bar .notification-drop {
+    margin-left: 15px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .nav-bar .dropdown-menu {
+    transform: translate(60px, 70px) !important;
+  }
+
+  .sell-btn {
+    width: 78px !important;
+    height: 35px !important;
+  }
+
+  .trolly-icon {
+    width: 30px;
+  }
+
+  .bell-icon {
+    width: 20px;
+  }
+
+  .nav-bar .dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: url(../../assets/icons/Account1280.png) !important;
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+    width: 23px;
+  }
+
+  .nav-bar img {
+    margin-left: 25px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .search-mobile-btn {
+    display: flex !important;
+    margin-right: 25px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .sell-btn {
+    display: none;
+  }
+
+  .nav-bar .dropdown {
+    margin-left: 0px;
+  }
+
+  .nav-bar .account-drop .dropdown-menu {
+    transform: translate(-60px, 10px) !important;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .trolly-icon {
+    width: 23px;
+  }
+  /* 
+  .bell-icon {
+    width: 17.5px;
+  } */
+
+  .nav-bar .account-drop .dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: url(../../assets/icons/Account450.png) !important;
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+    width: 23px;
+    top: 1px;
+  }
+
+  .nav-bar .notification-drop .dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 13.5px;
+    vertical-align: 0.2em;
+    content: url(../../assets/icons/Bell450.png) !important;
+    border: none;
+    position: relative;
+    top: 2.5px;
+    filter: drop-shadow(0px 0px 15px rgba(114, 114, 114, 0.25));
+  }
+
+  .nav-bar img {
+    margin-left: 15px;
+  }
+
+  .search-mobile-btn {
+    margin-right: 12.5px;
+  }
+
+  .search-mobile-btn i {
+    font-size: 15.5px;
+  }
+
+  .nav-bar .dropdown {
+    padding-top: 5px;
+  }
+
+  .nav-bar .account-drop .dropdown .dropdown-toggle {
+    width: 20px;
+  }
+
+  /* .nav-bar .account-drop .dropdown-menu {
+    position: absolute;
+    inset: 0px auto auto 0px;
+    transform: translate(-191px, 39px);
+  } */
+  .nav-bar .notification-drop .dropdown-menu {
+    transform: translate(-180px, 13px) !important;
+  }
+}
