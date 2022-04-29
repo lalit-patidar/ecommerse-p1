@@ -1,0 +1,106 @@
+form.card.card-block.bg-faded {
+    width: 636px;
+    margin: 0 auto;
+    padding: 20px 42px;
+    border: 1px solid #cbcbcb73;
+    box-sizing: border-box;
+    border-radius: 6px;	
+}
+.main_form {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    float: left;
+    width: 100%;
+}
+.out_form {
+    float: left;
+    width: 100%;
+}
+legend.m-b-1.text-xs-center {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 43px;
+    text-align: center;
+    color: #000000;
+}
+.out_form button.btn.btn-block.btn-primary {
+    background: #99C6E2;
+    border: 1px solid #99c6e2;
+    padding: 15px;
+    text-align: center;
+    margin-right: 0px;
+}
+.out_form .form-control:focus {
+    color: #55595c;
+    background-color: #fff;
+    border-color: #62D07A;
+    outline: 0;
+    box-shadow: none !important;
+}
+.out_form .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #55595c;
+    background-color: #fff;
+    background-image: none;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #cbcbcb;
+    border-radius: 0.35rem;
+    height: 52px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+}
+i#togglePassword {
+    margin-top: -20px;
+    position: absolute;
+    top: 82%;
+    right: 18px;
+}
+.out_form input::placeholder
+{
+  color: #000;
+}
+button.btn.btn-block.btn-Cancel {
+    margin-top: 0rem;
+    background: transparent !important;
+    margin-left: 20px;
+    border: 1px solid #0072BC;
+    color: #0072BC;
+    padding: 15px;
+}
+.alert_message p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 140%;
+    color: #000000;
+}
+p.alert {
+    text-align: center;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 140%;
+    text-align: center;
+    color: #0072BC;
+}
+p.alert-red {
+    float: left;
+    width: 100%;
+    color: #EB5454;
+}
+.alert_message_green img {
+    width: 100%;
+}
+.alert_message_green {
+    width: 100%;
+    float: left;
+}
