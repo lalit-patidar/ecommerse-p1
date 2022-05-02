@@ -856,7 +856,7 @@ button.btn.btn-Cancel {
 	border-radius: 8px;
 	justify-content: center;
 	align-items: center;
-	padding: 7px 70px;
+	padding: 7px 30px;
 }
 
 button.btn.btn-Save {
@@ -1438,4 +1438,128 @@ h6.new_add img {
     float: left;
     width: 100%;
     margin-bottom: 50px;
+}
+.form-group.need_margin {
+    margin-left: 50px;
+}
+textarea#comment {
+    border: none;
+    height: auto;
+    min-height: 200px;
+}
+textarea#comment:focus {
+    box-shadow: none;
+}
+.title_image {
+    position: relative;
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+}
+p.swithch {
+    position: absolute;
+    right: 0;
+    top: 6px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 20px;
+    color: #616161;
+}
+button.btn.btn-Cancel:hover {
+    background: #0072BC;
+    border: 1px solid #0072BC;
+    box-sizing: border-box;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    padding: 7px 30px;
+    color: #fff;
+}
+.modal-footer.three_button {
+    text-align: left !important;
+    align-items: flex-start !important;
+    display: block;
+}
+button.btn.btn-Cancel.draft\+late:hover {
+    background: transparent;
+    opacity: .6;	
+}
+p.red_alert {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #EB5454;
+    margin: 10px 0px 4px;
+}
+.div.class p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 145%;
+    color: #616161;
+}
+p.head {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 145%;
+    color: #616161;
+}
+img.allow {
+    margin-right: 10px;
+}
+ul.new_ul {
+    margin-left: 20px;
+}
+ul.new_ul li {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 150%;
+    color: #616161;
+}
+h2.main_head {
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 43px;
+    color: #000000;
+    margin-bottom: 50px;
+}
+h2.main_head2 {
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    color: #0C0C0C;
+    margin-bottom: 50px;
+}
+button.new_edit {
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    text-align: center;
+    background: #1977cc;
+    color: #fff;
+    border: 1px solid #1977cc;
+    padding: 6px 30px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+.add_new {
+    float: left;
+    width: 100%;
+    margin-bottom: 50px;
+    background: #2AAC27;
+    border-radius: 8px;
+    text-align: center;
+    padding: 10px;
+    color: #fff;
+    margin-top: 10px;
 }

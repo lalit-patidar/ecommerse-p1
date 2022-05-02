@@ -135,15 +135,34 @@
 					
 					  <!-- Modal content-->
 					  <div class="modal-content">
-						<div class="modal-header">
+						<div class="modal-header" style="display: block; text-align: center;">
 						  <!--button type="button" class="close" data-dismiss="modal">&times;</button-->
-						  <h4 class="modal-title">Add a</h4>
+						  <h4 class="modal-title" style="text-align: left;font-weight: 600;">Add a</h4>
 						</div>
 						<div class="modal-body">
-						  <p>Some text in the modal.</p>
-						</div>
+															  <div class="form-check">
+																  <label class="form-check-label">
+																	<input type="radio" class="form-check-input" name="optradio">Single policy
+																  </label>
+															</div>
+															<div class="form-check">
+																  <label class="form-check-label">
+																	<input type="radio" class="form-check-input" name="optradio">Multiple policy
+																  </label>
+															</div>
+															<div class="form-group">
+																<input type="email" class="form-control" placeholder="Main title" id="email">
+															  </div>
+															 	<div class="form-group need_margin">
+																<input type="email" class="form-control" placeholder="Main title" id="email">
+															  </div> 
+															 	<div class="form-group need_margin">
+																<input type="email" class="form-control" placeholder="Main title" id="email">
+															  </div> 															  
+						</div>									
 						<div class="modal-footer">
-						  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						  <button type="button" class="btn btn-Cancel" data-dismiss="modal" >Cancel</button>
+						  <button type="button" class="btn btn-Confirm" data-dismiss="modal" style="padding: 7px 15px;">Confirm</button>
 						</div>
 					  </div>
 					  
@@ -201,6 +220,14 @@ const togglePassword = document.querySelector('#togglePassword');
 }
 footer#footer {
     position: relative;
+}
+button.btn.btn-Confirm {
+    background: #0072BC;
+    color: #fff;
+    border-radius: 5px;	
+}
+button.btn.btn-Cancel {
+    border-radius: 5px;
 }
 </style>
   </body>
