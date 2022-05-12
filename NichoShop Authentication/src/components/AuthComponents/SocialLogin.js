@@ -59,7 +59,6 @@ const SocialLogin = () => {
       </button>
       <FacebookLogin
         appId="1088597931155576"
-        autoLoad
         callback={responseFacebook}
         render={(renderProps) => (
           <button onClick={renderProps.onClick}>

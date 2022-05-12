@@ -22,7 +22,7 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import Header from "../../../components/AuthComponents/Header";
 import Footer from "../../../components/AuthComponents/Footer";
 import SuccessMessage from "../../../components/AuthComponents/SuccessMessage";
-import SocialLogin from '../../../components/AuthComponents/SocialLogin'
+import SocialLogin from "../../../components/AuthComponents/SocialLogin";
 
 // Styles
 import "../../../assets/styles/auth.css";
@@ -93,7 +93,9 @@ const SignUp = () => {
         <section className="authFormSection">
           <div className="container">
             <div className="authFormBox">
-              <h2 className="formTitle">It’s fast and free to get started</h2>
+              <div className="formTitle">
+                <h2>It’s fast and free to get started</h2>
+              </div>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 onChange={accountChangeHandler}

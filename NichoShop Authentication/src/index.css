@@ -155,3 +155,7 @@ img{
 .text-center{
   text-align: center !important;
 }
+
+.text-bold{
+  font-weight: bold !important;
+}
