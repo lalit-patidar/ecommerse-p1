@@ -1,0 +1,135 @@
+.top-message p {
+    margin-bottom: 0px;
+    display: flex;
+}
+.top-message {
+
+    padding: 18px 30px !important;
+}
+
+.mobile_bar {display: flex;align-items: center;width: 100%;float: left;}
+
+
+.mobile_bar ul {display: flex;align-items: center;width: 100%;justify-content: space-between;}
+
+.mobile_bar li {font-size: 16px;color: #42484D;}
+li.curret_li {
+    font-weight: 700;
+    border-bottom: 1px solid #000;
+}
+	.mobile_bar
+	{
+	    display: none;	
+	}
+	
+	.sucess-color {
+    border: 1px solid #2AAC27 !important;
+}
+@media screen and (max-width: 767px) {
+	
+	.mobile_bar
+	{
+		display:block;
+
+	}
+	.mobile_bar ul {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: #CBCBCB;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #CBCBCB;
+    padding-bottom: 20px;
+}
+.desktop_header {
+    display: none;
+}
+}
+
+nav#navbar {
+    margin-bottom: 0px !important;
+}
+
+.custom-control.custom-radio {display: flex;align-items: center;    margin-bottom: 10px;}
+
+.custom-control.custom-radio input {margin: 0px !important;    margin-right: 10px !important;}
+
+.custom-control.custom-radio label {margin: 0px  !important;}
+
+.contatc-form {
+    padding: 40px !important;
+}
+.field_row label {
+    color: #6C757D;
+    float: left;
+    width: 100%;
+    font-size: 17px;
+    font-family: 'sf_pro_displayregular' !important;
+    font-weight: 500;
+    letter-spacing: 0px;
+}
+.field_row input,.field_row select {
+    border: 1px solid #CBCBCB;
+    width: 100% !important;
+    padding: 14px;
+    border-radius: 6px;
+    margin-top: 5px;
+}
+.field_row {
+    width: 100%;
+    float: left;
+    margin-bottom: 15px;
+}
+
+.p-le-0 {
+    padding-left: 0px !important;
+}
+span.input-group-addon {
+    border: 1px solid #CBCBCB !important;
+    width: 100% !important;
+    padding: 14px;
+    border-radius: 6px !important;
+    margin-top: 5px;
+    background: none;
+    float: left;
+}
+.p-ri-0
+{
+    padding-right: 0px !important;	
+}
+
+.field_row button {
+    width: 100%;
+    padding: 17px;
+    border-radius: 6px;
+    font-size: 18px;
+    font-family: 'sf_pro_displayregular' !important;
+}
+
+button.btn.btn-color {
+    border: 1px solid #0072BC;
+    background: #0072BC;
+    color: #fff;
+    letter-spacing: 1px;
+	    margin-top: 20px;
+
+}
+
+button.btn.btn-white {
+    border: 1px solid #0072BC;
+    color: #0072BC;
+	    margin-top: 20px;
+}
+
+.links2 {
+    width: max-content;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.links2 div {
+    margin-bottom: 0px !important;
+}
