@@ -90,17 +90,9 @@ a {
 .card-smaller-text {
   font-size: 14px;
 }
-/* 
-.title {
-  font-size: 34px;
-} */
 
 .title {
   font-size: 33px;
-}
-
-.btn {
-  padding: 0 !important;
 }
 
 .transparent-btn {

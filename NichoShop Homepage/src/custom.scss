@@ -1,0 +1,13 @@
+/* The following block can be included in a custom.scss */
+
+// scss-docs-start color-variables
+$blue:    #0072BC !default;
+$green:   #2AAC27 !default;
+$red:     #EB5454 !default;
+
+/* import bootstrap to set changes */
+@import "~bootstrap/scss/bootstrap";
+
+.MuiBreadcrumbs-root {
+    margin: 30px 0;
+}
