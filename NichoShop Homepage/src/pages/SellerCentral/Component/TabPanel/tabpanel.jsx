@@ -4,14 +4,24 @@ import "./tabpanel.css";
 import { Col, Nav, Row, Tab } from "react-bootstrap";
 import Overview from "../Overview/Overview";
 import Listing from "../Listing/Listing";
+import { useHistory } from "react-router-dom";
+
 const TabPanel = () => {
+  const history = useHistory();
   return (
     <>
       <div className="main-overview-list">
         <div className="row holder">
           <div className="col-3  padding_right_spacing">
             <div className="button_holder">
-              <button className="btn button_h w-100">Create Listing</button>
+              <button
+                className="btn button_h w-100"
+                onClick={() => {
+                  history.push("/createlisting");
+                }}
+              >
+                Create Listing
+              </button>
             </div>
           </div>
           <div className="col-9 text-left col_holder">Overview</div>
