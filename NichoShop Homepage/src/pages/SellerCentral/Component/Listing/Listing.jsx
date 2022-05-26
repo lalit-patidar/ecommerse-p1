@@ -4,6 +4,9 @@ import "./Listing.css";
 import TabComponent from "./TabComponent/TabComponent";
 import SearchWithDropdown from "./SearchWithDropdown/SearchWithDropdown";
 import OutofstockDropdown from "./OutofstockDropdown/OutofstockDropdown";
+import OverviewConent from "./OverviewConent/OverviewConent";
+import OutofstockContent from "./OutofstockContent/OutofstockContent";
+import UnsoldContent from "./UnsoldContent/UnsoldContent";
 
 const Listing = () => {
   let temp = 99;
@@ -17,7 +20,7 @@ const Listing = () => {
               <SearchWithDropdown />
             </div>
             <div className="second_comp">
-              <OutofstockDropdown />
+              <OverviewConent />
             </div>
           </Tab>
           <Tab eventKey="outofstock" title={`0 Out Of Stock`}>
@@ -25,12 +28,18 @@ const Listing = () => {
               <OutofstockDropdown />
               <SearchWithDropdown />
             </div>
+            <div className="second_comp">
+              <OutofstockContent />
+            </div>
           </Tab>
           <Tab eventKey="unsold" title={`8 Unsold`}>
             <div className="subcomp_one">
               <TabComponent />
               <OutofstockDropdown />
               <SearchWithDropdown />
+            </div>
+            <div className="second_comp">
+              <UnsoldContent />
             </div>
           </Tab>
         </Tabs>
