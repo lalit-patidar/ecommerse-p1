@@ -8,8 +8,6 @@ import CreateListing from "./pages/CreateListing/CreateListing";
 import CreateListingForm from "./pages/CreateListing/createlistingform/CreateListingForm";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import CreateListing from "./pages/CreateListing/CreateListing";
-import CreateListingForm from "./pages/CreateListing/createlistingform/CreateListingForm";
 
 function App() {
   return (
