@@ -25,9 +25,9 @@
 }
 
 body { margin: 0; font-family: 'Inter', sans-serif !important; font-weight: 400; background-color: var(--background-color);}
-.container-ns { margin-left: 25px; margin-right: 25px;}
+.container-ns { padding-left: 25px; padding-right: 25px;}
 @media screen and (max-width: 450px) {
-  .container-ns { margin-left: 15px; margin-right: 15px;}
+  .container-ns { padding-left: 15px; padding-right: 15px;}
 }
 p { margin-bottom: 0 !important;}
 a { text-decoration: none !important; cursor: pointer;}

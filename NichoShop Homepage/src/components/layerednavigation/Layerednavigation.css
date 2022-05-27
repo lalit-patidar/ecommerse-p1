@@ -1,14 +1,9 @@
-.copyright a {
-  color: var(--gray-text);
+.MuiTreeView-root .MuiListItem-root{
+    padding: 0;
 }
-
-.copyright a:hover {
-  color: var(--gray);
+.MuiTreeView-root .MuiListItemText-root{
+    margin: 0;
 }
-
-.copyright {
-  margin-top: 40px;
-  margin-bottom: 40px;
-  text-align: center;
-  color: var(--gray-text);
+.MuiTreeView-root .MuiListItemText-root span{
+    background: none;
 }

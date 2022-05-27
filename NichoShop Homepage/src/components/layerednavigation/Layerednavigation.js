@@ -55,8 +55,10 @@ export default function Trees() {
     function handleDrawer() {
         setOpen(!open);
     }
-    const checkList = ["Apple", "Banana", "Tea", "Coffee"];
-
+    const checkList1        = ["Value 1 (1)", "Value 1 (10)", "Value 1 (100)", "Value 1 (1000)","Value 1 (10,000)","Value 1 (100,000)"];
+    const conditionList     = ["New (1)", "New other (see details) (10)", "Manufacturer refurbished (100)", "Seller refurbished (1000)","Used (10,000)","For parts or not working (100,000)"];
+    const deliveryOptions   = ["Free postage"];
+    
     const [checked, setChecked] = useState([]);
 
     const handleCheck = (event) => {
@@ -71,101 +73,271 @@ export default function Trees() {
 
     return (
         <div className={classes.root}>
-            <h5>Category</h5>
-          <TreeView>
-            <TreeItem nodeId="1" label={
-                <ListItem button component="a" href="#">
-                    <ListItemText primary="Home" />
-                </ListItem>}>
-            </TreeItem>
+            <h5>Categories</h5>
+          <TreeView>           
             <TreeItem nodeId="2" label={
                 <ListItem button component="a" href="#">
-                    <ListItemText primary="Data Structures" />
+                    <ListItemText primary="Portable Audio & HeadphonesData Structures" />
                 </ListItem>}>
-                <TreeItem nodeId="6" label={
+                <TreeItem nodeId="51" label={
                     <ListItem button component="a" href="#">
-                        <ListItemText primary="Arrays" />
+                        <ListItemText primary="Headphones" />
                     </ListItem>}>
                 </TreeItem>
-                <TreeItem nodeId="7" label={
+                <TreeItem nodeId="52" label={
                     <ListItem button component="a" href="#">
-                        <ListItemText primary="Linked List" />
+                        <ListItemText primary="Portable Audio Accessories" />
+                    </ListItem>}>
+                </TreeItem>
+                <TreeItem nodeId="53" label={
+                    <ListItem button component="a" href="#">
+                        <ListItemText primary="Replacement Parts & Tools" />
+                    </ListItem>}>
+                </TreeItem>
+                <TreeItem nodeId="54" label={
+                    <ListItem button component="a" href="#">
+                        <ListItemText primary="Headphone Parts & Accessories" />
                     </ListItem>}>
                 </TreeItem>
             </TreeItem>
             <TreeItem nodeId="3" label={
                 <ListItem button component="a" href="#">
-                    <ListItemText primary="Algortihms" />
+                    <ListItemText primary="Cell Phones & Accessories" />
                 </ListItem>}>
-                <TreeItem nodeId="8" label={
+                <TreeItem nodeId="55" label={
                     <ListItem button component="a" href="#">
-                        <ListItemText primary="Searching" />
+                        <ListItemText primary="Computers, Tablets & Networking" />
                     </ListItem>}>
                 </TreeItem>
-                <TreeItem nodeId="9" label={
+                <TreeItem nodeId="56" label={
                     <ListItem button component="a" href="#">
-                        <ListItemText primary="Sorting" />
+                        <ListItemText primary="Clothing. Shoes & Accessories" />
                     </ListItem>}>
                 </TreeItem>
             </TreeItem>
             <TreeItem nodeId="4" label={
                 <ListItem button component="a" href="#">
-                    <ListItemText primary="Languages" />
+                    <ListItemText primary="Musical Instruments & Gear" />
                 </ListItem>}>
-                <TreeItem nodeId="10" label={
+                <TreeItem nodeId="57" label={
                     <ListItem button component="a" href="#">
-                        <ListItemText primary="C++" />
+                        <ListItemText primary="Everything Else" />
                     </ListItem>}>
-                </TreeItem>
-                <TreeItem nodeId="11" label={
-                    <ListItem button component="a" href="#">
-                        <ListItemText primary="Java" />
-                    </ListItem>}>
-                </TreeItem>
-                <TreeItem nodeId="12" label={
-                    <ListItem button component="a" href="#">
-                        <ListItemText primary="Python" />
-                    </ListItem>}>
-                </TreeItem>
-                <TreeItem nodeId="13" label={
-                    <ListItem button component="a" href="#">
-                        <ListItemText primary="JavaScript" />
-                    </ListItem>}>
-                </TreeItem>
+                </TreeItem>               
             </TreeItem>
             <TreeItem nodeId="5" label={
                 <ListItem button component="a" href="#">
-                    <ListItemText primary="GBlog" />
-                </ListItem>}></TreeItem>
-        </TreeView>
-        <div className="title">Refine By</div>
-        <div className="checkList">
-          <h5>Your CheckList</h5>
-          <div className="list-container">
-            {checkList.map((item, index) => (
-               <div key={index}>
-               <input value={item} type="checkbox" onChange={handleCheck} />
-                 <span>{item}</span>
-               </div>
-            ))}
-          </div>
-        </div>
-
-        
+                    <ListItemText primary="Home & Garden" />
+                </ListItem>}>
+            </TreeItem>
+            <TreeItem nodeId="6" label={
+                <ListItem button component="a" href="#">
+                    <ListItemText primary="Music" />
+                </ListItem>}>
+            </TreeItem>
+            <TreeItem nodeId="7" label={
+                <ListItem button component="a" href="#">
+                    <ListItemText primary="Sporting Goods" />
+                </ListItem>}>
+            </TreeItem>
+            <TreeItem nodeId="8" label={
+                <ListItem button component="a" href="#">
+                    <ListItemText primary="Art" />
+                </ListItem>}>
+            </TreeItem>
+            <TreeItem nodeId="9" label={
+                <ListItem button component="a" href="#">
+                    <ListItemText primary="Video Games & Consoles" />
+                </ListItem>}>
+            </TreeItem>
+            <TreeItem nodeId="10" label={
+                <ListItem button component="a" href="#">
+                    <ListItemText primary="Collectibles" />
+                </ListItem>}>
+            </TreeItem>
+            <TreeItem nodeId="11" label={
+                <ListItem button component="a" href="#">
+                    <ListItemText primary="Cameras & Photo" />
+                </ListItem>}>
+            </TreeItem>
+            <TreeItem nodeId="12" label={
+                <ListItem button component="a" href="#">
+                    <ListItemText primary="Toys & Hobbies" />
+                </ListItem>}>
+            </TreeItem>
+            <TreeItem nodeId="13" label={
+                <ListItem button component="a" href="#">
+                    <ListItemText primary="Business & Industrial" />
+                </ListItem>}>
+            </TreeItem>
+            <TreeItem nodeId="14" label={
+                <ListItem button component="a" href="#">
+                    <ListItemText primary="Entertainment Memorabilia" />
+                </ListItem>}>
+            </TreeItem>
+            <TreeItem nodeId="15" label={
+                <ListItem button component="a" href="#">
+                    <ListItemText primary="Specialty Services" />
+                </ListItem>}>
+            </TreeItem>
+            <TreeItem nodeId="16" label={
+                <ListItem button component="a" href="#">
+                    <ListItemText primary="Pet Supplies" />
+                </ListItem>}>
+            </TreeItem>
+            <TreeItem nodeId="17" label={
+                <ListItem button component="a" href="#">
+                    <ListItemText primary="Coins & Paper Money" />
+                </ListItem>}>
+            </TreeItem>
+            <TreeItem nodeId="18" label={
+                <ListItem button component="a" href="#">
+                    <ListItemText primary="Jewelry & Watches" />
+                </ListItem>}>
+            </TreeItem>
+            <TreeItem nodeId="19" label={
+                <ListItem button component="a" href="#">
+                    <ListItemText primary="Sports Mem, Cards & Fan Shop" />
+                </ListItem>}>
+            </TreeItem>
+          </TreeView>
+          <span><a href="">See fewer categories</a></span>
+          <div className="title">Refine By</div>
+            <div className="checkList1">
+                <h5>Item details 1</h5>
+                <div className="list-container">
+                    {checkList1.map((item, index) => (
+                    <div key={index}>
+                    <input value={item} type="checkbox" onChange={handleCheck} />
+                        <span>{item}</span>
+                    </div>
+                    ))}
+                </div>
+            </div>
+            <div className="checkList1">
+                <h5>Item details 1</h5>
+                <div className="list-container">
+                    {checkList1.map((item, index) => (
+                    <div key={index}>
+                    <input value={item} type="checkbox" onChange={handleCheck} />
+                        <span>{item}</span>
+                    </div>
+                    ))}
+                </div>
+            </div>
+            <div className="checkList2">
+                <h5>Item details 1</h5>
+                <div className="list-container">
+                    {checkList1.map((item, index) => (
+                    <div key={index}>
+                    <input value={item} type="checkbox" onChange={handleCheck} />
+                        <span>{item}</span>
+                    </div>
+                    ))}
+                </div>
+            </div>
+            <div className="checkList3">
+                <h5>Item details 1</h5>
+                <div className="list-container">
+                    {checkList1.map((item, index) => (
+                    <div key={index}>
+                    <input value={item} type="checkbox" onChange={handleCheck} />
+                        <span>{item}</span>
+                    </div>
+                    ))}
+                </div>
+            </div>
+            <div className="checkList4">
+                <h5>Item details 1</h5>
+                <div className="list-container">
+                    {checkList1.map((item, index) => (
+                    <div key={index}>
+                    <input value={item} type="checkbox" onChange={handleCheck} />
+                        <span>{item}</span>
+                    </div>
+                    ))}
+                </div>
+            </div>
+            <div className="checkList5">
+                <h5>Item details 1</h5>
+                <div className="list-container">
+                    {checkList1.map((item, index) => (
+                    <div key={index}>
+                    <input value={item} type="checkbox" onChange={handleCheck} />
+                        <span>{item}</span>
+                    </div>
+                    ))}
+                </div>
+            </div>
+            <div className="checkList6">
+                <h5>Item details 1</h5>
+                <div className="list-container">
+                    {checkList1.map((item, index) => (
+                    <div key={index}>
+                    <input value={item} type="checkbox" onChange={handleCheck} />
+                        <span>{item}</span>
+                    </div>
+                    ))}
+                </div>
+            </div>
+            <div className="checkList7">
+                <h5>Item details 1</h5>
+                <div className="list-container">
+                    {checkList1.map((item, index) => (
+                    <div key={index}>
+                    <input value={item} type="checkbox" onChange={handleCheck} />
+                        <span>{item}</span>
+                    </div>
+                    ))}
+                </div>
+            </div>
+            <div className="checkList8">
+                <h5>Item details 1</h5>
+                <div className="list-container">
+                    {checkList1.map((item, index) => (
+                    <div key={index}>
+                    <input value={item} type="checkbox" onChange={handleCheck} />
+                        <span>{item}</span>
+                    </div>
+                    ))}
+                </div>
+            </div>        
             <div class="filter-content collapse show" id="collapse_3">
-              <h6 class="title">Price range </h6>
+              <h6 class="title">Price (in USD) </h6>
                 <div class="card-body">                    
                     <div class="form-row">
                     <div class="form-group col-md-6">
-                      <label>Min</label>
-                      <input class="form-control" placeholder="$0" type="number" />
+                      <label>$</label>
+                      <input class="form-control" type="number" />
                     </div>
                     <div class="form-group text-right col-md-6">
-                      <label>Max</label>
-                      <input class="form-control" placeholder="$1,0000" type="number" />
+                      <label>$</label>
+                      <input class="form-control" type="number" />
                     </div>
                     </div> 
                     <button class="btn btn-block btn-primary">Go</button>
+                </div>
+            </div>
+            <div className="condition_checklist">
+                <h5>Condition</h5>
+                <div className="list-container">
+                    {conditionList.map((item, index) => (
+                    <div key={index}>
+                    <input value={item} type="checkbox" onChange={handleCheck} />
+                        <span>{item}</span>
+                    </div>
+                    ))}
+                </div>
+            </div>
+            <div className="condition_checklist">
+                <h5>Delivery options</h5>
+                <div className="list-container">
+                    {deliveryOptions.map((item, index) => (
+                    <div key={index}>
+                    <input value={item} type="checkbox" onChange={handleCheck} />
+                        <span>{item}</span>
+                    </div>
+                    ))}
                 </div>
             </div>
         </div>

@@ -47,7 +47,7 @@ class Bidding extends Component {
     }
     productName(props){
         return (<div className='test'>
-            <h4 className="mb-3"><a className="e-link" htef="">{props.first_name}- {props   .last_name}</a></h4>
+            <h4 className="mb-3"><a className="e-link" htef="">{props.first_name}- {props.last_name}</a></h4>
             <div><span className="text-black-50">Offered By:</span> <a className="e-link font-weight-medium" href="">seller username1</a></div>
             <div><span className="text-black-50">Your max bid:</span> <span className="font-weight-medium">US $11.29</span></div>
         </div>);

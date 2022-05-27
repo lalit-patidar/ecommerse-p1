@@ -7,6 +7,7 @@ import Listings from "./pages/Listings/Listings";
 import SellerCentral from "./pages/SellerCentral/SellerCentral";
 import CreateListing from "./pages/CreateListing/CreateListing";
 import CreateListingForm from "./pages/CreateListing/createlistingform/CreateListingForm";
+import Productdetail from "./pages/Productdetail/Productdetail";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -25,7 +26,8 @@ function App() {
         <Route path="/bidding" exact component={Bidding} />
         <Route path="/watchlist" exact component={Watchlist} />
         <Route path="/listings" exact component={Listings} />
-        <Route path="/sellercentral" exact component={SellerCentral} />        
+        <Route path="/sellercentral" exact component={SellerCentral} /> 
+        <Route path="/productdetail" exact component={Productdetail} />        
       </Switch>
     </Router>
   );
