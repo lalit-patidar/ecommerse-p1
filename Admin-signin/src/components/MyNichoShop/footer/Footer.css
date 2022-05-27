@@ -1,0 +1,63 @@
+.my-nicho-shop-footer {
+  margin-top: 100px;
+  border-top: 1px solid var(--light-gray);
+}
+
+.my-nicho-shop-footer .footer-links-container-ns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-nicho-shop-footer .footer-links {
+  width: 400px;
+  max-width: 400px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.my-nicho-shop-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.my-nicho-shop-footer a {
+  color: var(--gray-text);
+}
+
+.my-nicho-shop-footer a:hover {
+  color: var(--gray);
+}
+
+.my-nicho-shop-footer .copyright {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: var(--gray-text);
+}
+
+@media screen and (max-width: 1366px) {
+  .my-nicho-shop-footer .copyright {
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .my-nicho-shop-footer .footer-links {
+    width: 90vw;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .my-nicho-shop-footer .footer-links {
+    flex-direction: column;
+  }
+
+  .my-nicho-shop-footer ul a {
+    margin-bottom: 10px;
+  }
+}

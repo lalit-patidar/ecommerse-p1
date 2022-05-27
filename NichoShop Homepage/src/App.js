@@ -9,6 +9,11 @@ import Productdetail from "./pages/Productdetail/Productdetail";
 import CreateListing from "./pages/SellerCentral/Component/CreateListing/CreateListing";
 import CreateListingForm from "./pages/SellerCentral/Component/CreateListing/createlistingform/CreateListingForm";
 
+import Account from "./pages/MyAccount/Account";
+import CloseAccount from "./pages/MyAccount/Closeaccount";
+import CloseRequest from "./pages/MyAccount/Closerequest";
+import CloseRequestCancel from "./pages/MyAccount/Requestcancel";
+import CloseRequestProcess from "./pages/MyAccount/Requestprocess";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -28,7 +33,13 @@ function App() {
         <Route path="/watchlist" exact component={Watchlist} />
         <Route path="/listings" exact component={Listings} />
         <Route path="/sellercentral" exact component={SellerCentral} /> 
-        <Route path="/productdetail" exact component={Productdetail} />        
+        <Route path="/productdetail" exact component={Productdetail} />  
+
+        <Route path="/user/my-account" exact component={Account} />
+        <Route path="/user/close-account" exact component={CloseAccount} />
+        <Route path="/user/close-request" exact component={CloseRequest} />
+        <Route path="/user/close-requeset-cancel" exact component={CloseRequestCancel} />
+        <Route path="/user/close-requeset-process" exact component={CloseRequestProcess} />
       </Switch>
     </Router>
   );

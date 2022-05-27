@@ -1,0 +1,38 @@
+.update-profile .authFormSection .authFormBox {
+    padding-top: 14px;
+    padding-bottom: 20px;
+}
+
+.update-profilen .formFooterLinks p.agreementText {text-align: right;}
+.update-profile .container {position: relative;min-width: 100%;}
+.update-profile .container .d-flex.align-items-center.justify-content-center:last-child {position: absolute;right: 0;top: 0;}
+.update-profile footer {padding-bottom: 56px;}
+
+.update-profile .authFormSection .authFormBox button.MuiButtonBase-root span {color: #0072bc !important;font-size: 16px !important;}
+.update-profile .authFormSection .authFormBox button.MuiButtonBase-root {background-color: transparent !important;}
+.update-profile .authContainer .authFormSection .authFormBox .textField label {color: #000;}
+.update-profile .authFormBox {
+    box-shadow: 0px 2px 10px rgb(56 56 56 / 10%);
+}
+.update-profile p.successMsg {border: 1px solid green;padding: 10px;border-radius: 6px;color: green;margin-bottom: 12px !important;display: flex;align-items: center;font-size: 16px;}
+.update-profile p.failedMsg {color: red;margin-bottom: 12px !important;display: flex;align-items: center;font-size: 16px;}
+.update-profile p.successMsg svg {margin-right: 10px;}
+.update-profile p.send-message {
+    margin-bottom: 10px !important;
+}
+.update-profile .out_buttons {display: grid;grid-template-columns: 1fr 1fr;grid-column-gap: 20px;}
+.update-profile .out_buttons button {background: #0072bc;
+    border-radius: 6px;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;height: 46px;margin-bottom: 20px;border: 1px solid #0072bc;}
+.update-profile .out_buttons button.btn-Cancel {background-color: #fff;border-color: #cbcbcb;color: #0072bc;}
+
+@media (max-width: 991px) {
+    .update-profile footer .container .d-flex.align-items-center.justify-content-center:last-child {position: unset;}
+    .update-profile footer {padding: 20px;}
+}
