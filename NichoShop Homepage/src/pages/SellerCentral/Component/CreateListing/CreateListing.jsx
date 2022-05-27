@@ -4,7 +4,7 @@ import CreatelistSearch from "./components/createlistSearch/CreatelistSearch";
 import FinishDraft from "./components/finishdraft/FinishDraft";
 import HowitWorks from "./components/howitworks/HowitWorks";
 import HowitWorkList from "./components/howitworks/HowitWorkList";
-import Logo from "../../components/logo/Logo";
+import Logo from "../../../../components/logo/Logo";
 import "./CreateListing.css";
 
 const CreateListing = () => {
