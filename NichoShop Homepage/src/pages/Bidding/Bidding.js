@@ -13,7 +13,7 @@ import axios from 'axios';
 import PaginationComponent from "../../components/pagination/PaginationComponent";
 import Image from 'react-random-image'
 
-class Pagination extends Component {   
+class Bidding extends Component {   
     state = {
         data: [],
         totalRecords:0,
@@ -69,12 +69,12 @@ class Pagination extends Component {
         </div>);
     } 
     buttonSection(props){
-        return (<div className='buttonsection text-end'>
-            <div className="d-grid gap-2 justify-content-md-end">
-                <a className="view-seller-items btn btn-primary" htef="">View sellers other item</a>
-                <a className="buybutton btn btn-outline-primary" htef="">Buy it Now</a>
+        return (<div className='buttonsection d-md-flex align-items-md-center align-items-xl-end flex-xl-column'>
+            <div className="d-xl-grid gap-2 justify-content-md-end">
+                <a className="view-seller-items btn btn-primary me-md-4 me-xl-0" htef="">View sellers other item</a>
+                <a className="buybutton btn btn-outline-primary me-md-4 me-xl-0" htef="">Buy it Now</a>
             </div>
-            <div className="dropdown pt-3 pb-5">
+            <div className="dropdown pt-xl-3 pb-xl-5 me-md-4 me-xl-0">
               <div className="dropdown-toggle small-text18 text-black-50" type="button" id="MoreActionsButton" data-bs-toggle="dropdown" aria-expanded="false">More actions</div>
               <ul className="dropdown-menu  dropdown-menu-end" aria-labelledby="MoreActionsButton">
                 <li><a className="dropdown-item" href="#">Add</a></li>
@@ -106,23 +106,21 @@ class Pagination extends Component {
                                         <li><a className="dropdown-item" href="#">All(20)</a></li>
                                 </ul>
                             </div> 
-                            <table className="table m-0">
-                                <tbody>
-                                    {
-                                        data && data.length > 0 ?
-                                        data.map((item,index)=>(
-                                            <tr>
-                                                <td width="180" className="p-3" scope="col">{this.gridTemplate(item)}</td>
-                                                <td scope="col" className="p-3">{this.productName(item)}</td>
-                                                <td className="p-3" scope="col">{this.timeSection(item)} </td>
-                                                <td className="p-3" scope="col">{this.priceSection(item)}</td>
-                                                <td className="p-3" scope="col">{this.buttonSection(item)}</td>
-                                            </tr>
-                                        )) :
-                                        <h4>No Data Found!!</h4>
-                                    }
-                                </tbody>
-                            </table>
+                            <div className="container-fluid">
+                                {
+                                    data && data.length > 0 ?
+                                    data.map((item,index)=>(
+                                        <div className="row border-bottom">
+                                            <div className="p-3 col-md-auto">{this.gridTemplate(item)}</div>
+                                            <div className="p-3 col">{this.productName(item)}</div>
+                                            <div className="p-3 col-md-auto">{this.timeSection(item)} </div>
+                                            <div className="p-3 ps-md-5 ps-xl-4 col-md-auto">{this.priceSection(item)}</div>
+                                            <div className="p-3 col-md-12 ps-xl-5 col-xl-auto">{this.buttonSection(item)}</div>
+                                        </div>
+                                    )) :
+                                    <h4>No Data Found!!</h4>
+                                }
+                            </div>
                             <div className="biddingNote border-bottom p-3 small-text18">*If you’ve been outbid, you can be again the high bidder in the case, if the seller cancels a bid or reduces the reserve price for example.</div> 
                             <div className="px-3 py-4 d-flex justify-content-between align-items-center">
                                 <div className="page-result-total small-text18">Page 1 of 4</div>
@@ -149,4 +147,4 @@ class Pagination extends Component {
     }
 }
 
-export default Pagination;
+export default Bidding;

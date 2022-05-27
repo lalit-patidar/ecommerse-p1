@@ -13,7 +13,7 @@ import axios from 'axios';
 import PaginationComponent from "../../components/pagination/PaginationComponent";
 import Image from 'react-random-image'
 
-class Pagination extends Component {
+class Watchlist extends Component {
     state = {
         data: [],
         totalRecords:0,
@@ -145,4 +145,4 @@ class Pagination extends Component {
     }
 }
 
-export default Pagination;
+export default Watchlist;
