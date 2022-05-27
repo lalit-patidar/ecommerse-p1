@@ -5,9 +5,10 @@ import Bidding from "./pages/Bidding/Bidding";
 import Watchlist from "./pages/Watchlist/Watchlist";
 import Listings from "./pages/Listings/Listings";
 import SellerCentral from "./pages/SellerCentral/SellerCentral";
-import CreateListing from "./pages/CreateListing/CreateListing";
-import CreateListingForm from "./pages/CreateListing/createlistingform/CreateListingForm";
 import Productdetail from "./pages/Productdetail/Productdetail";
+import CreateListing from "./pages/SellerCentral/Component/CreateListing/CreateListing";
+import CreateListingForm from "./pages/SellerCentral/Component/CreateListing/createlistingform/CreateListingForm";
+
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
