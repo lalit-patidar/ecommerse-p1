@@ -1,0 +1,183 @@
+.ui-today-deals-box {
+    padding: 40px 25px;
+}
+
+.ui-todays-deals-left {
+    h2 {
+        font-size: 36px;
+        font-weight: 600;
+        color: #1C1C1C;
+        padding-bottom: 34px;
+    }
+
+    h4 {
+        font-size: 22px;
+        font-weight: 600;
+        color: #1C1C1C;
+        margin-bottom: .8rem;
+    }
+
+    .btn {
+        background: none;
+        border: none;
+        color: #0072BC;
+        padding: 0;
+        transition: all .3s;
+
+        &:focus {
+            box-shadow: none;
+        }
+
+        &:hover {
+            color: #004e83;
+        }
+    }
+}
+
+.ui-price-left {
+    padding-top: 34px;
+}
+
+.ui-price-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    h4 {
+        font-size: 36px;
+        font-weight: 600;
+        color: #1C1C1C;
+        padding-bottom: 34px;
+    }
+
+    a {
+        font-size: 16px;
+        font-weight: 400;
+        color: #1C1C1C;
+        transition: all .3s;
+
+        &:hover {
+            text-decoration: underline !important;
+            color: #0072BC;
+            font-weight: 600;
+        }
+    }
+}
+
+.ui-td-select {
+    p {
+        white-space: pre;
+    }
+}
+
+.ui-td-lang {
+    button {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+.ui-todays-deals-content-head {
+    p {
+        font-size: 16px;
+        font-weight: 400;
+        color: #1C1C1C;
+    }
+}
+
+.ui-td-lang {
+    position: relative;
+}
+
+.ui-td-view-option,
+.ui-td-lang-option {
+    border: 1px solid #ddd;
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+
+    button {
+        width: 100%;
+        padding: 4px 12px;
+        border: none;
+        background: none;
+
+        &:hover {
+            background-color: #0072BC;
+            color: #fff;
+        }
+    }
+}
+
+.ui-td-view {
+    position: relative;
+
+    button {
+        display: flex;
+        align-items: center;
+        color: #0072BC;
+
+        svg {
+            height: 20px;
+            width: 20px;
+        }
+    }
+}
+
+.ui-td-card {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid #dee2e6;
+    border-top: 0;
+    border-bottom: 0;
+}
+
+.ui-td-pag-box {
+    border: 1px solid #dee2e6;
+    border-top: 0;
+    padding: 0 20px;
+}
+
+.ui-td-pag {
+    button {
+        color: #6C757D;
+        background: none;
+        border: none;
+        height: 36px;
+        width: 36px;
+
+
+        &.active {
+            background-color: #EDF6FF;
+            color: #0072BC;
+            font-weight: 600;
+            border-radius: 6px;
+        }
+
+
+        &:hover {
+            color: #0072BC;
+        }
+    }
+}
+
+.ui-td-pag-no {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ui-td-per-page-select {
+    p {
+        white-space: pre;
+        font-size: 16px;
+        font-weight: 400;
+        color: #1C1C1C;
+    }
+
+    .form-select {
+        background-color: #EDF6FF;
+        border-color: #EDF6FF;
+    }
+}

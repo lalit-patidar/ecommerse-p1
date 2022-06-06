@@ -16,33 +16,55 @@ import CloseRequestCancel from "./pages/MyAccount/Requestcancel";
 import CloseRequestProcess from "./pages/MyAccount/Requestprocess";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import TodaysDeals from "./pages/TodaysDeals/TodaysDeals";
 
 function App() {
-  return (
-    // <div className="App">
-    //   <HomePage />
-    // </div>
+    return (
+        // <div className="App">
+        //   <HomePage />
+        // </div>
 
-    <Router>
-      <Switch>
-        <Route path="/mynichoshop" exact component={MyNichoShop} />
-        <Route path="/createlisting" exact component={CreateListing} />
-        <Route path="/createlistingform" exact component={CreateListingForm} />
-        <Route path="/" exact component={HomePage} />
-        <Route path="/bidding" exact component={Bidding} />
-        <Route path="/watchlist" exact component={Watchlist} />
-        <Route path="/listings" exact component={Listings} />
-        <Route path="/sellercentral" exact component={SellerCentral} /> 
-        <Route path="/productdetail" exact component={Productdetail} />  
+        <Router>
+            <Switch>
+                <Route path="/mynichoshop" exact component={MyNichoShop} />
+                <Route path="/createlisting" exact component={CreateListing} />
+                <Route
+                    path="/createlistingform"
+                    exact
+                    component={CreateListingForm}
+                />
+                <Route path="/" exact component={HomePage} />
+                <Route path="/bidding" exact component={Bidding} />
+                <Route path="/watchlist" exact component={Watchlist} />
+                <Route path="/listings" exact component={Listings} />
+                <Route path="/sellercentral" exact component={SellerCentral} />
+                <Route path="/productdetail" exact component={Productdetail} />
 
-        <Route path="/user/my-account" exact component={Account} />
-        <Route path="/user/close-account" exact component={CloseAccount} />
-        <Route path="/user/close-request" exact component={CloseRequest} />
-        <Route path="/user/close-requeset-cancel" exact component={CloseRequestCancel} />
-        <Route path="/user/close-requeset-process" exact component={CloseRequestProcess} />
-      </Switch>
-    </Router>
-  );
+                <Route path="/user/my-account" exact component={Account} />
+                <Route
+                    path="/user/close-account"
+                    exact
+                    component={CloseAccount}
+                />
+                <Route
+                    path="/user/close-request"
+                    exact
+                    component={CloseRequest}
+                />
+                <Route
+                    path="/user/close-requeset-cancel"
+                    exact
+                    component={CloseRequestCancel}
+                />
+                <Route
+                    path="/user/close-requeset-process"
+                    exact
+                    component={CloseRequestProcess}
+                />
+                <Route path="/todays-deals" exact component={TodaysDeals} />
+            </Switch>
+        </Router>
+    );
 }
 
 export default App;
