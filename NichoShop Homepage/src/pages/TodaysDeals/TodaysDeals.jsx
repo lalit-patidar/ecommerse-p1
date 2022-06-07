@@ -6,11 +6,18 @@ import Footer from "../../components/MyNichoShop/footer/Footer";
 import { IoIosArrowDown } from "react-icons/io";
 import { HiViewGrid, HiViewList } from "react-icons/hi";
 import { TiThList } from "react-icons/ti";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import {
+    MdKeyboardArrowLeft,
+    MdKeyboardArrowRight,
+    MdOutlineKeyboardArrowDown,
+} from "react-icons/md";
+import { FiFilter } from "react-icons/fi";
+import { ImCross } from "react-icons/im";
 import "./todaysdeals.scss";
 import Uk from "./../../assets/cat-flag/uk.png";
 import ProductImg from "./../../assets/product-img/product.png";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import ProductListCard from "../../components/ProductCard/ProductListCard";
 
 const TodaysDeals = () => {
     // all categories of today's deals
@@ -61,7 +68,7 @@ const TodaysDeals = () => {
 
     // view list is toggled
     const [isToggledList, setToggleList] = useState(false);
-    const [isSelectedList, setSelectedList] = useState(true);
+    const [isSelectedList, setSelectedList] = useState(false);
 
     const listHandler = () => {
         setToggleList(!isToggledList);
@@ -143,16 +150,85 @@ const TodaysDeals = () => {
         },
     ]);
 
+    const [isCatToogled, setCatToggle] = useState(false);
+
+    const filterHandler = () => {
+        setCatToggle(true);
+    };
+
+    const [getSort, setSort] = useState(false);
+
+    const sortByHandler = () => {
+        setSort(true);
+    };
+
     return (
         <div>
             <Menu />
             <div className="ui-today-deals-box">
                 <>
                     <Row>
-                        <Col lg={3}>
+                        {isCatToogled && (
+                            <Col className="ui-mob-td-left d-lg-block" lg={3}>
+                                <div className="ui-mob-cat-td-box">
+                                    <div className="ui-mob-cat-td-child">
+                                        <div className="ui-todays-deals-left">
+                                            <h2>Today’s Deals</h2>
+                                            <h4>Categories</h4>
+                                            <button
+                                                onClick={() => {
+                                                    setCatToggle(false);
+                                                }}
+                                                className="ui-mob-cross-btn d-lg-none"
+                                            >
+                                                <ImCross />
+                                            </button>
+                                            {getCategory.map((item, index) => {
+                                                return (
+                                                    <CategoryCheck
+                                                        category={item}
+                                                    />
+                                                );
+                                            })}
+                                            <Button>
+                                                See More <IoIosArrowDown />
+                                            </Button>
+                                        </div>
+                                        <div className="ui-price-left">
+                                            <h4>Price</h4>
+                                            <div className="ui-price-link">
+                                                <a href="#">Under $25</a>
+                                                <a href="#">$25 to $50</a>
+                                                <a href="#">$50 to $100</a>
+                                                <a href="#">$100 to $200</a>
+                                                <a href="#">$200 & Above</a>
+                                            </div>
+                                        </div>
+                                        <div className="ui-price-left">
+                                            <h4>Discount</h4>
+                                            <div className="ui-price-link">
+                                                <a href="#">10% Off or More</a>
+                                                <a href="#">25% Off or More</a>
+                                                <a href="#">50% Off or More</a>
+                                                <a href="#">70% Off or More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Col>
+                        )}
+                        <Col className="d-none d-lg-block" lg={3}>
                             <div className="ui-todays-deals-left">
                                 <h2>Today’s Deals</h2>
                                 <h4>Categories</h4>
+                                <button
+                                    onClick={() => {
+                                        setCatToggle(false);
+                                    }}
+                                    className="ui-mob-cross-btn d-lg-none"
+                                >
+                                    <ImCross />
+                                </button>
                                 {getCategory.map((item, index) => {
                                     return <CategoryCheck category={item} />;
                                 })}
@@ -181,7 +257,7 @@ const TodaysDeals = () => {
                             </div>
                         </Col>
                         <Col lg={9}>
-                            <div className="ui-todays-deals-content">
+                            <div className="ui-todays-deals-content d-none d-lg-block">
                                 <div className="ui-todays-deals-content-head d-flex align-items-center justify-content-between border rounded-top px-3">
                                     <p>
                                         <span>234,567</span> results
@@ -315,9 +391,91 @@ const TodaysDeals = () => {
                                     </div>
                                 </div>
                             </div>
+                            <div className="ui-mobile-td-header d-lg-none">
+                                <div className="ui-mob-td-top">
+                                    <button
+                                        onClick={filterHandler}
+                                        className="d-flex align-items-center"
+                                    >
+                                        <FiFilter />
+                                        Filter
+                                    </button>
+                                    <div className="ui-mob-td-select gap-3">
+                                        <button onClick={sortByHandler}>
+                                            Sort by
+                                            <MdOutlineKeyboardArrowDown />
+                                        </button>
+
+                                        <div className="ui-td-select d-flex align-items-center gap-2">
+                                            <p>View</p>
+                                            <div className="ui-td-view">
+                                                <button
+                                                    className="form-select"
+                                                    onClick={listHandler}
+                                                >
+                                                    {isSelectedList ? (
+                                                        <TiThList />
+                                                    ) : (
+                                                        <HiViewGrid />
+                                                    )}
+                                                </button>
+
+                                                {isToggledList && (
+                                                    <div className="ui-td-view-option">
+                                                        <button
+                                                            onClick={() => {
+                                                                setSelectedList(
+                                                                    false
+                                                                );
+
+                                                                setToggleList(
+                                                                    false
+                                                                );
+                                                            }}
+                                                        >
+                                                            <HiViewGrid />
+                                                        </button>
+                                                        <button
+                                                            onClick={() => {
+                                                                setSelectedList(
+                                                                    true
+                                                                );
+
+                                                                setToggleList(
+                                                                    false
+                                                                );
+                                                            }}
+                                                        >
+                                                            <TiThList />
+                                                        </button>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>234,567 results</p>
+                            </div>
                             {isSelectedList ? (
                                 <>
-                                    <div className="ui-td-card-list"></div>
+                                    <div className="ui-td-card-list">
+                                        {getProduct.map((item, index) => {
+                                            return (
+                                                <ProductListCard
+                                                    key={index}
+                                                    img={item.productImage}
+                                                    title={item.productTitle}
+                                                    price={item.productPrice}
+                                                    discountPrice={
+                                                        item.productDiscountPrice
+                                                    }
+                                                    discount={
+                                                        item.productDiscount
+                                                    }
+                                                />
+                                            );
+                                        })}
+                                    </div>
                                 </>
                             ) : (
                                 <>
@@ -371,6 +529,29 @@ const TodaysDeals = () => {
                         </Col>
                     </Row>
                 </>
+                {getSort && (
+                    <div className="ui-mobile-sorting">
+                        <div className="ui-mobile-sorting-content">
+                            <div className="ui-mob-sorting-top d-flex align-content-center justify-content-between">
+                                <p>Sort by</p>
+                                <button
+                                    onClick={() => {
+                                        setSort(false);
+                                    }}
+                                >
+                                    <ImCross />
+                                </button>
+                            </div>
+                            <ul>
+                                <li>Relevance</li>
+                                <li>Price - Low to High</li>
+                                <li>Price - High to Low</li>
+                                <li>Discount - Low to High</li>
+                                <li>Discount - High to Low</li>
+                            </ul>
+                        </div>
+                    </div>
+                )}
             </div>
             <Footer />
         </div>

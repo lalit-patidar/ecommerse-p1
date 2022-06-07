@@ -9,8 +9,8 @@ const ProductCard = ({ img, title, price, discountPrice, discount }) => {
                 <p>{title}</p>
                 <h4>US {price}</h4>
                 <p>
-                    List: US <del>{discountPrice}</del>{" "}
-                    <span>{discount} OFF</span>{" "}
+                    List: US <del>{discountPrice}</del>
+                    <span>{discount} OFF</span>
                 </p>
                 <a href="#">
                     More options <MdKeyboardArrowDown />
