@@ -17,6 +17,7 @@ import CloseRequestProcess from "./pages/MyAccount/Requestprocess";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import TodaysDeals from "./pages/TodaysDeals/TodaysDeals";
+import RecentlyViewed from "./pages/RecentlyViewed/RecentlyViewed";
 
 function App() {
     return (
@@ -62,6 +63,11 @@ function App() {
                     component={CloseRequestProcess}
                 />
                 <Route path="/todays-deals" exact component={TodaysDeals} />
+                <Route
+                    path="/recently-viewed"
+                    exact
+                    component={RecentlyViewed}
+                />
             </Switch>
         </Router>
     );
