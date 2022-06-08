@@ -1,0 +1,9 @@
+.logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 196px;
+}
+nav {
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
+}

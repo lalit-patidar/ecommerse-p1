@@ -1,0 +1,47 @@
+.p--20{
+    padding: 11px!important;
+}
+.plus {
+    border-radius: 50%;
+    color: white;
+}   
+.accordion-button::after {
+    width: 0px !important;
+}.modal-content div{
+    border: none;
+    padding: 10px;
+}
+.active_red {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+}
+.text-success,  .btn-success, .btn-outline-success{
+    color : #79DC55!important;
+}
+.bg-success {
+    background-color: #79DC55!important;
+}
+.active_grey {
+    width: 20px;
+    height: 20px;
+    background-color: grey;
+    border-radius: 50%;
+}
+.category-dropdown {
+    position: absolute!important;
+    right: 10px!important;
+    top: 12px!important;
+    z-index: 10!important;
+    cursor:pointer;
+    font-size: 25px;
+}
+.alert_window {
+    box-shadow: 0px 0px 16px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.myModal div {
+    padding-bottom: 30px!important;
+}
