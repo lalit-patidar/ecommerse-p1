@@ -5,51 +5,6 @@
 # General
 --------------------------------------------------------------*/
 
-@font-face {
-	font-family: 'sf_pro_displayregular';
-	src: url('../fonts/sfprodisplayregular.woff2') format('woff2'), url('../fonts/sfprodisplayregular.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'sf_pro_displaysemibold_italic';
-	src: url('sfprodisplaysemibolditalic.woff2') format('woff2'), url('sfprodisplaysemibolditalic.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'sf_pro_displaymedium';
-	src: url('sfprodisplaymedium.woff2') format('woff2'), url('sfprodisplaymedium.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-body {
-	font-family: 'sf_pro_displayregular';
-	color: #444444;
-}
-
-a {
-	color: #1977cc;
-	text-decoration: none;
-}
-
-a:hover {
-	color: #3291e6;
-	text-decoration: none;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-family: 'sf_pro_displayregular';
-}
-
 
 /*--------------------------------------------------------------
 # Preloader
@@ -508,7 +463,6 @@ h6 {
 #hero {
 	width: 100%;
 	height: 90vh;
-	background: url("../img/hero-bg.jpg") top center;
 	background-size: cover;
 	margin-bottom: -200px;
 }

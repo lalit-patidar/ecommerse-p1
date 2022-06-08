@@ -3,6 +3,7 @@ import Nav from '../../container/Nav/navbar';
 import './css/category.css';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import Footer from '../../container/Footer/footer';
 
 const Category = () => {
     let initialState = [
@@ -38,25 +39,7 @@ const Category = () => {
         setInitialdata(...category, { categoryName: CategoryValue });
     }
     const edit = () => {
-        confirmAlert({
-            customUI: ({ onClose }) => {
-                return (
-                    <div className='custom-ui text-center alert_window px-5 py-4'>
-                        <h3>Confrim your delete</h3>
-                        <p>Are you sure you want to delete Fashion?</p>
-                        <button type="button" onClick={onClose} className="btn mx-2 px-3 btn-sm btn-outline-dark">Cancel</button>
-                        <button className="btn btn-sm btn-primary mx-2 px-3"
-                            onClick={() => {
-                                this.handleClickDelete();
-                                onClose();
-                            }}
-                        >
-                            Delete
-                        </button>
-                    </div>
-                );
-            }
-        });
+        
     }
     const rename = () => {
 
@@ -90,7 +73,7 @@ const Category = () => {
                 return (
                     <div className='custom-ui text-center alert_window px-5 py-5'>
                         <h5>Fashion was successfully deleted</h5>
-                        <i class="fa fa-check text-success" style={{ 'fontSize': '30px' }}></i>
+                        <i className="fa fa-check text-success" style={{ 'fontSize': '30px' }}></i>
                     </div>
                 );
             }
@@ -100,7 +83,7 @@ const Category = () => {
         <React.Fragment>
             <Nav />
             <div className='container-fluid'>
-                <div className='row my-3 text-center'>
+                <div className='row mt-3 text-center'>
                     <h3>Categories</h3>
                 </div>
                 <div className='row col-lg-10 offset-lg-1 col-md-12 col-sm-12'>
@@ -111,24 +94,23 @@ const Category = () => {
                                     <h2 className="accordion-header" id={index} >
                                         <div className="dropdown pull-right">
                                             <div>
-                                                <i className='fa fa-bars category-dropdown' data-bs-toggle="dropdown">
-                                                </i>
+                                                <img src='assets/img/plus-circle (1).svg' className='category-dropdown' data-bs-toggle="dropdown" />
                                                 <ul className="dropdown-menu">
                                                     <li data-bs-toggle="modal" data-bs-target="#myModal">
                                                         <a className="dropdown-item" href="#" onClick={rename}>
-                                                            <i className='fa fa-pencil'></i>
+                                                            <img src='assets/img/edit-2.svg' />
                                                             &nbsp;Rename
                                                         </a>
                                                     </li>
                                                     <li data-bs-toggle="modal" data-bs-target="#myModal1">
                                                         <a className="dropdown-item" href="#" onClick={edit}>
-                                                            <i className='fa fa-sign-out'></i>
+                                                            <img src='assets/img/arrow-right.svg' />
                                                             &nbsp;Edit
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a className="dropdown-item" href="#" onClick={categorydelete}>
-                                                            <i className='fa fa-trash'></i>
+                                                            <img src='assets/img/trash.svg' />
                                                             &nbsp;Delete
                                                         </a>
                                                     </li>
@@ -139,16 +121,16 @@ const Category = () => {
                                             toggleAccordionButton !== index ?
 
                                                 <button className="accordion-button collapsed text-white p--20" onClick={() => toggle(index)} type="button" data-bs-toggle="collapse" data-bs-target={'#' + category.categoryName} aria-expanded="false" aria-controls={category.categoryName}>
-                                                    <i className='fa fa-plus plus p-1 bg-success collapsed' ></i>&nbsp;<b style={{ 'color': 'black' }}>{category.categoryName}</b>
+                                                    <img src='assets/img/plus-circle.png' />&nbsp;<b style={{ 'color': 'black' }}>{category.categoryName}</b>
                                                 </button> :
                                                 <button className="accordion-button collapsed text-white p--20" onClick={() => toggle(null)} type="button" data-bs-toggle="collapse" data-bs-target={'#' + category.categoryName} aria-expanded="false" aria-controls={category.categoryName}>
-                                                    <i className='fa fa-minus plus p-1 bg-danger collapsed '></i>&nbsp;<b style={{ 'color': 'black' }}>{category.categoryName}</b>
+                                                    <img src='assets/img/minus.png' style={{'borderRadius' : '50%'}}/>&nbsp;<b style={{ 'color': 'black' }}>{category.categoryName}</b>
                                                 </button>
                                         }
                                     </h2>
                                     <div id={category.categoryName} className="accordion-collapse collapse" aria-labelledby={index} data-bs-parent="#accordionExample">
-                                        <div className="accordion-body row">
-                                            <div className='col-lg-4 mb-4'>
+                                        <div className="accordion-body row p-4">
+                                            <div className='col-lg-5 mb-4'>
                                                 <div className='row'>
                                                     <div className='row'>
                                                         <div className='col-10'>
@@ -216,7 +198,7 @@ const Category = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className='col-lg-8'>
+                                            <div className='col-lg-7'>
                                                 <div className='row'>
                                                     <div className='col-lg-6'>
                                                         <div className='row'>
@@ -280,7 +262,7 @@ const Category = () => {
                                                             <div className='active_grey mt-1' style={{ 'display': 'none' }}></div>
                                                         </div>
                                                         <div className='col-6'>
-                                                            <input className="form-check-input p-2" type="checkbox" checked value="" id="flexCheckDefault" />
+                                                            <input className="form-check-input p-2" type="checkbox"  value="" id="flexCheckDefault" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -347,7 +329,7 @@ const Category = () => {
                                                             <div className='active_grey mt-1'></div>
                                                         </div>
                                                         <div className='col-6'>
-                                                            <input className="form-check-input p-2" type="checkbox" checked value="" id="flexCheckDefault" />
+                                                            <input className="form-check-input p-2" type="checkbox"  value="" id="flexCheckDefault" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -483,6 +465,7 @@ const Category = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </React.Fragment>
     )
 }
