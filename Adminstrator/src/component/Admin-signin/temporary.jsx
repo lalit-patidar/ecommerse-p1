@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Footer from '../../container/Footer/footer';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import './css/signin.css';
+import ReCAPTCHA from "react-google-recaptcha";
 const Temporary = () => {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [alerterror, setAlert] = useState(false);
+    const [reCAPTCHA, setRecaptcha] = useState('');
+    let { message } = useSelector(state => state.message);
+    const dispatch = useDispatch();
     const inputValue = (e) => {
         const { name, value } = e.target;
         switch (name) {
@@ -19,17 +27,40 @@ const Temporary = () => {
                 break;
         }
     }
-
+    function onChange(value) {
+        setRecaptcha(value)
+    }
     const submitValue = () => {
         if (id.length == 0 || password.length == 0) {
             setAlert(true);
+        }else {
+            
         }
+    }
+    if (message !== undefined) {
+        confirmAlert({
+            customUI: ({ onClose }) => {
+                return (
+                    <div className='custom-ui text-center alert_window px-5 py-4'>
+                        <h3></h3>
+                        <p>Successfully login. next time, plz do the duo push</p>
+                        <button className="btn btn-sm btn-primary mx-2 px-3"
+                            onClick={() => {
+                                onClose();
+                            }}
+                        >
+                            <a href={message} target='_blank' className='text-white'>OK</a>
+                        </button>
+                    </div>
+                );
+            }
+        });
     }
     return (
         <React.Fragment>
             <div className='container'>
-                <div className='row text-center my-4'>
-                    <h2><span className='color-title1'>Nicho</span>&nbsp;<span className='color-title2'>Shop</span></h2>
+                <div className='row  my-4'>
+                    <img src="assets/img/NS Logo.svg" alt="" className='m-auto' style={{ 'width': '200px' }} />
                 </div>
                 <div className='row col-lg-4 col-md-6 col-sm-10 offset-lg-4 offset-md-3 offset-sm-1'>
                     <div className='form-layout-signinpage px-4 py-1'>
@@ -37,22 +68,23 @@ const Temporary = () => {
                             <h5 className='text-center my-3'><b>Sign in</b></h5>
                             <hr />
                             {
-                                alerterror === true ? <span className='color-red'><b className='error-icon'>!</b> Your email/user ID or password is incorrect.</span> : ''
+                                alerterror === true ? <span className='color-red'><img src='assets/img/alert-circle.svg' /> Your email/user ID or password is incorrect.</span> : ''
                             }
                             <div>
-                                <input type="text" autoComplete='false' name='id' placeholder='ID' onChange={inputValue} className='form-control mt-3 ' />
-                            </div>
-                            <div>
-                                <input type="password" name='password' placeholder='Teporary Password' onChange={inputValue} className='form-control mt-3' />
-                            </div>
-                            <div className='check-signinpage mt-3'>
-                                <div className='row'>
-                                    <div className='col-lg-12'>
-                                        <input className="form-check-input p-2 m-2 col-lg-3" type="checkbox" name="check" />
-                                        <img src='assets/signin/recaptcha.png' width='80px' alt='recaptcha' className='recaptcha' />
-                                    </div>
+                                <div className="form-group has-float-label">
+                                    <input type="text" className="form-control mt-3" name='id' onChange={inputValue} id="id" placeholder="ID" />
+                                    <label htmlFor="fullname">ID</label>
                                 </div>
                             </div>
+
+                            <div className="form-group has-float-label">
+                                <input type="password" className="form-control mt-3" name='password' onChange={inputValue} id="password" placeholder="Temporary Password" />
+                                <label htmlFor="fullname">Temporary Password</label>
+                            </div>
+                            <ReCAPTCHA className='mt-3'
+                                sitekey="6LeO0lQgAAAAAEfqqZyV1RwKQdvbgnVhh0BrqbF7"
+                                onChange={onChange}
+                            />
                             <button type='button' onClick={submitValue} className='button-signinpage my-3 btn btn-primary'>
                                 Sign in
                             </button>
@@ -63,16 +95,7 @@ const Temporary = () => {
                     </div>
                 </div>
             </div>
-            <div className='footer-signinpage'>
-                <div className='row'>
-                    <div className='text-center'>
-                        <span>Copyright 2022 nichoShop nichoShop. All Rights User Agreement, privich</span>
-                    </div>
-                    <div className=''>
-                        <img src='assets/signin/norton.png' alt='norton' width='30px' className='nortonlogo' />
-                    </div>
-                </div>
-           </div>
+            <Footer />
         </React.Fragment>
     )
 }
