@@ -18,6 +18,7 @@ import CloseRequestProcess from "./pages/MyAccount/Requestprocess";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import TodaysDeals from "./pages/TodaysDeals/TodaysDeals";
 import RecentlyViewed from "./pages/RecentlyViewed/RecentlyViewed";
+import SignUp from "./pages/Authentications/signup/SignUp";
 
 function App() {
     return (
@@ -64,6 +65,9 @@ function App() {
                     exact
                     component={RecentlyViewed}
                 />
+
+                {/* auth route */}
+                <Route path="/user/signup" exact component={SignUp} />
             </Switch>
         </Router>
     );
