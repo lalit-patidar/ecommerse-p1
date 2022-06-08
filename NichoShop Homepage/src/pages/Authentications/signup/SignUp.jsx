@@ -2,7 +2,6 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "./../../../assets/logo/logo.svg";
 import "./authform.scss";
-
 import GoogleImg from "./../../../assets/form-social/google.png";
 import AppleImg from "./../../../assets/form-social/apple.png";
 import FbImg from "./../../../assets/form-social/fb.png";
@@ -38,7 +37,7 @@ const SignUp = () => {
 
     // submit form
 
-    const [getFullname, setFullname] = useState("");
+    const [getFullName, setFullName] = useState("");
     const [getEmail, setEmail] = useState("");
     const [getPassword, setPassword] = useState("");
 
@@ -47,18 +46,16 @@ const SignUp = () => {
     const [getPwdInSensitive, setPwdInSensitive] = useState(false);
     const [getTotalLength, setTotalLength] = useState(0);
 
-    const formHandler = (e) => {
-        e.preventDefault();
-        alert("ok");
-    };
-
     const fullnameHandler = (e) => {
-        console.log(e.target.value);
+        setFullName(e.target.value);
     };
 
-    const emailHandler = () => {};
+    const emailHandler = (e) => {
+        setEmail(e.target.value);
+    };
 
     const pwdHandler = (e) => {
+        setPassword(e.target.value);
         e.target.value.length !== 0 ? setPwdLength(true) : setPwdLength(false);
 
         setTotalLength(e.target.value.length);
@@ -79,17 +76,14 @@ const SignUp = () => {
         }
     };
 
+    const formHandler = (e) => {
+        e.preventDefault();
+        alert("ok");
+    };
+
     return (
         <>
             <div className="ui-form-box">
-                <Container>
-                    <div className="ui-form-link">
-                        <p>
-                            Already a member? Sign In{" "}
-                            <Link to="/login">Login</Link>
-                        </p>
-                    </div>
-                </Container>
                 <Container>
                     <Row>
                         <Col>
@@ -102,7 +96,7 @@ const SignUp = () => {
                                     {["radio"].map((type) => (
                                         <div
                                             key={`inline-${type}`}
-                                            className="mb-3"
+                                            className="mb-3 d-flex align-items-center"
                                         >
                                             <Form.Check
                                                 inline
@@ -133,141 +127,326 @@ const SignUp = () => {
                                         </div>
                                     ))}
                                 </div>
-                                <Form onSubmit={formHandler}>
-                                    <Form.Group className="mb-3">
-                                        <TextField
-                                            id="outlined-basic"
-                                            label="Full name"
-                                            variant="outlined"
-                                            size="small"
-                                            fullWidth
-                                            onChange={fullnameHandler}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3">
-                                        <TextField
-                                            id="outlined-basic"
-                                            label="Email"
-                                            variant="outlined"
-                                            size="small"
-                                            fullWidth
-                                            onChange={emailHandler}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3">
-                                        <div className="ui-form-pwd">
-                                            <TextField
-                                                id="outlined-basic"
-                                                label="Password"
-                                                variant="outlined"
-                                                size="small"
-                                                fullWidth
-                                                type="password"
-                                                ref={pwdInputRef}
-                                                onChange={pwdHandler}
-                                            />
-                                            <button
-                                                onClick={isPwdShowedHandler}
-                                                type="button"
-                                            >
-                                                {isPwdShow ? (
-                                                    <BsEye />
-                                                ) : (
-                                                    <BsEyeSlash />
-                                                )}
-                                            </button>
-                                        </div>
-                                    </Form.Group>
-                                    <div className="ui-pwd-strength">
-                                        {getTotalLength === 0 ? (
-                                            <>
-                                                <p>Too low</p>
-                                            </>
-                                        ) : (
-                                            <>
-                                                {getTotalLength <= 2 && (
+                                {isFormSelected === 1 && (
+                                    <>
+                                        <Form onSubmit={formHandler}>
+                                            <Form.Group className="mb-3">
+                                                <TextField
+                                                    id="outlined-basic"
+                                                    label="Full name"
+                                                    variant="outlined"
+                                                    size="small"
+                                                    fullWidth
+                                                    onChange={fullnameHandler}
+                                                    value={getFullName}
+                                                />
+                                            </Form.Group>
+                                            <Form.Group className="mb-3">
+                                                <TextField
+                                                    id="outlined-basic"
+                                                    label="Email"
+                                                    variant="outlined"
+                                                    size="small"
+                                                    fullWidth
+                                                    onChange={emailHandler}
+                                                    value={getEmail}
+                                                />
+                                            </Form.Group>
+                                            <Form.Group className="mb-3">
+                                                <div className="ui-form-pwd">
+                                                    <TextField
+                                                        id="outlined-basic"
+                                                        label="Password"
+                                                        variant="outlined"
+                                                        size="small"
+                                                        fullWidth
+                                                        type="password"
+                                                        ref={pwdInputRef}
+                                                        onChange={pwdHandler}
+                                                        value={getPassword}
+                                                    />
+                                                    <button
+                                                        onClick={
+                                                            isPwdShowedHandler
+                                                        }
+                                                        type="button"
+                                                    >
+                                                        {isPwdShow ? (
+                                                            <BsEye />
+                                                        ) : (
+                                                            <BsEyeSlash />
+                                                        )}
+                                                    </button>
+                                                </div>
+                                            </Form.Group>
+                                            <div className="ui-pwd-strength">
+                                                {getTotalLength === 0 ? (
                                                     <>
                                                         <p>Too low</p>
                                                     </>
-                                                )}
-                                                {getTotalLength <= 5 &&
-                                                    getTotalLength > 2 && (
-                                                        <>
-                                                            <p>Medium</p>
-                                                        </>
-                                                    )}
-                                                {getTotalLength > 5 && (
+                                                ) : (
                                                     <>
-                                                        <p>Strong</p>
-                                                    </>
-                                                )}
-                                            </>
-                                        )}
-                                        <div className="ul-pwd-mark-circle">
-                                            {getTotalLength === 0 ? (
-                                                <>
-                                                    <span></span>
-                                                    <span></span>
-                                                    <span></span>
-                                                    <span></span>
-                                                    <span></span>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    {getTotalLength <= 2 && (
-                                                        <>
-                                                            <span class="low"></span>
-                                                            <span class="low"></span>
-                                                            <span></span>
-                                                            <span></span>
-                                                            <span></span>
-                                                        </>
-                                                    )}
-                                                    {getTotalLength <= 5 &&
-                                                        getTotalLength > 2 && (
+                                                        {getTotalLength <=
+                                                            2 && (
                                                             <>
-                                                                <span class="medium"></span>
-                                                                <span class="medium"></span>
-                                                                <span class="medium"></span>
-                                                                <span></span>
-                                                                <span></span>
+                                                                <p>Too low</p>
                                                             </>
                                                         )}
-                                                    {getTotalLength > 5 && (
+                                                        {getTotalLength <= 5 &&
+                                                            getTotalLength >
+                                                                2 && (
+                                                                <>
+                                                                    <p>
+                                                                        Medium
+                                                                    </p>
+                                                                </>
+                                                            )}
+                                                        {getTotalLength > 5 && (
+                                                            <>
+                                                                <p>Strong</p>
+                                                            </>
+                                                        )}
+                                                    </>
+                                                )}
+                                                <div className="ul-pwd-mark-circle">
+                                                    {getTotalLength === 0 ? (
                                                         <>
-                                                            <span class="strong"></span>
-                                                            <span class="strong"></span>
-                                                            <span class="strong"></span>
-                                                            <span class="strong"></span>
-                                                            <span class="strong"></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            {getTotalLength <=
+                                                                2 && (
+                                                                <>
+                                                                    <span class="low"></span>
+                                                                    <span class="low"></span>
+                                                                    <span></span>
+                                                                    <span></span>
+                                                                    <span></span>
+                                                                </>
+                                                            )}
+                                                            {getTotalLength <=
+                                                                5 &&
+                                                                getTotalLength >
+                                                                    2 && (
+                                                                    <>
+                                                                        <span class="medium"></span>
+                                                                        <span class="medium"></span>
+                                                                        <span class="medium"></span>
+                                                                        <span></span>
+                                                                        <span></span>
+                                                                    </>
+                                                                )}
+                                                            {getTotalLength >
+                                                                5 && (
+                                                                <>
+                                                                    <span class="strong"></span>
+                                                                    <span class="strong"></span>
+                                                                    <span class="strong"></span>
+                                                                    <span class="strong"></span>
+                                                                    <span class="strong"></span>
+                                                                </>
+                                                            )}
                                                         </>
                                                     )}
-                                                </>
-                                            )}
-                                        </div>
-                                    </div>
-                                    <ul className="ui-form-pwd-notify">
-                                        {!getPwdLength && (
-                                            <li>At least 8 characters.</li>
-                                        )}
-                                        {!getNumOrSimble && (
-                                            <li>
-                                                Besides letters include at least
-                                                a number or symbol.
-                                            </li>
-                                        )}
-                                        {!getPwdInSensitive && (
-                                            <li>Password is case-sensitive.</li>
-                                        )}
-                                        <li>
-                                            Avoid using the same passwort for
-                                            miltiple sites.
-                                        </li>
-                                    </ul>
-                                    <Button variant="primary" type="submit">
-                                        Create your account
-                                    </Button>
-                                </Form>
+                                                </div>
+                                            </div>
+                                            <ul className="ui-form-pwd-notify">
+                                                {!getPwdLength && (
+                                                    <li>
+                                                        At least 8 characters.
+                                                    </li>
+                                                )}
+                                                {!getNumOrSimble && (
+                                                    <li>
+                                                        Besides letters include
+                                                        at least a number or
+                                                        symbol.
+                                                    </li>
+                                                )}
+                                                {!getPwdInSensitive && (
+                                                    <li>
+                                                        Password is
+                                                        case-sensitive.
+                                                    </li>
+                                                )}
+                                                <li>
+                                                    Avoid using the same
+                                                    passwort for miltiple sites.
+                                                </li>
+                                            </ul>
+                                            <Button
+                                                variant="primary"
+                                                type="submit"
+                                            >
+                                                Create your account
+                                            </Button>
+                                        </Form>
+                                    </>
+                                )}
+                                {isFormSelected === 0 && (
+                                    <>
+                                        <Form onSubmit={formHandler}>
+                                            <Form.Group className="mb-3">
+                                                <TextField
+                                                    id="outlined-basic"
+                                                    label="Legal business name"
+                                                    variant="outlined"
+                                                    size="small"
+                                                    fullWidth
+                                                    onChange={fullnameHandler}
+                                                />
+                                            </Form.Group>
+                                            <Form.Group className="mb-3">
+                                                <TextField
+                                                    id="outlined-basic"
+                                                    label="Legal business email"
+                                                    variant="outlined"
+                                                    size="small"
+                                                    fullWidth
+                                                    onChange={emailHandler}
+                                                />
+                                            </Form.Group>
+                                            <Form.Group className="mb-3">
+                                                <div className="ui-form-pwd">
+                                                    <TextField
+                                                        id="outlined-basic"
+                                                        label="Password"
+                                                        variant="outlined"
+                                                        size="small"
+                                                        fullWidth
+                                                        type="password"
+                                                        ref={pwdInputRef}
+                                                        onChange={pwdHandler}
+                                                    />
+                                                    <button
+                                                        onClick={
+                                                            isPwdShowedHandler
+                                                        }
+                                                        type="button"
+                                                    >
+                                                        {isPwdShow ? (
+                                                            <BsEye />
+                                                        ) : (
+                                                            <BsEyeSlash />
+                                                        )}
+                                                    </button>
+                                                </div>
+                                            </Form.Group>
+                                            <div className="ui-pwd-strength">
+                                                {getTotalLength === 0 ? (
+                                                    <>
+                                                        <p>Too low</p>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        {getTotalLength <=
+                                                            2 && (
+                                                            <>
+                                                                <p>Too low</p>
+                                                            </>
+                                                        )}
+                                                        {getTotalLength <= 5 &&
+                                                            getTotalLength >
+                                                                2 && (
+                                                                <>
+                                                                    <p>
+                                                                        Medium
+                                                                    </p>
+                                                                </>
+                                                            )}
+                                                        {getTotalLength > 5 && (
+                                                            <>
+                                                                <p>Strong</p>
+                                                            </>
+                                                        )}
+                                                    </>
+                                                )}
+                                                <div className="ul-pwd-mark-circle">
+                                                    {getTotalLength === 0 ? (
+                                                        <>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            {getTotalLength <=
+                                                                2 && (
+                                                                <>
+                                                                    <span class="low"></span>
+                                                                    <span class="low"></span>
+                                                                    <span></span>
+                                                                    <span></span>
+                                                                    <span></span>
+                                                                </>
+                                                            )}
+                                                            {getTotalLength <=
+                                                                5 &&
+                                                                getTotalLength >
+                                                                    2 && (
+                                                                    <>
+                                                                        <span class="medium"></span>
+                                                                        <span class="medium"></span>
+                                                                        <span class="medium"></span>
+                                                                        <span></span>
+                                                                        <span></span>
+                                                                    </>
+                                                                )}
+                                                            {getTotalLength >
+                                                                5 && (
+                                                                <>
+                                                                    <span class="strong"></span>
+                                                                    <span class="strong"></span>
+                                                                    <span class="strong"></span>
+                                                                    <span class="strong"></span>
+                                                                    <span class="strong"></span>
+                                                                </>
+                                                            )}
+                                                        </>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <ul className="ui-form-pwd-notify">
+                                                {!getPwdLength && (
+                                                    <li>
+                                                        At least 8 characters.
+                                                    </li>
+                                                )}
+                                                {!getNumOrSimble && (
+                                                    <li>
+                                                        Besides letters include
+                                                        at least a number or
+                                                        symbol.
+                                                    </li>
+                                                )}
+                                                {!getPwdInSensitive && (
+                                                    <li>
+                                                        Password is
+                                                        case-sensitive.
+                                                    </li>
+                                                )}
+                                                <li>
+                                                    Avoid using the same
+                                                    passwort for miltiple sites.
+                                                </li>
+                                            </ul>
+                                            <Button
+                                                variant="primary"
+                                                type="submit"
+                                            >
+                                                Create your account
+                                            </Button>
+                                        </Form>
+                                    </>
+                                )}
+
                                 <p>
                                     By Registering, you are agree to NichoShop’s
                                     <a href="#">User Agreement</a> and
@@ -297,11 +476,18 @@ const SignUp = () => {
                                     </div>
                                 </div>
                             </div>
+
+                            <div className="ui-form-link">
+                                <p>
+                                    Already a member? Sign In{" "}
+                                    <Link to="/login">Login</Link>
+                                </p>
+                            </div>
                         </Col>
                     </Row>
                 </Container>
-                <FormFooter />
             </div>
+            <FormFooter />
         </>
     );
 };

@@ -1,8 +1,8 @@
 .ui-form-link {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding: 1rem 0;
+    justify-content: center;
+    padding: 2rem 0;
 
     p {
         font-size: 16px;
@@ -13,20 +13,21 @@
 
 .ui-form-box {
     position: relative;
+    padding: 0 0 120px 0;
 }
 
 .ui-form-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 1rem;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 4rem;
+    padding-top: 1.6rem;
 }
 
 .ui-form-content {
     border: 1px solid #CBCBCB;
     padding: 30px;
     width: 540px;
-    margin: 6rem auto;
+    margin: 0 auto;
 
     h4 {
         font-size: 22px;
@@ -34,7 +35,6 @@
         color: #1C1C1C;
         text-align: center;
         padding-bottom: 16px;
-        border-bottom: 1px solid #CBCBCB;
         margin-bottom: 0;
     }
 
@@ -59,14 +59,17 @@
     padding-top: 16px;
 
     .form-check {
+        display: flex;
+        align-items: center;
+
         input {
             height: 22px;
             width: 22px;
         }
 
         label {
-            vertical-align: middle;
             padding-left: 10px;
+            padding-bottom: 4px;
         }
     }
 }
@@ -109,35 +112,6 @@
 }
 
 
-
-@media all and (max-width: 576px) {
-    .ui-form-content {
-        width: 100%;
-        padding: 20px;
-    }
-
-    .ui-form-content {
-        h4 {
-            font-size: 16px;
-        }
-    }
-
-    .ui-form-option {
-        .form-check {
-            display: flex;
-
-            input {
-                height: 16px;
-                width: 16px;
-            }
-
-            label {
-                font-size: 14px;
-                padding-left: 4px;
-            }
-        }
-    }
-}
 
 .ui-form-pwd-notify {
     li {
@@ -185,5 +159,42 @@
         font-size: 12px;
         font-weight: 400;
         color: #000;
+    }
+}
+
+
+
+@media all and (max-width: 576px) {
+    .ui-form-content {
+        width: 100%;
+        padding: 0;
+        border: none;
+    }
+
+    .ui-form-content {
+        h4 {
+            font-size: 20px;
+        }
+    }
+
+    .ui-form-option{
+        justify-content: flex-start;
+    }
+
+    .ui-form-option {
+        .form-check {
+            display: flex;
+
+            input {
+                height: 16px;
+                width: 16px;
+            }
+
+            label {
+                font-size: 12px;
+                padding-left: 4px;
+                white-space: pre;
+            }
+        }
     }
 }
