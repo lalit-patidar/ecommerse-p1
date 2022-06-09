@@ -19,6 +19,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import TodaysDeals from "./pages/TodaysDeals/TodaysDeals";
 import RecentlyViewed from "./pages/RecentlyViewed/RecentlyViewed";
 import SignUp from "./pages/Authentications/signup/SignUp";
+import SignIn from "./pages/Authentications/signin/SignIn";
 
 function App() {
     return (
@@ -68,6 +69,7 @@ function App() {
 
                 {/* auth route */}
                 <Route path="/user/signup" exact component={SignUp} />
+                <Route path="/user/signin" exact component={SignIn} />
             </Switch>
         </Router>
     );

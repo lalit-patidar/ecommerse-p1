@@ -8,23 +8,35 @@ import FbImg from "./../../../assets/form-social/fb.png";
 import FormFooter from "../../../components/FormFooter/FormFooter";
 import { useRef, useState } from "react";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
-import TextField from "@mui/material/TextField";
+import {
+    FormControl,
+    InputAdornment,
+    InputLabel,
+    OutlinedInput,
+    TextField,
+} from "@mui/material";
+
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
 const SignUp = () => {
     const pwdInputRef = useRef();
+
+    // is password show & hidden
+    const [isPwdShow, setPwdShow] = useState(false);
 
     // 2 type form  tab
     const [isFormSelected, setFormSelected] = useState(1);
     const peronalHendler = () => {
         setFormSelected(1);
+        setPwdShow(false);
     };
     const businessHendler = () => {
         setFormSelected(0);
+        setPwdShow(false);
     };
 
-    // is password show & hidden
-    const [isPwdShow, setPwdShow] = useState(false);
-
+    // pasword show & hidden
     const isPwdShowedHandler = () => {
         if (pwdInputRef.current.querySelector("input").type == "password") {
             pwdInputRef.current.querySelector("input").type = "text";
@@ -36,16 +48,21 @@ const SignUp = () => {
     };
 
     // submit form
-
     const [getFullName, setFullName] = useState("");
     const [getEmail, setEmail] = useState("");
     const [getPassword, setPassword] = useState("");
+    const [getMobileNumber, SetMobileNumber] = useState("");
+    const [getPhone, setPhone] = useState();
 
+    // pasword validation
     const [getPwdLength, setPwdLength] = useState(false);
     const [getNumOrSimble, setNumOrSimble] = useState(false);
     const [getPwdInSensitive, setPwdInSensitive] = useState(false);
     const [getTotalLength, setTotalLength] = useState(0);
 
+    const [getFormSubmit, setFormSubmit] = useState(false);
+
+    // full name input handler
     const fullnameHandler = (e) => {
         setFullName(e.target.value);
     };
@@ -76,11 +93,14 @@ const SignUp = () => {
         }
     };
 
-    const formHandler = (e) => {
+    // form data submit
+    const formHandler = async (e) => {
         e.preventDefault();
-        alert("ok");
-    };
 
+        if (isFormSelected == 1) {
+            setFormSubmit(true);
+        }
+    };
     return (
         <>
             <div className="ui-form-box">
@@ -139,7 +159,19 @@ const SignUp = () => {
                                                     fullWidth
                                                     onChange={fullnameHandler}
                                                     value={getFullName}
+                                                    error={
+                                                        getFormSubmit &&
+                                                        getFullName.length <
+                                                            1 &&
+                                                        true
+                                                    }
                                                 />
+                                                <span className="ui-form-lable-error">
+                                                    {getFormSubmit &&
+                                                        getFullName.length <
+                                                            1 &&
+                                                        "Enter name"}
+                                                </span>
                                             </Form.Group>
                                             <Form.Group className="mb-3">
                                                 <TextField
@@ -150,7 +182,17 @@ const SignUp = () => {
                                                     fullWidth
                                                     onChange={emailHandler}
                                                     value={getEmail}
+                                                    error={
+                                                        getFormSubmit &&
+                                                        getEmail.length < 1 &&
+                                                        true
+                                                    }
                                                 />
+                                                <span className="ui-form-lable-error">
+                                                    {getFormSubmit &&
+                                                        getEmail.length < 1 &&
+                                                        "Please enter your email address"}
+                                                </span>
                                             </Form.Group>
                                             <Form.Group className="mb-3">
                                                 <div className="ui-form-pwd">
@@ -164,6 +206,12 @@ const SignUp = () => {
                                                         ref={pwdInputRef}
                                                         onChange={pwdHandler}
                                                         value={getPassword}
+                                                        error={
+                                                            getFormSubmit &&
+                                                            getPassword.length <
+                                                                1 &&
+                                                            true
+                                                        }
                                                     />
                                                     <button
                                                         onClick={
@@ -178,6 +226,13 @@ const SignUp = () => {
                                                         )}
                                                     </button>
                                                 </div>
+
+                                                <span className="ui-form-lable-error">
+                                                    {getFormSubmit &&
+                                                        getPassword.length <
+                                                            1 &&
+                                                        "Enter Password"}
+                                                </span>
                                             </Form.Group>
                                             <div className="ui-pwd-strength">
                                                 {getTotalLength === 0 ? (
@@ -337,6 +392,41 @@ const SignUp = () => {
                                                     </button>
                                                 </div>
                                             </Form.Group>
+                                            <div className="ui-phone-no">
+                                                <FormControl
+                                                    variant="outlined"
+                                                    size="small"
+                                                    fullWidth
+                                                >
+                                                    <InputLabel htmlFor="my-input">
+                                                        Legal phone number
+                                                    </InputLabel>
+                                                    <OutlinedInput
+                                                        id="phoneNumber"
+                                                        name="phoneNumber"
+                                                        type="text"
+                                                        endAdornment={
+                                                            <InputAdornment position="start">
+                                                                <div className="ui-country-code">
+                                                                    <PhoneInput
+                                                                        international
+                                                                        defaultCountry="BD"
+                                                                        placeholder="Enter phone number"
+                                                                        value={
+                                                                            getPhone
+                                                                        }
+                                                                        onChange={
+                                                                            setPhone
+                                                                        }
+                                                                    />
+                                                                </div>
+                                                            </InputAdornment>
+                                                        }
+                                                        label="Legal phone number"
+                                                    />
+                                                </FormControl>
+                                            </div>
+
                                             <div className="ui-pwd-strength">
                                                 {getTotalLength === 0 ? (
                                                     <>
@@ -480,7 +570,7 @@ const SignUp = () => {
                             <div className="ui-form-link">
                                 <p>
                                     Already a member? Sign In{" "}
-                                    <Link to="/login">Login</Link>
+                                    <Link to="/user/signin">Login</Link>
                                 </p>
                             </div>
                         </Col>
