@@ -19,6 +19,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import TodaysDeals from "./pages/TodaysDeals/TodaysDeals";
 import RecentlyViewed from "./pages/RecentlyViewed/RecentlyViewed";
 
+import MNSPurchases from "./pages/MyNichoShop/Purchases/index.purchases";
+
 function App() {
     return (
         // <div className="App">
@@ -28,6 +30,7 @@ function App() {
         <Router>
             <Switch>
                 <Route path="/mynichoshop" exact component={MyNichoShop} />
+                <Route path="/MNSPurchases" exact component={MNSPurchases} />
                 <Route path="/createlisting" exact component={CreateListing} />
                 <Route
                     path="/createlistingform"
