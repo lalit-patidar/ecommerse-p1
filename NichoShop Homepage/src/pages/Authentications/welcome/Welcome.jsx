@@ -1,10 +1,6 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "./../../../assets/logo/logo.svg";
-// import "./authform.scss";
-import GoogleImg from "./../../../assets/form-social/google.png";
-import AppleImg from "./../../../assets/form-social/apple.png";
-import FbImg from "./../../../assets/form-social/fb.png";
 import FormFooter from "../../../components/FormFooter/FormFooter";
 import { useRef, useState } from "react";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
@@ -12,7 +8,7 @@ import { TextField } from "@mui/material";
 
 import "react-phone-number-input/style.css";
 
-const SignIn = () => {
+const Welcome = () => {
     const pwdInputRef = useRef();
 
     // is password show & hidden
@@ -30,16 +26,11 @@ const SignIn = () => {
     };
 
     // submit form
-    const [getEmail, setEmail] = useState("");
     const [getPassword, setPassword] = useState("");
 
     const [getFormSubmit, setFormSubmit] = useState(false);
 
     // full name input handler
-
-    const emailHandler = (e) => {
-        setEmail(e.target.value);
-    };
 
     const pwdHandler = (e) => {
         setPassword(e.target.value);
@@ -60,30 +51,17 @@ const SignIn = () => {
                                 <Logo />
                             </div>
                             <div className="ui-form-content">
-                                <h4>Sign in</h4>
+                                <h4>Welcome</h4>
+                                <div className="ui-welcome-form-info pb-4 mb-4 border-bottom">
+                                    <p>email@domain.com</p>
+                                    <p>Not you? Switch account</p>
+                                    <p>
+                                        Please sign in again to make changes to
+                                        your account.
+                                    </p>
+                                </div>
 
                                 <Form onSubmit={formHandler}>
-                                    <Form.Group className="mb-3">
-                                        <TextField
-                                            id="outlined-basic"
-                                            label="Email"
-                                            variant="outlined"
-                                            size="small"
-                                            fullWidth
-                                            onChange={emailHandler}
-                                            value={getEmail}
-                                            error={
-                                                getFormSubmit &&
-                                                getEmail.length < 1 &&
-                                                true
-                                            }
-                                        />
-                                        <span className="ui-form-lable-error">
-                                            {getFormSubmit &&
-                                                getEmail.length < 1 &&
-                                                "Please enter your email address"}
-                                        </span>
-                                    </Form.Group>
                                     <Form.Group className="mb-3">
                                         <div className="ui-form-pwd">
                                             <TextField
@@ -124,7 +102,6 @@ const SignIn = () => {
                                         Sign in
                                     </Button>
                                 </Form>
-
                                 <div className="ui-form-signin-info">
                                     <div className="ui-stay-signin">
                                         <Form.Check
@@ -142,30 +119,7 @@ const SignIn = () => {
                                         </Link>
                                     </div>
                                 </div>
-
-                                <div className="ui-form-social">
-                                    <div className="ui-form-head">
-                                        <span></span>
-                                        <p>or</p>
-                                        <span></span>
-                                    </div>
-                                    <div className="ui-form-social-btn">
-                                        <button>
-                                            Continue with Google
-                                            <img src={GoogleImg} alt="logo" />
-                                        </button>
-                                        <button>
-                                            Continue with Apple
-                                            <img src={AppleImg} alt="logo" />
-                                        </button>
-                                        <button>
-                                            Continue with Facebook
-                                            <img src={FbImg} alt="logo" />
-                                        </button>
-                                    </div>
-                                </div>
                             </div>
-
                             <div className="ui-form-link">
                                 <p>
                                     Create new a account,{" "}
@@ -183,4 +137,4 @@ const SignIn = () => {
     );
 };
 
-export default SignIn;
+export default Welcome;

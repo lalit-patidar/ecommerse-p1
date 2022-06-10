@@ -199,9 +199,6 @@
     padding-left: 130px !important;
 }
 
-.ui-phone-no label.Mui-focused {
-    // padding-left: 0 !important;
-}
 
 .ui-phone-no .PhoneInput input {
     border: none;
@@ -211,6 +208,173 @@
 .ui-phone-no .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
     padding-left: 0 !important;
 }
+
+.ui-form-lable-error {
+    font-size: 14px;
+    font-weight: 400;
+    color: #FF6666;
+}
+
+// sign in page
+
+.ui-form-signin-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ui-stay-signin-link {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    gap: 8px;
+
+    a {
+        color: #0072BC;
+        font-weight: 500;
+    }
+}
+
+.ui-stay-signin {
+    input {
+        height: 20px;
+        width: 20px;
+    }
+
+    label {
+        vertical-align: middle;
+        padding-left: 6px;
+        font-weight: 500;
+        color: #1C1C1C;
+    }
+}
+
+// welcome page
+
+.ui-welcome-form-info {
+    p {
+        font-size: 16px;
+        font-weight: 400;
+        color: #1C1C1C;
+        padding: 4px 0;
+    }
+}
+
+// add mobile no
+.ui-add-mob-not-now {
+    background: none;
+    border: none;
+    padding: 0;
+    fallback: 16px;
+    font-weight: 600;
+    color: #0072BC;
+}
+
+.ui-add-mob-info {
+    font-size: 16px;
+    font-weight: 500;
+    color: #1C1C1C !important;
+}
+
+// single user code page
+
+.ui-single-code-info {
+    h4 {
+        font-size: 22px;
+        font-weight: 600;
+        color: #1C1C1C;
+        padding-bottom: 20px;
+
+        &:last-of-type {
+            padding-top: 40px;
+        }
+    }
+}
+
+.ui-single-code-box {
+    display: flex;
+    gap: 10px;
+    border: 1px solid #CBCBCB;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 20px;
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+.ui-single-code-info {
+    >p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 140%;
+        color: #6C757D;
+
+        a {
+            font-weight: 600;
+        }
+
+        &:last-of-type {
+            font-size: 14px;
+            padding-top: 10px;
+        }
+    }
+}
+
+.ui-scb-right {
+    p {
+        &:first-of-type {
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 140%;
+            color: #0072BC;
+            padding-bottom: 10px;
+        }
+
+        &:last-of-type {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 140%;
+            color: #6C757D;
+        }
+    }
+}
+
+// verify you page
+.ui-vy-button {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+
+    button {
+        text-transform: capitalize;
+
+        &:first-of-type {
+            background: #0072BC;
+        }
+
+        &:last-of-type {
+            border-color: #0072BC;
+        }
+    }
+}
+
+.ui-vy-footer-link {
+    text-align: start !important;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000 !important;
+}
+
+.ui-vpm-footer{
+    padding: 0 !important;
+    text-align: start !important;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000 !important;
+}
+
+
 
 @media all and (max-width: 576px) {
     .ui-form-content {
@@ -245,10 +409,4 @@
             }
         }
     }
-}
-
-.ui-form-lable-error{
-    font-size: 14px;
-    font-weight: 400;
-    color: #FF6666;
 }

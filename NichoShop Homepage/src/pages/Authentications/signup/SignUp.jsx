@@ -1,7 +1,6 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "./../../../assets/logo/logo.svg";
-import "./authform.scss";
 import GoogleImg from "./../../../assets/form-social/google.png";
 import AppleImg from "./../../../assets/form-social/apple.png";
 import FbImg from "./../../../assets/form-social/fb.png";
@@ -18,6 +17,8 @@ import {
 
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import { inputChecker } from "../../../helper/FormHelper";
+import axios from "axios";
 
 const SignUp = () => {
     const pwdInputRef = useRef();
@@ -99,6 +100,43 @@ const SignUp = () => {
 
         if (isFormSelected == 1) {
             setFormSubmit(true);
+            if (
+                inputChecker(getFullName) &&
+                inputChecker(getEmail) &&
+                inputChecker(getPassword)
+            ) {
+                if (getPwdLength && getNumOrSimble && getPwdInSensitive) {
+                    axios
+                        .post(
+                            `https://nichoshop.com/api/v1/signup`,
+                            {
+                                email: getEmail,
+                                grecaptcha:
+                                    "6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
+                                fullName: getFullName,
+                                accountType: "PERSONAL",
+                                password: getPassword,
+                            },
+                            {
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "Access-Control-Allow-Origin": "*",
+                                    "Access-Control-Allow-Methods":
+                                        "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+                                },
+                            }
+                        )
+                        .then((res) => {
+                            console.log(res);
+                        });
+                } else {
+                    alert(
+                        "Password must be at least 8 characters long, contain at least one number and one special character"
+                    );
+                }
+            } else {
+                alert("Please fill all the fields");
+            }
         }
     };
     return (

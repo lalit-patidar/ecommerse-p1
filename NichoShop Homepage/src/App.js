@@ -1,4 +1,5 @@
 import "./App.css";
+import "./pages/Authentications/authform.scss";
 import HomePage from "./pages/HomePage";
 import MyNichoShop from "./pages/MyNichoShop/MyNichoShop";
 import Bidding from "./pages/Bidding/Bidding";
@@ -20,6 +21,18 @@ import TodaysDeals from "./pages/TodaysDeals/TodaysDeals";
 import RecentlyViewed from "./pages/RecentlyViewed/RecentlyViewed";
 import SignUp from "./pages/Authentications/signup/SignUp";
 import SignIn from "./pages/Authentications/signin/SignIn";
+import Welcome from "./pages/Authentications/welcome/Welcome";
+import AddMobile from "./pages/Authentications/mobile/AddMobile";
+import SucCode from "./pages/Authentications/succode/SucCode";
+import ContinueAddMobile from "./pages/Authentications/mobile/ContinueAddMobile";
+import TempPassword from "./pages/Authentications/TempPassword";
+import CreatePassword from "./pages/Authentications/CreatePassword";
+import SingleUserCode from "./pages/Authentications/singleUseCode/SingleUserCode";
+import VerifyYou from "./pages/Authentications/VerifyYou";
+import VerifyYouMobile from "./pages/Authentications/VerifyYouMobile";
+import ChangeNewPassword from "./pages/Authentications/ChangeNewPassword";
+import ChangeUserName from "./pages/Authentications/ChangeUserName";
+import ChangeYourPassword from "./pages/Authentications/ChangeYourPassword";
 
 function App() {
     return (
@@ -70,6 +83,41 @@ function App() {
                 {/* auth route */}
                 <Route path="/user/signup" exact component={SignUp} />
                 <Route path="/user/signin" exact component={SignIn} />
+                <Route path="/user/welcome" exact component={Welcome} />
+                <Route path="/user/add-mobile" exact component={AddMobile} />
+                <Route path="/user/mobile/suc-code" exact component={SucCode} />
+                <Route
+                    path="/user/add-mobile/coninue"
+                    exact
+                    component={ContinueAddMobile}
+                />
+                <Route path="/user/temp-pwd" exact component={TempPassword} />
+                <Route
+                    path="/user/create-new-password"
+                    exact
+                    component={ChangeNewPassword}
+                />
+                <Route
+                    path="/user/single-user-code"
+                    exact
+                    component={SingleUserCode}
+                />
+                <Route path="/user/verify-you" exact component={VerifyYou} />
+                <Route
+                    path="/user/verify-you-mobile"
+                    exact
+                    component={VerifyYouMobile}
+                />
+                <Route
+                    path="/user/change-user-name"
+                    exact
+                    component={ChangeUserName}
+                />
+                <Route
+                    path="/user/change-your-pwd"
+                    exact
+                    component={ChangeYourPassword}
+                />
             </Switch>
         </Router>
     );
