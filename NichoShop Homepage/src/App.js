@@ -21,11 +21,14 @@ import RecentlyViewed from "./pages/RecentlyViewed/RecentlyViewed";
 import SignUp from "./pages/Authentications/signup/SignUp";
 import SignIn from "./pages/Authentications/signin/SignIn";
 
+import MNSPurchases from "./pages/MyNichoShop/Purchases/index.purchases";
+
 function App() {
     return (
         <Router>
             <Switch>
                 <Route path="/mynichoshop" exact component={MyNichoShop} />
+                <Route path="/MNSPurchases" exact component={MNSPurchases} />
                 <Route path="/createlisting" exact component={CreateListing} />
                 <Route
                     path="/createlistingform"
