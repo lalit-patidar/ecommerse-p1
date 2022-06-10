@@ -1,4 +1,4 @@
-import {SET_MESSAGE, CLEAR_MESSAGE} from "../actions/types";
+import {SET_MESSAGE, CLEAR_MESSAGE, SET_TEMPORARY_MESSAGE, CLEAR_TEMPORARY_MESSAGE} from "../actions/types";
 const initialState = {};
 
 export default function (state = initialState, action) {
@@ -9,7 +9,13 @@ export default function (state = initialState, action) {
             return {message : payload};
             break;
         case CLEAR_MESSAGE:
-            return {message : ''};
+            return {message : payload};
+            break;
+        case SET_TEMPORARY_MESSAGE:
+            return {temporaryMessage : payload};
+            break;
+        case CLEAR_TEMPORARY_MESSAGE:
+            return {temporaryMessage : payload};
             break;
         default:
             return state;

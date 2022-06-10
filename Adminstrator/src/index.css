@@ -796,6 +796,12 @@ input[type=text]:focus {
 input[type=password]:focus {
 	box-shadow: none;
 }
+input[type=email]:focus {
+	box-shadow: none;
+}
+input[type=number]:focus {
+	box-shadow: none;
+}
 .has-float-label .form-control:placeholder-shown:not(:focus)::-webkit-input-placeholder {
 	opacity: .5;
 	color: #000

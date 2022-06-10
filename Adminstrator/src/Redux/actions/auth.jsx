@@ -2,8 +2,8 @@ import {
     SIGNIN_SUCCESS,
     SIGNIN_FAIL,
     SET_MESSAGE,
-    TEMPORARY_REQUEST_SUCCESS,
-    TEMPORARY_REQUEST_FAIL,
+    SET_TEMPORARY_MESSAGE,
+    CLEAR_TEMPORARY_MESSAGE,
 } from './types';
 import AuthService from '../services/auth.server';
 export const signin = (login, password, grecaptcha) => (dispatch) => {
@@ -24,6 +24,10 @@ export const signin = (login, password, grecaptcha) => (dispatch) => {
                     type : SIGNIN_FAIL,
                     payload : 'NO',
                 })
+                dispatch({
+                    type : SET_MESSAGE,
+                    payload : 'NO',
+                })
             }
             return Promise.resolve();
         }
@@ -32,22 +36,18 @@ export const signin = (login, password, grecaptcha) => (dispatch) => {
 
 
 
-export const temporary = (name) => (dispatch) => {
+export const temporary = (username) => (dispatch) => {
     
-    return AuthService.temporary(name).then(
+    return AuthService.temporary(username).then(
         (data) => {
-            if (data.status == 200) {
+            if (data.status == 200 && data.data == 'OK') {
                 dispatch({
-                    type : SET_MESSAGE,
+                    type : SET_TEMPORARY_MESSAGE,
                     payload : data.data,
-                })
-                dispatch({
-                    type : TEMPORARY_REQUEST_SUCCESS,
-                    payload : 'SIGNIN_SUCCESS',
                 })
             } else{
                 dispatch({
-                    type : TEMPORARY_REQUEST_FAIL,
+                    type : CLEAR_TEMPORARY_MESSAGE,
                     payload : 'NO',
                 })
             }
