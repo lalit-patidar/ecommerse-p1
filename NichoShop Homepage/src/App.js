@@ -21,14 +21,17 @@ import RecentlyViewed from "./pages/RecentlyViewed/RecentlyViewed";
 import SignUp from "./pages/Authentications/signup/SignUp";
 import SignIn from "./pages/Authentications/signin/SignIn";
 
-import MNSPurchases from "./pages/MyNichoShop/Purchases/index.purchases";
+//Bootstrpa importing
+import 'bootstrap/dist/css/bootstrap.min.css';
 
+//Address page
+import Address from "./pages/Address/Address";
+import Address_Shippig_View from "./pages/Address/Address_shipping_view";
 function App() {
     return (
         <Router>
             <Switch>
                 <Route path="/mynichoshop" exact component={MyNichoShop} />
-                <Route path="/MNSPurchases" exact component={MNSPurchases} />
                 <Route path="/createlisting" exact component={CreateListing} />
                 <Route
                     path="/createlistingform"
@@ -48,6 +51,17 @@ function App() {
                     exact
                     component={CloseAccount}
                 />
+                //address page
+                <Route
+                    path='/user/address' 
+                    exact 
+                    component={Address}
+                />
+                <Route 
+                    path='/user/address/shipping_view'
+                    exact
+                    component={Address_Shippig_View}
+                />  
                 <Route
                     path="/user/close-request"
                     exact
