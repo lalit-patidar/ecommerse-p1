@@ -1,9 +1,9 @@
 import React from "react";
 import "./Card.css";
 
-function Card({ image, alt, title, description }) {
+function Card({ image, alt, title, description, m_page }) {
   return (
-    <div className="my-nicho-shop-card">
+    <div className="my-nicho-shop-card" onClick={()=>{m_page("/MNS"+title)}}>
       <div className="icon-div">
         <img src={image} alt={alt} />
       </div>

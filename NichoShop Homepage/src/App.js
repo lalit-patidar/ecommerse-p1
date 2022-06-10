@@ -34,6 +34,12 @@ import ChangeNewPassword from "./pages/Authentications/ChangeNewPassword";
 import ChangeUserName from "./pages/Authentications/ChangeUserName";
 import ChangeYourPassword from "./pages/Authentications/ChangeYourPassword";
 
+//Bootstrpa importing
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+//Address page
+import Address from "./pages/Address/Address";
+import Address_Shippig_View from "./pages/Address/Address_shipping_view";
 function App() {
     return (
         <Router>
@@ -58,6 +64,17 @@ function App() {
                     exact
                     component={CloseAccount}
                 />
+                //address page
+                <Route
+                    path='/user/address' 
+                    exact 
+                    component={Address}
+                />
+                <Route 
+                    path='/user/address/shipping_view'
+                    exact
+                    component={Address_Shippig_View}
+                />  
                 <Route
                     path="/user/close-request"
                     exact

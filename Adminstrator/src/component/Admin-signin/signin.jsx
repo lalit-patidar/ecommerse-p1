@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { signin, temporary } from '../../Redux/actions/auth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../../container/Footer/footer';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import ReCAPTCHA from "react-google-recaptcha";
 
-
 import './css/signin.css';
 const SignIn = () => {
-    const [id, setId] = useState('');
+    const navigate = useNavigate();
+    let [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [reCAPTCHA, setRecaptcha] = useState('');
     const [alerterror, setAlert] = useState(false);
-    let { message } = useSelector(state => state.message);
+    let { message, temporaryMessage } = useSelector(state => state.message);
     const dispatch = useDispatch();
     const inputValue = (e) => {
         const { name, value } = e.target;
@@ -32,7 +32,8 @@ const SignIn = () => {
         }
     }
     function onChange(value) {
-        setRecaptcha(value)
+        setRecaptcha(value);
+        console.log(value);
     }
 
     const submitValue = () => {
@@ -40,30 +41,75 @@ const SignIn = () => {
             setAlert(true);
         } else {
             dispatch(signin(id, password, reCAPTCHA));
+            if (message == "OK") {
+                confirmAlert({
+                    customUI: ({ onClose }) => {
+                        return (
+                            <div className='custom-ui text-center alert_window px-5 py-4'>
+                                <h3></h3>
+                                <p>Successfully login. next time, plz do the duo push</p>
+                                <button className="btn btn-sm btn-primary mx-2 px-3"
+                                    onClick={() => {
+                                        onClose();
+                                    }}
+                                >
+                                    <a href={message} target='_blank' className='text-white'>OK</a>
+                                </button>
+                            </div>
+                        );
+                    }
+                });
+            }
+            if (message == "NO") {
+                confirmAlert({
+                    customUI: ({ onClose }) => {
+                        return (
+                            <div className='custom-ui text-center alert_window px-5 py-4'>
+                                <h3></h3>
+                                <p>Your ID and Password is wrong.</p>
+                                <button className="btn btn-sm btn-primary mx-2 px-3"
+                                    onClick={() => {
+                                        onClose();
+                                    }}
+                                >
+                                    <a href={message} target='_blank' className='text-white'>OK</a>
+                                </button>
+                            </div>
+                        );
+                    }
+                });
+            }
+            
         }
     }
+
     const temporary_request = () => {
-        dispatch(temporary('Temporary Password Request'));
+        dispatch(temporary('Nur1@gmail.com'));
+        if (temporaryMessage == 'OK') {
+            navigate('/temporary');
+            console.log(temporaryMessage)
+        }
+        if (temporaryMessage == undefined) {
+            confirmAlert({
+                customUI: ({ onClose }) => {
+                    return (
+                        <div className='custom-ui text-center alert_window px-5 py-4'>
+                            <h3></h3>
+                            <p>Your action is failed</p>
+                            <button className="btn btn-sm btn-primary mx-2 px-3"
+                                onClick={() => {
+                                    onClose();
+                                }}
+                            >
+                                <a href={message} target='_blank' className='text-white'>OK</a>
+                            </button>
+                        </div>
+                    );
+                }
+            });
+        }
     }
-    if (message !== undefined) {
-        confirmAlert({
-            customUI: ({ onClose }) => {
-                return (
-                    <div className='custom-ui text-center alert_window px-5 py-4'>
-                        <h3></h3>
-                        <p>Successfully login. next time, plz do the duo push</p>
-                        <button className="btn btn-sm btn-primary mx-2 px-3"
-                            onClick={() => {
-                                onClose();
-                            }}
-                        >
-                            <a href={message} target='_blank' className='text-white'>OK</a>
-                        </button>
-                    </div>
-                );
-            }
-        });
-    }
+
     return (
         <React.Fragment>
             <div className='container'>
@@ -99,7 +145,7 @@ const SignIn = () => {
                                 Sign in
                             </button>
                             <div className='row align-right'>
-                                <Link to='/temporary' onClick={temporary_request} className='text-primary mb-3 text-signinpage' >Text a temporary password</Link>
+                                <span onClick={temporary_request} className='text-primary mb-3 text-signinpage' >Text a temporary password</span>
                             </div>
                         </form>
                     </div>

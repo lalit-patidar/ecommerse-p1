@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_URL = '{{base_url}}';
+const API_URL = 'https://nichoshop.com/api/v1';
 
 const signin = (login, password, grecaptcha) => {
     return axios
@@ -13,10 +13,11 @@ const signin = (login, password, grecaptcha) => {
         })
 }
 
-const temporary = (name) => {
+const temporary = (username) => {
+    console.log(username);
     return axios
         .post(API_URL + "/admin/auth/temporary-password/request-temporary-password", {
-            name
+            username
         })
         .then ((response) => {
             console.log(response)
