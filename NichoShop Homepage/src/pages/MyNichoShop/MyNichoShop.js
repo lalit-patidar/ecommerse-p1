@@ -64,6 +64,7 @@ function MyNichoPage({ props }) {
                         alt="Messages icon"
                         title="Messages"
                         description="View your bids, increase your max. bids, and see your winning bids."
+                        m_page={fn_changePage}
                     />
                     <Card
                         image={WatchList}
