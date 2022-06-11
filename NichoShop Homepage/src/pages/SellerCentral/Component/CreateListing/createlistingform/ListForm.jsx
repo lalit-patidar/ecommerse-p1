@@ -4,7 +4,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Form, InputGroup } from "react-bootstrap";
 import TooltipText from "../components/TooltipText/TooltipText";
-
+import { Link } from "react-router-dom";
 const ListForm = () => {
   const allfields = {
     itemTitle: "",
@@ -90,7 +90,9 @@ const ListForm = () => {
   return (
     <>
       <div className="main-heading">
-        <h3 className="heading">List multiple variations of your item</h3>
+        <h3 className="heading">
+          <Link to='/createListing_multiple'>List multiple variations of your item</Link>
+        </h3>
         <TooltipText text="If you sell multiple variations of your item, you can list all item variations in one multi-quantity listing. That saves your time.">
           <div className="tooltip-ques">
             <img src="/images/questions.png" />

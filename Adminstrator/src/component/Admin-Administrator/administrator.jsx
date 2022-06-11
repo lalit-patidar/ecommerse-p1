@@ -1,12 +1,12 @@
 import React from 'react';
 import './css/administrator.css';
+import Nav from '../../container/Nav/navbar';
+import Footer from '../../container/Footer/footer';
 const Administrator = () => {
     return (
         <React.Fragment>
-            <div className='mt-5'>
-                <h1 className='text-center mb-4'>Header Part</h1>
-            </div>
-            <div className='container mt-3 mb-5'>
+            <Nav />
+            <div className='container my-3 mb-5'>
                 <div className='row'>
                     <div className='col-lg-4 col-dm-6 col-sm-10 offset-lg-4 offset-dm-3 offset-sm-1 formstyle1' >
                         <div className='text-center'>
@@ -66,7 +66,7 @@ const Administrator = () => {
                     </div>
                 </div>
             </div>
-
+            <Footer />
         </React.Fragment >
     )
 }
