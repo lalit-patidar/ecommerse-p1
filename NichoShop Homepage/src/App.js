@@ -35,11 +35,12 @@ import ChangeUserName from "./pages/Authentications/ChangeUserName";
 import ChangeYourPassword from "./pages/Authentications/ChangeYourPassword";
 
 //Bootstrpa importing
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 //Address page
 import Address from "./pages/Address/Address";
 import Address_Shippig_View from "./pages/Address/Address_shipping_view";
+
 function App() {
     return (
         <Router>
@@ -57,7 +58,6 @@ function App() {
                 <Route path="/listings" exact component={Listings} />
                 <Route path="/sellercentral" exact component={SellerCentral} />
                 <Route path="/productdetail" exact component={Productdetail} />
-
                 <Route path="/user/my-account" exact component={Account} />
                 <Route
                     path="/user/close-account"
@@ -65,16 +65,12 @@ function App() {
                     component={CloseAccount}
                 />
                 //address page
+                <Route path="/user/address" exact component={Address} />
                 <Route
-                    path='/user/address' 
-                    exact 
-                    component={Address}
-                />
-                <Route 
-                    path='/user/address/shipping_view'
+                    path="/user/address/shipping_view"
                     exact
                     component={Address_Shippig_View}
-                />  
+                />
                 <Route
                     path="/user/close-request"
                     exact
@@ -96,7 +92,6 @@ function App() {
                     exact
                     component={RecentlyViewed}
                 />
-
                 {/* auth route */}
                 <Route path="/user/signup" exact component={SignUp} />
                 <Route path="/user/signin" exact component={SignIn} />
