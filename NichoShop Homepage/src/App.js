@@ -40,6 +40,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 //Address page
 import Address from "./pages/Address/Address";
 import Address_Shippig_View from "./pages/Address/Address_shipping_view";
+import TextTemporaryPassword from "./pages/TextTemporaryPassword/TextTemporaryPassword";
 
 function App() {
     return (
@@ -64,7 +65,7 @@ function App() {
                     exact
                     component={CloseAccount}
                 />
-                // address page
+                {/* address page */}
                 <Route path="/user/address" exact component={Address} />
                 <Route
                     path="/user/address/shipping_view"
@@ -129,6 +130,11 @@ function App() {
                     path="/user/change-your-pwd"
                     exact
                     component={ChangeYourPassword}
+                />
+                <Route
+                    path="/user/text-temporary-pwd"
+                    exact
+                    component={TextTemporaryPassword}
                 />
             </Switch>
         </Router>
