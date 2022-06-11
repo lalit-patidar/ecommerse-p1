@@ -64,7 +64,7 @@ function App() {
                     exact
                     component={CloseAccount}
                 />
-                //address page
+                // address page
                 <Route path="/user/address" exact component={Address} />
                 <Route
                     path="/user/address/shipping_view"
