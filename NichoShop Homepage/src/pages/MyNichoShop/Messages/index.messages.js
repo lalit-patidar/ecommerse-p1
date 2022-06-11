@@ -4,20 +4,21 @@ import Menu from "../../../components/menu/Menu";
 import Footer from "../../../components/MyNichoShop/footer/Footer";
 import Notification from "../../../components/notification/Notification";
 import { useSelector, useDispatch } from "react-redux";
+import Main from "./main.messages";
+
 
 
 
 function MNSMessages({ props }) {
-    const public_info = useSelector((state) => state.purchases);
+    const public_info = useSelector((state) => state.messages);
     const showNotif = useSelector((state) => state.showNotif);
     return (
         <div className="my-nicho-shop">
-            {console.log(public_info)}
             <Menu />
             {showNotif ? (
                 <Notification color="green" title="aaaaa" description="adadadadad" />
             ) : null}
-            <Main />
+            {public_info.public_curInfoPage == 0 ? <Main /> : null}
             <Footer />
         </div>
     );

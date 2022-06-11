@@ -20,6 +20,7 @@ import TodaysDeals from "./pages/TodaysDeals/TodaysDeals";
 import RecentlyViewed from "./pages/RecentlyViewed/RecentlyViewed";
 
 import MNSPurchases from "./pages/MyNichoShop/Purchases/index.purchases";
+import MNSMessages from "./pages/MyNichoShop/Messages/index.messages";
 
 function App() {
     return (
@@ -31,6 +32,7 @@ function App() {
             <Switch>
                 <Route path="/mynichoshop" exact component={MyNichoShop} />
                 <Route path="/MNSPurchases" exact component={MNSPurchases} />
+                <Route path="/MNSMessages" exact component={MNSMessages} />
                 <Route path="/createlisting" exact component={CreateListing} />
                 <Route
                     path="/createlistingform"
