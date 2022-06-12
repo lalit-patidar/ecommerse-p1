@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./../MyNichoShop.css";
 import Menu from "../../../components/menu/Menu";
 import Footer from "../../../components/MyNichoShop/footer/Footer";
 import Main from "./Main.purchases";
 import Detail from "./Detail.purchases";
 import Notification from "../../../components/notification/Notification";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Contact from "./Contact.purchases";
 import MessageSuccess from "./MessageSuccess.purchases";
 import Feedback from "./Feedback.purchases";
