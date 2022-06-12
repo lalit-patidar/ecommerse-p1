@@ -18,7 +18,7 @@ function MNSMessages({ props }) {
             {showNotif ? (
                 <Notification color="green" title="aaaaa" description="adadadadad" />
             ) : null}
-            {public_info.public_curInfoPage == 0 ? <Main /> : null}
+            <Main />
             <Footer />
         </div>
     );
