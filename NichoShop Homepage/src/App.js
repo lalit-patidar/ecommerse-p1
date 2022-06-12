@@ -49,8 +49,10 @@ function App() {
         <Router>
             <Switch>
                 <Route path="/mynichoshop" exact component={MyNichoShop} />
+                {/* MyNichoShop call component */}
                 <Route path="/MNSPurchases" exact component={MNSPurchases} />
                 <Route path="/MNSMessages" exact component={MNSMessages} />
+                {/* End MyNichoShop */}
                 <Route path="/createlisting" exact component={CreateListing} />
                 <Route
                     path="/createlistingform"
