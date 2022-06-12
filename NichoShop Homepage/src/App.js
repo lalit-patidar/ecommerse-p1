@@ -34,6 +34,8 @@ import ChangeNewPassword from "./pages/Authentications/ChangeNewPassword";
 import ChangeUserName from "./pages/Authentications/ChangeUserName";
 import ChangeYourPassword from "./pages/Authentications/ChangeYourPassword";
 
+import MNSPurchases from "./pages/MyNichoShop/Purchases/index.purchases";
+import MNSMessages from "./pages/MyNichoShop/Messages/index.messages";
 //Bootstrpa importing
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -48,6 +50,10 @@ function App() {
         <Router>
             <Switch>
                 <Route path="/mynichoshop" exact component={MyNichoShop} />
+                {/* MyNichoShop call component */}
+                <Route path="/MNSPurchases" exact component={MNSPurchases} />
+                <Route path="/MNSMessages" exact component={MNSMessages} />
+                {/* End MyNichoShop */}
                 <Route path="/createlisting" exact component={CreateListing} />
                 <Route
                     path="/createlistingform"

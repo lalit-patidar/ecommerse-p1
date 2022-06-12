@@ -4,8 +4,11 @@
 .breadcrumb-item+.breadcrumb-item::before {
     content: var(--bs-breadcrumb-divider,'>')!important;
 }
-.add_address select, input{
+.add_address_select{
     margin-bottom: 10px;
+}
+.add_address_input {
+	margin-bottom: 10px;
 }
 /*--------------------------------------------------------------
 # CS Form

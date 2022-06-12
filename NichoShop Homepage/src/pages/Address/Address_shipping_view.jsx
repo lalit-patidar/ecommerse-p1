@@ -111,7 +111,7 @@ const Address_Shipping_View = () => {
                                                 <form className='add_address col-lg-4 col-md-6 col-sm-12'>
                                                     <h4 className='mb-4'>Add new address</h4>
                                                     <div className="form-group has-float-label">
-                                                        <select className="form-select" aria-label="Default select example">
+                                                        <select className="form-select add_address_select" aria-label="Default select example">
                                                             <option></option>
                                                             <option value="1">One</option>
                                                             <option value="2">Two</option>
@@ -120,24 +120,24 @@ const Address_Shipping_View = () => {
                                                         <label htmlFor="fullname">Country</label>
                                                     </div>
                                                     <div className="form-group has-float-label">
-                                                        <input className="form-control" type="text" placeholder="Full Name" aria-label="default input example" />
+                                                        <input className="form-control add_address_input" type="text" placeholder="Full Name" aria-label="default input example" />
                                                         <label htmlFor="fullname">Full Name</label>
                                                     </div>
 
                                                     <div className="form-group has-float-label">
-                                                        <input className="form-control" type="text" placeholder="Street Address" aria-label="default input example" />
+                                                        <input className="form-control add_address_input" type="text" placeholder="Street Address" aria-label="default input example" />
                                                         <label htmlFor="fullname">Street Address</label>
                                                     </div>
                                                     <div className="form-group has-float-label">
-                                                        <input className="form-control" type="text" placeholder="" aria-label="default input example" />
+                                                        <input className="form-control add_address_input" type="text" placeholder="" aria-label="default input example" />
                                                         <label htmlFor="fullname"></label>
                                                     </div>
                                                     <div className="form-group has-float-label">
-                                                        <input className="form-control" type="text" placeholder="Town/City" aria-label="default input example" />
+                                                        <input className="form-control add_address_input" type="text" placeholder="Town/City" aria-label="default input example" />
                                                         <label htmlFor="fullname">Town/City</label>
                                                     </div>
                                                     <div className="form-group has-float-label">
-                                                        <select className="form-select" aria-label="Default select example">
+                                                        <select className="form-select add_address_select" aria-label="Default select example">
                                                             <option ></option>
                                                             <option value="1">One</option>
                                                             <option value="2">Two</option>
@@ -147,13 +147,13 @@ const Address_Shipping_View = () => {
                                                     </div>
 
                                                     <div className="form-group has-float-label">
-                                                        <input className="form-control" type="text" placeholder="PostCode" aria-label="default input example" />
+                                                        <input className="form-control add_address_input" type="text" placeholder="PostCode" aria-label="default input example" />
                                                         <label htmlFor="fullname">PostCode</label>
                                                     </div>
 
                                                     <div className="row phone">
                                                         <div className='col-4' style={{ 'paddingRight': '0px' }}>
-                                                            <select className=" form-select" aria-label="Default select example">
+                                                            <select className=" form-select add_address_select" aria-label="Default select example">
                                                                 <option >sa</option>
                                                                 <option value="1">One</option>
                                                                 <option value="2">Two</option>
@@ -161,7 +161,7 @@ const Address_Shipping_View = () => {
                                                             </select>
                                                         </div>
                                                         <div className='col-6' style={{ 'paddingLeft': '0px' }}>
-                                                            <input type="text" className="form-control" placeholder="Your Email" />
+                                                            <input type="text" className="form-control add_address_input" placeholder="Your Email" />
                                                         </div>
                                                         <div className='col-2'>
 
@@ -169,7 +169,7 @@ const Address_Shipping_View = () => {
 
                                                     </div>
                                                     <div >
-                                                        <input style={{ 'marginRight': '10px' }} type="checkbox" id="check1" name="option1" value="something" />
+                                                        <input style={{ 'marginRight': '10px' }} className='add_address_input' type="checkbox" id="check1" name="option1" value="something" />
                                                         <label className="form-check-label">Make this my default shipping address</label>
                                                     </div>
                                                     <div className='row mt-3'>
