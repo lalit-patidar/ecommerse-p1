@@ -43,7 +43,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Address from "./pages/Address/Address";
 import Address_Shippig_View from "./pages/Address/Address_shipping_view";
 import TextTemporaryPassword from "./pages/TextTemporaryPassword/TextTemporaryPassword";
-import SellerCenterlOrder from "./pages/SellerCentralOrder/SellerCenterlOrder";
+import NotYetPaid from "./pages/SellerCentral/SellerCentralDetails/NotYetPaid";
+import SellerCentralOrder from "./pages/SellerCentral/SellerCentralOrder/SellerCentralOrder";
+import OrderDetails from "./pages/SellerCentral/SellerCentralDetails/OrderDetails";
 
 function App() {
     return (
@@ -144,9 +146,19 @@ function App() {
                     component={TextTemporaryPassword}
                 />
                 <Route
-                    path="/user/serller-central-order"
+                    path="/user/seller-central-order"
                     exact
-                    component={SellerCenterlOrder}
+                    component={SellerCentralOrder}
+                />
+                <Route
+                    path="/user/seller-central-details-not-yet-paid"
+                    exact
+                    component={NotYetPaid}
+                />
+                <Route
+                    path="/user/seller-central-order-details"
+                    exact
+                    component={OrderDetails}
                 />
             </Switch>
         </Router>

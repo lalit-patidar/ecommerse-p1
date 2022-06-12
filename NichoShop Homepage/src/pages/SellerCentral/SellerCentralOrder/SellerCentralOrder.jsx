@@ -1,15 +1,15 @@
-import Menu from "../../components/menu/Menu";
-import Footer from "../../components/MyNichoShop/footer/Footer";
 import { IoIosArrowForward } from "react-icons/io";
 import { BiSearch } from "react-icons/bi";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Form, Badge, Dropdown } from "react-bootstrap";
-import "./sellercenterlorder.scss";
+import "./sellercentralorder.scss";
 import Select from "react-select";
-import ProductImg from "./../../assets/product-img/product.png";
+import ProductImg from "./../../../assets/product-img/product.png";
+import Menu from "../../../components/menu/Menu";
+import Footer from "../../../components/MyNichoShop/footer/Footer";
 
-const SellerCenterlOrder = () => {
+const SellerCentralOrder = () => {
     const allOrderOption = [
         {
             value: "all-orders",
@@ -411,4 +411,4 @@ const SellerCenterlOrder = () => {
     );
 };
 
-export default SellerCenterlOrder;
+export default SellerCentralOrder;
