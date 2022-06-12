@@ -4,7 +4,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { BiSearch } from "react-icons/bi";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { Container, Row, Col, Form, Badge } from "react-bootstrap";
+import { Container, Row, Col, Form, Badge, Dropdown } from "react-bootstrap";
 import "./sellercenterlorder.scss";
 import Select from "react-select";
 import ProductImg from "./../../assets/product-img/product.png";
@@ -283,10 +283,36 @@ const SellerCenterlOrder = () => {
                                         </td>
                                         <td>
                                             <div className="ui-table-action-btn">
-                                                <button>
-                                                    Buy shipping label
-                                                    <MdOutlineKeyboardArrowDown />
-                                                </button>
+                                                <Dropdown>
+                                                    <Dropdown.Toggle>
+                                                        Buy shipping label
+                                                        <MdOutlineKeyboardArrowDown />
+                                                    </Dropdown.Toggle>
+
+                                                    <Dropdown.Menu>
+                                                        <Dropdown.Item href="#/action-1">
+                                                            Confirm shpment
+                                                        </Dropdown.Item>
+                                                        <Dropdown.Item href="#/action-2">
+                                                            Contact buyer
+                                                        </Dropdown.Item>
+                                                        <Dropdown.Item href="#/action-3">
+                                                            Sell similar
+                                                        </Dropdown.Item>
+                                                        <Dropdown.Item href="#/action-3">
+                                                            Relist
+                                                        </Dropdown.Item>
+                                                        <Dropdown.Item href="#/action-3">
+                                                            Cancel
+                                                        </Dropdown.Item>
+                                                        <Dropdown.Item href="#/action-3">
+                                                            Issue a refund
+                                                        </Dropdown.Item>
+                                                        <Dropdown.Item href="#/action-3">
+                                                            Report this buyer
+                                                        </Dropdown.Item>
+                                                    </Dropdown.Menu>
+                                                </Dropdown>
                                             </div>
                                         </td>
                                     </tr>
