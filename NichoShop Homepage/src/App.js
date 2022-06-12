@@ -41,6 +41,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Address from "./pages/Address/Address";
 import Address_Shippig_View from "./pages/Address/Address_shipping_view";
 import TextTemporaryPassword from "./pages/TextTemporaryPassword/TextTemporaryPassword";
+import SellerCenterlOrder from "./pages/SellerCentralOrder/SellerCenterlOrder";
 
 function App() {
     return (
@@ -135,6 +136,11 @@ function App() {
                     path="/user/text-temporary-pwd"
                     exact
                     component={TextTemporaryPassword}
+                />
+                <Route
+                    path="/user/serller-central-order"
+                    exact
+                    component={SellerCenterlOrder}
                 />
             </Switch>
         </Router>

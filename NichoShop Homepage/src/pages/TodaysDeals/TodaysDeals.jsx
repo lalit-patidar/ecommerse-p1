@@ -515,7 +515,7 @@ const TodaysDeals = () => {
                                         <MdKeyboardArrowRight />
                                     </button>
                                 </div>
-                                <div className="ui-td-per-page-select d-flex align-items-center gap-2">
+                                <div className="ui-td-per-page-select align-items-center gap-2">
                                     <p>Results per page</p>
                                     <Form.Select aria-label="Default select example">
                                         <option>10</option>

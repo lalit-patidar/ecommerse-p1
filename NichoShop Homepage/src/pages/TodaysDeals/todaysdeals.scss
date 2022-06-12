@@ -79,6 +79,8 @@
 }
 
 .ui-todays-deals-content-head {
+    padding: 10px 0;
+
     p {
         font-size: 16px;
         font-weight: 400;
@@ -136,7 +138,7 @@
 .ui-td-pag-box {
     border: 1px solid #dee2e6;
     border-top: 0;
-    padding: 0 20px;
+    padding: 10px 20px;
 }
 
 .ui-td-pag {
@@ -169,6 +171,8 @@
 }
 
 .ui-td-per-page-select {
+    display: flex;
+
     p {
         white-space: pre;
         font-size: 16px;
@@ -188,9 +192,9 @@
 
 .ui-product-card {
     &:hover {
-        box-shadow: 0px 0px 84px -41px rgba(0,0,0,0.75);
--webkit-box-shadow: 0px 0px 84px -41px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 0px 84px -41px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 84px -41px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 0px 0px 84px -41px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 0px 84px -41px rgba(0, 0, 0, 0.75);
     }
 }
 
@@ -452,8 +456,8 @@
         display: block;
     }
 
-    .ui-product-card{
-        &:hover{
+    .ui-product-card {
+        &:hover {
             box-shadow: unset;
         }
     }

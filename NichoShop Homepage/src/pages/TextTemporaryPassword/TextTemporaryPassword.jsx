@@ -22,7 +22,7 @@ const TextTemporaryPassword = () => {
                 <Row>
                     <Col>
                         <div className="ui-bread-crumb">
-                            <Link to="/my-nichoshop">My NichoShop</Link>
+                            <Link to="/">My NichoShop</Link>
                             <IoIosArrowForward />
                             <span>Messages</span>
                         </div>
