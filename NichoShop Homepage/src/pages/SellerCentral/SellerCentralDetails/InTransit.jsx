@@ -9,7 +9,7 @@ import { useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import SellerCentralProduct from "./Component/SellerCentralProduct/SellerCentralProduct";
 
-const OrderDetails = () => {
+const InTransit = () => {
     const detailsOptionHandler = [
         {
             value: "1",
@@ -34,9 +34,13 @@ const OrderDetails = () => {
     ];
 
     const [isTranToggled, setTranToggled] = useState(false);
+    const [isDepoToggled, setDepoToggled] = useState(false);
 
     const tranToggleHandler = () => {
         setTranToggled(!isTranToggled);
+    };
+    const depoHandler = () => {
+        setDepoToggled(!isDepoToggled);
     };
     return (
         <>
@@ -112,9 +116,93 @@ const OrderDetails = () => {
                     <Row>
                         <Col>
                             <div className="ui-scd-table-box">
-                                <div className="ui-scd-order-details">
-                                    <h4>Order details</h4>
+                                <div className="ui-it-head">
+                                    <h4>In transit</h4>
                                     <p>Delivery estimate: 22 Sep - 24 Sep</p>
+                                    <ul>
+                                        <li>Carrier:</li>
+                                        <li>USPS</li>
+                                    </ul>
+                                    <ul>
+                                        <li>Tracing number:</li>
+                                        <li>GB12345678901234567890</li>
+                                    </ul>
+                                    <div className="ui-it-progress-bar">
+                                        <div className="ui-pb-box">
+                                            <div
+                                                className="u-pb-step"
+                                                style={{ width: "25%" }}
+                                            >
+                                                <div className="ui-pb-step-arrow">
+                                                    <svg
+                                                        width="15"
+                                                        height="5"
+                                                        viewBox="0 0 15 5"
+                                                        fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <path
+                                                            d="M7.5 5L5.1656e-07 -1.1917e-07L15 -1.43051e-06L7.5 5Z"
+                                                            fill="#2AAC27"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div className="ui-pb-step-name">
+                                                <span className="step-active">
+                                                    Accepted
+                                                </span>
+                                                <span>In transit</span>
+                                                <span>OUT FOR DELIVERY</span>
+                                                <span>delivered</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="ui-it-show-more">
+                                        <OutsideClickHandler
+                                            onOutsideClick={() => {
+                                                setDepoToggled(false);
+                                            }}
+                                        >
+                                            <button onClick={depoHandler}>
+                                                Show More <IoIosArrowDown />
+                                            </button>
+                                            {isDepoToggled && (
+                                                <ul>
+                                                    <li>
+                                                        <p>
+                                                            Enroute to Carrier’s
+                                                            Depot
+                                                        </p>
+                                                        <p>
+                                                            29-Sep-17, 08:30 AM,
+                                                            SHENZHEN
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>
+                                                            Enroute to Carrier’s
+                                                            Depot
+                                                        </p>
+                                                        <p>
+                                                            29-Sep-17, 08:30 AM,
+                                                            SHENZHEN
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>
+                                                            Enroute to Carrier’s
+                                                            Depot
+                                                        </p>
+                                                        <p>
+                                                            29-Sep-17, 08:30 AM,
+                                                            SHENZHEN
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                            )}
+                                        </OutsideClickHandler>
+                                    </div>
                                 </div>
                                 <div className="ui-scd-t-info">
                                     <div className="ui-scd-t-info-one">
@@ -214,4 +302,4 @@ const OrderDetails = () => {
     );
 };
 
-export default OrderDetails;
+export default InTransit;

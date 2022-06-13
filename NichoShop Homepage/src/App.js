@@ -46,6 +46,9 @@ import TextTemporaryPassword from "./pages/TextTemporaryPassword/TextTemporaryPa
 import NotYetPaid from "./pages/SellerCentral/SellerCentralDetails/NotYetPaid";
 import SellerCentralOrder from "./pages/SellerCentral/SellerCentralOrder/SellerCentralOrder";
 import OrderDetails from "./pages/SellerCentral/SellerCentralDetails/OrderDetails";
+import NotYetSheppid from "./pages/SellerCentral/SellerCentralDetails/NotYetSheppid";
+import InTransit from "./pages/SellerCentral/SellerCentralDetails/InTransit";
+import ViewDetails from "./pages/SellerCentral/SellerCentralDetails/ViewDetails";
 
 function App() {
     return (
@@ -145,6 +148,7 @@ function App() {
                     exact
                     component={TextTemporaryPassword}
                 />
+                {/* user seller central order */}
                 <Route
                     path="/user/seller-central-order"
                     exact
@@ -159,6 +163,21 @@ function App() {
                     path="/user/seller-central-order-details"
                     exact
                     component={OrderDetails}
+                />
+                <Route
+                    path="/user/seller-central-order-details-not-yet-shipped"
+                    exact
+                    component={NotYetSheppid}
+                />
+                <Route
+                    path="/user/seller-central-order-details-intransit"
+                    exact
+                    component={InTransit}
+                />
+                <Route
+                    path="/user/seller-central-order-view-details"
+                    exact
+                    component={ViewDetails}
                 />
             </Switch>
         </Router>

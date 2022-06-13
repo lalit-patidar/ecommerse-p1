@@ -9,7 +9,7 @@ import { useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import SellerCentralProduct from "./Component/SellerCentralProduct/SellerCentralProduct";
 
-const OrderDetails = () => {
+const NotYetSheppid = () => {
     const detailsOptionHandler = [
         {
             value: "1",
@@ -113,7 +113,7 @@ const OrderDetails = () => {
                         <Col>
                             <div className="ui-scd-table-box">
                                 <div className="ui-scd-order-details">
-                                    <h4>Order details</h4>
+                                    <h4>Not yet shipped</h4>
                                     <p>Delivery estimate: 22 Sep - 24 Sep</p>
                                 </div>
                                 <div className="ui-scd-t-info">
@@ -214,4 +214,4 @@ const OrderDetails = () => {
     );
 };
 
-export default OrderDetails;
+export default NotYetSheppid;
