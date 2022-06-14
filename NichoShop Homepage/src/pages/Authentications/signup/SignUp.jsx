@@ -18,7 +18,9 @@ import {
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { inputChecker } from "../../../helper/FormHelper";
-import axios from "axios";
+import { postAjaxCall } from "../../../helper/ajaxCall";
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
 
 const SignUp = () => {
     const pwdInputRef = useRef();
@@ -97,37 +99,38 @@ const SignUp = () => {
     // form data submit
     const formHandler = async (e) => {
         e.preventDefault();
+        setFormSubmit(true);
 
         if (isFormSelected == 1) {
-            setFormSubmit(true);
             if (
                 inputChecker(getFullName) &&
                 inputChecker(getEmail) &&
                 inputChecker(getPassword)
             ) {
                 if (getPwdLength && getNumOrSimble && getPwdInSensitive) {
-                    axios
-                        .post(
-                            `https://nichoshop.com/api/v1/signup`,
-                            {
-                                email: getEmail,
-                                grecaptcha:
-                                    "6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
-                                fullName: getFullName,
-                                accountType: "PERSONAL",
-                                password: getPassword,
-                            },
-                            {
-                                headers: {
-                                    "Content-Type": "application/json",
-                                    "Access-Control-Allow-Origin": "*",
-                                    "Access-Control-Allow-Methods":
-                                        "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-                                },
-                            }
-                        )
+                    // sign up api call
+                    postAjaxCall({
+                        email: getEmail,
+                        grecaptcha: "6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
+                        fullName: getFullName,
+                        accountType: "PERSONAL",
+                        password: getPassword,
+                    })
                         .then((res) => {
                             console.log(res);
+                        })
+                        .catch((err) => {
+                            Toastify({
+                                text: err.response.data.error,
+                                className: "ui-error-popup",
+                                duration: 2500,
+                                close: false,
+                                style: {
+                                    background:
+                                        "linear-gradient(to right, #00b09b, #96c93d)",
+                                },
+                            }).showToast();
+                            console.log(err.response.data.error);
                         });
                 } else {
                     alert(

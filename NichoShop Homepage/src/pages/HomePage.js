@@ -13,104 +13,114 @@ import bicycleimg from "../assets/home-banner-img/Bicycle.png";
 import fashionimg from "../assets/home-banner-img/Fashion.png";
 import toysimg from "../assets/home-banner-img/Toys.png";
 import { useSelector, useDispatch } from "react-redux";
-import { setShowNotif } from "../actions/actions";
 
 function HomePage() {
-  const showNotif = useSelector((state) => state.showNotif);
-  const dispatch = useDispatch();
+    const showNotif = useSelector((state) => state.showNotif);
+    const dispatch = useDispatch();
 
-  const banner = [
-    {
-      title: "Looking for Electronics?",
-      subtitle: "Shop Electronics",
-      description: "Find everything you are looking for, with great deals",
-      bannerimg: iphoneimg,
-      banneralt: "iPhone banner",
-      gradient: "electronics",
-    },
-    {
-      title: "Create your dream home",
-      subtitle: "Shop Home & Garden",
-      description: "Find everything you are looking for, with great deals ",
-      bannerimg: sofaimg,
-      banneralt: "Home banner",
-      gradient: "home-garden",
-    },
-    {
-      title: "Sporting and enjoy",
-      subtitle: "Shop Sports & Outdoors",
-      description: "Find everything you are looking for, with great deals ",
-      bannerimg: bicycleimg,
-      banneralt: "Sports banner",
-      gradient: "sports",
-    },
-    {
-      title: "Live in style",
-      subtitle: "Shop Fashion",
-      description: "Find everything you are looking for, with great deals ",
-      bannerimg: fashionimg,
-      banneralt: "Fashion banner",
-      gradient: "fashion",
-    },
-    {
-      title: "Live in style",
-      subtitle: "Shop Fashion",
-      description: "Find everything you are looking for, with great deals ",
-      bannerimg: fashionimg,
-      banneralt: "Fashion banner",
-      gradient: "fashion",
-    },
-    {
-      title: "It's time for fun",
-      subtitle: "Shop Toys & Games",
-      description: "Find everything you are looking for, with great deals ",
-      bannerimg: toysimg,
-      banneralt: "Toys banner",
-      gradient: "toys",
-    },
-    {
-      title: "Looking for Electronics?",
-      subtitle: "Shop Electronics",
-      description: "Find everything you are looking for, with great deals",
-      bannerimg: iphoneimg,
-      banneralt: "iPhone banner",
-      gradient: "electronics",
-    },
-  ];
+    const banner = [
+        {
+            title: "Looking for Electronics?",
+            subtitle: "Shop Electronics",
+            description:
+                "Find everything you are looking for, with great deals",
+            bannerimg: iphoneimg,
+            banneralt: "iPhone banner",
+            gradient: "electronics",
+        },
+        {
+            title: "Create your dream home",
+            subtitle: "Shop Home & Garden",
+            description:
+                "Find everything you are looking for, with great deals ",
+            bannerimg: sofaimg,
+            banneralt: "Home banner",
+            gradient: "home-garden",
+        },
+        {
+            title: "Sporting and enjoy",
+            subtitle: "Shop Sports & Outdoors",
+            description:
+                "Find everything you are looking for, with great deals ",
+            bannerimg: bicycleimg,
+            banneralt: "Sports banner",
+            gradient: "sports",
+        },
+        {
+            title: "Live in style",
+            subtitle: "Shop Fashion",
+            description:
+                "Find everything you are looking for, with great deals ",
+            bannerimg: fashionimg,
+            banneralt: "Fashion banner",
+            gradient: "fashion",
+        },
+        {
+            title: "Live in style",
+            subtitle: "Shop Fashion",
+            description:
+                "Find everything you are looking for, with great deals ",
+            bannerimg: fashionimg,
+            banneralt: "Fashion banner",
+            gradient: "fashion",
+        },
+        {
+            title: "It's time for fun",
+            subtitle: "Shop Toys & Games",
+            description:
+                "Find everything you are looking for, with great deals ",
+            bannerimg: toysimg,
+            banneralt: "Toys banner",
+            gradient: "toys",
+        },
+        {
+            title: "Looking for Electronics?",
+            subtitle: "Shop Electronics",
+            description:
+                "Find everything you are looking for, with great deals",
+            bannerimg: iphoneimg,
+            banneralt: "iPhone banner",
+            gradient: "electronics",
+        },
+    ];
 
-  const [seconds, setSeconds] = useState(0);
+    const [seconds, setSeconds] = useState(0);
 
-  if (seconds == 6) {
-    setSeconds(0);
-  }
+    if (seconds == 6) {
+        setSeconds(0);
+    }
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSeconds((seconds) => seconds + 1);
-    }, 7000);
-    return () => clearInterval(interval);
-  }, []);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setSeconds((seconds) => seconds + 1);
+        }, 7000);
+        return () => clearInterval(interval);
+    }, []);
 
-  return (
-    <div className="home-page">
-      {/* <Header /> */}
-      <Menu />
-      {showNotif ? (
-        <Notification color="green" title="aaaaa" description="adadadadad" />
-      ) : null}
-      <HomeBanner
-        title={banner[seconds].title}
-        subtitle={banner[seconds].subtitle}
-        description={banner[seconds].description}
-        bannerimg={banner[seconds].bannerimg}
-        banneralt={banner[seconds].banneralt}
-        gradient={banner[seconds].gradient}
-      />
-      <RecentItems />
-      <TodayItems />
-      <HomeFooter />
-    </div>
-  );
+    return (
+        <div className="home-page">
+            {/* <Header /> */}
+            <Menu />
+            {showNotif ? (
+                <Notification
+                    color="green"
+                    title="aaaaa"
+                    description="adadadadad"
+                />
+            ) : null}
+            <HomeBanner
+                title={banner[seconds].title}
+                subtitle={banner[seconds].subtitle}
+                description={banner[seconds].description}
+                bannerimg={banner[seconds].bannerimg}
+                banneralt={banner[seconds].banneralt}
+                gradient={banner[seconds].gradient}
+            />
+            <RecentItems />
+            <TodayItems />
+            <HomeFooter />
+        </div>
+    );
 }
 
 export default HomePage;

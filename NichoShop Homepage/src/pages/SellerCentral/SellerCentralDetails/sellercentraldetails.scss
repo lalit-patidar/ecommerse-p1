@@ -473,6 +473,15 @@
     margin-top: 10px;
 }
 
+.ui-oi-head {
+    padding: 14px 30px;
+    border-bottom: 1px solid #CBCBCB;
+
+    .ui-scd-head {
+        padding-bottom: 10px;
+    }
+}
+
 // charge status component
 
 .ui-charge-status-list {
@@ -511,4 +520,220 @@
             }
         }
     }
+}
+
+// order invoice item component
+.ui-oii-box {
+    border-bottom: 1px dashed #CBCBCB;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 30px;
+    padding-bottom: 20px;
+
+    &:last-of-type {
+        border-bottom: 0;
+    }
+
+    ul {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
+        padding-left: 0;
+        list-style-type: none;
+
+        li {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+
+            &:first-child {
+                width: 120px;
+                color: #6C757D;
+            }
+
+            &:last-child {
+                color: #1C1C1C;
+            }
+        }
+    }
+}
+
+// refund popup
+.ui-refund-popup-box {
+    position: fixed;
+    z-index: 999;
+    inset: 0;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ui-refund-popup-content {
+    background-color: #fff;
+    width: 1109px;
+    border-radius: 6px;
+}
+
+.ui-rpc-head {
+    border-bottom: 1px solid #CBCBCB;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 140%;
+        color: #1C1C1C;
+    }
+
+    button {
+        background: none;
+        padding: 0;
+        border: none;
+    }
+}
+
+.ui-rpc-body {
+    padding: 20px;
+
+    ul {
+        margin-bottom: 0;
+        padding-left: 0;
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        li {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+
+            &:first-child {
+                color: #6C757D;
+            }
+
+            &:last-child {
+                color: #000000;
+            }
+        }
+    }
+}
+
+.ui-rpc-info {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-bottom: 1px dashed #CBCBCB;
+    width: 800px;
+
+    &:last-of-type {
+        border-bottom: 0;
+    }
+}
+
+.ui-rpc-comment {
+    padding: 0 30px 30px 30px;
+
+    p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+
+        &:first-child {
+            color: #6C757D;
+            padding-bottom: 10px;
+        }
+
+        &:last-child {
+            color: #000000;
+        }
+    }
+}
+
+.ui-rpc-close {
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-top: 1px solid #CBCBCB;
+
+    button {
+        padding: 11px 71px;
+        background: #0072BC;
+        border-radius: 6px;
+        border: none;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #FFFFFF;
+        transition: all .3s;
+
+        &:hover {
+            background-color: #0161a0;
+        }
+    }
+}
+
+// product info page
+
+.ui-pi-time {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #0072BC;
+    border-radius: 6px;
+    gap: 14px;
+
+    p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 140%;
+        color: #000000;
+        border-right: 1px solid #CBCBCB;
+        padding-right: 14px;
+    }
+}
+
+.ui-pi-left-img {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    img {
+        height: 60px;
+        width: 60px;
+        object-fit: cover;
+        cursor: pointer;
+    }
+}
+
+.ui-pi-right-img {
+    width: 100%;
+    height: 460px;
+
+    div {
+        width: 100% !important;
+        height: 100% !important;
+        background-size: cover !important;
+    }
+
+    img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover;
+    }
+}
+
+.ui-pi-img-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 50px 0;
 }

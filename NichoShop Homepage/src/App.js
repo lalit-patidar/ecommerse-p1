@@ -49,6 +49,8 @@ import OrderDetails from "./pages/SellerCentral/SellerCentralDetails/OrderDetail
 import NotYetSheppid from "./pages/SellerCentral/SellerCentralDetails/NotYetSheppid";
 import InTransit from "./pages/SellerCentral/SellerCentralDetails/InTransit";
 import ViewDetails from "./pages/SellerCentral/SellerCentralDetails/ViewDetails";
+import OrderInvoice from "./pages/SellerCentral/SellerCentralDetails/OrderInvoice";
+import ProductInfo from "./pages/SellerCentral/ProductInfo/ProductInfo";
 
 function App() {
     return (
@@ -178,6 +180,17 @@ function App() {
                     path="/user/seller-central-order-view-details"
                     exact
                     component={ViewDetails}
+                />
+                {/* order details invoice */}
+                <Route
+                    path="/user/seller-central-order-invoice"
+                    exact
+                    component={OrderInvoice}
+                />
+                <Route
+                    path="/user/seller-central-order-product-info"
+                    exact
+                    component={ProductInfo}
                 />
             </Switch>
         </Router>

@@ -24,11 +24,22 @@ export const setPublicPage = (data) => {
         type: "SETPUBLICPAGE",
         payload: data,
     };
-}
+};
 
 export const setDetailItem = (data) => {
     return {
         type: "SETDETAILITEM",
         payload: data,
     };
-}
+};
+/**
+ * sign up action
+ * action name (AUTH)
+ */
+
+export const auth = (data) => {
+    return {
+        type: "AUTH",
+        payload: data,
+    };
+};

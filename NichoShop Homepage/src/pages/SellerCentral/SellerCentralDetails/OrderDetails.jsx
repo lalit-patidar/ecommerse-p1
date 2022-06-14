@@ -8,6 +8,7 @@ import "./sellercentraldetails.scss";
 import { useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import SellerCentralProduct from "./Component/SellerCentralProduct/SellerCentralProduct";
+import RefundIssusPopup from "./Component/RefundIssusPopup/RefundIssusPopup";
 
 const OrderDetails = () => {
     const detailsOptionHandler = [
@@ -37,6 +38,16 @@ const OrderDetails = () => {
 
     const tranToggleHandler = () => {
         setTranToggled(!isTranToggled);
+    };
+
+    // popup
+    const [isPopupToggled, setPopupToggled] = useState(false);
+    const popupHandler = () => {
+        setPopupToggled(false);
+    };
+
+    const tranPopupHandler = () => {
+        setPopupToggled(true);
     };
     return (
         <>
@@ -185,7 +196,7 @@ const OrderDetails = () => {
                                         </button>
                                         {isTranToggled && (
                                             <ul>
-                                                <li>
+                                                <li onClick={tranPopupHandler}>
                                                     Refund Processing 22 Sep
                                                     2018 - US $123.45
                                                 </li>
@@ -209,6 +220,8 @@ const OrderDetails = () => {
                     </Row>
                 </Container>
             </div>
+            {isPopupToggled && <RefundIssusPopup popupHandler={popupHandler} />}
+
             <Footer />
         </>
     );
