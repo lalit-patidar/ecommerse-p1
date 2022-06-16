@@ -7,37 +7,23 @@ import FbImg from "./../../../assets/form-social/fb.png";
 import FormFooter from "../../../components/FormFooter/FormFooter";
 import { useRef, useState } from "react";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
-import {
-    FormControl,
-    InputAdornment,
-    InputLabel,
-    OutlinedInput,
-    TextField,
-} from "@mui/material";
+import { TextField } from "@mui/material";
 
 import "react-phone-number-input/style.css";
-import PhoneInput from "react-phone-number-input";
-import { inputChecker } from "../../../helper/FormHelper";
+import { inputChecker } from "../../../helper/formHelper";
 import { postAjaxCall } from "../../../helper/ajaxCall";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
+import { useNavigate } from "react-router-dom";
+import { setStore } from "../../../helper/storeHelper";
+// import FacebookLogin from "react-facebook-login";
 
 const SignUp = () => {
     const pwdInputRef = useRef();
+    const navigate = useNavigate();
 
     // is password show & hidden
     const [isPwdShow, setPwdShow] = useState(false);
-
-    // 2 type form  tab
-    const [isFormSelected, setFormSelected] = useState(1);
-    const peronalHendler = () => {
-        setFormSelected(1);
-        setPwdShow(false);
-    };
-    const businessHendler = () => {
-        setFormSelected(0);
-        setPwdShow(false);
-    };
 
     // pasword show & hidden
     const isPwdShowedHandler = () => {
@@ -64,6 +50,28 @@ const SignUp = () => {
     const [getTotalLength, setTotalLength] = useState(0);
 
     const [getFormSubmit, setFormSubmit] = useState(false);
+
+    // 2 type form  tab
+    const [isFormSelected, setFormSelected] = useState(1);
+    const peronalHendler = () => {
+        setFormSelected(1);
+        setPwdShow(false);
+        // tab move
+        setFormSubmit(false);
+        // form input value empty
+        setFullName("");
+        setEmail("");
+        setPassword("");
+    };
+    const businessHendler = () => {
+        setFormSelected(0);
+        setPwdShow(false);
+        setFormSubmit(false);
+        // form input value empty
+        setFullName("");
+        setEmail("");
+        setPassword("");
+    };
 
     // full name input handler
     const fullnameHandler = (e) => {
@@ -101,7 +109,7 @@ const SignUp = () => {
         e.preventDefault();
         setFormSubmit(true);
 
-        if (isFormSelected == 1) {
+        if (isFormSelected === 1) {
             if (
                 inputChecker(getFullName) &&
                 inputChecker(getEmail) &&
@@ -117,7 +125,48 @@ const SignUp = () => {
                         password: getPassword,
                     })
                         .then((res) => {
-                            console.log(res);
+                            setStore("signup_data", res.data);
+                            navigate("/join/mail-activation");
+                        })
+                        .catch((err) => {
+                            Toastify({
+                                text: err.response.data.error,
+                                className: "ui-error-popup",
+                                duration: 2500,
+                                close: false,
+                                style: {
+                                    background:
+                                        "linear-gradient(to right, #00b09b, #96c93d)",
+                                },
+                            }).showToast();
+                            console.log(err.response.data.error);
+                        });
+                } else {
+                    alert(
+                        "Password must be at least 8 characters long, contain at least one number and one special character"
+                    );
+                }
+            } else {
+                alert("Please fill all the fields");
+            }
+        } else if (isFormSelected === 0) {
+            if (
+                inputChecker(getFullName) &&
+                inputChecker(getEmail) &&
+                inputChecker(getPassword)
+            ) {
+                if (getPwdLength && getNumOrSimble && getPwdInSensitive) {
+                    // sign up api call
+                    postAjaxCall({
+                        email: getEmail,
+                        grecaptcha: "6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
+                        fullName: getFullName,
+                        accountType: "BUSINESS",
+                        password: getPassword,
+                    })
+                        .then((res) => {
+                            setStore("signup_data", res.data);
+                            navigate("/join/mail-activation");
                         })
                         .catch((err) => {
                             Toastify({
@@ -142,6 +191,15 @@ const SignUp = () => {
             }
         }
     };
+
+    // social auth
+    // const responseFacebook = (response) => {
+    //     console.log(response);
+    // };
+    // const componentClicked = (data) => {
+    //     console.log(data);
+    // };
+
     return (
         <>
             <div className="ui-form-box">
@@ -395,7 +453,19 @@ const SignUp = () => {
                                                     size="small"
                                                     fullWidth
                                                     onChange={fullnameHandler}
+                                                    error={
+                                                        getFormSubmit &&
+                                                        getFullName.length <
+                                                            1 &&
+                                                        true
+                                                    }
                                                 />
+                                                <span className="ui-form-lable-error">
+                                                    {getFormSubmit &&
+                                                        getFullName.length <
+                                                            1 &&
+                                                        "Please enter the business or DBA name."}
+                                                </span>
                                             </Form.Group>
                                             <Form.Group className="mb-3">
                                                 <TextField
@@ -405,7 +475,17 @@ const SignUp = () => {
                                                     size="small"
                                                     fullWidth
                                                     onChange={emailHandler}
+                                                    error={
+                                                        getFormSubmit &&
+                                                        getEmail.length < 1 &&
+                                                        true
+                                                    }
                                                 />
+                                                <span className="ui-form-lable-error">
+                                                    {getFormSubmit &&
+                                                        getEmail.length < 1 &&
+                                                        "Please enter your email address."}
+                                                </span>
                                             </Form.Group>
                                             <Form.Group className="mb-3">
                                                 <div className="ui-form-pwd">
@@ -418,6 +498,12 @@ const SignUp = () => {
                                                         type="password"
                                                         ref={pwdInputRef}
                                                         onChange={pwdHandler}
+                                                        error={
+                                                            getFormSubmit &&
+                                                            getPassword.length <
+                                                                1 &&
+                                                            true
+                                                        }
                                                     />
                                                     <button
                                                         onClick={
@@ -432,8 +518,14 @@ const SignUp = () => {
                                                         )}
                                                     </button>
                                                 </div>
+                                                <span className="ui-form-lable-error">
+                                                    {getFormSubmit &&
+                                                        getPassword.length <
+                                                            1 &&
+                                                        "Please make your password unique."}
+                                                </span>
                                             </Form.Group>
-                                            <div className="ui-phone-no">
+                                            {/* <div className="ui-phone-no">
                                                 <FormControl
                                                     variant="outlined"
                                                     size="small"
@@ -466,7 +558,7 @@ const SignUp = () => {
                                                         label="Legal phone number"
                                                     />
                                                 </FormControl>
-                                            </div>
+                                            </div> */}
 
                                             <div className="ui-pwd-strength">
                                                 {getTotalLength === 0 ? (
@@ -596,6 +688,12 @@ const SignUp = () => {
                                             Continue with Google
                                             <img src={GoogleImg} alt="logo" />
                                         </button>
+                                        {/* <FacebookLogin
+                                            appId="5341488602631540"
+                                            fields="name,email,picture"
+                                            onClick={componentClicked}
+                                            callback={responseFacebook}
+                                        /> */}
                                         <button>
                                             Continue with Apple
                                             <img src={AppleImg} alt="logo" />
@@ -611,7 +709,7 @@ const SignUp = () => {
                             <div className="ui-form-link">
                                 <p>
                                     Already a member? Sign In{" "}
-                                    <Link to="/user/signin">Login</Link>
+                                    <Link to="/signin">Login</Link>
                                 </p>
                             </div>
                         </Col>

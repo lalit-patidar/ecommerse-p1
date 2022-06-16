@@ -5,11 +5,3 @@ export const inputChecker = (input) => {
         return false;
     }
 };
-
-export const inputPermissionChecker = (input) => {
-    if (Boolean(input) === true) {
-        return true;
-    } else {
-        return false;
-    }
-};

@@ -69,7 +69,6 @@
 
         label {
             padding-left: 10px;
-            padding-bottom: 4px;
         }
     }
 }
@@ -174,7 +173,7 @@
     height: 10px !important;
     position: absolute;
     right: -80px;
-    top: 18px;
+    top: 8px;
 }
 
 .ui-phone-no .css-19qh8xo-MuiInputBase-input-MuiOutlinedInput-input {
@@ -366,7 +365,7 @@
     color: #000 !important;
 }
 
-.ui-vpm-footer{
+.ui-vpm-footer {
     padding: 0 !important;
     text-align: start !important;
     font-size: 14px;
@@ -412,10 +411,101 @@
 }
 
 // popup
-.ui-error-popup{
+.ui-error-popup {
     max-width: 300px !important;
 }
 
-.toast-close{
-    color: red;
+// join verify page
+.ui-join-box {
+    border: 1px solid #CBCBCB;
+    padding: 30px;
+    border-radius: 6px;
+}
+
+.ui-join-head {
+    border-bottom: 1px solid #CBCBCB;
+    padding-bottom: 20px;
+
+    h4 {
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 26px;
+        color: #1C1C1C;
+        margin-bottom: 0;
+    }
+}
+
+.ui-join-content {
+    >p {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 140%;
+        color: #616161;
+        padding: 12px 0;
+
+        b {
+            color: #1C1C1C;
+        }
+    }
+}
+
+.ui-join-mail-box {
+    position: relative;
+
+    >div {
+        display: inline-block;
+    }
+
+    button {
+        padding: 0;
+        border: 0;
+        background: none;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 140%;
+        color: #0072BC;
+    }
+}
+
+.ui-join-mail-info {
+    position: absolute;
+    background-color: #fff;
+    top: 47px;
+    left: -42px;
+    z-index: 99;
+    padding: 20px 20px 20px 42px;
+    width: 304px;
+
+    box-shadow: 0px 0px 87px -42px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 87px -42px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 87px -42px rgba(0, 0, 0, 0.75);
+    border-radius: 6px;
+
+    &::after {
+        content: '';
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid #fff;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    ul {
+        margin-bottom: 0;
+        padding-left: 0;
+
+        li {
+            padding: 6px 0;
+        }
+
+        button {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 19px;
+            color: #0072BC;
+        }
+    }
 }

@@ -17,25 +17,26 @@ import EmailPreferences from "../../assets/my-nicho-shop/EmailPreferences.png";
 import Help from "../../assets/my-nicho-shop/Help.png";
 import Notification from "../../components/notification/Notification";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-
-
-
+// import { useHistory } from "react-router-dom";
 
 function MyNichoPage({ props }) {
-    const [curPage, SetCurPage] = useState("none")
-    let history = useHistory();
-    
+    const [curPage, SetCurPage] = useState("none");
+    // let history = useHistory();
+
     const fn_changePage = (path) => {
-        history.push(path);
-    }
+        // history.push(path);
+    };
 
     const showNotif = useSelector((state) => state.showNotif);
     return (
         <div className="my-nicho-shop">
             <Menu />
             {showNotif ? (
-                <Notification color="green" title="aaaaa" description="adadadadad" />
+                <Notification
+                    color="green"
+                    title="aaaaa"
+                    description="adadadadad"
+                />
             ) : null}
             <div className="my-nicho-shop-container container-ns">
                 <h2 className="title">My NichoShop</h2>

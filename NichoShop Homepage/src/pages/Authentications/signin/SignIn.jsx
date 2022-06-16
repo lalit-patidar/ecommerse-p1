@@ -169,9 +169,7 @@ const SignIn = () => {
                             <div className="ui-form-link">
                                 <p>
                                     Create new a account,{" "}
-                                    <Link to="/user/signup">
-                                        Create an account
-                                    </Link>
+                                    <Link to="/signup">Create an account</Link>
                                 </p>
                             </div>
                         </Col>

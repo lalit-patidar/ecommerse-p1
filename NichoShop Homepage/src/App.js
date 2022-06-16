@@ -16,7 +16,7 @@ import CloseRequest from "./pages/MyAccount/Closerequest";
 import CloseRequestCancel from "./pages/MyAccount/Requestcancel";
 import CloseRequestProcess from "./pages/MyAccount/Requestprocess";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import TodaysDeals from "./pages/TodaysDeals/TodaysDeals";
 import RecentlyViewed from "./pages/RecentlyViewed/RecentlyViewed";
 import SignUp from "./pages/Authentications/signup/SignUp";
@@ -51,149 +51,184 @@ import InTransit from "./pages/SellerCentral/SellerCentralDetails/InTransit";
 import ViewDetails from "./pages/SellerCentral/SellerCentralDetails/ViewDetails";
 import OrderInvoice from "./pages/SellerCentral/SellerCentralDetails/OrderInvoice";
 import ProductInfo from "./pages/SellerCentral/ProductInfo/ProductInfo";
+import JoinVerify from "./pages/Authentications/JoinVerify";
+import ConfirmShipment from "./pages/SellerCentral/Shipment/ConfirmShipment";
+import ContactBuyer from "./pages/SellerCentral/ContactBuyer/ContactBuyer";
 
 function App() {
     return (
-        <Router>
-            <Switch>
-                <Route path="/mynichoshop" exact component={MyNichoShop} />
-                {/* MyNichoShop call component */}
-                <Route path="/MNSPurchases" exact component={MNSPurchases} />
-                <Route path="/MNSMessages" exact component={MNSMessages} />
-                {/* End MyNichoShop */}
-                <Route path="/createlisting" exact component={CreateListing} />
-                <Route
-                    path="/createlistingform"
-                    exact
-                    component={CreateListingForm}
-                />
-                <Route path="/" exact component={HomePage} />
-                <Route path="/bidding" exact component={Bidding} />
-                <Route path="/watchlist" exact component={Watchlist} />
-                <Route path="/listings" exact component={Listings} />
-                <Route path="/sellercentral" exact component={SellerCentral} />
-                <Route path="/productdetail" exact component={Productdetail} />
-                <Route path="/user/my-account" exact component={Account} />
-                <Route
-                    path="/user/close-account"
-                    exact
-                    component={CloseAccount}
-                />
-                {/* address page */}
-                <Route path="/user/address" exact component={Address} />
-                <Route
-                    path="/user/address/shipping_view"
-                    exact
-                    component={Address_Shippig_View}
-                />
-                <Route
-                    path="/user/close-request"
-                    exact
-                    component={CloseRequest}
-                />
-                <Route
-                    path="/user/close-requeset-cancel"
-                    exact
-                    component={CloseRequestCancel}
-                />
-                <Route
-                    path="/user/close-requeset-process"
-                    exact
-                    component={CloseRequestProcess}
-                />
-                <Route path="/todays-deals" exact component={TodaysDeals} />
-                <Route
-                    path="/recently-viewed"
-                    exact
-                    component={RecentlyViewed}
-                />
-                {/* auth route */}
-                <Route path="/user/signup" exact component={SignUp} />
-                <Route path="/user/signin" exact component={SignIn} />
-                <Route path="/user/welcome" exact component={Welcome} />
-                <Route path="/user/add-mobile" exact component={AddMobile} />
-                <Route path="/user/mobile/suc-code" exact component={SucCode} />
-                <Route
-                    path="/user/add-mobile/coninue"
-                    exact
-                    component={ContinueAddMobile}
-                />
-                <Route path="/user/temp-pwd" exact component={TempPassword} />
-                <Route
-                    path="/user/create-new-password"
-                    exact
-                    component={ChangeNewPassword}
-                />
-                <Route
-                    path="/user/single-user-code"
-                    exact
-                    component={SingleUserCode}
-                />
-                <Route path="/user/verify-you" exact component={VerifyYou} />
-                <Route
-                    path="/user/verify-you-mobile"
-                    exact
-                    component={VerifyYouMobile}
-                />
-                <Route
-                    path="/user/change-user-name"
-                    exact
-                    component={ChangeUserName}
-                />
-                <Route
-                    path="/user/change-your-pwd"
-                    exact
-                    component={ChangeYourPassword}
-                />
-                <Route
-                    path="/user/text-temporary-pwd"
-                    exact
-                    component={TextTemporaryPassword}
-                />
-                {/* user seller central order */}
-                <Route
-                    path="/user/seller-central-order"
-                    exact
-                    component={SellerCentralOrder}
-                />
-                <Route
-                    path="/user/seller-central-details-not-yet-paid"
-                    exact
-                    component={NotYetPaid}
-                />
-                <Route
-                    path="/user/seller-central-order-details"
-                    exact
-                    component={OrderDetails}
-                />
-                <Route
-                    path="/user/seller-central-order-details-not-yet-shipped"
-                    exact
-                    component={NotYetSheppid}
-                />
-                <Route
-                    path="/user/seller-central-order-details-intransit"
-                    exact
-                    component={InTransit}
-                />
-                <Route
-                    path="/user/seller-central-order-view-details"
-                    exact
-                    component={ViewDetails}
-                />
-                {/* order details invoice */}
-                <Route
-                    path="/user/seller-central-order-invoice"
-                    exact
-                    component={OrderInvoice}
-                />
-                <Route
-                    path="/user/seller-central-order-product-info"
-                    exact
-                    component={ProductInfo}
-                />
-            </Switch>
-        </Router>
+        // <Router>
+        //     <Switch>
+        //         <Route path="/mynichoshop" exact component={MyNichoShop} />
+        //         {/* MyNichoShop call component */}
+        //         <Route path="/MNSPurchases" exact component={MNSPurchases} />
+        //         <Route path="/MNSMessages" exact component={MNSMessages} />
+        //         {/* End MyNichoShop */}
+        //         <Route path="/createlisting" exact component={CreateListing} />
+        //         <Route
+        //             path="/createlistingform"
+        //             exact
+        //             component={CreateListingForm}
+        //         />
+        //         <Route path="/" exact component={HomePage} />
+        //         <Route path="/bidding" exact component={Bidding} />
+        //         <Route path="/watchlist" exact component={Watchlist} />
+        //         <Route path="/listings" exact component={Listings} />
+        //         <Route path="/sellercentral" exact component={SellerCentral} />
+        //         <Route path="/productdetail" exact component={Productdetail} />
+        //         <Route path="/user/my-account" exact component={Account} />
+        //         <Route
+        //             path="/user/close-account"
+        //             exact
+        //             component={CloseAccount}
+        //         />
+        //         {/* address page */}
+        //         <Route path="/user/address" exact component={Address} />
+        //         <Route
+        //             path="/user/address/shipping_view"
+        //             exact
+        //             component={Address_Shippig_View}
+        //         />
+        //         <Route
+        //             path="/user/close-request"
+        //             exact
+        //             component={CloseRequest}
+        //         />
+        //         <Route
+        //             path="/user/close-requeset-cancel"
+        //             exact
+        //             component={CloseRequestCancel}
+        //         />
+        //         <Route
+        //             path="/user/close-requeset-process"
+        //             exact
+        //             component={CloseRequestProcess}
+        //         />
+        //         <Route path="/todays-deals" exact component={TodaysDeals} />
+        //         <Route
+        //             path="/recently-viewed"
+        //             exact
+        //             component={RecentlyViewed}
+        //         />
+        //         {/* auth route */}
+        //         <Route path="/user/signup" exact component={SignUp} />
+        //         <Route path="/user/signin" exact component={SignIn} />
+        //         <Route path="/user/welcome" exact component={Welcome} />
+        //         <Route path="/user/add-mobile" exact component={AddMobile} />
+        //         <Route path="/user/mobile/suc-code" exact component={SucCode} />
+        //         <Route
+        //             path="/user/add-mobile/coninue"
+        //             exact
+        //             component={ContinueAddMobile}
+        //         />
+        //         <Route path="/user/temp-pwd" exact component={TempPassword} />
+        //         <Route
+        //             path="/user/create-new-password"
+        //             exact
+        //             component={ChangeNewPassword}
+        //         />
+        //         <Route
+        //             path="/user/single-user-code"
+        //             exact
+        //             component={SingleUserCode}
+        //         />
+        //         <Route path="/user/verify-you" exact component={VerifyYou} />
+        //         <Route
+        //             path="/user/verify-you-mobile"
+        //             exact
+        //             component={VerifyYouMobile}
+        //         />
+        //         <Route
+        //             path="/user/change-user-name"
+        //             exact
+        //             component={ChangeUserName}
+        //         />
+        //         <Route
+        //             path="/user/change-your-pwd"
+        //             exact
+        //             component={ChangeYourPassword}
+        //         />
+        //         <Route
+        //             path="/user/text-temporary-pwd"
+        //             exact
+        //             component={TextTemporaryPassword}
+        //         />
+        //         {/* user seller central order */}
+        //         <Route
+        //             path="/user/seller-central-order"
+        //             exact
+        //             component={SellerCentralOrder}
+        //         />
+        //         <Route
+        //             path="/user/seller-central-details-not-yet-paid"
+        //             exact
+        //             component={NotYetPaid}
+        //         />
+        //         <Route
+        //             path="/user/seller-central-order-details"
+        //             exact
+        //             component={OrderDetails}
+        //         />
+        //         <Route
+        //             path="/user/seller-central-order-details-not-yet-shipped"
+        //             exact
+        //             component={NotYetSheppid}
+        //         />
+        //         <Route
+        //             path="/user/seller-central-order-details-intransit"
+        //             exact
+        //             component={InTransit}
+        //         />
+        //         <Route
+        //             path="/user/seller-central-order-view-details"
+        //             exact
+        //             component={ViewDetails}
+        //         />
+        //         {/* order details invoice */}
+        //         <Route
+        //             path="/user/seller-central-order-invoice"
+        //             exact
+        //             component={OrderInvoice}
+        //         />
+        //         <Route
+        //             path="/user/seller-central-order-product-info"
+        //             exact
+        //             component={ProductInfo}
+        //         />
+        //     </Switch>
+        // </Router>
+
+        <Routes>
+            {/* 
+                - / (home page)
+            */}
+            <Route path="/" element={<HomePage />} />
+            {/* 
+                - /signup (sign up page)
+                - /signin (sign in page)
+                - /join/mail-activation (join verify page)
+            */}
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/join/mail-activation" element={<JoinVerify />} />
+            {/* 
+                - /seller-central/order-product-info (product info page)
+                - /seller-central/confirm-shipment (confirm shipment info page)
+                - /seller-central/contact-buyer (contact buyer page)
+            */}
+            <Route
+                path="/seller-central/order-product-info"
+                element={<ProductInfo />}
+            />
+            <Route
+                path="/seller-central/confirm-shipment"
+                element={<ConfirmShipment />}
+            />
+            <Route
+                path="/seller-central/contact-buyer"
+                element={<ContactBuyer />}
+            />
+        </Routes>
     );
 }
 

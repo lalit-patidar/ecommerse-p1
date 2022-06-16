@@ -1,0 +1,79 @@
+.ui-contact-buyer-box {
+    padding: 50px 0;
+}
+
+.ui-cb-content-head {
+    padding-bottom: 1.4rem;
+
+    p {
+        font-weight: 500;
+        font-size: 22px;
+        line-height: 26px;
+        color: #1C1C1C;
+    }
+}
+
+.ui-cb-content-body {
+    border: 1px solid #CBCBCB;
+    border-radius: 6px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 60% 1fr;
+}
+
+.ui-cb-cb-left-product {
+    display: flex;
+    gap: 10px;
+
+    img {
+        height: 128px;
+        width: 128px;
+        object-fit: contain;
+    }
+}
+
+.ui-cb-cb-lp-info {
+    h4 {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+        text-transform: uppercase;
+        color: #1C1C1C;
+    }
+
+    p {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        color: #1C1C1C;
+        padding: 4px 0;
+
+        span {
+            color: #6C757D;
+            padding-right: 8px;
+        }
+    }
+}
+
+.ui-cb-cb-add-file {
+    input {
+        display: none;
+    }
+}
+
+.ui-outline-btn {
+    height: 40px;
+    padding: 0 1.8rem;
+    border: 1px solid #0072BC;
+    color: #0072BC;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all .3s;
+
+    &:hover {
+        background-color: #0072BC;
+        color: #fff;
+    }
+}
