@@ -12,13 +12,13 @@ import NotificationBell from "../notification/NotificationBell";
 import { useSelector, useDispatch } from "react-redux";
 import { setHideSearchBar, setShowNotif } from "../../actions/actions";
 function Navbar() {
-  const hideSearchBar = useSelector((state) => state.hideSearchBar);
+    const hideSearchBar = useSelector((state) => state.hideSearchBar);
 
-  if (!hideSearchBar) {
-    return <NavbarContainer />;
-  } else {
-    return <SearchbarMobile />;
-  }
+    if (!hideSearchBar) {
+        return <NavbarContainer />;
+    } else {
+        return <SearchbarMobile />;
+    }
 }
 
 // const notifHandler = () => {
@@ -26,82 +26,85 @@ function Navbar() {
 // };
 
 const NavbarContainer = () => {
-  const dispatch = useDispatch();
-  const showNotif = useSelector((state) => state.showNotif);
+    const dispatch = useDispatch();
+    const showNotif = useSelector((state) => state.showNotif);
 
-  return (
-    <nav className="nav-bar">
-      <button className="custom-button search-mobile-btn">
-        <i
-          class="bi bi-search"
-          onClick={() => {
-            dispatch(setHideSearchBar(true));
-          }}
-        ></i>
-      </button>
-      <button
-        className="sell-btn custom-button small-text"
-        onClick={() => {
-          dispatch(setShowNotif(!showNotif));
-        }}
-      >
-        Sell
-      </button>
-      {/* <Button className="sell-btn custom-button" value="Sell" /> */}
+    return (
+        <nav className="nav-bar">
+            <button className="custom-button search-mobile-btn">
+                <i
+                    class="bi bi-search"
+                    onClick={() => {
+                        dispatch(setHideSearchBar(true));
+                    }}
+                ></i>
+            </button>
+            <button
+                className="sell-btn custom-button small-text"
+                onClick={() => {
+                    dispatch(setShowNotif(!showNotif));
+                }}
+            >
+                Sell
+            </button>
+            {/* <Button className="sell-btn custom-button" value="Sell" /> */}
 
-      <DropdownButton id="" title="" className="account-drop">
-        <Dropdown.Item href="#/action-1">
-          <button className="custom-button signin-btn small-text">
-            Sign In
-          </button>
-        </Dropdown.Item>
-        <Dropdown.Item href="#/action-2">
-          <button className="custom-button register-btn small-text">
-            Register
-          </button>
-        </Dropdown.Item>
-      </DropdownButton>
+            <DropdownButton id="" title="" className="account-drop">
+                <Dropdown.Item href="#/action-1">
+                    <button className="custom-button signin-btn small-text">
+                        {/* <Link to="/signin">Sign In<Link /> */}
+                        <Link to="/signin" style={{ color: "#fff" }}>
+                            Sign In
+                        </Link>
+                    </button>
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-2">
+                    <button className="custom-button register-btn small-text">
+                        <Link to="/signup">Sign Up</Link>
+                    </button>
+                </Dropdown.Item>
+            </DropdownButton>
 
-      <Link to="/mynichoshop">
-        <img className="trolly-icon" src={trolly} alt="Trolly icon" />
-      </Link>
+            <Link to="/mynichoshop">
+                <img className="trolly-icon" src={trolly} alt="Trolly icon" />
+            </Link>
 
-      {/* <img className="bell-icon" src={bell} alt="Bell icon" /> */}
-      <DropdownButton id="" title="" className="notification-drop">
-        <Dropdown.Item href="#/action-1">
-          <NotificationBell
-            color="green"
-            title="WON"
-            description="Lorem Ipsum is simply dummy text of the printing and typesetting
+            {/* <img className="bell-icon" src={bell} alt="Bell icon" /> */}
+            <DropdownButton id="" title="" className="notification-drop">
+                <Dropdown.Item href="#/action-1">
+                    <NotificationBell
+                        color="green"
+                        title="WON"
+                        description="Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem ..."
-          />
-        </Dropdown.Item>
-        <Dropdown.Item href="#/action-2">
-          <NotificationBell
-            color="red"
-            title="OUTBID"
-            description="Lorem Ipsum is simply dummy text of the printing and typesetting
+                    />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-2">
+                    <NotificationBell
+                        color="red"
+                        title="OUTBID"
+                        description="Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem ..."
-          />
-        </Dropdown.Item>
-        <Dropdown.Item href="#/action-3">
-          <NotificationBell
-            color="gray"
-            title="SOLD"
-            description="Lorem Ipsum is simply dummy text of the printing and typesetting
+                    />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-3">
+                    <NotificationBell
+                        color="gray"
+                        title="SOLD"
+                        description="Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem ..."
-          />
-        </Dropdown.Item>
-        <Dropdown.Item href="#/action-4">
-          <NotificationBell
-            color="gray"
-            title="NEW MESSAGE"
-            description="You received 6 messages.Lorem Ipsum is simply dummy text of the printing and"
-          />
-        </Dropdown.Item>
-      </DropdownButton>
-    </nav>
-  );
+                    />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-4">
+                    <NotificationBell
+                        color="gray"
+                        title="NEW MESSAGE"
+                        description="You received 6 messages.Lorem Ipsum is simply dummy text of the printing and"
+                    />
+                </Dropdown.Item>
+            </DropdownButton>
+        </nav>
+    );
 };
 
 export default Navbar;

@@ -54,147 +54,14 @@ import ProductInfo from "./pages/SellerCentral/ProductInfo/ProductInfo";
 import JoinVerify from "./pages/Authentications/JoinVerify";
 import ConfirmShipment from "./pages/SellerCentral/Shipment/ConfirmShipment";
 import ContactBuyer from "./pages/SellerCentral/ContactBuyer/ContactBuyer";
+import MessageSent from "./pages/SellerCentral/ContactBuyer/MessageSent/MessageSent";
+import ShopingCart from "./pages/ShopingCart/ShopingCart";
 
 function App() {
     return (
         // <Router>
         //     <Switch>
-        //         <Route path="/mynichoshop" exact component={MyNichoShop} />
-        //         {/* MyNichoShop call component */}
-        //         <Route path="/MNSPurchases" exact component={MNSPurchases} />
-        //         <Route path="/MNSMessages" exact component={MNSMessages} />
-        //         {/* End MyNichoShop */}
-        //         <Route path="/createlisting" exact component={CreateListing} />
-        //         <Route
-        //             path="/createlistingform"
-        //             exact
-        //             component={CreateListingForm}
-        //         />
-        //         <Route path="/" exact component={HomePage} />
-        //         <Route path="/bidding" exact component={Bidding} />
-        //         <Route path="/watchlist" exact component={Watchlist} />
-        //         <Route path="/listings" exact component={Listings} />
-        //         <Route path="/sellercentral" exact component={SellerCentral} />
-        //         <Route path="/productdetail" exact component={Productdetail} />
-        //         <Route path="/user/my-account" exact component={Account} />
-        //         <Route
-        //             path="/user/close-account"
-        //             exact
-        //             component={CloseAccount}
-        //         />
-        //         {/* address page */}
-        //         <Route path="/user/address" exact component={Address} />
-        //         <Route
-        //             path="/user/address/shipping_view"
-        //             exact
-        //             component={Address_Shippig_View}
-        //         />
-        //         <Route
-        //             path="/user/close-request"
-        //             exact
-        //             component={CloseRequest}
-        //         />
-        //         <Route
-        //             path="/user/close-requeset-cancel"
-        //             exact
-        //             component={CloseRequestCancel}
-        //         />
-        //         <Route
-        //             path="/user/close-requeset-process"
-        //             exact
-        //             component={CloseRequestProcess}
-        //         />
-        //         <Route path="/todays-deals" exact component={TodaysDeals} />
-        //         <Route
-        //             path="/recently-viewed"
-        //             exact
-        //             component={RecentlyViewed}
-        //         />
-        //         {/* auth route */}
-        //         <Route path="/user/signup" exact component={SignUp} />
-        //         <Route path="/user/signin" exact component={SignIn} />
-        //         <Route path="/user/welcome" exact component={Welcome} />
-        //         <Route path="/user/add-mobile" exact component={AddMobile} />
-        //         <Route path="/user/mobile/suc-code" exact component={SucCode} />
-        //         <Route
-        //             path="/user/add-mobile/coninue"
-        //             exact
-        //             component={ContinueAddMobile}
-        //         />
-        //         <Route path="/user/temp-pwd" exact component={TempPassword} />
-        //         <Route
-        //             path="/user/create-new-password"
-        //             exact
-        //             component={ChangeNewPassword}
-        //         />
-        //         <Route
-        //             path="/user/single-user-code"
-        //             exact
-        //             component={SingleUserCode}
-        //         />
-        //         <Route path="/user/verify-you" exact component={VerifyYou} />
-        //         <Route
-        //             path="/user/verify-you-mobile"
-        //             exact
-        //             component={VerifyYouMobile}
-        //         />
-        //         <Route
-        //             path="/user/change-user-name"
-        //             exact
-        //             component={ChangeUserName}
-        //         />
-        //         <Route
-        //             path="/user/change-your-pwd"
-        //             exact
-        //             component={ChangeYourPassword}
-        //         />
-        //         <Route
-        //             path="/user/text-temporary-pwd"
-        //             exact
-        //             component={TextTemporaryPassword}
-        //         />
-        //         {/* user seller central order */}
-        //         <Route
-        //             path="/user/seller-central-order"
-        //             exact
-        //             component={SellerCentralOrder}
-        //         />
-        //         <Route
-        //             path="/user/seller-central-details-not-yet-paid"
-        //             exact
-        //             component={NotYetPaid}
-        //         />
-        //         <Route
-        //             path="/user/seller-central-order-details"
-        //             exact
-        //             component={OrderDetails}
-        //         />
-        //         <Route
-        //             path="/user/seller-central-order-details-not-yet-shipped"
-        //             exact
-        //             component={NotYetSheppid}
-        //         />
-        //         <Route
-        //             path="/user/seller-central-order-details-intransit"
-        //             exact
-        //             component={InTransit}
-        //         />
-        //         <Route
-        //             path="/user/seller-central-order-view-details"
-        //             exact
-        //             component={ViewDetails}
-        //         />
-        //         {/* order details invoice */}
-        //         <Route
-        //             path="/user/seller-central-order-invoice"
-        //             exact
-        //             component={OrderInvoice}
-        //         />
-        //         <Route
-        //             path="/user/seller-central-order-product-info"
-        //             exact
-        //             component={ProductInfo}
-        //         />
+        //
         //     </Switch>
         // </Router>
 
@@ -204,18 +71,123 @@ function App() {
             */}
             <Route path="/" element={<HomePage />} />
             {/* 
+                - all pages (random pages)
+            */}
+            <Route path="/mynichoshop" element={<MyNichoShop />} />
+            <Route path="/MNSPurchases" element={<MNSPurchases />} />
+            <Route path="/MNSMessages" element={<MNSMessages />} />
+            <Route path="/createlisting" element={<CreateListing />} />
+            <Route path="/createlistingform" element={CreateListingForm} />
+            <Route path="/bidding" element={<Bidding />} />
+            <Route path="/watchlist" element={<Watchlist />} />
+            <Route path="/listings" element={<Listings />} />
+            <Route path="/sellercentral" element={<SellerCentral />} />
+            <Route path="/productdetail" element={<Productdetail />} />
+            <Route path="/user/my-account" component={<Account />} />
+            <Route path="/user/close-account" element={<CloseAccount />} />
+            {/* 
                 - /signup (sign up page)
                 - /signin (sign in page)
                 - /join/mail-activation (join verify page)
+                - /text-temporary-pwd (text temporary password page)
+                - /change-your-pwd (change your password page)
+                - /change-user-name (change user name page)
+                - /verify-you-mobile (verify your mobile page)
+                - /verify-you (verify you page)
+                - /single-user-code (sigle user code page)
+                - /create-new-password (change your password page)
+                - /temp-pwd (tem password page)
+                - /continue-add-mobile (continue add mobile password page)
+                - /mobile-suc-code (suc code mobile page)
+                - /welcome (welcome page)
             */}
             <Route path="/signup" element={<SignUp />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/join/mail-activation" element={<JoinVerify />} />
+            <Route
+                path="/text-temporary-pwd"
+                element={<TextTemporaryPassword />}
+            />
+            <Route path="/change-your-pwd" element={<ChangeYourPassword />} />
+            <Route path="/change-user-name" element={<ChangeUserName />} />
+            <Route path="/verify-you-mobile" element={<VerifyYouMobile />} />
+            <Route path="/verify-you" element={<VerifyYou />} />
+            <Route path="/single-user-code" element={<SingleUserCode />} />
+            <Route
+                path="/create-new-password"
+                element={<ChangeNewPassword />}
+            />
+            <Route path="/temp-pwd" element={<TempPassword />} />
+            <Route
+                path="/continue-add-mobile"
+                element={<ContinueAddMobile />}
+            />
+            <Route path="/mobile-suc-code" element={<SucCode />} />
+            <Route path="/add-mobile" element={<AddMobile />} />
+            <Route path="/welcome" element={<Welcome />} />
+
             {/* 
+            all address pages
+            */}
+
+            <Route path="/user/address" element={<Address />} />
+            <Route
+                path="/user/address/shipping_view"
+                element={<Address_Shippig_View />}
+            />
+            <Route path="/user/close-request" element={<CloseRequest />} />
+            <Route
+                path="/user/close-requeset-cancel"
+                element={<CloseRequestCancel />}
+            />
+            <Route
+                path="/user/close-requeset-process"
+                element={<CloseRequestProcess />}
+            />
+            <Route path="/todays-deals" element={<TodaysDeals />} />
+            <Route path="/recently-viewed" element={<RecentlyViewed />} />
+
+            {/* 
+                - /seller-central/order (order paid page)
+                - /seller-central/details-not-yet-paid (order details not yet paid page)
+                - /seller-central/order-details (order details page)
+                - /seller-central/order-details-not-yet-shipped (order details not yet shipped page)
+                - /seller-central/order-details-intransit (order intransit page)
+                - /seller-central/order-invoice (order invoice page)
+                - /seller-central/order-view-details (view details page)
                 - /seller-central/order-product-info (product info page)
                 - /seller-central/confirm-shipment (confirm shipment info page)
                 - /seller-central/contact-buyer (contact buyer page)
+                - /seller-central/contact-buyer-msg (contact buyer success page)
             */}
+            <Route
+                path="/seller-central/order"
+                element={<SellerCentralOrder />}
+            />
+            <Route
+                path="/seller-central/details-not-yet-paid"
+                element={<NotYetPaid />}
+            />
+            <Route
+                path="/seller-central/order-details"
+                element={<OrderDetails />}
+            />
+            <Route
+                path="/seller-central/order-details-not-yet-shipped"
+                element={<NotYetSheppid />}
+            />
+            <Route
+                path="/seller-central/order-details-intransit"
+                element={<InTransit />}
+            />
+            <Route
+                path="/seller-central/order-invoice"
+                element={<OrderInvoice />}
+            />
+            <Route
+                path="/seller-central/order-view-details"
+                element={<ViewDetails />}
+            />
             <Route
                 path="/seller-central/order-product-info"
                 element={<ProductInfo />}
@@ -228,6 +200,14 @@ function App() {
                 path="/seller-central/contact-buyer"
                 element={<ContactBuyer />}
             />
+            <Route
+                path="/seller-central/contact-buyer-msg"
+                element={<MessageSent />}
+            />
+            {/* 
+                - /shoping-cart (shoping cart page)
+            */}
+            <Route path="/shoping-cart" element={<ShopingCart />} />
         </Routes>
     );
 }

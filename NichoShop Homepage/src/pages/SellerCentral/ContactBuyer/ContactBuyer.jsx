@@ -112,55 +112,97 @@ const ContactBuyer = () => {
                                     />
                                 </FloatingLabel>
                                 <p>250 character(s) left</p>
-                                <div className="ui-cd-cd-upload-file-info">
-                                    <ul>
-                                        {getFileInfo.length !== 0 &&
-                                            getFileInfo.map((item, index) => {
-                                                return (
-                                                    <li key={index}>
-                                                        {item.name}{" "}
-                                                        <span>
-                                                            (
-                                                            {(
-                                                                item.size / 1024
-                                                            ).toFixed(2)}{" "}
-                                                            KB)
-                                                        </span>
-                                                        <button
-                                                            onClick={() => {
-                                                                selectFileDeleteHandler(
-                                                                    index
-                                                                );
-                                                            }}
-                                                        >
-                                                            <IoMdClose />
-                                                        </button>
-                                                    </li>
-                                                );
-                                            })}
-                                    </ul>
-                                </div>
-                                <div className="ui-cb-cb-add-file">
-                                    <label htmlFor="contact-buyer-file">
-                                        <div className="ui-outline-btn">
-                                            <p>Add files</p>
-                                        </div>
-                                        <input
-                                            type="file"
-                                            id="contact-buyer-file"
-                                            name="contact-buyer-file"
-                                            onChange={selectFileHandler}
-                                        />
-                                    </label>
-                                    <p>
-                                        Accepted file formats: .gif, .jpg,
-                                        .jpeg, .pdf, .and .png. Add up to 10
-                                        files, 5MB each
-                                    </p>
-                                </div>
+                            </div>
+                            <div className="ui-cd-cd-upload-file-info">
+                                <ul>
+                                    {getFileInfo.length !== 0 &&
+                                        getFileInfo.map((item, index) => {
+                                            return (
+                                                <li key={index}>
+                                                    {item.name}{" "}
+                                                    <span>
+                                                        (
+                                                        {(
+                                                            item.size / 1024
+                                                        ).toFixed(2)}{" "}
+                                                        KB)
+                                                    </span>
+                                                    <button
+                                                        onClick={() => {
+                                                            selectFileDeleteHandler(
+                                                                index
+                                                            );
+                                                        }}
+                                                    >
+                                                        <IoMdClose />
+                                                    </button>
+                                                </li>
+                                            );
+                                        })}
+                                </ul>
+                            </div>
+                            <div className="ui-cb-cb-add-file">
+                                <label htmlFor="contact-buyer-file">
+                                    <div className="ui-outline-btn">
+                                        <p>Add files</p>
+                                    </div>
+                                    <input
+                                        type="file"
+                                        id="contact-buyer-file"
+                                        name="contact-buyer-file"
+                                        onChange={selectFileHandler}
+                                    />
+                                </label>
+                                <p>
+                                    Accepted file formats: .gif, .jpg, .jpeg,
+                                    .pdf, .and .png. Add up to 10 files, 5MB
+                                    each
+                                </p>
+                            </div>
+                            <div className="ui-cd-cd-btn">
+                                <button>Send message</button>
+                                <button>Cancel</button>
                             </div>
                         </div>
-                        <div className="ui-cb-cb-right"></div>
+                        <div className="ui-cb-cb-right">
+                            <div className="ui-cb-cb-right-info">
+                                <p>Order</p>
+                                <ul>
+                                    <li>ID</li>
+                                    <li>
+                                        <a href="#">12345678-123456</a>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>Purchase date</li>
+                                    <li>29 Aug 12:39 PM</li>
+                                </ul>
+                                <ul>
+                                    <li>Ship by</li>
+                                    <li>-</li>
+                                </ul>
+                                <ul>
+                                    <li>Deliver by</li>
+                                    <li>-</li>
+                                </ul>
+                                <ul>
+                                    <li>Carrier</li>
+                                    <li>-</li>
+                                </ul>
+                                <ul>
+                                    <li>Tracking number</li>
+                                    <li>-</li>
+                                </ul>
+                                <ul>
+                                    <li>Status</li>
+                                    <li>Unshipped (1)</li>
+                                </ul>
+                                <ul>
+                                    <li>Date shipped</li>
+                                    <li>-</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </Container>
             </div>
