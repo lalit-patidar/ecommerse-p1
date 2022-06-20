@@ -126,7 +126,7 @@ const SignUp = () => {
                     })
                         .then((res) => {
                             setStore("signup_data", res.data);
-                            navigate("/join/mail-activation");
+                            // navigate("/join/mail-activation");
                         })
                         .catch((err) => {
                             Toastify({

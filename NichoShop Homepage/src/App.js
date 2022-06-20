@@ -56,15 +56,10 @@ import ConfirmShipment from "./pages/SellerCentral/Shipment/ConfirmShipment";
 import ContactBuyer from "./pages/SellerCentral/ContactBuyer/ContactBuyer";
 import MessageSent from "./pages/SellerCentral/ContactBuyer/MessageSent/MessageSent";
 import ShopingCart from "./pages/ShopingCart/ShopingCart";
+import CheckOut from "./pages/CheckOut/CheckOut";
 
 function App() {
     return (
-        // <Router>
-        //     <Switch>
-        //
-        //     </Switch>
-        // </Router>
-
         <Routes>
             {/* 
                 - / (home page)
@@ -206,8 +201,10 @@ function App() {
             />
             {/* 
                 - /shoping-cart (shoping cart page)
+                - /checkout (checkout page)
             */}
             <Route path="/shoping-cart" element={<ShopingCart />} />
+            <Route path="/checkout" element={<CheckOut />} />
         </Routes>
     );
 }
