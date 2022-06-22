@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Footer from "../../container/Footer/footer";
 import Nav from "../../container/Nav/navbar";
 import "./customernote.scss";
@@ -8,17 +8,13 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import moment from "moment";
 import ConfirmAlert from "./Components/ConfirmAlert/ConfirmAlert";
 import DeletedAlert from "./Components/DeletedAlert/DeletedAlert";
+import { Link } from "react-router-dom";
 
 const CustomerNote = () => {
     /**
      * @description - customer note store
      */
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm();
+    const { register, handleSubmit, reset } = useForm();
 
     const [getNote, setNote] = useState([
         {
@@ -110,7 +106,7 @@ const CustomerNote = () => {
 
         setTimeout(() => {
             setDeleted(false);
-        }, 1000);
+        }, 100);
     };
 
     return (
@@ -326,6 +322,32 @@ const CustomerNote = () => {
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div className="customer-back-btn">
+                                <Link to="/customer-support">
+                                    <svg
+                                        width="21"
+                                        height="21"
+                                        viewBox="0 0 21 21"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M9.625 14.875L5.25 10.5L9.625 6.125"
+                                            stroke="black"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                        <path
+                                            d="M15.75 14.875L11.375 10.5L15.75 6.125"
+                                            stroke="black"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                    Back to list
+                                </Link>
                             </div>
                         </div>
                     </div>

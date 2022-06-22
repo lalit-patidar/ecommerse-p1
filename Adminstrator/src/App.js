@@ -6,6 +6,8 @@ import Administrator from "./component/Admin-Administrator/administrator";
 import Category from "./component/Admin-category/category";
 import CustomerSupport from "./pages/CustomerSupport/CustomerSupport";
 import CustomerNote from "./pages/CustomerNote/CustomerNote";
+import AgentInfo from "./pages/AgentInfo/AgentInfo";
+import AgentReport from "./pages/AgentReport/AgentReport";
 
 const App = () => {
     return (
@@ -20,6 +22,14 @@ const App = () => {
                 <Route
                     path="/customer-support-note"
                     element={<CustomerNote />}
+                />
+                <Route
+                    path="/customer-support-agent-info"
+                    element={<AgentInfo />}
+                />
+                <Route
+                    path="/customer-support-agent-report"
+                    element={<AgentReport />}
                 />
             </Routes>
         </>

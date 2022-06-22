@@ -57,6 +57,10 @@
 .ui-pc-info-bar {
     position: relative;
 
+    >div {
+        display: inline-block;
+    }
+
     ul {
         background: #FFFFFF;
         box-shadow: 0px 0px 15px rgba(114, 114, 114, 0.25);
