@@ -57,14 +57,10 @@ import ContactBuyer from "./pages/SellerCentral/ContactBuyer/ContactBuyer";
 import MessageSent from "./pages/SellerCentral/ContactBuyer/MessageSent/MessageSent";
 import ShopingCart from "./pages/ShopingCart/ShopingCart";
 import CheckOut from "./pages/CheckOut/CheckOut";
-<<<<<<< HEAD
-
 //User page
 import PurchaseClaim from "./pages/Purchase/Claim";
 import PurchaseClaimList from "./pages/Purchase/List";
 import PurchaseClaimOpen from "./pages/Purchase/Open";
-=======
->>>>>>> f10af330284075d4b966e4be1c1a04d087167d7f
 
 function App() {
     return (
@@ -212,19 +208,13 @@ function App() {
                 - /checkout (checkout page)
             */}
             <Route path="/shoping-cart" element={<ShopingCart />} />
-<<<<<<< HEAD
-<<<<<<< HEAD
 
             <Route path="/user/purchases/claims" element={<PurchaseClaim />} />
             <Route path="/user/purchases/claims/list" element={<PurchaseClaimList />} />
             <Route path="/user/purchases/claims/open" element={<PurchaseClaimOpen/>} />
 
-=======
+            
             <Route path="/checkout" element={<CheckOut />} />
->>>>>>> f10af330284075d4b966e4be1c1a04d087167d7f
-=======
-            <Route path="/checkout" element={<CheckOut />} />
->>>>>>> f10af330284075d4b966e4be1c1a04d087167d7f
         </Routes>
     );
 }
