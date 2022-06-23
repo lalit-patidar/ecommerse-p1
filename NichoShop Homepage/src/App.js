@@ -60,7 +60,7 @@ import CheckOut from "./pages/CheckOut/CheckOut";
 //User page
 import PurchaseClaim from "./pages/Purchase/Claim";
 import PurchaseClaimList from "./pages/Purchase/List";
-import PurchaseClaimOpen from "./pages/Purchase/Open";
+// import PurchaseClaimOpen from "./pages/Purchase/Open";
 
 function App() {
     return (
@@ -211,9 +211,9 @@ function App() {
 
             <Route path="/user/purchases/claims" element={<PurchaseClaim />} />
             <Route path="/user/purchases/claims/list" element={<PurchaseClaimList />} />
-            <Route path="/user/purchases/claims/open" element={<PurchaseClaimOpen/>} />
+            {/* <Route path="/user/purchases/claims/open" element={<PurchaseClaimOpen/>} /> */}
 
-            
+
             <Route path="/checkout" element={<CheckOut />} />
         </Routes>
     );
