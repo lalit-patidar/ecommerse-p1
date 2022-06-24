@@ -1,12 +1,14 @@
 import './App.css';
-import Customer from './pages/Customer';
-import CustomerDetail from './pages/CustomerDetail';
+// import Customer from './pages/Customer';
+import CustomerList from './pages/CustomerList';
+// import CustomerDetail from './pages/CustomerDetail';
 
 function App() {
   return (
     <div className="App">
       {/* <Customer /> */}
-      <CustomerDetail />
+      {/* <CustomerDetail /> */}
+      <CustomerList />
     </div>
   );
 }

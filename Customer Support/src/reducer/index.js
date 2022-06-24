@@ -85,6 +85,7 @@ let initState = {
     }
 }
 const reducer = (state = initState, action) => {
+    var tempList;
     switch (action.type) {
         case 'SELECT_TOP_MENU_ITEM': {
             return {
@@ -103,7 +104,7 @@ const reducer = (state = initState, action) => {
                 id: state.customer.filterMenu.count+1,
                 string: action.payload.string
             }
-            var tempList = state.customer.filterMenu.list
+            tempList = state.customer.filterMenu.list
             tempList.push(data)
             return {
                 ...state,
@@ -118,7 +119,7 @@ const reducer = (state = initState, action) => {
             }
         }
         case 'DELETE_FILTER': {
-            var tempList = state.customer.filterMenu.list
+            tempList = state.customer.filterMenu.list
             tempList.splice(action.payload.id-1, 1)
             tempList.forEach((item, index)=>{
                 if(index >= action.payload.id-1){
