@@ -57,6 +57,7 @@ import ContactBuyer from "./pages/SellerCentral/ContactBuyer/ContactBuyer";
 import MessageSent from "./pages/SellerCentral/ContactBuyer/MessageSent/MessageSent";
 import ShopingCart from "./pages/ShopingCart/ShopingCart";
 import CheckOut from "./pages/CheckOut/CheckOut";
+import BrowseHelp from "./pages/HelpContact/BrowseHelp/BrowseHelp";
 
 function App() {
     return (
@@ -205,6 +206,9 @@ function App() {
             */}
             <Route path="/shoping-cart" element={<ShopingCart />} />
             <Route path="/checkout" element={<CheckOut />} />
+
+            {/* - /help-contact/browse-help (browse help page) */}
+            <Route path="/help-contact/browse-help" element={<BrowseHelp />} />
         </Routes>
     );
 }
