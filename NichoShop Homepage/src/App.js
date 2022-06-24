@@ -57,6 +57,7 @@ import ContactBuyer from "./pages/SellerCentral/ContactBuyer/ContactBuyer";
 import MessageSent from "./pages/SellerCentral/ContactBuyer/MessageSent/MessageSent";
 import ShopingCart from "./pages/ShopingCart/ShopingCart";
 import CheckOut from "./pages/CheckOut/CheckOut";
+import BrowseHelp from "./pages/HelpContact/BrowseHelp/BrowseHelp";
 //User page
 import PurchaseClaim from "./pages/Purchase/Claim";
 import PurchaseClaimList from "./pages/Purchase/List";
@@ -210,11 +211,16 @@ function App() {
             <Route path="/shoping-cart" element={<ShopingCart />} />
 
             <Route path="/user/purchases/claims" element={<PurchaseClaim />} />
-            <Route path="/user/purchases/claims/list" element={<PurchaseClaimList />} />
+            <Route
+                path="/user/purchases/claims/list"
+                element={<PurchaseClaimList />}
+            />
             {/* <Route path="/user/purchases/claims/open" element={<PurchaseClaimOpen/>} /> */}
 
-
             <Route path="/checkout" element={<CheckOut />} />
+
+            {/* - /help-contact/browse-help (browse help page) */}
+            <Route path="/help-contact/browse-help" element={<BrowseHelp />} />
         </Routes>
     );
 }
