@@ -10,8 +10,8 @@ import { BsEyeSlash, BsEye } from "react-icons/bs";
 import { TextField } from "@mui/material";
 
 import "react-phone-number-input/style.css";
-import { inputChecker } from "../../../helper/formHelper";
-import { postAjaxCall } from "../../../helper/ajaxCall";
+// import { inputChecker } from "../../../helper/FormHelper.jsx";
+// import { postAjaxCall } from "../../../helper/ajaxCall";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 import { useNavigate } from "react-router-dom";
@@ -109,87 +109,85 @@ const SignUp = () => {
         e.preventDefault();
         setFormSubmit(true);
 
-        if (isFormSelected === 1) {
-            if (
-                inputChecker(getFullName) &&
-                inputChecker(getEmail) &&
-                inputChecker(getPassword)
-            ) {
-                if (getPwdLength && getNumOrSimble && getPwdInSensitive) {
-                    // sign up api call
-                    postAjaxCall({
-                        email: getEmail,
-                        grecaptcha: "6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
-                        fullName: getFullName,
-                        accountType: "PERSONAL",
-                        password: getPassword,
-                    })
-                        .then((res) => {
-                            setStore("signup_data", res.data);
-                            // navigate("/join/mail-activation");
-                        })
-                        .catch((err) => {
-                            Toastify({
-                                text: err.response.data.error,
-                                className: "ui-error-popup",
-                                duration: 2500,
-                                close: false,
-                                style: {
-                                    background:
-                                        "linear-gradient(to right, #00b09b, #96c93d)",
-                                },
-                            }).showToast();
-                            console.log(err.response.data.error);
-                        });
-                } else {
-                    alert(
-                        "Password must be at least 8 characters long, contain at least one number and one special character"
-                    );
-                }
-            } else {
-                alert("Please fill all the fields");
-            }
-        } else if (isFormSelected === 0) {
-            if (
-                inputChecker(getFullName) &&
-                inputChecker(getEmail) &&
-                inputChecker(getPassword)
-            ) {
-                if (getPwdLength && getNumOrSimble && getPwdInSensitive) {
-                    // sign up api call
-                    postAjaxCall({
-                        email: getEmail,
-                        grecaptcha: "6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
-                        fullName: getFullName,
-                        accountType: "BUSINESS",
-                        password: getPassword,
-                    })
-                        .then((res) => {
-                            setStore("signup_data", res.data);
-                            navigate("/join/mail-activation");
-                        })
-                        .catch((err) => {
-                            Toastify({
-                                text: err.response.data.error,
-                                className: "ui-error-popup",
-                                duration: 2500,
-                                close: false,
-                                style: {
-                                    background:
-                                        "linear-gradient(to right, #00b09b, #96c93d)",
-                                },
-                            }).showToast();
-                            console.log(err.response.data.error);
-                        });
-                } else {
-                    alert(
-                        "Password must be at least 8 characters long, contain at least one number and one special character"
-                    );
-                }
-            } else {
-                alert("Please fill all the fields");
-            }
-        }
+        // if (isFormSelected === 1) {
+        //   if (
+        //     inputChecker(getFullName) &&
+        //     inputChecker(getEmail) &&
+        //     inputChecker(getPassword)
+        //   ) {
+        //     if (getPwdLength && getNumOrSimble && getPwdInSensitive) {
+        //       // sign up api call
+        //       postAjaxCall({
+        //         email: getEmail,
+        //         grecaptcha: "6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
+        //         fullName: getFullName,
+        //         accountType: "PERSONAL",
+        //         password: getPassword,
+        //       })
+        //         .then((res) => {
+        //           setStore("signup_data", res.data);
+        //           // navigate("/join/mail-activation");
+        //         })
+        //         .catch((err) => {
+        //           Toastify({
+        //             text: err.response.data.error,
+        //             className: "ui-error-popup",
+        //             duration: 2500,
+        //             close: false,
+        //             style: {
+        //               background: "linear-gradient(to right, #00b09b, #96c93d)",
+        //             },
+        //           }).showToast();
+        //           console.log(err.response.data.error);
+        //         });
+        //     } else {
+        //       alert(
+        //         "Password must be at least 8 characters long, contain at least one number and one special character"
+        //       );
+        //     }
+        //   } else {
+        //     alert("Please fill all the fields");
+        //   }
+        // } else if (isFormSelected === 0) {
+        //   if (
+        //     inputChecker(getFullName) &&
+        //     inputChecker(getEmail) &&
+        //     inputChecker(getPassword)
+        //   ) {
+        //     if (getPwdLength && getNumOrSimble && getPwdInSensitive) {
+        //       // sign up api call
+        //       postAjaxCall({
+        //         email: getEmail,
+        //         grecaptcha: "6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
+        //         fullName: getFullName,
+        //         accountType: "BUSINESS",
+        //         password: getPassword,
+        //       })
+        //         .then((res) => {
+        //           setStore("signup_data", res.data);
+        //           navigate("/join/mail-activation");
+        //         })
+        //         .catch((err) => {
+        //           Toastify({
+        //             text: err.response.data.error,
+        //             className: "ui-error-popup",
+        //             duration: 2500,
+        //             close: false,
+        //             style: {
+        //               background: "linear-gradient(to right, #00b09b, #96c93d)",
+        //             },
+        //           }).showToast();
+        //           console.log(err.response.data.error);
+        //         });
+        //     } else {
+        //       alert(
+        //         "Password must be at least 8 characters long, contain at least one number and one special character"
+        //       );
+        //     }
+        //   } else {
+        //     alert("Please fill all the fields");
+        //   }
+        // }
     };
 
     // social auth

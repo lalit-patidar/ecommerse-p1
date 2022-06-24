@@ -58,6 +58,10 @@ import MessageSent from "./pages/SellerCentral/ContactBuyer/MessageSent/MessageS
 import ShopingCart from "./pages/ShopingCart/ShopingCart";
 import CheckOut from "./pages/CheckOut/CheckOut";
 import BrowseHelp from "./pages/HelpContact/BrowseHelp/BrowseHelp";
+//User page
+import PurchaseClaim from "./pages/Purchase/Claim";
+import PurchaseClaimList from "./pages/Purchase/List";
+// import PurchaseClaimOpen from "./pages/Purchase/Open";
 
 function App() {
     return (
@@ -205,6 +209,14 @@ function App() {
                 - /checkout (checkout page)
             */}
             <Route path="/shoping-cart" element={<ShopingCart />} />
+
+            <Route path="/user/purchases/claims" element={<PurchaseClaim />} />
+            <Route
+                path="/user/purchases/claims/list"
+                element={<PurchaseClaimList />}
+            />
+            {/* <Route path="/user/purchases/claims/open" element={<PurchaseClaimOpen/>} /> */}
+
             <Route path="/checkout" element={<CheckOut />} />
 
             {/* - /help-contact/browse-help (browse help page) */}
