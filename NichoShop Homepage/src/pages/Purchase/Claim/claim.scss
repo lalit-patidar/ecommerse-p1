@@ -1,11 +1,11 @@
 .purchase-claim {
   * {
-    font-family: "Inter"
+    font-family: "Inter";
   }
   font-size: 100%;
-  
+
   .report {
-    padding: 50px 120px;
+    padding: 50px 7vw;
     padding-bottom: 90px;
 
     h2 {
@@ -130,7 +130,7 @@
                 height: 41px;
                 padding: 0 10px;
                 border-radius: 6px;
-                border: 1px solid #CBCBCB;
+                border: 1px solid #cbcbcb;
                 margin-top: 7px;
                 outline: 0;
 
@@ -209,7 +209,6 @@
       }
     }
   }
-
 }
 .purchase-footer {
   padding-top: 20px;
@@ -218,20 +217,18 @@
   .form-footer-menu {
     a {
       font-weight: 400;
+      padding-bottom: 14px;
       font-size: 1.1em !important;
       line-height: 140%;
       color: #1c1c1c;
     }
   }
-
 }
 
 @media only screen and (max-width: 1220px) {
   .purchase-claim {
     font-size: 80%;
     .report {
-      padding: 50px 30px;
-
       .order {
         li {
           border: 0;
@@ -276,5 +273,4 @@
       }
     }
   }
-  
 }

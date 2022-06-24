@@ -1,195 +1,193 @@
 iframe {
-	display: none;
+  display: none;
 }
 .purchase-claim-list {
-	position: relative;
-	font-size: 100%;
-	* {
-		font-family: "Inter"
-	  }
-	  
-	.breadcrumbs {
-		margin: 30px 121px;
+  position: relative;
+  font-size: 100%;
+  * {
+    font-family: "Inter";
+  }
 
-		* {
-			font-weight: 400;
-			font-size: 1em;
-			line-height: 19px;
-		}
-	}
+  .breadcrumbs {
+    margin: 30px 121px;
 
-	.list-content {
-		margin: 0 120px;
+    * {
+      font-weight: 400;
+      font-size: 1em;
+      line-height: 19px;
+    }
+  }
 
-		h1 {
-			margin-top: 11px;
-			margin-bottom: 20px;
-			font-weight: 500;
-			font-size: 2.5em;
-			line-height: 43px;
-		}
+  .list-content {
+    margin: 0 7vw;
 
-		.list-search {
-			border: 1px solid #CBCBCB;
-			border-radius: 6px;	
-			padding: 0 20px;
-			margin-bottom: 30px;
+    h1 {
+      margin-top: 11px;
+      margin-bottom: 20px;
+      font-weight: 500;
+      font-size: 2.5em;
+      line-height: 43px;
+    }
 
-			ul {
-				margin: 0;
-				padding-left: 0;
-				display: flex;
-				border-bottom: 1px solid #CBCBCB;
+    .list-search {
+      border: 1px solid #cbcbcb;
+      border-radius: 6px;
+      padding: 0 20px;
+      margin-bottom: 30px;
 
-				li {
-					list-style-type: none;
-					padding: 20px 0;
-					margin-right: 60px;
-					cursor: pointer;
-					font-size: 1.2em;
-					font-weight: 500;
-					line-height: 21px;
+      ul {
+        margin: 0;
+        padding-left: 0;
+        display: flex;
+        border-bottom: 1px solid #cbcbcb;
 
-					&.active1 {
-						border-bottom: 2px solid #2AAC27;;
-					}
-				}
-			}
+        li {
+          list-style-type: none;
+          padding: 20px 0;
+          margin-right: 60px;
+          cursor: pointer;
+          font-size: 1.2em;
+          font-weight: 500;
+          line-height: 21px;
 
-			.search-category {
-				width: 100%;
-				padding-top: 20px;
-				display: inline-block;
+          &.active1 {
+            border-bottom: 2px solid #2aac27;
+          }
+        }
+      }
 
-				.MuiOutlinedInput-root {
-					border-radius: 6px;
-					
-					.MuiSelect-select {
-						border-radius: 6px;
-						padding: 8px 15px;
-					}
+      .search-category {
+        width: 100%;
+        padding-top: 20px;
+        display: inline-block;
 
-					fieldset {
-						display: none;
-					}
-				}
+        .MuiOutlinedInput-root {
+          border-radius: 6px;
 
-				.category1 {
-					padding-bottom: 20px;
-					padding-right: 40px;
-					float: left;
-				}
+          .MuiSelect-select {
+            border-radius: 6px;
+            padding: 8px 15px;
+          }
 
-				.category2 {
-					padding-bottom: 20px;
-					float: left;
+          fieldset {
+            display: none;
+          }
+        }
 
-					.MuiOutlinedInput-root {
-						border-radius: 6px 0 0 6px !important;
-						
-						.MuiSelect-select {
-							border-radius: 6px 0 0 6px !important; 
-						}
-					}
+        .category1 {
+          padding-bottom: 20px;
+          padding-right: 40px;
+          float: left;
+        }
 
-					input[type="text"] {
-						padding: 0 15px;
-						border: 1px solid #CBCBCB;
-						border-left: 0;
-						width: 297px;
-						outline: 0;
-					}
+        .category2 {
+          padding-bottom: 20px;
+          float: left;
 
-					i {
-						width: 18px;
-						height: 18px;
-						color: #0072BC;;
-					}
+          .MuiOutlinedInput-root {
+            border-radius: 6px 0 0 6px !important;
 
-					label {
-						border: 1px solid #cbcbcb;
-						border-left: 0;
-						border-radius: 0 6px 6px 0;
-						padding: 6px 10px;
-						font-size: 1.1em;
-						cursor: pointer;
-					}
+            .MuiSelect-select {
+              border-radius: 6px 0 0 6px !important;
+            }
+          }
 
-					.reset {
-						color: #0072BC;
-						padding-left: 15px;
-						font-weight: 500;
-						display: flex;
-						align-items: center;
-						cursor: pointer;
-					}
-				}
+          input[type="text"] {
+            padding: 0 15px;
+            border: 1px solid #cbcbcb;
+            border-left: 0;
+            width: 297px;
+            outline: 0;
+          }
 
-				.duration {
-					padding-bottom: 20px;
-				}
-			}
+          i {
+            width: 18px;
+            height: 18px;
+            color: #0072bc;
+          }
 
-			.result {
-				margin: 0;
-				padding: 0;
-				font-size: 1.1em;
-				padding-bottom: 21px;
-				font-weight: 500;
-			}
-		}
-	}	
+          label {
+            border: 1px solid #cbcbcb;
+            border-left: 0;
+            border-radius: 0 6px 6px 0;
+            padding: 6px 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+          }
+
+          .reset {
+            color: #0072bc;
+            padding-left: 15px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+          }
+        }
+
+        .duration {
+          padding-bottom: 20px;
+        }
+      }
+
+      .result {
+        margin: 0;
+        padding: 0;
+        font-size: 1.1em;
+        padding-bottom: 21px;
+        font-weight: 500;
+      }
+    }
+  }
 }
 
 .Mui-selected {
-	color: #0072BC !important;
-	background-color: #EDF6FF !important;
+  color: #0072bc !important;
+  background-color: #edf6ff !important;
 }
 
 @media only screen and (max-width: 860px) {
-	.purchase-claim-list {
-		font-size: 80%;
+  .purchase-claim-list {
+    font-size: 80%;
 
-		.list-content{
-		  margin: 0 30px;
+    .list-content {
+      li {
+        margin-right: 20px !important;
+      }
+    }
 
-		  li {
-			margin-right: 20px !important;
-		  }
-		}
+    .css-743adk-MuiFormControl-root {
+      min-width: 280px !important;
+    }
 
-		.css-743adk-MuiFormControl-root {
-			min-width: 280px !important;	
-		}
+    .category2 {
+      display: none !important;
+    }
 
-		.category2 {
-			display: none !important;
-		}
+    .list-paginate {
+      justify-content: center !important;
 
-		.list-paginate {
-			justify-content: center !important;
+      .page-count {
+        display: none;
+      }
 
-			.page-count {
-				display: none;
-			}
+      .per-page-result {
+        display: none !important;
+      }
 
-			.per-page-result {
-				display: none !important;
-			}
-
-			li {
-				margin-right: 4px !important;
-			}
-		}
-	}
+      li {
+        margin-right: 4px !important;
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 1650px) {
-	.search-category {
-		display: block;
+  .search-category {
+    display: block;
 
-		.resp {
-			display: block !important;
-		}
-	}
+    .resp {
+      display: block !important;
+    }
+  }
 }
