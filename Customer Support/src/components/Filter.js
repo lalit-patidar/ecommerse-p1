@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import './Filter.css'
 // import { selectTopTab,loggingOut } from '../actions/index';
-import { useSelector, useDispatch } from 'react-redux';
 import { ReactComponent as DropDownLogo } from '../assets/svg/filter/dropdown-logo.svg'
 import { ReactComponent as SearchLogo } from '../assets/svg/filter/search-logo.svg'
+import { useSelector, useDispatch } from 'react-redux';
 import { addFilter } from '../actions/index';
 
 function Filter() {
