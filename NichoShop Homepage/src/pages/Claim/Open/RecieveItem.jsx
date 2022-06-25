@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 
-import MessageSend from "./ClaimEvent/MessageSend.jsx";
-import CloseClaim from "./ClaimEvent/CloseClaim.jsx";
-import ClaimDetails from "./ClaimDetails/index.jsx";
-import ClaimStatus from "./ClaimEvent/ClaimStatus.jsx";
+import MessageSend from "../../../components/Claims/ClaimBtnDialogs/MessageSend";
+import CloseClaim from "../../../components/Claims/ClaimBtnDialogs/CloseClaim";
+import ClaimStatus from "../../../components/Claims/ClaimProgressBar/index.jsx";
+import ClaimDetails from "../../../components/Claims/ClaimDetails";
 
 const ClaimClose = () => {
   const [isMessage, setIsMessage] = useState(false);

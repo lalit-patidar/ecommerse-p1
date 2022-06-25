@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
 
-import MessageSend from "./ClaimEvent/MessageSend.jsx";
-import CloseClaim from "./ClaimEvent/CloseClaim.jsx";
-import ClaimDetails from "./ClaimDetails/index.jsx";
-import ClaimStatus from "./ClaimEvent/ClaimStatus.jsx";
+import DocumentSend from "../../../components/Claims/ClaimBtnDialogs/DocumentSend";
+import ClaimStatus from "../../../components/Claims/ClaimProgressBar/index.jsx";
+import ClaimDetails from "../../../components/Claims/ClaimDetails";
 
-const ClaimClosed = () => {
+const SendUs = () => {
   const [claimDetils, setClaimDetails] = useState({});
 
   useEffect(() => {
@@ -15,17 +13,26 @@ const ClaimClosed = () => {
         {
           info: "EE PAY AS YOU GO 4G prepaid sim card with preloader US $150.50 forcalls, everything in one package",
           condition: "New",
-          color: "Blue",
-          size: "XL",
-          material: "Cotton",
           claimItem: "2 of 3",
         },
       ],
       history: [
         {
           date: "28 Sep 2017",
-          topic: "You closed this claim",
-          comment: "Example of the buyer's comment.",
+          topic:
+            "NichoShop Customer Support requested additional documentation from you",
+        },
+        {
+          date: "28 Sep 2017",
+          topic: "You asked us to help",
+          reason: "The seller hasn't responded yet",
+          comment: "Example of the buyer's comment",
+        },
+        {
+          date: "28 Sep 2017",
+          topic: "You hav eopened a claim for not received item",
+          content:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release ",
         },
         {
           date: "28 Sep 2017",
@@ -60,18 +67,26 @@ const ClaimClosed = () => {
 
   return (
     <div className="claim-open">
-      <h2>The claim was closed</h2>
+      <h2>Send us documentation</h2>
+
+      <DocumentSend />
 
       <div className="claim-open-content">
         <div className="claim-open-header">
           <h3>
-            Your claim was closed on 30 Sep 2017 because you received a refund.
+            NichoShop Customer Support requested additional documentation from
+            you
           </h3>
+          <p>Provide us with the documentation by 22 Sep 2019</p>
+        </div>
+
+        <div className="claim-close">
           <p>
-            If you can't sort something out with the seller, you can ask us to
-            help beginning 30 Sep 2017.
+            If the problem was resolved, you can <span>close the claim</span>
           </p>
         </div>
+
+        <ClaimStatus position={"in"} />
 
         <div className="claim-open-detail">
           <div className="item-infor d-lg-flex d-md-block justify-content-between">
@@ -85,6 +100,7 @@ const ClaimClosed = () => {
               </p>
             </div>
           </div>
+
           <ClaimDetails details={claimDetils} />
         </div>
       </div>
@@ -92,4 +108,4 @@ const ClaimClosed = () => {
   );
 };
 
-export default ClaimClosed;
+export default SendUs;

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 
-import MessageSend from "./ClaimEvent/MessageSend.jsx";
-import CloseClaim from "./ClaimEvent/CloseClaim.jsx";
-import ClaimDetails from "./ClaimDetails/index.jsx";
-
-import ClaimStatus from "./ClaimEvent/ClaimStatus.jsx";
+import MessageSend from "../../../components/Claims/ClaimBtnDialogs/MessageSend";
+import CloseClaim from "../../../components/Claims/ClaimBtnDialogs/CloseClaim";
+import AskUs from "../../../components/Claims/ClaimBtnDialogs/AskUs";
+import ClaimStatus from "../../../components/Claims/ClaimProgressBar/index.jsx";
+import ClaimDetails from "../../../components/Claims/ClaimDetails";
 
 const SellerSent = () => {
   const [isMessage, setIsMessage] = useState(false);
@@ -73,14 +73,20 @@ const SellerSent = () => {
   const messageClick = () => {
     setIsMessage(true);
     setIsCloseClaim(false);
+    setIsAskUs(false);
   };
 
   const claimClick = () => {
     setIsMessage(false);
     setIsCloseClaim(true);
+    setIsAskUs(false);
   };
 
-  const askClick = () => {};
+  const askClick = () => {
+    setIsMessage(false);
+    setIsCloseClaim(false);
+    setIsAskUs(true);
+  };
 
   return (
     <div className="claim-open">
@@ -88,16 +94,15 @@ const SellerSent = () => {
 
       {isMessage ? <MessageSend isOpen={setIsMessage} /> : ""}
       {isCloseClaim ? <CloseClaim isOpen={setIsCloseClaim} /> : ""}
+      {isAskUs ? <AskUs isOpen={setIsAskUs} /> : ""}
 
       <div className="claim-open-content">
         <div className="claim-open-header">
-          <h3>
-            You sent a message to the seller
-            <p>
-              If you can't sort something out with the seller, you can ask use
-              to help beginning 30 Sep 2017.
-            </p>
-          </h3>
+          <h3>You sent a message to the seller</h3>
+          <p>
+            If you can't sort something out with the seller, you can ask use to
+            help beginning 30 Sep 2017.
+          </p>
         </div>
 
         <ClaimStatus position={"accepted"} />

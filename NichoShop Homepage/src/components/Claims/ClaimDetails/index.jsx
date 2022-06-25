@@ -67,6 +67,14 @@ const ClaimDetails = (props) => {
               </div>
               <div className="item-history-detail">
                 <p>{history.topic}</p>
+                {!!history.reason ? (
+                  <p>
+                    Reason: <br />
+                    <span>{history.reason}</span>
+                  </p>
+                ) : (
+                  ""
+                )}
                 {!!history.comment ? (
                   <p>
                     Comment: <br />
@@ -91,13 +99,7 @@ const ClaimDetails = (props) => {
                 ) : (
                   ""
                 )}
-                {!!history.content ? (
-                  <p>
-                    <span>{history.content}</span>
-                  </p>
-                ) : (
-                  ""
-                )}
+                {!!history.content ? <p>{history.content}</p> : ""}
                 {!!history.claimID ? (
                   <p>
                     Claim ID: <span>{history.claimID}</span>

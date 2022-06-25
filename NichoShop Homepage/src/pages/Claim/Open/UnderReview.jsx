@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
 
-import MessageSend from "./ClaimEvent/MessageSend.jsx";
-import CloseClaim from "./ClaimEvent/CloseClaim.jsx";
-import ClaimStatus from "./ClaimEvent/ClaimStatus";
-import ClaimDetails from "./ClaimDetails";
+import ClaimHeader from "../../../components/Claims/ClaimHeader/index.jsx";
+import ClaimClose from "../../../components/Claims/ClaimClose/index.jsx";
+import ClaimStatus from "../../../components/Claims/ClaimProgressBar/index.jsx";
+import ClaimDetails from "../../../components/Claims/ClaimDetails";
+import ClaimBtnDialogs from "../../../components/Claims/ClaimBtnDialogs";
+import ButtonBox from "../../../components/Claims/ButtonBox/index.jsx";
 
-const ClaimClosed = () => {
-  const [isMessage, setIsMessage] = useState(false);
-  const [isCloseClaim, setIsCloseClaim] = useState(false);
+const UnderReview = () => {
   const [claimDetils, setClaimDetails] = useState({});
 
   useEffect(() => {
     setClaimDetails({
+      topic: "The claim is under review",
+      brief: {
+        title: "The claim is placed on hold for 48 hours",
+        descr:
+          "NichoShop Customer Support will carefully review all details and will be back soon with a decision.",
+      },
       item: [
-        {
-          info: "EE PAY AS YOU GO 4G prepaid sim card with preloader US $150.50 forcalls, everything in one package",
-          condition: "New",
-          claimItem: "2 of 3",
-        },
         {
           info: "EE PAY AS YOU GO 4G prepaid sim card with preloader US $150.50 forcalls, everything in one package",
           condition: "New",
@@ -28,7 +28,17 @@ const ClaimClosed = () => {
       history: [
         {
           date: "28 Sep 2017",
-          topic: "You have opened a claim for not received item",
+          topic: "The seller asked us to help",
+        },
+        {
+          date: "28 Sep 2017",
+          topic: "You asked us to help",
+          reason: "The seller hasn't responded yet",
+          comment: "Example of the buyer's comment",
+        },
+        {
+          date: "28 Sep 2017",
+          topic: "You hav eopened a claim for not received item",
           content:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release ",
         },
@@ -63,39 +73,18 @@ const ClaimClosed = () => {
     });
   }, []);
 
-  const messageClick = () => {
-    setIsMessage(true);
-    setIsCloseClaim(false);
-  };
-
-  const claimClick = () => {
-    setIsMessage(false);
-    setIsCloseClaim(true);
-  };
-
   return (
     <div className="claim-open">
-      <h2>The claim was closed</h2>
+      <h2> {claimDetils.topic} </h2>
 
-      {isMessage ? <MessageSend isOpen={setIsMessage} /> : ""}
-      {isCloseClaim ? <CloseClaim isOpen={setIsCloseClaim} /> : ""}
+      <ClaimBtnDialogs />
 
       <div className="claim-open-content">
-        <div className="claim-open-header">
-          <h3>
-            "Example of the seller's comment, example of the seller's comment,
-            example of the seller's comment, example of the seller's comment,
-            example of the seller's comment, example of the seller's comment,
-            example of the seller's comment, example of the seller's comment,
-            example of the seller's comment, example of the seller's comment."
-          </h3>
-          <p>
-            If you can't sort something out with the seller, you can ask us to
-            help beginning 30 Sep 2017.
-          </p>
-        </div>
+        <ClaimHeader brief={claimDetils.brief} />
 
-        <ClaimStatus position={"in"} />
+        <ClaimClose />
+
+        <ClaimStatus position={"delivered"} />
 
         <div className="claim-open-detail">
           <div className="item-infor d-lg-flex d-md-block justify-content-between">
@@ -108,23 +97,10 @@ const ClaimClosed = () => {
                 Seller: <span>seller_username</span>
               </p>
             </div>
-            <div className="claim-buttons">
-              {isMessage ? (
-                ""
-              ) : (
-                <Button className="message-button" onClick={messageClick}>
-                  Send a message
-                </Button>
-              )}
-              {isCloseClaim ? (
-                ""
-              ) : (
-                <Button className="claim-button" onClick={claimClick}>
-                  Close the claim
-                </Button>
-              )}
-            </div>
+
+            <ButtonBox btnBox={[true, true, true]} />
           </div>
+
           <ClaimDetails details={claimDetils} />
         </div>
       </div>
@@ -132,4 +108,4 @@ const ClaimClosed = () => {
   );
 };
 
-export default ClaimClosed;
+export default UnderReview;
