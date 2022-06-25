@@ -1,7 +1,7 @@
 .claim-progress-bar {
   padding-top: 10px;
   padding-bottom: 20px;
-  width: 670px;
+  max-width: 670px;
   position: relative;
 
   .claim-bar {
@@ -15,7 +15,7 @@
     font-size: 18px;
     line-height: 21px;
     color: #616161;
-    
+
     .progress-arrow-down {
       &::before {
         content: " ";

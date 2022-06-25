@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 
-import MessageSend from "./ClaimEvent/MessageSend.jsx";
-import CloseClaim from "./ClaimEvent/CloseClaim.jsx";
-import ClaimStatus from "./ClaimEvent/ClaimStatus";
-import ClaimDetails from "./ClaimDetails";
+import MessageSend from "../../../components/Claims/ClaimBtnDialogs/MessageSend";
+import CloseClaim from "../../../components/Claims/ClaimBtnDialogs/CloseClaim";
+import ClaimStatus from "../../../components/Claims/ClaimProgressBar/index";
+import ClaimDetails from "../../../components/Claims/ClaimDetails";
 
-const SellerAdded = () => {
+const ClaimClosed = () => {
   const [isMessage, setIsMessage] = useState(false);
   const [isCloseClaim, setIsCloseClaim] = useState(false);
   const [claimDetils, setClaimDetails] = useState({});
@@ -17,13 +17,33 @@ const SellerAdded = () => {
         {
           info: "EE PAY AS YOU GO 4G prepaid sim card with preloader US $150.50 forcalls, everything in one package",
           condition: "New",
-          color: "Blue",
-          size: "XL",
-          material: "Cotton",
+          claimItem: "2 of 3",
+        },
+        {
+          info: "EE PAY AS YOU GO 4G prepaid sim card with preloader US $150.50 forcalls, everything in one package",
+          condition: "New",
           claimItem: "2 of 3",
         },
       ],
       history: [
+        {
+          date: "28 Sep 2017",
+          topic: "You have opened a claim for not received item",
+          content:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release ",
+        },
+        {
+          date: "28 Sep 2017",
+          topic: "The seller added shipping details",
+          carrier: "USPS",
+          trackingNumber: "GB12345678901234567890",
+        },
+        {
+          date: "28 Sep 2017",
+          topic: "You have opened a claim for not received item",
+          content:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release ",
+        },
         {
           date: "28 Sep 2017",
           topic: "You have opened a claim for not received item",
@@ -55,21 +75,27 @@ const SellerAdded = () => {
 
   return (
     <div className="claim-open">
-      <h2>The seller added shipping details</h2>
+      <h2>The claim was closed</h2>
 
       {isMessage ? <MessageSend isOpen={setIsMessage} /> : ""}
       {isCloseClaim ? <CloseClaim isOpen={setIsCloseClaim} /> : ""}
 
       <div className="claim-open-content">
         <div className="claim-open-header">
-          <h3>Your item is on its way</h3>
+          <h3>
+            "Example of the seller's comment, example of the seller's comment,
+            example of the seller's comment, example of the seller's comment,
+            example of the seller's comment, example of the seller's comment,
+            example of the seller's comment, example of the seller's comment,
+            example of the seller's comment, example of the seller's comment."
+          </h3>
           <p>
             If you can't sort something out with the seller, you can ask us to
             help beginning 30 Sep 2017.
           </p>
         </div>
 
-        <ClaimStatus position={"none"} />
+        <ClaimStatus position={"in"} />
 
         <div className="claim-open-detail">
           <div className="item-infor d-lg-flex d-md-block justify-content-between">
@@ -106,4 +132,4 @@ const SellerAdded = () => {
   );
 };
 
-export default SellerAdded;
+export default ClaimClosed;

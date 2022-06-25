@@ -7,19 +7,25 @@ import RecieveItem from "./RecieveItem";
 import RecieveRefund from "./RecieveRefund";
 import SellerSent from "./SellerSent";
 import ClaimClosed from "./ClaimClosed";
+import NoReceivedItem from "./NoReceivedItem";
 
 import "./open.scss";
+import UnderReview from "./UnderReview";
+import SendUs from "./SendUs";
 
 const PurchaseClaimOpen = () => {
   return (
     <div className="purchase-claim-open">
       <Menu />
-      {/* <ClaimOpen />
-      <SellerAdded />
-      <RecieveItem />
-      <RecieveRefund /> */}
+      {/* <ClaimOpen /> */}
+      {/* <SellerAdded /> */}
+      {/* <RecieveItem /> */}
+      {/* <RecieveRefund /> */}
       {/* <SellerSent /> */}
-      <ClaimClosed />
+      {/* <ClaimClosed /> */}
+      {/* <NoReceivedItem /> */}
+      <UnderReview />
+      {/* <SendUs /> */}
       <Footer />
     </div>
   );

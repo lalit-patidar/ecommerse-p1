@@ -59,33 +59,33 @@ import ShopingCart from "./pages/ShopingCart/ShopingCart";
 import CheckOut from "./pages/CheckOut/CheckOut";
 import BrowseHelp from "./pages/HelpContact/BrowseHelp/BrowseHelp";
 //User page
-import PurchaseClaim from "./pages/Purchase/Claim";
-import PurchaseClaimList from "./pages/Purchase/List";
-// import PurchaseClaimOpen from "./pages/Purchase/Open";
+import PurchaseClaim from "./pages/Claim/Claim";
+import PurchaseClaimList from "./pages/Claim/List";
+import PurchaseClaimOpen from "./pages/Claim/Open";
 
 function App() {
-    return (
-        <Routes>
-            {/* 
+  return (
+    <Routes>
+      {/* 
                 - / (home page)
             */}
-            <Route path="/" element={<HomePage />} />
-            {/* 
+      <Route path="/" element={<HomePage />} />
+      {/* 
                 - all pages (random pages)
             */}
-            <Route path="/mynichoshop" element={<MyNichoShop />} />
-            <Route path="/MNSPurchases" element={<MNSPurchases />} />
-            <Route path="/MNSMessages" element={<MNSMessages />} />
-            <Route path="/createlisting" element={<CreateListing />} />
-            <Route path="/createlistingform" element={CreateListingForm} />
-            <Route path="/bidding" element={<Bidding />} />
-            <Route path="/watchlist" element={<Watchlist />} />
-            <Route path="/listings" element={<Listings />} />
-            <Route path="/sellercentral" element={<SellerCentral />} />
-            <Route path="/productdetail" element={<Productdetail />} />
-            <Route path="/user/my-account" component={<Account />} />
-            <Route path="/user/close-account" element={<CloseAccount />} />
-            {/* 
+      <Route path="/mynichoshop" element={<MyNichoShop />} />
+      <Route path="/MNSPurchases" element={<MNSPurchases />} />
+      <Route path="/MNSMessages" element={<MNSMessages />} />
+      <Route path="/createlisting" element={<CreateListing />} />
+      <Route path="/createlistingform" element={CreateListingForm} />
+      <Route path="/bidding" element={<Bidding />} />
+      <Route path="/watchlist" element={<Watchlist />} />
+      <Route path="/listings" element={<Listings />} />
+      <Route path="/sellercentral" element={<SellerCentral />} />
+      <Route path="/productdetail" element={<Productdetail />} />
+      <Route path="/user/my-account" component={<Account />} />
+      <Route path="/user/close-account" element={<CloseAccount />} />
+      {/* 
                 - /signup (sign up page)
                 - /signin (sign in page)
                 - /join/mail-activation (join verify page)
@@ -101,53 +101,44 @@ function App() {
                 - /mobile-suc-code (suc code mobile page)
                 - /welcome (welcome page)
             */}
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/join/mail-activation" element={<JoinVerify />} />
-            <Route
-                path="/text-temporary-pwd"
-                element={<TextTemporaryPassword />}
-            />
-            <Route path="/change-your-pwd" element={<ChangeYourPassword />} />
-            <Route path="/change-user-name" element={<ChangeUserName />} />
-            <Route path="/verify-you-mobile" element={<VerifyYouMobile />} />
-            <Route path="/verify-you" element={<VerifyYou />} />
-            <Route path="/single-user-code" element={<SingleUserCode />} />
-            <Route
-                path="/create-new-password"
-                element={<ChangeNewPassword />}
-            />
-            <Route path="/temp-pwd" element={<TempPassword />} />
-            <Route
-                path="/continue-add-mobile"
-                element={<ContinueAddMobile />}
-            />
-            <Route path="/mobile-suc-code" element={<SucCode />} />
-            <Route path="/add-mobile" element={<AddMobile />} />
-            <Route path="/welcome" element={<Welcome />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/signin" element={<SignIn />} />
+      <Route path="/join/mail-activation" element={<JoinVerify />} />
+      <Route path="/text-temporary-pwd" element={<TextTemporaryPassword />} />
+      <Route path="/change-your-pwd" element={<ChangeYourPassword />} />
+      <Route path="/change-user-name" element={<ChangeUserName />} />
+      <Route path="/verify-you-mobile" element={<VerifyYouMobile />} />
+      <Route path="/verify-you" element={<VerifyYou />} />
+      <Route path="/single-user-code" element={<SingleUserCode />} />
+      <Route path="/create-new-password" element={<ChangeNewPassword />} />
+      <Route path="/temp-pwd" element={<TempPassword />} />
+      <Route path="/continue-add-mobile" element={<ContinueAddMobile />} />
+      <Route path="/mobile-suc-code" element={<SucCode />} />
+      <Route path="/add-mobile" element={<AddMobile />} />
+      <Route path="/welcome" element={<Welcome />} />
 
-            {/* 
+      {/* 
             all address pages
             */}
 
-            <Route path="/user/address" element={<Address />} />
-            <Route
-                path="/user/address/shipping_view"
-                element={<Address_Shippig_View />}
-            />
-            <Route path="/user/close-request" element={<CloseRequest />} />
-            <Route
-                path="/user/close-requeset-cancel"
-                element={<CloseRequestCancel />}
-            />
-            <Route
-                path="/user/close-requeset-process"
-                element={<CloseRequestProcess />}
-            />
-            <Route path="/todays-deals" element={<TodaysDeals />} />
-            <Route path="/recently-viewed" element={<RecentlyViewed />} />
+      <Route path="/user/address" element={<Address />} />
+      <Route
+        path="/user/address/shipping_view"
+        element={<Address_Shippig_View />}
+      />
+      <Route path="/user/close-request" element={<CloseRequest />} />
+      <Route
+        path="/user/close-requeset-cancel"
+        element={<CloseRequestCancel />}
+      />
+      <Route
+        path="/user/close-requeset-process"
+        element={<CloseRequestProcess />}
+      />
+      <Route path="/todays-deals" element={<TodaysDeals />} />
+      <Route path="/recently-viewed" element={<RecentlyViewed />} />
 
-            {/* 
+      {/* 
                 - /seller-central/order (order paid page)
                 - /seller-central/details-not-yet-paid (order details not yet paid page)
                 - /seller-central/order-details (order details page)
@@ -160,69 +151,60 @@ function App() {
                 - /seller-central/contact-buyer (contact buyer page)
                 - /seller-central/contact-buyer-msg (contact buyer success page)
             */}
-            <Route
-                path="/seller-central/order"
-                element={<SellerCentralOrder />}
-            />
-            <Route
-                path="/seller-central/details-not-yet-paid"
-                element={<NotYetPaid />}
-            />
-            <Route
-                path="/seller-central/order-details"
-                element={<OrderDetails />}
-            />
-            <Route
-                path="/seller-central/order-details-not-yet-shipped"
-                element={<NotYetSheppid />}
-            />
-            <Route
-                path="/seller-central/order-details-intransit"
-                element={<InTransit />}
-            />
-            <Route
-                path="/seller-central/order-invoice"
-                element={<OrderInvoice />}
-            />
-            <Route
-                path="/seller-central/order-view-details"
-                element={<ViewDetails />}
-            />
-            <Route
-                path="/seller-central/order-product-info"
-                element={<ProductInfo />}
-            />
-            <Route
-                path="/seller-central/confirm-shipment"
-                element={<ConfirmShipment />}
-            />
-            <Route
-                path="/seller-central/contact-buyer"
-                element={<ContactBuyer />}
-            />
-            <Route
-                path="/seller-central/contact-buyer-msg"
-                element={<MessageSent />}
-            />
-            {/* 
+      <Route path="/seller-central/order" element={<SellerCentralOrder />} />
+      <Route
+        path="/seller-central/details-not-yet-paid"
+        element={<NotYetPaid />}
+      />
+      <Route path="/seller-central/order-details" element={<OrderDetails />} />
+      <Route
+        path="/seller-central/order-details-not-yet-shipped"
+        element={<NotYetSheppid />}
+      />
+      <Route
+        path="/seller-central/order-details-intransit"
+        element={<InTransit />}
+      />
+      <Route path="/seller-central/order-invoice" element={<OrderInvoice />} />
+      <Route
+        path="/seller-central/order-view-details"
+        element={<ViewDetails />}
+      />
+      <Route
+        path="/seller-central/order-product-info"
+        element={<ProductInfo />}
+      />
+      <Route
+        path="/seller-central/confirm-shipment"
+        element={<ConfirmShipment />}
+      />
+      <Route path="/seller-central/contact-buyer" element={<ContactBuyer />} />
+      <Route
+        path="/seller-central/contact-buyer-msg"
+        element={<MessageSent />}
+      />
+      {/* 
                 - /shoping-cart (shoping cart page)
                 - /checkout (checkout page)
             */}
-            <Route path="/shoping-cart" element={<ShopingCart />} />
+      <Route path="/shoping-cart" element={<ShopingCart />} />
 
-            <Route path="/user/purchases/claims" element={<PurchaseClaim />} />
-            <Route
-                path="/user/purchases/claims/list"
-                element={<PurchaseClaimList />}
-            />
-            {/* <Route path="/user/purchases/claims/open" element={<PurchaseClaimOpen/>} /> */}
+      <Route path="/user/purchases/claims" element={<PurchaseClaim />} />
+      <Route
+        path="/user/purchases/claims/list"
+        element={<PurchaseClaimList />}
+      />
+      <Route
+        path="/user/purchases/claims/open"
+        element={<PurchaseClaimOpen />}
+      />
 
-            <Route path="/checkout" element={<CheckOut />} />
+      <Route path="/checkout" element={<CheckOut />} />
 
-            {/* - /help-contact/browse-help (browse help page) */}
-            <Route path="/help-contact/browse-help" element={<BrowseHelp />} />
-        </Routes>
-    );
+      {/* - /help-contact/browse-help (browse help page) */}
+      <Route path="/help-contact/browse-help" element={<BrowseHelp />} />
+    </Routes>
+  );
 }
 
 export default App;
