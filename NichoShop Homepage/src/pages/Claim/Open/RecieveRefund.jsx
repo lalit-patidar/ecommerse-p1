@@ -1,13 +1,30 @@
 import { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
 
+import ClaimHeader from "../../../components/Claims/ClaimHeader/index.jsx";
+import ClaimClose from "../../../components/Claims/ClaimClose/index.jsx";
+import ClaimStatus from "../../../components/Claims/ClaimProgressBar/index.jsx";
 import ClaimDetails from "../../../components/Claims/ClaimDetails";
+import ClaimInfo from "../../../components/Claims/ClaimInfo/index.jsx";
+import ClaimBtnDialogs from "../../../components/Claims/ClaimBtnDialogs";
+import ButtonBox from "../../../components/Claims/ButtonBox/index.jsx";
 
 const ClaimClosed = () => {
-  const [claimDetils, setClaimDetails] = useState({});
+  const [claimDetails, setClaimDetails] = useState({});
 
   useEffect(() => {
     setClaimDetails({
+      topic: "The claim was closed",
+      brief: {
+        title:
+          "Your claim was closed on 30 Sep 2017 because you received a refund.",
+        descr:
+          "If you can't sort something out with the seller, you can ask us to help beginning 30 Sep 2017.",
+      },
+      claim: {
+        status: "Not recieved item",
+        orderId: "12345678-123456",
+        seller: "seller_username",
+      },
       item: [
         {
           info: "EE PAY AS YOU GO 4G prepaid sim card with preloader US $150.50 forcalls, everything in one package",
@@ -57,32 +74,16 @@ const ClaimClosed = () => {
 
   return (
     <div className="claim-open">
-      <h2>The claim was closed</h2>
+      <h2>{claimDetails.topic}</h2>
 
       <div className="claim-open-content">
-        <div className="claim-open-header">
-          <h3>
-            Your claim was closed on 30 Sep 2017 because you received a refund.
-          </h3>
-          <p>
-            If you can't sort something out with the seller, you can ask us to
-            help beginning 30 Sep 2017.
-          </p>
-        </div>
+        <ClaimHeader brief={claimDetails.brief} />
 
         <div className="claim-open-detail">
           <div className="item-infor d-lg-flex d-md-block justify-content-between">
-            <div>
-              <h3>Not recieved item</h3>
-              <p>
-                Order ID: <span className="order-id">12345678-123456</span>
-              </p>
-              <p>
-                Seller: <span>seller_username</span>
-              </p>
-            </div>
+            <ClaimInfo claimInfo={claimDetails.claim} />
           </div>
-          <ClaimDetails details={claimDetils} />
+          <ClaimDetails details={claimDetails} />
         </div>
       </div>
     </div>

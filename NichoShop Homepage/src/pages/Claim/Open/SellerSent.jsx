@@ -1,20 +1,32 @@
 import { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
 
-import MessageSend from "../../../components/Claims/ClaimBtnDialogs/MessageSend";
-import CloseClaim from "../../../components/Claims/ClaimBtnDialogs/CloseClaim";
-import AskUs from "../../../components/Claims/ClaimBtnDialogs/AskUs";
+import ClaimHeader from "../../../components/Claims/ClaimHeader/index.jsx";
+import ClaimInfo from "../../../components/Claims/ClaimInfo";
+import ClaimBtnDialogs from "../../../components/Claims/ClaimBtnDialogs";
+
 import ClaimStatus from "../../../components/Claims/ClaimProgressBar/index.jsx";
 import ClaimDetails from "../../../components/Claims/ClaimDetails";
+import ButtonBox from "../../../components/Claims/ButtonBox/index.jsx";
 
 const SellerSent = () => {
   const [isMessage, setIsMessage] = useState(false);
   const [isCloseClaim, setIsCloseClaim] = useState(false);
   const [isAskUs, setIsAskUs] = useState(false);
-  const [claimDetils, setClaimDetails] = useState({});
+  const [claimDetails, setClaimDetails] = useState({});
 
   useEffect(() => {
     setClaimDetails({
+      topic: "The seller sent a message",
+      brief: {
+        title: "You sent a message to the seller",
+        descr:
+          "If you can't sort something out with the seller, you can ask use to help beginning 30 Sep 2017.",
+      },
+      claim: {
+        status: "Not recieved item",
+        orderId: "12345678-123456",
+        seller: "seller_username",
+      },
       item: [
         {
           info: "EE PAY AS YOU GO 4G prepaid sim card with preloader US $150.50 forcalls, everything in one package",
@@ -90,60 +102,23 @@ const SellerSent = () => {
 
   return (
     <div className="claim-open">
-      <h2>The seller sent a message</h2>
+      <h2>{claimDetails.topic}</h2>
 
-      {isMessage ? <MessageSend isOpen={setIsMessage} /> : ""}
-      {isCloseClaim ? <CloseClaim isOpen={setIsCloseClaim} /> : ""}
-      {isAskUs ? <AskUs isOpen={setIsAskUs} /> : ""}
+      <ClaimBtnDialogs />
 
       <div className="claim-open-content">
-        <div className="claim-open-header">
-          <h3>You sent a message to the seller</h3>
-          <p>
-            If you can't sort something out with the seller, you can ask use to
-            help beginning 30 Sep 2017.
-          </p>
-        </div>
+        <ClaimHeader brief={claimDetails.brief} />
 
         <ClaimStatus position={"accepted"} />
 
         <div className="claim-open-detail">
           <div className="item-infor d-lg-flex d-md-block justify-content-between">
-            <div>
-              <h3>Not recieved item</h3>
-              <p>
-                Order ID: <span className="order-id">12345678-123456</span>
-              </p>
-              <p>
-                Seller: <span>seller_username</span>
-              </p>
-            </div>
-            <div className="claim-buttons">
-              {isMessage ? (
-                ""
-              ) : (
-                <Button className="message-button" onClick={messageClick}>
-                  Send a message
-                </Button>
-              )}
-              {isCloseClaim ? (
-                ""
-              ) : (
-                <Button className="claim-button" onClick={claimClick}>
-                  Close the claim
-                </Button>
-              )}
-              {isAskUs ? (
-                ""
-              ) : (
-                <Button className="claim-button" onClick={askClick}>
-                  Ask us to help
-                </Button>
-              )}
-            </div>
+            <ClaimInfo claimInfo={claimDetails.claim} />
+
+            <ButtonBox btnBox={[true, true, true]} />
           </div>
 
-          <ClaimDetails details={claimDetils} />
+          <ClaimDetails details={claimDetails} />
         </div>
       </div>
     </div>

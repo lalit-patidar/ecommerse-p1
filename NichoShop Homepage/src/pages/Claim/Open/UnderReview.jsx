@@ -4,11 +4,12 @@ import ClaimHeader from "../../../components/Claims/ClaimHeader/index.jsx";
 import ClaimClose from "../../../components/Claims/ClaimClose/index.jsx";
 import ClaimStatus from "../../../components/Claims/ClaimProgressBar/index.jsx";
 import ClaimDetails from "../../../components/Claims/ClaimDetails";
+import ClaimInfo from "../../../components/Claims/ClaimInfo/index.jsx";
 import ClaimBtnDialogs from "../../../components/Claims/ClaimBtnDialogs";
 import ButtonBox from "../../../components/Claims/ButtonBox/index.jsx";
 
 const UnderReview = () => {
-  const [claimDetils, setClaimDetails] = useState({});
+  const [claimDetails, setClaimDetails] = useState({});
 
   useEffect(() => {
     setClaimDetails({
@@ -17,6 +18,11 @@ const UnderReview = () => {
         title: "The claim is placed on hold for 48 hours",
         descr:
           "NichoShop Customer Support will carefully review all details and will be back soon with a decision.",
+      },
+      claim: {
+        status: "Not recieved item",
+        orderId: "12345678-123456",
+        seller: "seller_username",
       },
       item: [
         {
@@ -75,12 +81,12 @@ const UnderReview = () => {
 
   return (
     <div className="claim-open">
-      <h2> {claimDetils.topic} </h2>
+      <h2>{claimDetails.topic}</h2>
 
       <ClaimBtnDialogs />
 
       <div className="claim-open-content">
-        <ClaimHeader brief={claimDetils.brief} />
+        <ClaimHeader brief={claimDetails.brief} />
 
         <ClaimClose />
 
@@ -88,20 +94,12 @@ const UnderReview = () => {
 
         <div className="claim-open-detail">
           <div className="item-infor d-lg-flex d-md-block justify-content-between">
-            <div>
-              <h3>Not recieved item</h3>
-              <p>
-                Order ID: <span className="order-id">12345678-123456</span>
-              </p>
-              <p>
-                Seller: <span>seller_username</span>
-              </p>
-            </div>
+            <ClaimInfo claimInfo={claimDetails.claim} />
 
             <ButtonBox btnBox={[true, true, true]} />
           </div>
 
-          <ClaimDetails details={claimDetils} />
+          <ClaimDetails details={claimDetails} />
         </div>
       </div>
     </div>
