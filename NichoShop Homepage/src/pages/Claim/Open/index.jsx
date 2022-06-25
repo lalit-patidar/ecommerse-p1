@@ -17,14 +17,14 @@ const PurchaseClaimOpen = () => {
   return (
     <div className="purchase-claim-open">
       <Menu />
-      {/* <ClaimOpen /> */}
+      <ClaimOpen />
       {/* <SellerAdded /> */}
       {/* <RecieveItem /> */}
       {/* <RecieveRefund /> */}
       {/* <SellerSent /> */}
       {/* <ClaimClosed /> */}
       {/* <NoReceivedItem /> */}
-      <UnderReview />
+      {/* <UnderReview /> */}
       {/* <SendUs /> */}
       <Footer />
     </div>

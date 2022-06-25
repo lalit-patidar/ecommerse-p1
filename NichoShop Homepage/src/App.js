@@ -58,15 +58,12 @@ import MessageSent from "./pages/SellerCentral/ContactBuyer/MessageSent/MessageS
 import ShopingCart from "./pages/ShopingCart/ShopingCart";
 import CheckOut from "./pages/CheckOut/CheckOut";
 import BrowseHelp from "./pages/HelpContact/BrowseHelp/BrowseHelp";
-//User page
-import PurchaseClaim from "./pages/Purchase/Claim";
-import PurchaseClaimList from "./pages/Purchase/List";
 import ContactUs from "./pages/HelpContact/ContactUs/ContactUs";
 import CallUs from "./pages/HelpContact/CallUs/CallUs";
-// import PurchaseClaimOpen from "./pages/Purchase/Open";
-import PurchaseClaim from "./pages/Claim/Claim";
-import PurchaseClaimList from "./pages/Claim/List";
-import PurchaseClaimOpen from "./pages/Claim/Open";
+//User page
+import PurchaseClaim1 from "./pages/Claim/Claim";
+import PurchaseClaimList1 from "./pages/Claim/List";
+import PurchaseClaimOpen1 from "./pages/Claim/Open";
 
 function App() {
     return (
@@ -215,14 +212,14 @@ function App() {
             */}
             <Route path="/shoping-cart" element={<ShopingCart />} />
 
-            <Route path="/user/purchases/claims" element={<PurchaseClaim />} />
+            <Route path="/user/purchases/claims" element={<PurchaseClaim1 />} />
             <Route
                 path="/user/purchases/claims/list"
-                element={<PurchaseClaimList />}
+                element={<PurchaseClaimList1 />}
             />
             <Route
                 path="/user/purchases/claims/open"
-                element={<PurchaseClaimOpen />}
+                element={<PurchaseClaimOpen1 />}
             />
 
             <Route path="/checkout" element={<CheckOut />} />

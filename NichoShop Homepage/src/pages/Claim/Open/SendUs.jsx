@@ -1,14 +1,42 @@
 import { useEffect, useState } from "react";
 
-import DocumentSend from "../../../components/Claims/ClaimBtnDialogs/DocumentSend";
+import ClaimHeader from "../../../components/Claims/ClaimHeader/index.jsx";
+import ClaimClose from "../../../components/Claims/ClaimClose/index.jsx";
+import ClaimInfo from "../../../components/Claims/ClaimInfo";
 import ClaimStatus from "../../../components/Claims/ClaimProgressBar/index.jsx";
 import ClaimDetails from "../../../components/Claims/ClaimDetails";
+import ClaimBtnDialogs from "../../../components/Claims/ClaimBtnDialogs";
+import { useDispatch } from "react-redux";
+import { hasButton } from "../Action/actions.js";
 
 const SendUs = () => {
-  const [claimDetils, setClaimDetails] = useState({});
+  const [claimDetails, setClaimDetails] = useState({});
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      hasButton({
+        msgSend: false,
+        closeClaim: false,
+        documentSend: true,
+        askUs: false,
+      })
+    );
+  }, []);
 
   useEffect(() => {
     setClaimDetails({
+      topic: "Send us documentation",
+      brief: {
+        title:
+          "NichoShop Customer Support requested additional documentation from you",
+        descr: "Provide us with the documentation by 22 Sep 2019",
+      },
+      claim: {
+        status: "Not recieved item",
+        orderId: "12345678-123456",
+        seller: "seller_username",
+      },
       item: [
         {
           info: "EE PAY AS YOU GO 4G prepaid sim card with preloader US $150.50 forcalls, everything in one package",
@@ -67,41 +95,23 @@ const SendUs = () => {
 
   return (
     <div className="claim-open">
-      <h2>Send us documentation</h2>
+      <h2> {claimDetails.topic} </h2>
 
-      <DocumentSend />
+      <ClaimBtnDialogs />
 
       <div className="claim-open-content">
-        <div className="claim-open-header">
-          <h3>
-            NichoShop Customer Support requested additional documentation from
-            you
-          </h3>
-          <p>Provide us with the documentation by 22 Sep 2019</p>
-        </div>
+        <ClaimHeader brief={claimDetails.brief} />
 
-        <div className="claim-close">
-          <p>
-            If the problem was resolved, you can <span>close the claim</span>
-          </p>
-        </div>
+        <ClaimClose />
 
         <ClaimStatus position={"in"} />
 
         <div className="claim-open-detail">
           <div className="item-infor d-lg-flex d-md-block justify-content-between">
-            <div>
-              <h3>Not recieved item</h3>
-              <p>
-                Order ID: <span className="order-id">12345678-123456</span>
-              </p>
-              <p>
-                Seller: <span>seller_username</span>
-              </p>
-            </div>
+            <ClaimInfo claimInfo={claimDetails.claim} />
           </div>
 
-          <ClaimDetails details={claimDetils} />
+          <ClaimDetails details={claimDetails} />
         </div>
       </div>
     </div>
