@@ -82,6 +82,9 @@ let initState = {
             list: [
             ]
         }
+    },
+    customerDetail: {
+        
     }
 }
 const reducer = (state = initState, action) => {

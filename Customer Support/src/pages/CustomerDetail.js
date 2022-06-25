@@ -1,19 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import './CustomerDetail.css'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import { ReactComponent as BackArrowLogo } from '../assets/svg/customerDetail/back-logo.svg'
 import { ReactComponent as GreyRectLogo } from '../assets/svg/customerDetail/grey-rect.svg'
+import { ReactComponent as PlusButtonLogo } from '../assets/svg/customerDetail/plus-button.svg'
+import { ReactComponent as DropDownLogo } from '../assets/svg/filter/dropdown-logo.svg'
+import { useSelector, useDispatch } from 'react-redux';
 
 function CustomerDetail() {
+    const textareaRef = useRef(null);
     const [addCommentFlag, setAddCommentFlag] = useState(false)
     const [addProofsFlag, setAddProofsFlag] = useState(false)
+    const chooseList = useSelector(state => state.customer.chooseList)
+    const [ droplistChooseId, setDroplistChooseId ] = useState(1);
+    const [ droplistFlag, setDroplistFlage ] = useState(false);
+    const [ filterInput, setFilterInput ] = useState("")
+    const [ typeTextAreaData, setTypeTextAreaData ] = useState("");
+    useEffect(() => {
+        textareaRef.current.style.height = "0px";
+        const scrollHeight = textareaRef.current.scrollHeight;
+        textareaRef.current.style.height = scrollHeight + "px";
+    }, [typeTextAreaData]);
     return (
         <div className='CustomerDetail'>
             <Header />
             <div className='body'>
                 <div className='top-back-button'>
-                    <div className='left'>
+                    <div className='left pointer'>
                         <BackArrowLogo />
                         <p>Back</p>
                     </div>
@@ -156,7 +170,7 @@ function CustomerDetail() {
                                     <GreyRectLogo />
                                 </div>
                                 <div className='right'>
-                                    <p className='blue'>Norton Security Deluxe 2016 - 300 Days / 1 Device (Windows, Mac, Android and IOS)</p>
+                                    <p className='blue'>Norton Security Deluxe 2016 - 300 Days / 1 Device (Windows, Mac, Android)</p>
                                     <div className='describe-line'>
                                         <p className='gray'>NSLN:</p>
                                         <p className='black'>123456789012</p>
@@ -183,6 +197,7 @@ function CustomerDetail() {
                                     </div>
                                 </div>
                             </div>
+                            <div className='inter-line'></div>
                         </div>
                         <div className='right column'>
                             <div className='flex-space'>
@@ -195,12 +210,40 @@ function CustomerDetail() {
                             </div>
                             <div className='inter-line'></div>
                             <div className={addCommentFlag ? '':'hidden'}>
-                                <textarea className='comment-box' placeholder='Enter tour comment...' />
+                                <textarea className='comment-box' ref={textareaRef} placeholder='Enter tour comment...'
+                                    value={typeTextAreaData} onChange={e=>{ setTypeTextAreaData(e.target.value); }}/>
                                 <div className='inter-line dot'></div>
                                 <div className='flex'>
                                     <input className='checkbox' type="checkbox" defaultChecked={addProofsFlag}
                                         onChange={() => setAddProofsFlag(!addProofsFlag)}/>
                                     <p className='check-label'>Add proofs</p>
+                                </div>
+                                <div className={addProofsFlag ? 'proof' : 'hidden'}>
+                                    <div className='left'>
+                                        <div className='dropbox'>
+                                            <div className='drop-text'>{chooseList[droplistChooseId-1]?.string}</div>
+                                            <DropDownLogo onClick={()=>setDroplistFlage(!droplistFlag)} />
+                                            <div className={droplistFlag ? 'drop-list' : 'drop-list hidden'}
+                                            onMouseLeave={()=>setDroplistFlage(false)}>
+                                                {
+                                                    chooseList.map((item)=>{
+                                                        return(
+                                                            <div className={droplistChooseId === item.id ? 'drop-item selected' : 'drop-item'} key={"drop-item"+item.id}
+                                                            onClick={()=>{setDroplistChooseId(item.id); setDroplistFlage(false)}}>
+                                                                <p>{item.string}</p>
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        </div>
+                                        <div className='item-input'>
+                                            <input value={filterInput} onChange={(e)=>{
+                                                setFilterInput(e.target.value)
+                                            }}></input>
+                                        </div>
+                                    </div>
+                                    <PlusButtonLogo />
                                 </div>
                                 <div className='inter-line'></div>
                                 <div className='flex buttons'>
