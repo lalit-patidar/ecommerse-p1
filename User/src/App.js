@@ -64,6 +64,9 @@ import PurchaseClaimList from "./pages/Purchase/List";
 import ContactUs from "./pages/HelpContact/ContactUs/ContactUs";
 import CallUs from "./pages/HelpContact/CallUs/CallUs";
 // import PurchaseClaimOpen from "./pages/Purchase/Open";
+import PurchaseClaim from "./pages/Claim/Claim";
+import PurchaseClaimList from "./pages/Claim/List";
+import PurchaseClaimOpen from "./pages/Claim/Open";
 
 function App() {
     return (
@@ -217,7 +220,10 @@ function App() {
                 path="/user/purchases/claims/list"
                 element={<PurchaseClaimList />}
             />
-            {/* <Route path="/user/purchases/claims/open" element={<PurchaseClaimOpen/>} /> */}
+            <Route
+                path="/user/purchases/claims/open"
+                element={<PurchaseClaimOpen />}
+            />
 
             <Route path="/checkout" element={<CheckOut />} />
 

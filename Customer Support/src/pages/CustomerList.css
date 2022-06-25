@@ -1,0 +1,9 @@
+.customerList {
+	background-color: white;
+	width: 100%;
+	padding-top: 100px;
+}
+.customerList .body {
+	margin: 68px 0px 100px 0px;
+	min-height: calc(100vh - 370px);
+}
