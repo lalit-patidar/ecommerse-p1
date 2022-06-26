@@ -60,6 +60,7 @@
 
 .ui-contact-us {
     padding: 50px 0;
+    position: relative;
 }
 
 .ui-contact-us-content {
@@ -90,8 +91,10 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 
-    >div {
+    >button {
         text-align: center;
+        border: 0;
+        background: none;
 
         svg {
             height: 41px;
@@ -113,6 +116,46 @@
             text-align: center;
             color: #000000;
             margin-bottom: 0;
+        }
+    }
+}
+
+.ui-chat-open-box {
+    position: fixed;
+    right: 3rem;
+    bottom: 3rem;
+
+    button {
+        height: 60px;
+        width: 60px;
+        background: #EDEDED;
+        border-radius: 50%;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        span {
+            position: absolute;
+            display: inline-block;
+            height: 18px;
+            background-color: #9F2B05;
+            top: -6px;
+            right: 0;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 100%;
+            color: #FFFFFF;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 4px;
+        }
+
+        img {
+            width: 35px;
         }
     }
 }
