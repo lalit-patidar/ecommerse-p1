@@ -58,6 +58,8 @@ import MessageSent from "./pages/SellerCentral/ContactBuyer/MessageSent/MessageS
 import ShopingCart from "./pages/ShopingCart/ShopingCart";
 import CheckOut from "./pages/CheckOut/CheckOut";
 import BrowseHelp from "./pages/HelpContact/BrowseHelp/BrowseHelp";
+import ContactUs from "./pages/HelpContact/ContactUs/ContactUs";
+import CallUs from "./pages/HelpContact/CallUs/CallUs";
 //User page
 import PurchaseClaim1 from "./pages/PurchaseClaim/Claim";
 import PurchaseClaimList1 from "./pages/PurchaseClaim/List";
@@ -207,7 +209,11 @@ function App() {
       <Route path="/checkout" element={<CheckOut />} />
 
       {/* - /help-contact/browse-help (browse help page) */}
+      {/* - /help-contact/contact-us (contact us page) */}
+      {/* - /help-contact/call-us (contact us page) */}
       <Route path="/help-contact/browse-help" element={<BrowseHelp />} />
+      <Route path="/help-contact/contact-us" element={<ContactUs />} />
+      <Route path="/help-contact/call-us" element={<CallUs />} />
     </Routes>
   );
 }
