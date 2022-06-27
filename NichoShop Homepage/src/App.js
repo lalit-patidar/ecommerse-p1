@@ -59,9 +59,10 @@ import ShopingCart from "./pages/ShopingCart/ShopingCart";
 import CheckOut from "./pages/CheckOut/CheckOut";
 import BrowseHelp from "./pages/HelpContact/BrowseHelp/BrowseHelp";
 //User page
-import PurchaseClaim1 from "./pages/Claim/Claim";
-import PurchaseClaimList1 from "./pages/Claim/List";
-import PurchaseClaimOpen1 from "./pages/Claim/Open";
+import PurchaseClaim1 from "./pages/PurchaseClaim/Claim";
+import PurchaseClaimList1 from "./pages/PurchaseClaim/List";
+import PurchaseClaimOpen1 from "./pages/PurchaseClaim/Open";
+import SellerClaimOrder from "./pages/SellerCentralClaim/Order/index";
 
 function App() {
   return (
@@ -197,6 +198,10 @@ function App() {
       <Route
         path="/user/purchases/claims/open"
         element={<PurchaseClaimOpen1 />}
+      />
+      <Route
+        path="/user/sellercentral/claim/order"
+        element={<SellerClaimOrder />}
       />
 
       <Route path="/checkout" element={<CheckOut />} />

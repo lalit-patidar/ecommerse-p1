@@ -1,4 +1,4 @@
-import action_type from "../pages/Claim/Action/action.type";
+import action_type from "../pages/PurchaseClaim/Action/action.type";
 
 const initialState = {
   toggleMessageDialog: {

@@ -5,7 +5,7 @@ import Select from "@mui/material/Select";
 import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 
-import { hasButton } from "../../../pages/Claim/Action/actions";
+import { hasButton } from "../../../pages/PurchaseClaim/Action/actions";
 
 const AskUs = ({ isOpen }) => {
   const dispatch = useDispatch();

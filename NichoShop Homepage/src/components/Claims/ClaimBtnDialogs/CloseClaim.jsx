@@ -3,7 +3,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useState } from "react";
-import { hasButton } from "../../../pages/Claim/Action/actions";
+import { hasButton } from "../../../pages/PurchaseClaim/Action/actions";
 import { useDispatch } from "react-redux";
 
 const CloseClaim = ({ isOpen }) => {

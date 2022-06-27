@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Button, CloseButton } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { hasButton } from "../../../pages/Claim/Action/actions";
+import { hasButton } from "../../../pages/PurchaseClaim/Action/actions";
 
 const MessageSend = () => {
   const dispatch = useDispatch();
