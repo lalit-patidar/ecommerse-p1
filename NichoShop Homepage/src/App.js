@@ -61,12 +61,16 @@ import BrowseHelp from "./pages/HelpContact/BrowseHelp/BrowseHelp";
 import ContactUs from "./pages/HelpContact/ContactUs/ContactUs";
 import CallUs from "./pages/HelpContact/CallUs/CallUs";
 //User page
-import PurchaseClaim1 from "./pages/Claim/Claim";
-import PurchaseClaimList1 from "./pages/Claim/List";
-import PurchaseClaimOpen1 from "./pages/Claim/Open";
+// import PurchaseClaim1 from "./pages/Claim/Claim";
+// import PurchaseClaimList1 from "./pages/Claim/List";
+// import PurchaseClaimOpen1 from "./pages/Claim/Open";
 import EmailUs from "./pages/HelpContact/EmailUs/EmailUs";
 import MyNichoPage from "./pages/MyNichoShop/MyNichoShop";
 import SendUsDocumentation from "./pages/HelpContact/SendUsDocumentation";
+import PurchaseClaim from "./pages/Purchase/Claim";
+import PurchaseClaimOpen from "./pages/PurchaseClaim/Open";
+import SellerCentralClaimOrder from "./pages/SellerCentralClaim/Order";
+import PurchaseClaimList from "./pages/PurchaseClaim/List";
 
 function App() {
     return (
@@ -215,18 +219,18 @@ function App() {
             */}
             <Route path="/shoping-cart" element={<ShopingCart />} />
 
-            <Route path="/user/purchases/claims" element={<PurchaseClaim1 />} />
+            <Route path="/user/purchases/claims" element={<PurchaseClaim />} />
             <Route
                 path="/user/purchases/claims/list"
-                element={<PurchaseClaimList1 />}
+                element={<PurchaseClaimList />}
             />
             <Route
                 path="/user/purchases/claims/open"
-                element={<PurchaseClaimOpen1 />}
+                element={<PurchaseClaimOpen />}
             />
             <Route
                 path="/user/sellercentral/claim/order"
-                element={<SellerClaimOrder />}
+                element={<SellerCentralClaimOrder />}
             />
 
             <Route path="/checkout" element={<CheckOut />} />

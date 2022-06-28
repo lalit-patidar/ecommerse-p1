@@ -5,14 +5,14 @@ import Footer from "../../../components/Footer";
 import "./list.scss";
 
 const PurchaseClaimList = () => {
-  return (
-    <div className="purchase-claim-list">
-      <Menu />
-      <Breadcrumb />
-      <Content />
-      <Footer />
-    </div>
-  );
+    return (
+        <div className="purchase-claim-list">
+            <Menu />
+            <Breadcrumb />
+            <Content />
+            <Footer />
+        </div>
+    );
 };
 
 export default PurchaseClaimList;

@@ -3,14 +3,14 @@ import Footer from "../../../components/Footer";
 import Report from "./Report";
 
 const PurchaseClaim = () => {
-  return (
-    <div className="purchase-claim">
-      {/* <Header /> */}
-      <Menu />
-      <Report />
-      <Footer />
-    </div>
-  );
+    return (
+        <div className="purchase-claim">
+            {/* <Header /> */}
+            <Menu />
+            <Report />
+            <Footer />
+        </div>
+    );
 };
 
 export default PurchaseClaim;
