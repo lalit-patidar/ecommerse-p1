@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Menu from "../../../components/menu/Menu";
 import Footer from "../../../components/MyNichoShop/footer/Footer";
 import "./callus.scss";
@@ -50,6 +50,9 @@ const CallUs = () => {
     ];
 
     const [isChaned, setChecked] = useState(false);
+    const changeHandler = () => {
+        setChecked(!isChaned);
+    };
     return (
         <div>
             <Menu />
@@ -82,97 +85,107 @@ const CallUs = () => {
                                                 Buying <br />- Return an order
                                                 or item
                                             </p>
-                                            <button>
-                                                <Link to="/help-contact/contact-us">
-                                                    Cencel
-                                                </Link>
+                                            <button onClick={changeHandler}>
+                                                {isChaned ? "Cencel" : "Change"}
                                             </button>
                                         </li>
                                     </ul>
-                                    <div className="ui-phone-no">
-                                        <FormControl
-                                            variant="outlined"
-                                            size="small"
-                                            fullWidth
-                                            error={
-                                                getFormSubmit &&
-                                                getPhoneNumber.length == 0
-                                                    ? true
-                                                    : false
-                                            }
-                                        >
-                                            <InputLabel htmlFor="my-input">
-                                                Legal phone number
-                                            </InputLabel>
-                                            <OutlinedInput
-                                                id="phoneNumber"
-                                                name="phoneNumber"
-                                                type="number"
-                                                value={getPhoneNumber}
-                                                onChange={phoneNumberHandler}
-                                                endAdornment={
-                                                    <InputAdornment position="start">
-                                                        <div className="ui-country-code">
-                                                            <PhoneInput
-                                                                international
-                                                                defaultCountry="BD"
-                                                                placeholder="Enter phone number"
-                                                                value={
-                                                                    getCountryCode
-                                                                }
-                                                                onChange={
-                                                                    setCountryCode
-                                                                }
-                                                            />
-                                                        </div>
-                                                    </InputAdornment>
-                                                }
-                                                label="Legal phone number"
-                                            />
-                                        </FormControl>
-                                    </div>
-                                    <p>
-                                        Your one-time passcode: <b>1234567</b>{" "}
-                                        (Use it for faster customer service)
-                                    </p>
-                                    <div className="ui-cu-change-content">
-                                        <p>
-                                            Review your phone number (add new if
-                                            it’s need) and click Call me.
-                                        </p>
-                                        <ul>
-                                            <li>
-                                                <p>Country</p>
-                                            </li>
-                                            <li>
-                                                <Select options={options} />
-                                            </li>
-                                        </ul>
-                                        <ul>
-                                            <li>
-                                                <p>
-                                                    Your number <span>+44</span>
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <input
-                                                    type="text"
-                                                    className="form-control"
-                                                    placeholder="Enter Phone"
-                                                    value="098-7654-321"
-                                                />
-                                            </li>
-                                        </ul>
-                                        <button>Call me</button>
-                                        <p>
-                                            Estimated wait time:{" "}
-                                            <b>15 minutes</b>
-                                        </p>
-                                        <p>
-                                            If you prefer, you can also{" "}
-                                            <Link to="/call">Call us</Link>
-                                        </p>
-                                    </div>
+                                    {!isChaned && (
+                                        <>
+                                            <div className="ui-phone-no">
+                                                <FormControl
+                                                    variant="outlined"
+                                                    size="small"
+                                                    fullWidth
+                                                    error={
+                                                        getFormSubmit &&
+                                                        getPhoneNumber.length ==
+                                                            0
+                                                            ? true
+                                                            : false
+                                                    }
+                                                >
+                                                    <InputLabel htmlFor="my-input">
+                                                        Legal phone number
+                                                    </InputLabel>
+                                                    <OutlinedInput
+                                                        id="phoneNumber"
+                                                        name="phoneNumber"
+                                                        type="number"
+                                                        value={getPhoneNumber}
+                                                        onChange={
+                                                            phoneNumberHandler
+                                                        }
+                                                        endAdornment={
+                                                            <InputAdornment position="start">
+                                                                <div className="ui-country-code">
+                                                                    <PhoneInput
+                                                                        international
+                                                                        defaultCountry="BD"
+                                                                        placeholder="Enter phone number"
+                                                                        value={
+                                                                            getCountryCode
+                                                                        }
+                                                                        onChange={
+                                                                            setCountryCode
+                                                                        }
+                                                                    />
+                                                                </div>
+                                                            </InputAdornment>
+                                                        }
+                                                        label="Legal phone number"
+                                                    />
+                                                </FormControl>
+                                            </div>
+                                            <p>
+                                                Your one-time passcode:{" "}
+                                                <b>1234567</b> (Use it for
+                                                faster customer service)
+                                            </p>
+                                        </>
+                                    )}
+                                    {isChaned && (
+                                        <div className="ui-cu-change-content">
+                                            <p>
+                                                Review your phone number (add
+                                                new if it’s need) and click Call
+                                                me.
+                                            </p>
+                                            <ul>
+                                                <li>
+                                                    <p>Country</p>
+                                                </li>
+                                                <li>
+                                                    <Select options={options} />
+                                                </li>
+                                            </ul>
+                                            <ul>
+                                                <li>
+                                                    <p>
+                                                        Your number{" "}
+                                                        <span>+44</span>
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <input
+                                                        type="text"
+                                                        className="form-control"
+                                                        placeholder="Enter Phone"
+                                                        value="098-7654-321"
+                                                    />
+                                                </li>
+                                            </ul>
+                                            <button>Call me</button>
+                                            <p>
+                                                Estimated wait time:{" "}
+                                                <b>15 minutes</b>
+                                            </p>
+                                            <p>
+                                                If you prefer, you can also{" "}
+                                                <Link to="/call">Call us</Link>
+                                            </p>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>

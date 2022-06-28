@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d17b6d9c.chunk.css",
+    "main.js": "/static/js/main.3d038900.chunk.js",
+    "main.js.map": "/static/js/main.3d038900.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.79331d97.js",
+    "runtime-main.js.map": "/static/js/runtime-main.79331d97.js.map",
+    "static/css/2.5001c201.chunk.css": "/static/css/2.5001c201.chunk.css",
+    "static/js/2.74a13179.chunk.js": "/static/js/2.74a13179.chunk.js",
+    "static/js/2.74a13179.chunk.js.map": "/static/js/2.74a13179.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.5001c201.chunk.css.map": "/static/css/2.5001c201.chunk.css.map",
+    "static/css/main.d17b6d9c.chunk.css.map": "/static/css/main.d17b6d9c.chunk.css.map",
+    "static/js/2.74a13179.chunk.js.LICENSE.txt": "/static/js/2.74a13179.chunk.js.LICENSE.txt",
+    "static/media/Bicycle.22c2c869.png": "/static/media/Bicycle.22c2c869.png",
+    "static/media/Fashion.b13860ce.png": "/static/media/Fashion.b13860ce.png",
+    "static/media/Sofa.9b9baec5.png": "/static/media/Sofa.9b9baec5.png",
+    "static/media/Toys.01d67d3a.png": "/static/media/Toys.01d67d3a.png",
+    "static/media/bootstrap-icons.css": "/static/media/bootstrap-icons.38c4d249.woff",
+    "static/media/iPhoneHomeBanner.2735658b.png": "/static/media/iPhoneHomeBanner.2735658b.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.79331d97.js",
+    "static/css/2.5001c201.chunk.css",
+    "static/js/2.74a13179.chunk.js",
+    "static/css/main.d17b6d9c.chunk.css",
+    "static/js/main.3d038900.chunk.js"
+  ]
+}
