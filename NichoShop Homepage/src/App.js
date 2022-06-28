@@ -64,6 +64,9 @@ import CallUs from "./pages/HelpContact/CallUs/CallUs";
 import PurchaseClaim1 from "./pages/Claim/Claim";
 import PurchaseClaimList1 from "./pages/Claim/List";
 import PurchaseClaimOpen1 from "./pages/Claim/Open";
+import EmailUs from "./pages/HelpContact/EmailUs/EmailUs";
+import MyNichoPage from "./pages/MyNichoShop/MyNichoShop";
+import SendUsDocumentation from "./pages/HelpContact/SendUsDocumentation";
 
 function App() {
     return (
@@ -227,9 +230,16 @@ function App() {
             {/* - /help-contact/browse-help (browse help page) */}
             {/* - /help-contact/contact-us (contact us page) */}
             {/* - /help-contact/call-us (contact us page) */}
+            {/* - /help-contact/email-us (email us page) */}
             <Route path="/help-contact/browse-help" element={<BrowseHelp />} />
             <Route path="/help-contact/contact-us" element={<ContactUs />} />
             <Route path="/help-contact/call-us" element={<CallUs />} />
+            <Route path="/help-contact/email-us" element={<EmailUs />} />
+            <Route
+                path="/help-contact/send-us-documentation"
+                element={<SendUsDocumentation />}
+            />
+            {/* <Route path="/mynicho" element={<MyNichoPage />} /> */}
         </Routes>
     );
 }

@@ -44,6 +44,7 @@
     "react-password-strength-bar": "^0.4.0",
     "react-phone-number-input": "^3.2.2",
     "react-random-image": "^1.0.3",
+    "react-rating-stars-component": "^2.2.0",
     "react-recaptcha": "^2.3.10",
     "react-redux": "^7.2.6",
     "react-router": "^6.0.2",

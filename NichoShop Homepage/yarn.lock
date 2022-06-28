@@ -11961,6 +11961,11 @@
   "resolved" "https://registry.npmjs.org/react-random-image/-/react-random-image-1.0.3.tgz"
   "version" "1.0.3"
 
+"react-rating-stars-component@^2.2.0":
+  "integrity" "sha512-A3lgLxumfFQQicKQmxacZ91fq/zRaVWlCPnVodJmJV6obvod4/yCotetN9WuyBiUfnKsEFDBo/8B85ocwmL7ng=="
+  "resolved" "https://registry.npmjs.org/react-rating-stars-component/-/react-rating-stars-component-2.2.0.tgz"
+  "version" "2.2.0"
+
 "react-recaptcha@^2.3.10":
   "integrity" "sha512-IyanbozsYCuHvTYDuskZTIEcRAMG/sdvAu5b29iQWoC8Kd3Zk9WGCv2oNxh6RfGHvSvgHAyaLjmC6ei/yMsJ7g=="
   "resolved" "https://registry.npmjs.org/react-recaptcha/-/react-recaptcha-2.3.10.tgz"

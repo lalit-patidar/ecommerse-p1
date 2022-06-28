@@ -5,18 +5,35 @@ import { IoMdClose } from "react-icons/io";
 import StartChat from "./StartChat/StartChat";
 import { useState } from "react";
 import ChatConversation from "./ChatConversation/ChatConversation";
+import CloseChat from "./ColseChat/CloseChat";
+import ChatRating from "./ChatRating/ChatRating";
 
 const Chat = () => {
-    // chat is start (state)
-    const [isChatStart, setIsChatStart] = useState(false);
-
-    const chatStartHandler = () => {
-        setIsChatStart(true);
-    };
-
     const [isMinimized, setMinimized] = useState(false);
+    const [getChatStart, setChatStart] = useState(false);
+    const [isCloseChat, setCloseChat] = useState(false);
+    const [isClosedChat, setClosedChat] = useState(false);
+
+    // minimize handler & state
     const minimizedHandler = () => {
         setMinimized(!isMinimized);
+        setCloseChat(false);
+        setClosedChat(false);
+    };
+
+    // start chat handler & state
+    const chatStartHandler = () => {
+        setChatStart(true);
+    };
+
+    // close chat handler
+    const chatCloseHandler = () => {
+        setCloseChat(true);
+    };
+
+    // close chat with reting
+    const yesHander = () => {
+        setClosedChat(true);
     };
 
     return (
@@ -36,19 +53,35 @@ const Chat = () => {
                             <button onClick={minimizedHandler}>
                                 <AiOutlineMinus />
                             </button>
-                            <button>
+                            <button onClick={chatCloseHandler}>
                                 <IoMdClose />
                             </button>
                         </li>
                     </ul>
                 </div>
-                {!isMinimized && (
+                {!isCloseChat ? (
                     <>
-                        {!isChatStart && (
-                            <StartChat chatStartHandler={chatStartHandler} />
-                        )}
+                        {!isMinimized && (
+                            <>
+                                {!getChatStart ? (
+                                    <StartChat
+                                        chatStartHandler={chatStartHandler}
+                                    />
+                                ) : (
+                                    <ChatConversation />
+                                )}
 
-                        {isChatStart && <ChatConversation />}
+                                {/* <ChatRating /> */}
+                            </>
+                        )}
+                    </>
+                ) : (
+                    <>
+                        {!isClosedChat ? (
+                            <CloseChat yesHander={yesHander} />
+                        ) : (
+                            <ChatRating />
+                        )}
                     </>
                 )}
             </div>
