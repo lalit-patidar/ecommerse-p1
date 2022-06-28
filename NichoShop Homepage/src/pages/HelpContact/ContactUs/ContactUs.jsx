@@ -5,8 +5,6 @@ import "./contactus.scss";
 import { IoIosArrowForward } from "react-icons/io";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import Chat from "../Components/Chat/Chat";
-import ChatIcon from "./../../../assets/chat/chat-icon.png";
 
 const ContactUs = () => {
     /**
@@ -42,14 +40,6 @@ const ContactUs = () => {
         });
         setSelectButtonContent(selected);
     };
-
-    // chat on/off state
-    const [isChatOn, setIsChatOn] = useState(false);
-
-    const chatBarHandler = () => {
-        setIsChatOn(true);
-    };
-
     return (
         <>
             <Menu />
@@ -137,7 +127,7 @@ const ContactUs = () => {
                                     select one
                                 </p>
                                 <div className="ui-cu-help-option-content">
-                                    <button>
+                                    <div>
                                         <svg
                                             width="50"
                                             height="50"
@@ -173,8 +163,8 @@ const ContactUs = () => {
                                             Estimated waiting time: <br />
                                             <b>1 minute</b>
                                         </p>
-                                    </button>
-                                    <button>
+                                    </div>
+                                    <div>
                                         <svg
                                             width="50"
                                             height="50"
@@ -210,8 +200,8 @@ const ContactUs = () => {
                                             Estimated waiting time: <br />
                                             <b>42 minute</b>
                                         </p>
-                                    </button>
-                                    <button>
+                                    </div>
+                                    <div>
                                         <svg
                                             width="51"
                                             height="50"
@@ -241,8 +231,8 @@ const ContactUs = () => {
                                             Estimated waiting time: <br />
                                             <b>4 minute</b>
                                         </p>
-                                    </button>
-                                    <button>
+                                    </div>
+                                    <div>
                                         <svg
                                             width="48"
                                             height="32"
@@ -260,21 +250,12 @@ const ContactUs = () => {
                                             Estimated waiting time: <br />
                                             <b>4 minute</b>
                                         </p>
-                                    </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                {isChatOn && <Chat />}
-                {!isChatOn && (
-                    <div className="ui-chat-open-box">
-                        <button onClick={chatBarHandler}>
-                            <img src={ChatIcon} alt="chat-icon" />
-                            <span>12</span>
-                        </button>
-                    </div>
-                )}
             </div>
             <Footer />
         </>

@@ -1,16 +1,16 @@
 import Menu from "../../../components/menu/Menu";
-import Footer from "./Footer"
+import Footer from "../../../components/Footer";
 import Report from "./Report";
 
 const PurchaseClaim = () => {
-  return(
+  return (
     <div className="purchase-claim">
       {/* <Header /> */}
       <Menu />
       <Report />
-      <Footer/>
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
 export default PurchaseClaim;

@@ -1,7 +1,7 @@
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 const Breadcrumb = () => {
   const breadcrumbs = [
@@ -14,7 +14,7 @@ const Breadcrumb = () => {
   ];
 
   return (
-    <div className='breadcrumbs'>
+    <div className="breadcrumbs">
       <Breadcrumbs
         separator={<NavigateNextIcon fontSize="small" />}
         aria-label="breadcrumb"
@@ -23,6 +23,6 @@ const Breadcrumb = () => {
       </Breadcrumbs>
     </div>
   );
-}
+};
 
-export default Breadcrumb
+export default Breadcrumb;

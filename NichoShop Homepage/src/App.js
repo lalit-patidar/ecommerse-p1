@@ -224,6 +224,10 @@ function App() {
                 path="/user/purchases/claims/open"
                 element={<PurchaseClaimOpen1 />}
             />
+            <Route
+                path="/user/sellercentral/claim/order"
+                element={<SellerClaimOrder />}
+            />
 
             <Route path="/checkout" element={<CheckOut />} />
 

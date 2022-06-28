@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
-import { hasButton } from "../../../pages/Claim/Action/actions";
+import { hasButton } from "../../../pages/PurchaseClaim/Action/actions";
 import "./index.scss";
 
 const ButtonBox = (props) => {
