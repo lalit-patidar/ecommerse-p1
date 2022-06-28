@@ -38,3 +38,15 @@
         padding: 10px 0;
     }
 }
+
+.ui-send-us-documentation-box {
+    padding: 50px 0;
+}
+
+.ui-sud-table-images{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    flex-wrap: wrap;
+}

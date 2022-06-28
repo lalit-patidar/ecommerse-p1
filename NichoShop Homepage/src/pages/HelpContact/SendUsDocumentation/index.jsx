@@ -3,9 +3,27 @@ import Footer from "../../../components/MyNichoShop/footer/Footer";
 import "./sendusdocumentation.scss";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
+import SendDocCard from "../Components/SendDocCard/SendDocCard";
+import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const SendUsDocumentation = () => {
-    const fileChageHandler = () => {};
+    const [getAllFile, setAllFile] = useState([]);
+    const fileChageHandler = (e) => {
+        let data = [];
+        let i = 0;
+        for (i; i < e.target.files.length; i++) {
+            data.push({ id: uuidv4(), file: e.target.files[i] });
+        }
+        if (getAllFile.length + data.length <= 10) {
+            setAllFile([...getAllFile, ...data]);
+            data = [];
+        } else {
+            alert("You can't upload file more then 10 files!");
+        }
+    };
+
+    console.log(getAllFile);
     return (
         <>
             <Menu />
@@ -33,6 +51,19 @@ const SendUsDocumentation = () => {
                                 <div className="ui-sud-table">
                                     <div className="ui-sud-table-head">
                                         <h4>Hi Name</h4>
+                                    </div>
+                                    <div className="ui-sud-table-images">
+                                        {getAllFile.length !== 0 &&
+                                            getAllFile.map((item, index) => {
+                                                return (
+                                                    <SendDocCard
+                                                        key={index}
+                                                        img={item.file}
+                                                        name={item.file.name}
+                                                        size={item.file.size}
+                                                    />
+                                                );
+                                            })}
                                     </div>
                                     <div className="ui-sud-body">
                                         <div className="ui-email-upload-file">
