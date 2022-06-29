@@ -1,0 +1,123 @@
+.Table {
+    background: #FFFFFF;
+    /* gray/border */
+
+    border: 1px solid #CBCBCB;
+    /* main sh */
+
+    box-shadow: 6px 6px 4px rgba(173, 173, 173, 0.25);
+    border-radius: 8px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.Table td {
+    border-bottom: 1px solid #CBCBCB;
+    height: 42px;
+    vertical-align: middle;
+}
+
+.Table .button {
+    background: #FFFFFF;
+    /* gray/border */
+
+    border: 1px solid #CBCBCB;
+    border-radius: 4px;
+    padding: 5px 15px;
+    margin: 10px;
+
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    color: #0072BC;
+}
+
+.Table .searchButton {
+    cursor: pointer;
+
+    background: #FFFFFF;
+    /* gray/border */
+
+    border: 1px solid #CBCBCB;
+    border-radius: 4px;
+    padding: 5px 8px;
+    margin: 10px;
+    display: block;
+    float: right;
+}
+
+.Table .tableHeader {
+    background: #F8F8F8;
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: #616161;
+}
+
+.Table .tableBody {
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 145%;
+    /* or 26px */
+
+
+    color: #000000;
+}
+
+.Table tfoot td {
+    height: 74px;
+    vertical-align: bottom;
+    padding: 20px;
+}
+
+.Table tfoot td:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.Table tfoot div {
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+
+
+    /* gray/text */
+
+    color: #616161;
+}
+
+.currentPage {
+    float: left;
+    width: 20%;
+    /* background-color: red; */
+}
+
+.messagesPerPage {
+    float: right;
+    width: 20%;
+    /* background-color: blue; */
+}
+
+.pagination {
+    float: left;
+    width: 60%;
+    text-align: center;
+    /* background-color: yellow; */
+}
+
+.page {
+    display: inline-block;
+    vertical-align: top;
+    width: 34px;
+    height: 34px;
+}

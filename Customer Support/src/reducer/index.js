@@ -8,7 +8,7 @@ let initState = {
     header: {
         topMenu: {
             topMenuSelectedId: 1,
-            topMenuList:[
+            topMenuList: [
                 {
                     id: 1,
                     string: "sdfdsf",
@@ -35,7 +35,7 @@ let initState = {
         }
     },
     customer: {
-        chooseList : [
+        chooseList: [
             {
                 id: 1,
                 string: "Choose Filter",
@@ -84,7 +84,13 @@ let initState = {
         }
     },
     customerDetail: {
-        
+
+    },
+    message: {
+        currentMessageType: "Inbox",
+        currentSubMessage: 0,
+        visibility: "All",
+        searchBoxVisible: false
     }
 }
 const reducer = (state = initState, action) => {
@@ -93,9 +99,9 @@ const reducer = (state = initState, action) => {
         case 'SELECT_TOP_MENU_ITEM': {
             return {
                 ...state,
-                header:{
+                header: {
                     ...state.header,
-                    topMenu:{
+                    topMenu: {
                         ...state.header.topMenu,
                         topMenuSelectedId: action.payload.id,
                     }
@@ -104,18 +110,18 @@ const reducer = (state = initState, action) => {
         }
         case 'ADD_FILTER': {
             var data = {
-                id: state.customer.filterMenu.count+1,
+                id: state.customer.filterMenu.count + 1,
                 string: action.payload.string
             }
             tempList = state.customer.filterMenu.list
             tempList.push(data)
             return {
                 ...state,
-                customer:{
+                customer: {
                     ...state.customer,
-                    filterMenu:{
+                    filterMenu: {
                         ...state.customer.filterMenu,
-                        count: state.customer.filterMenu.count+1,
+                        count: state.customer.filterMenu.count + 1,
                         list: tempList
                     }
                 }
@@ -123,21 +129,53 @@ const reducer = (state = initState, action) => {
         }
         case 'DELETE_FILTER': {
             tempList = state.customer.filterMenu.list
-            tempList.splice(action.payload.id-1, 1)
-            tempList.forEach((item, index)=>{
-                if(index >= action.payload.id-1){
-                    item.id --;
+            tempList.splice(action.payload.id - 1, 1)
+            tempList.forEach((item, index) => {
+                if (index >= action.payload.id - 1) {
+                    item.id--;
                 }
             })
             return {
                 ...state,
-                customer:{
+                customer: {
                     ...state.customer,
-                    filterMenu:{
+                    filterMenu: {
                         ...state.customer.filterMenu,
-                        count: state.customer.filterMenu.count-1,
+                        count: state.customer.filterMenu.count - 1,
                         list: tempList
                     }
+                }
+            }
+        }
+        case 'SET_CURRENT_MESSAGE_TYPE': {
+            var messageType = action.payload.currentMessageType;
+            var subMessage = action.payload.currentSubMessage;
+            // console.log(messageType, subMessage);
+            return {
+                ...state,
+                message: {
+                    ...state.message,
+                    currentMessageType: messageType,
+                    currentSubMessage: subMessage
+                }
+            }
+        }
+        case 'SET_VISIBLE_SETTING': {
+            var visibility = action.payload.visibility;
+            return {
+                ...state,
+                message: {
+                    ...state.message,
+                    visibility: visibility
+                }
+            }
+        }
+        case 'CALL_SEARCH_BOX': {
+            return {
+                ...state,
+                message: {
+                    ...state.message,
+                    searchBoxVisible: !state.message.searchBoxVisible
                 }
             }
         }
