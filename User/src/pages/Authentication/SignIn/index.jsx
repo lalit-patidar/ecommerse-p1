@@ -1,7 +1,6 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "./../../../assets/logo/logo.svg";
-// import "./authform.scss";
 import GoogleImg from "./../../../assets/form-social/google.png";
 import AppleImg from "./../../../assets/form-social/apple.png";
 import FbImg from "./../../../assets/form-social/fb.png";
@@ -9,7 +8,6 @@ import FormFooter from "../../../components/FormFooter/FormFooter";
 import { useRef, useState } from "react";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
 import { TextField } from "@mui/material";
-
 import "react-phone-number-input/style.css";
 
 const SignIn = () => {
@@ -134,7 +132,7 @@ const SignIn = () => {
                                         />
                                     </div>
                                     <div className="ui-stay-signin-link">
-                                        <Link to="/user/temporary-password">
+                                        <Link to="/text-a-temporary-password">
                                             Text a temporary password
                                         </Link>
                                         <Link to="/user/forgot-password">
@@ -169,7 +167,9 @@ const SignIn = () => {
                             <div className="ui-form-link">
                                 <p>
                                     Create new a account,{" "}
-                                    <Link to="/signup">Create an account</Link>
+                                    <Link to="/registration">
+                                        Create an account
+                                    </Link>
                                 </p>
                             </div>
                         </Col>

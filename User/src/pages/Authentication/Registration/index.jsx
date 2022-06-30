@@ -1,3 +1,4 @@
+import "./../authentication.scss";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "./../../../assets/logo/logo.svg";
@@ -10,15 +11,11 @@ import { BsEyeSlash, BsEye } from "react-icons/bs";
 import { TextField } from "@mui/material";
 
 import "react-phone-number-input/style.css";
-// import { inputChecker } from "../../../helper/FormHelper.jsx";
-// import { postAjaxCall } from "../../../helper/ajaxCall";
-import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 import { useNavigate } from "react-router-dom";
-import { setStore } from "../../../helper/storeHelper";
 // import FacebookLogin from "react-facebook-login";
 
-const SignUp = () => {
+const Registration = () => {
     const pwdInputRef = useRef();
     const navigate = useNavigate();
 
@@ -719,4 +716,4 @@ const SignUp = () => {
     );
 };
 
-export default SignUp;
+export default Registration;

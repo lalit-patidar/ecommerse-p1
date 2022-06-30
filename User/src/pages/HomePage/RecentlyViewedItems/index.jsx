@@ -1,23 +1,17 @@
 import { useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
-import Menu from "../../components/menu/Menu";
-import Footer from "../../components/MyNichoShop/footer/Footer";
-import { HiViewGrid, HiViewList } from "react-icons/hi";
+import { HiViewGrid } from "react-icons/hi";
 import { TiThList } from "react-icons/ti";
-import "./recentlyviewed.scss";
-import {
-    MdKeyboardArrowLeft,
-    MdKeyboardArrowRight,
-    MdOutlineKeyboardArrowDown,
-} from "react-icons/md";
-import { FiFilter } from "react-icons/fi";
+import "./recentlyvieweditems.scss";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { ImCross } from "react-icons/im";
-import Uk from "./../../assets/cat-flag/uk.png";
-import ProductImg from "./../../assets/product-img/product.png";
-import RecentlyProduct from "../../components/RecentlyProduct/RecentlyProduct";
-import RecentlyProductList from "../../components/RecentlyProduct/RecentlyProductList";
+import ProductImg from "./../../../assets/product-img/product.png";
+import Menu from "../../../components/menu/Menu";
+import Footer from "../../../components/MyNichoShop/footer/Footer";
+import RecentlyProductList from "../../../components/RecentlyProduct/RecentlyProductList";
+import RecentlyProduct from "../../../components/RecentlyProduct/RecentlyProduct";
 
-const RecentlyViewed = () => {
+const RecentlyViewedItems = () => {
     // view list is toggled
     const [isToggledList, setToggleList] = useState(false);
     const [isSelectedList, setSelectedList] = useState(false);
@@ -312,4 +306,4 @@ const RecentlyViewed = () => {
     );
 };
 
-export default RecentlyViewed;
+export default RecentlyViewedItems;

@@ -1,10 +1,7 @@
 import { useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import CategoryCheck from "../../components/CategoryCheck/CategoryCheck";
-import Menu from "../../components/menu/Menu";
-import Footer from "../../components/MyNichoShop/footer/Footer";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import { IoIosArrowDown } from "react-icons/io";
-import { HiViewGrid, HiViewList } from "react-icons/hi";
+import { HiViewGrid } from "react-icons/hi";
 import { TiThList } from "react-icons/ti";
 import {
     MdKeyboardArrowLeft,
@@ -14,10 +11,13 @@ import {
 import { FiFilter } from "react-icons/fi";
 import { ImCross } from "react-icons/im";
 import "./todaysdeals.scss";
-import Uk from "./../../assets/cat-flag/uk.png";
-import ProductImg from "./../../assets/product-img/product.png";
-import ProductCard from "../../components/ProductCard/ProductCard";
-import ProductListCard from "../../components/ProductCard/ProductListCard";
+import Uk from "./../../../assets/cat-flag/uk.png";
+import ProductImg from "./../../../assets/product-img/product.png";
+import CategoryCheck from "../../../components/CategoryCheck/CategoryCheck";
+import Menu from "../../../components/menu/Menu";
+import Footer from "../../../components/MyNichoShop/footer/Footer";
+import ProductCard from "../../../components/ProductCard/ProductCard";
+import ProductListCard from "../../../components/ProductCard/ProductListCard";
 
 const TodaysDeals = () => {
     // all categories of today's deals

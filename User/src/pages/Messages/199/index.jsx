@@ -1,5 +1,5 @@
-import Menu from "../../components/menu/Menu";
-import Footer from "../../components/MyNichoShop/footer/Footer";
+import Menu from "../../../components/menu/Menu";
+import Footer from "../../../components/MyNichoShop/footer/Footer";
 import {
     IoIosArrowForward,
     IoIosArrowBack,
@@ -7,10 +7,10 @@ import {
 } from "react-icons/io";
 import { Container, Row, Col, Card, Form, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./texttemporarypassword.scss";
+import "./199.scss";
 import { useState } from "react";
 
-const TextTemporaryPassword = () => {
+const TextATemporaryPasswordMsg = () => {
     const [isMsgOpen, setIsMsgOpen] = useState(false);
     const allMsgHandler = () => {
         setIsMsgOpen(!isMsgOpen);
@@ -177,4 +177,4 @@ const TextTemporaryPassword = () => {
     );
 };
 
-export default TextTemporaryPassword;
+export default TextATemporaryPasswordMsg;

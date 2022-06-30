@@ -1,20 +1,15 @@
 import { Container, Row, Col, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { ReactComponent as Logo } from "./../../assets/logo/logo.svg";
-import FormFooter from "../../components/FormFooter/FormFooter";
-import { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ReactComponent as Logo } from "./../../../assets/logo/logo.svg";
+import { useState } from "react";
 import Button from "@mui/material/Button";
-import {
-    FormControl,
-    InputAdornment,
-    InputLabel,
-    OutlinedInput,
-    TextField,
-} from "@mui/material";
+import { TextField } from "@mui/material";
 
 import "react-phone-number-input/style.css";
+import FormFooter from "../../../components/FormFooter/FormFooter";
 
-const VerifyYouMobile = () => {
+const VerifyItsYouEmail = () => {
+    const navigate = useNavigate();
     const [getSocCode, setSocCode] = useState("");
 
     const [getFormSubmit, setFormSubmit] = useState(false);
@@ -40,8 +35,8 @@ const VerifyYouMobile = () => {
                             <div className="ui-form-content">
                                 <h4>Verify that it’s you</h4>
                                 <p className="text-start ui-add-mob-info mb-3">
-                                    We’re texting a Single-Use Code (SUC) to
-                                    this mobile number: XXX XXXX1234
+                                    We’ve sent a Single-Use Code (SUC) to this
+                                    email address: example@domain.com
                                 </p>
 
                                 <Form onSubmit={formHandler}>
@@ -81,16 +76,21 @@ const VerifyYouMobile = () => {
                                         >
                                             Sign in
                                         </Button>
-                                        <Button variant="outlined" fullWidth>
+                                        <Button
+                                            onClick={() => {
+                                                navigate("/signin", {
+                                                    replace: true,
+                                                });
+                                            }}
+                                            variant="outlined"
+                                            fullWidth
+                                        >
                                             Cancel
                                         </Button>
                                     </div>
                                     <p className="ui-vy-footer-link">
                                         Still no code?{" "}
                                         <Link to="/">Resend SUC</Link>
-                                    </p>
-                                    <p className="ui-vpm-footer">
-                                        Mobile charges may apply
                                     </p>
                                 </Form>
                             </div>
@@ -103,4 +103,4 @@ const VerifyYouMobile = () => {
     );
 };
 
-export default VerifyYouMobile;
+export default VerifyItsYouEmail;

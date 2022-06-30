@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
-import "./HomePage.css";
-import Header from "../components/header/Header";
-import Menu from "../components/menu/Menu";
-import Notification from "../components/notification/Notification";
-import HomeBanner from "../components/homebanner/HomeBanner";
-import RecentItems from "../components/recentitems/RecentItems";
-import TodayItems from "../components/recentitems/TodayItems";
-import HomeFooter from "../components/homefooter/HomeFooter";
-import iphoneimg from "../assets/home-banner-img/iPhoneHomeBanner.png";
-import sofaimg from "../assets/home-banner-img/Sofa.png";
-import bicycleimg from "../assets/home-banner-img/Bicycle.png";
-import fashionimg from "../assets/home-banner-img/Fashion.png";
-import toysimg from "../assets/home-banner-img/Toys.png";
+import "./homepage.css";
+import Header from "../../components/header/Header";
+import Menu from "../../components/menu/Menu";
+import Notification from "../../components/notification/Notification";
+import HomeBanner from "../../components/homebanner/HomeBanner";
+import RecentItems from "../../components/recentitems/RecentItems";
+import TodayItems from "../../components/recentitems/TodayItems";
+import HomeFooter from "../../components/homefooter/HomeFooter";
+import iphoneimg from "../../assets/home-banner-img/iPhoneHomeBanner.png";
+import sofaimg from "../../assets/home-banner-img/Sofa.png";
+import bicycleimg from "../../assets/home-banner-img/Bicycle.png";
+import fashionimg from "../../assets/home-banner-img/Fashion.png";
+import toysimg from "../../assets/home-banner-img/Toys.png";
 import { useSelector, useDispatch } from "react-redux";
 
 function HomePage() {
