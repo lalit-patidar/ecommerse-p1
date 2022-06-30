@@ -1,0 +1,43 @@
+.Message .body {
+    min-height: calc(100vh - 340px);
+    padding: 130px 120px 100px 120px;
+}
+
+.navbar {
+    width: 20%;
+    float: left;
+}
+
+.content {
+    width: 80%;
+    float: left;
+}
+
+/* Clear floats after the columns */
+.layout:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.btn-new-message {
+    background: #0072BC;
+    border-radius: 6px;
+    border: none;
+    color: white;
+    height: 42px;
+    width: 168px;
+}
+
+.btn-radio {
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 200%;
+}
+
+.navbar-submenu th {
+    text-align: left;
+    /* border: 1px solid black; */
+}
