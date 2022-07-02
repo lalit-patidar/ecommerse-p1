@@ -19,8 +19,8 @@ import '../../css/layout/Header.css';
 const Header = () => {
     const headerState = useSelector(state => state.header);
     const dispatch = useDispatch();
-    const pageIconClicked = (e) => {
-        dispatch(setCurrentMessage(e.target.id));
+    const pageIconClicked = (id) => {
+        dispatch(setCurrentMessage(id));
     }
 
     return (
@@ -30,19 +30,19 @@ const Header = () => {
                 {/* <Navbar.Toggle /> */}
                 <Navbar.Collapse className="justify-content-center">
                     <Link to="/search">
-                        <SearchIcon className={headerState.currentPage === 'search' ? 'icon-selected' : 'icon'} id="search" onClick={pageIconClicked} />
+                        <SearchIcon className={headerState.currentPage === 'search' ? 'icon-selected' : 'icon'} onClick={() => pageIconClicked("search")} />
                     </Link>
                     <Link to="/message">
-                        <MessageIcon className={headerState.currentPage === 'message' ? 'icon-selected' : 'icon'} id="message" onClick={pageIconClicked} />
+                        <MessageIcon className={headerState.currentPage === 'message' ? 'icon-selected' : 'icon'} onClick={() => pageIconClicked("message")} />
                     </Link>
                     <Link to="/chat">
-                        <ChatIcon className={headerState.currentPage === 'chat' ? 'icon-selected' : 'icon'} id="chat" onClick={pageIconClicked} />
+                        <ChatIcon className={headerState.currentPage === 'chat' ? 'icon-selected' : 'icon'} onClick={() => pageIconClicked("chat")} />
                     </Link>
                     <Link to="/requests">
-                        <FileTextIcon className={headerState.currentPage === 'file-text' ? 'icon-selected' : 'icon'} id="file-text" onClick={pageIconClicked} />
+                        <FileTextIcon className={headerState.currentPage === 'file-text' ? 'icon-selected' : 'icon'} onClick={() => pageIconClicked("file-text")} />
                     </Link>
                     <Link to="/deals">
-                        <CalendarIcon className={headerState.currentPage === 'calendar' ? 'icon-selected' : 'icon'} id="calendar" onClick={pageIconClicked} />
+                        <CalendarIcon className={headerState.currentPage === 'calendar' ? 'icon-selected' : 'icon'} onClick={() => pageIconClicked("calendar")} />
                     </Link>
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
