@@ -1,0 +1,2 @@
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+export const FLAG_MESSAGE = "FLAG_MESSAGE";
