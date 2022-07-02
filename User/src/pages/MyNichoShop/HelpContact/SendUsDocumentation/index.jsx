@@ -1,5 +1,5 @@
-import Menu from "../../../../../components/menu/Menu";
-import Footer from "../../../../../components/MyNichoShop/footer/Footer";
+import Menu from "../../../../components/menu/Menu";
+import Footer from "../../../../components/MyNichoShop/footer/Footer";
 import "./sendusdocumentation.scss";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";

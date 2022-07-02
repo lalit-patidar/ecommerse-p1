@@ -1,11 +1,10 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { ReactComponent as Logo } from "./../../assets/logo/logo.svg";
-// import "./authform.scss";
-import GoogleImg from "./../../assets/form-social/google.png";
-import AppleImg from "./../../assets/form-social/apple.png";
-import FbImg from "./../../assets/form-social/fb.png";
-import FormFooter from "../../components/FormFooter/FormFooter";
+import { ReactComponent as Logo } from "./../../../assets/logo/logo.svg";
+import GoogleImg from "./../../../assets/form-social/google.png";
+import AppleImg from "./../../../assets/form-social/apple.png";
+import FbImg from "./../../../assets/form-social/fb.png";
+import FormFooter from "../../../components/FormFooter/FormFooter";
 import { useRef, useState } from "react";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
 import { TextField } from "@mui/material";

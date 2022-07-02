@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import OutsideClickHandler from "react-outside-click-handler";
-import { getStore } from "./../../helper/storeHelper";
-import { ReactComponent as Logo } from "./../../assets/logo/logo.svg";
+import { getStore } from "./../../../helper/storeHelper";
+import { ReactComponent as Logo } from "./../../../assets/logo/logo.svg";
 
 const JoinVerify = () => {
     /**

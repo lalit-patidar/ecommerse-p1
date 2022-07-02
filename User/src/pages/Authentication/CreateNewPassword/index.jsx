@@ -21,13 +21,13 @@ import { FaRegCheckCircle } from "react-icons/fa";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
 // Compoenents
-import Header from "../../components/auth/Header";
-import Footer from "../../components/auth/Footer";
+import Header from "../../../components/auth/Header";
+import Footer from "../../../components/auth/Footer";
 
 // Styles
-import "./auth.css";
+import "./../auth.css";
 
-const CreatePassword = () => {
+const CreateNewPassword = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [authSpinner, setAuthSpinner] = useState(false);
 
@@ -190,4 +190,4 @@ const CreatePassword = () => {
     );
 };
 
-export default CreatePassword;
+export default CreateNewPassword;

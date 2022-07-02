@@ -1,12 +1,12 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { ReactComponent as Logo } from "./../../assets/logo/logo.svg";
-import FormFooter from "../../components/FormFooter/FormFooter";
+import { ReactComponent as Logo } from "./../../../assets/logo/logo.svg";
+import FormFooter from "../../../components/FormFooter/FormFooter";
 import { useState } from "react";
 import { TextField } from "@mui/material";
 
 import "react-phone-number-input/style.css";
 
-const ChangeUserName = () => {
+const ChangeYourName = () => {
     const [getUserName, setUserName] = useState("");
 
     const [getFormSubmit, setFormSubmit] = useState(false);
@@ -74,4 +74,4 @@ const ChangeUserName = () => {
     );
 };
 
-export default ChangeUserName;
+export default ChangeYourName;

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Menu from "../../../../../components/menu/Menu";
-import Footer from "../../../../../components/MyNichoShop/footer/Footer";
+import Menu from "../../../../components/menu/Menu";
+import Footer from "../../../../components/MyNichoShop/footer/Footer";
 import "./contactus.scss";
 import { IoIosArrowForward } from "react-icons/io";
 import { useState } from "react";

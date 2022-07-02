@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Menu from "../../../../../components/menu/Menu";
-import Footer from "../../../../../components/MyNichoShop/footer/Footer";
+import Menu from "../../../../components/menu/Menu";
+import Footer from "../../../../components/MyNichoShop/footer/Footer";
 import "./callus.scss";
 import { IoIosArrowForward } from "react-icons/io";
 import {
@@ -12,8 +12,8 @@ import {
 import PhoneInput from "react-phone-number-input";
 import { useState } from "react";
 import Select from "react-select";
-import UkImg from "./../../../../../assets/flags/UK.png";
-import UsImg from "./../../../../../assets/flags/US.png";
+import UkImg from "./../../../../assets/flags/UK.png";
+import UsImg from "./../../../../assets/flags/US.png";
 
 const CallUs = () => {
     // get country code

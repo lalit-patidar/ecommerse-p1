@@ -1,4 +1,11 @@
 import { Route, Routes } from "react-router-dom";
+import AddMobileNumber from "../pages/Authentication/AddMobileNumber";
+import ChangeNewPassword from "../pages/Authentication/ChangeNewPassword";
+import ChangeYourName from "../pages/Authentication/ChangeYourName";
+import ChangeYourPassword from "../pages/Authentication/ChangeYourPassword";
+import ChooseMethod from "../pages/Authentication/ChooseMethod";
+import CreateNewPassword from "../pages/Authentication/CreateNewPassword";
+import JoinVerify from "../pages/Authentication/JoinVerify";
 import Registration from "../pages/Authentication/Registration";
 import SignIn from "../pages/Authentication/SignIn";
 import SingleUseCode from "../pages/Authentication/SingleUseCode";
@@ -15,15 +22,15 @@ import TextATemporaryPasswordMsg from "../pages/Messages/199";
 import MyNichoShop from "../pages/MyNichoShop";
 import Addresses from "../pages/MyNichoShop/Addresses";
 import Bidding from "../pages/MyNichoShop/Bidding";
+import BrowseHelp from "../pages/MyNichoShop/HelpContact/BrowseHelp";
+import CallUs from "../pages/MyNichoShop/HelpContact/CallUs";
+import ContactUs from "../pages/MyNichoShop/HelpContact/ContactUs";
+import EmailUs from "../pages/MyNichoShop/HelpContact/EmailUs";
+import SendUsDocumentation from "../pages/MyNichoShop/HelpContact/SendUsDocumentation";
 import Messages from "../pages/MyNichoShop/Messages";
 import Order from "../pages/MyNichoShop/Purchases/Order";
 import SellerCentral from "../pages/MyNichoShop/SellerCentral";
 import ContactBuyer from "../pages/MyNichoShop/SellerCentral/ContactBuyer";
-import BrowseHelp from "../pages/MyNichoShop/SellerCentral/HelpContact/BrowseHelp";
-import CallUs from "../pages/MyNichoShop/SellerCentral/HelpContact/CallUs";
-import ContactUs from "../pages/MyNichoShop/SellerCentral/HelpContact/ContactUs";
-import EmailUs from "../pages/MyNichoShop/SellerCentral/HelpContact/EmailUs";
-import SendUsDocumentation from "../pages/MyNichoShop/SellerCentral/HelpContact/SendUsDocumentation";
 import SellerCentralOrder from "../pages/MyNichoShop/SellerCentral/Order";
 import InTransit from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/InTransit";
 import NotYetPaid from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/NotYetPaid";
@@ -57,23 +64,23 @@ const RootRoute = () => {
                     Authentication > signin
                     Authentication > single-use-code
                     Authentication > text-a-temporary-password
-                    Messages > text-a-temporary-passwo-msg (199 page)
+                    Messages > text-a-temporary-password-msg (199 page)
                     Authentication > verify-its-you-email
+                    Authentication > verify-its-you-phone
+                    Authentication > change-new-password
+                    Authentication > change-your-name
+                    Authentication > change-your-password
                 */}
 
                 <Route path="/registration" element={<Registration />} />
                 <Route path="/signin" element={<SignIn />} />
+                <Route path="/single-use-code" element={<SingleUseCode />} />
                 <Route
                     path="/text-a-temporary-password"
                     element={<TextATemporaryPassword />}
                 />
-                <Route path="/single-use-code" element={<SingleUseCode />} />
                 <Route
-                    path="/text-a-temporary-passwo-msg"
-                    element={<TextATemporaryPasswordMsg />}
-                />
-                <Route
-                    path="/text-a-temporary-passwo-msg"
+                    path="/text-a-temporary-password-msg"
                     element={<TextATemporaryPasswordMsg />}
                 />
                 <Route
@@ -83,6 +90,26 @@ const RootRoute = () => {
                 <Route
                     path="/verify-its-you-phone"
                     element={<VerifyItsYouPhone />}
+                />
+                <Route
+                    path="/change-new-password"
+                    element={<ChangeNewPassword />}
+                />
+
+                <Route path="/change-your-name" element={<ChangeYourName />} />
+                <Route
+                    path="/change-your-password"
+                    element={<ChangeYourPassword />}
+                />
+                <Route
+                    path="/add-mobile-number"
+                    element={<AddMobileNumber />}
+                />
+                <Route path="/join-verify" element={<JoinVerify />} />
+                <Route path="/choose-method" element={<ChooseMethod />} />
+                <Route
+                    path="/create-new-password"
+                    element={<CreateNewPassword />}
                 />
 
                 {/* 
@@ -176,6 +203,9 @@ const RootRoute = () => {
                 */}
                 <Route path="/shoping-cart" element={<ShopingCart />} />
                 <Route path="/checkout" element={<CheckOut />} />
+                {/* 
+                    Random
+                */}
             </Routes>
         </>
     );
