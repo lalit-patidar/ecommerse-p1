@@ -1,4 +1,7 @@
-import { CHECK_MESSAGE, FLAG_MESSAGE } from '../actions/types';
+import {
+    FLAG_MESSAGE,
+    NEW_FOLDER
+} from '../actions/types';
 
 const initialState = {
     messages: [
@@ -54,10 +57,9 @@ const initialState = {
         { id: 51, flagged: false, important: false, replied: true, location: "Trash", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
         { id: 52, flagged: false, important: true, replied: false, location: "Trash", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) }
     ],
-    folders: {
-        folderNames: [],
-        messages: []
-    }
+    folders: [
+
+    ]
 };
 
 function messageReducer(state = initialState, action) {
@@ -68,8 +70,13 @@ function messageReducer(state = initialState, action) {
                 ...state,
                 messages: state.messages.map((message) => ({
                     ...message,
-                    flagged: (message.id == payload.id ? !message.flagged : message.flagged)
+                    flagged: (message.id === Number(payload.id) ? !message.flagged : message.flagged)
                 }))
+            })
+        case NEW_FOLDER:
+            return ({
+                ...state,
+                folders: [...state.folders, { name: payload.name }]
             })
         default:
             return state;

@@ -8,9 +8,9 @@ const initialState = {};
 const middleware = [thunk];
 
 const store = createStore(
-    rootReducer,
-    initialState,
-    composeWithDevTools(applyMiddleware(...middleware))
+  rootReducer,
+  initialState,
+  composeWithDevTools(applyMiddleware(...middleware))
 );
 
 /*
@@ -25,9 +25,9 @@ const store = createStore(
 let currentState = store.getState();
 
 store.subscribe(() => {
-    // keep track of the previous and current state to compare changes
-    let previousState = currentState;
-    currentState = store.getState();
+  // keep track of the previous and current state to compare changes
+  let previousState = currentState;
+  currentState = store.getState();
 });
 
 export default store;
