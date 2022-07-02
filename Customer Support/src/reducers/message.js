@@ -1,6 +1,10 @@
+import { startTransition } from 'react';
+import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
 import {
     FLAG_MESSAGE,
-    NEW_FOLDER
+    NEW_FOLDER,
+    DELETE_MESSAGES,
+    MOVE_TO
 } from '../actions/types';
 
 const initialState = {
@@ -38,7 +42,7 @@ const initialState = {
         { id: 31, flagged: true, important: true, replied: true, location: "Inbox", unread: true, from: "member", fromTo: "member-username", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
         { id: 32, flagged: true, important: false, replied: false, location: "Inbox", unread: false, from: "support agent", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
         { id: 33, flagged: true, important: false, replied: false, location: "Inbox", unread: false, from: "support agent", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
-        { id: 34, flagged: true, important: false, replied: false, location: "Inbox", unread: false, from: "member", fromTo: "member-username", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
+        { id: 34, flagged: false, important: false, replied: false, location: "Inbox", unread: false, from: "member", fromTo: "member-username", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
         { id: 35, flagged: true, important: false, replied: true, location: "Inbox", unread: false, from: "support agent", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
         { id: 36, flagged: true, important: false, replied: true, location: "Inbox", unread: false, from: "member", fromTo: "member-username", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
         { id: 37, flagged: true, important: false, replied: false, location: "Inbox", unread: false, from: "support agent", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
@@ -55,10 +59,29 @@ const initialState = {
         { id: 49, flagged: false, important: true, replied: false, location: "Trash", fromTo: "member-username", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
         { id: 50, flagged: true, important: true, replied: true, location: "Trash", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
         { id: 51, flagged: false, important: false, replied: true, location: "Trash", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
-        { id: 52, flagged: false, important: true, replied: false, location: "Trash", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) }
+        { id: 52, flagged: false, important: true, replied: false, location: "Trash", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
+
+        { id: 53, flagged: true, important: true, replied: true, location: "Folders-0", unread: true, from: "member", fromTo: "member-username", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
+        { id: 54, flagged: false, important: false, replied: false, location: "Folders-0", unread: true, from: "support agent", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
+        { id: 55, flagged: true, important: false, replied: false, location: "Folders-0", unread: false, from: "support agent", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
+        { id: 56, flagged: false, important: false, replied: false, location: "Folders-0", unread: false, from: "member", fromTo: "member-username", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
+        { id: 57, flagged: true, important: false, replied: true, location: "Folders-0", unread: true, from: "support agent", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
+        { id: 58, flagged: true, important: false, replied: true, location: "Folders-0", unread: false, from: "member", fromTo: "member-username", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
+        { id: 59, flagged: true, important: false, replied: false, location: "Folders-0", unread: false, from: "support agent", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
+        { id: 60, flagged: false, important: false, replied: false, location: "Folders-0", unread: false, from: "support agent", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
+
+        { id: 61, flagged: true, important: true, replied: true, location: "Folders-1", unread: true, from: "member", fromTo: "member-username", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
+        { id: 62, flagged: true, important: false, replied: false, location: "Folders-1", unread: false, from: "support agent", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
+        { id: 63, flagged: false, important: false, replied: false, location: "Folders-1", unread: false, from: "support agent", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
+        { id: 64, flagged: true, important: false, replied: false, location: "Folders-1", unread: false, from: "member", fromTo: "member-username", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
+        { id: 65, flagged: false, important: false, replied: true, location: "Folders-1", unread: false, from: "support agent", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
+        { id: 66, flagged: true, important: false, replied: true, location: "Folders-1", unread: false, from: "member", fromTo: "member-username", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
+        { id: 67, flagged: true, important: false, replied: false, location: "Folders-1", unread: true, from: "support agent", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
+        { id: 68, flagged: true, important: false, replied: false, location: "Folders-1", unread: false, from: "support agent", fromTo: "CS_12", subject: "Transfered Chat session-CH123456789", date: new Date(2022, 2, 3, 12, 23, 34) },
     ],
     folders: [
-
+        { name: "folder1", id: 0 },
+        { name: "folder2", id: 1 }
     ]
 };
 
@@ -73,10 +96,34 @@ function messageReducer(state = initialState, action) {
                     flagged: (message.id === Number(payload.id) ? !message.flagged : message.flagged)
                 }))
             })
+
+
         case NEW_FOLDER:
+            let foldersLen = state.folders.length;
+            let max = 0;
+            for (let i = 0; i < foldersLen; i++) {
+                if (state.folders[i].id > max) {
+                    max = state.folders[i].id;
+                }
+            }
+            for (var i = 0; i <= max; i++) {
+                if (state.folders.filter(folder => folder.id === i).length === 0) {
+                    break;
+                }
+            }
             return ({
                 ...state,
-                folders: [...state.folders, { name: payload.name }]
+                folders: [...state.folders, { name: payload.name, id: i }]
+            })
+        case DELETE_MESSAGES:
+            return ({
+                ...state,
+                messages: state.messages.filter(msg => payload.msgIds.findIndex((m) => m === msg.id) === -1)
+            })
+        case MOVE_TO:
+            return ({
+                ...state,
+                messages: state.messages.map((msg, index) => (payload.msgIds.findIndex(m => m === msg.id) !== -1 ? { ...msg, location: payload.to } : msg))
             })
         default:
             return state;

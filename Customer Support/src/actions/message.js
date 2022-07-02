@@ -1,6 +1,8 @@
 import {
     FLAG_MESSAGE,
-    NEW_FOLDER
+    NEW_FOLDER,
+    DELETE_MESSAGES,
+    MOVE_TO
 } from './types';
 
 export const flagMessage = (id) => {
@@ -19,4 +21,24 @@ export const createNewFolder = (name) => {
             name: name
         }
     });
+}
+
+export const deleteMsgs = (msgIds) => {
+    return ({
+        type: DELETE_MESSAGES,
+        payload: {
+            msgIds: msgIds
+        }
+    })
+}
+
+export const moveTo = (to, msgIds) => {
+    // console.log(to, msgIds);
+    return ({
+        type: MOVE_TO,
+        payload: {
+            to: to,
+            msgIds: msgIds
+        }
+    })
 }
