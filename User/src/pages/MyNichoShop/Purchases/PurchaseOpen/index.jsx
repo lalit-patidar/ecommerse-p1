@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Menu from "../../../components/menu/Menu";
-import Footer from "../Claim/Footer";
+import Menu from "../../../../components/menu/Menu";
+import Footer from "../../../../components/MyNichoShop/footer/Footer";
+import ClaimOpen from "./ClaimOpen";
 // import ClaimOpen from "./ClaimOpen";
 // import SellerAdded from "./SellerAdded";
 // import RecieveItem from "./RecieveItem";
@@ -10,16 +11,18 @@ import Footer from "../Claim/Footer";
 // import NoReceivedItem from "./NoReceivedItem";
 
 import "./open.scss";
+import ClaimClose from "./RecieveItem";
+import SellerAdded from "./SellerAdded";
 // import UnderReview from "./UnderReview";
 // import SendUs from "./SendUs";
 
-const PurchaseClaimOpen = () => {
+const PurchaseOpen = () => {
     return (
         <div className="purchase-claim-open">
             <Menu />
-            {/* <ClaimOpen /> */}
-            {/* <SellerAdded /> */}
-            {/* <RecieveItem /> */}
+            <ClaimOpen />
+            <SellerAdded />
+            <ClaimClose />
             {/* <RecieveRefund /> */}
             {/* <SellerSent /> */}
             {/* <ClaimClosed /> */}
@@ -31,4 +34,4 @@ const PurchaseClaimOpen = () => {
     );
 };
 
-export default PurchaseClaimOpen;
+export default PurchaseOpen;

@@ -12,6 +12,7 @@ import SingleUseCode from "../pages/Authentication/SingleUseCode";
 import TextATemporaryPassword from "../pages/Authentication/TextATemporaryPassword";
 import VerifyItsYouEmail from "../pages/Authentication/VerifyItsYouEmail";
 import VerifyItsYouPhone from "../pages/Authentication/VerifyItsYouPhone";
+import Welcome from "../pages/Authentication/Welcome";
 import HomePage from "../pages/HomePage";
 import RecentlyViewedItems from "../pages/HomePage/RecentlyViewedItems";
 import TodaysDeals from "../pages/HomePage/TodaysDeals";
@@ -20,6 +21,11 @@ import ShopingCart from "../pages/ListingDetails/ShopingCart";
 import Listings from "../pages/Listings/Listings";
 import TextATemporaryPasswordMsg from "../pages/Messages/199";
 import MyNichoShop from "../pages/MyNichoShop";
+import Account from "../pages/MyNichoShop/Account";
+import CloseAccount from "../pages/MyNichoShop/Account/CloseAccount";
+import CloseRequest from "../pages/MyNichoShop/Account/CloseRequest";
+import RequestCancel from "../pages/MyNichoShop/Account/RequestCancel";
+import RequestProcess from "../pages/MyNichoShop/Account/RequestProcess";
 import Addresses from "../pages/MyNichoShop/Addresses";
 import Bidding from "../pages/MyNichoShop/Bidding";
 import BrowseHelp from "../pages/MyNichoShop/HelpContact/BrowseHelp";
@@ -29,6 +35,10 @@ import EmailUs from "../pages/MyNichoShop/HelpContact/EmailUs";
 import SendUsDocumentation from "../pages/MyNichoShop/HelpContact/SendUsDocumentation";
 import Messages from "../pages/MyNichoShop/Messages";
 import Order from "../pages/MyNichoShop/Purchases/Order";
+import PurchaseClaim from "../pages/MyNichoShop/Purchases/PurchaseClaim";
+import PurchaseList from "../pages/MyNichoShop/Purchases/PurchaseList";
+import PurchaseOpen from "../pages/MyNichoShop/Purchases/PurchaseOpen";
+import SellerCentralOrdersClaims from "../pages/MyNichoShop/Purchases/SellerCentralClaim/SellerCentralOrdersClaims";
 import SellerCentral from "../pages/MyNichoShop/SellerCentral";
 import ContactBuyer from "../pages/MyNichoShop/SellerCentral/ContactBuyer";
 import SellerCentralOrder from "../pages/MyNichoShop/SellerCentral/Order";
@@ -111,6 +121,7 @@ const RootRoute = () => {
                     path="/create-new-password"
                     element={<CreateNewPassword />}
                 />
+                <Route path="/welcome" element={<Welcome />} />
 
                 {/* 
                     MyNichoShop > mynichoshop
@@ -130,6 +141,21 @@ const RootRoute = () => {
                     MyNichoShop > sellercentral > product-info
                     MyNichoShop > sellercentral > confirm-shipment
                     MyNichoShop > sellercentral > contact-buyer
+                    MyNichoShop > help-content > browse-help
+                    MyNichoShop > help-content > contact-us
+                    MyNichoShop > help-content > call-us
+                    MyNichoShop > help-content > email-us
+                    MyNichoShop > help-content > send-us-document
+                    MyNichoShop > help-content > email-us
+                    MyNichoShop > account
+                    MyNichoShop > account > close-account
+                    MyNichoShop > account > close-request
+                    MyNichoShop > account > request-cancel
+                    MyNichoShop > account > request-process
+                    MyNichoShop > purchase > seller-central-order-claims
+                    MyNichoShop > purchase > purchase-claim
+                    MyNichoShop > purchase > purchase-list
+                    MyNichoShop > purchase > purchase-open
                 */}
 
                 <Route path="/mynichoshop" element={<MyNichoShop />} />
@@ -176,35 +202,72 @@ const RootRoute = () => {
                     element={<ConfirmShipment />}
                 />
                 <Route
-                    path="/sellercentral/contact-buyer"
+                    path="/help-content/contact-buyer"
                     element={<ContactBuyer />}
                 />
                 <Route
-                    path="/sellercentral/browse-help"
+                    path="/help-content/browse-help"
                     element={<BrowseHelp />}
                 />
                 <Route
-                    path="/sellercentral/contact-us"
+                    path="/help-content/contact-us"
                     element={<ContactUs />}
                 />
-                <Route path="/sellercentral/call-us" element={<CallUs />} />
-                <Route path="/sellercentral/email-us" element={<EmailUs />} />
+                <Route path="/help-content/call-us" element={<CallUs />} />
+                <Route path="/help-content/email-us" element={<EmailUs />} />
                 <Route
-                    path="/sellercentral/send-us-document"
+                    path="/help-content/send-us-document"
                     element={<SendUsDocumentation />}
                 />
+                <Route path="/account" element={<Account />} />
+                <Route
+                    path="account/close-account"
+                    element={<CloseAccount />}
+                />
+                <Route
+                    path="account/close-request"
+                    element={<CloseRequest />}
+                />
+                <Route
+                    path="account/request-cancel"
+                    element={<RequestCancel />}
+                />
+                <Route
+                    path="account/request-process"
+                    element={<RequestProcess />}
+                />
+                <Route
+                    path="purchase/seller-central-order-claims"
+                    element={<SellerCentralOrdersClaims />}
+                />
+                <Route
+                    path="purchase/purchase-claim"
+                    element={<PurchaseClaim />}
+                />
+                <Route
+                    path="purchase/purchase-list"
+                    element={<PurchaseList />}
+                />
+                <Route
+                    path="purchase/purchase-open"
+                    element={<PurchaseOpen />}
+                />
+
                 {/* 
                     ListOfListign
                 */}
+
                 <Route path="/lisft-of-listing" element={<Listings />} />
+
                 {/* 
                     ListingDetails > shoping-card 
                     ListingDetails > checkout
                 */}
                 <Route path="/shoping-cart" element={<ShopingCart />} />
                 <Route path="/checkout" element={<CheckOut />} />
+
                 {/* 
-                    Random
+                    random
                 */}
             </Routes>
         </>

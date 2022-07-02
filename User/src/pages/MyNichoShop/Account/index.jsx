@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 // 3rd party components
 import {
+    Breadcrumbs,
     Checkbox,
     FormControl,
     FormControlLabel,
@@ -20,15 +21,14 @@ import { FaRegCheckCircle } from "react-icons/fa";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
 // Compoenents
-import Header from "../../components/header/Header";
-import Menu from "../../components/menu/Menu";
-import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
-import AccountFooter from "../../components/accountfooter/AccountFooter";
+import Header from "../../../components/header/Header";
+import Menu from "../../../components/menu/Menu";
 
 // Styles
-import "./Account.css";
+import "./account.css";
+import AccountFooter from "../../../components/accountfooter/AccountFooter";
 
-const SignInF = () => {
+const Account = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [authSpinner, setAuthSpinner] = useState(false);
 
@@ -309,4 +309,4 @@ const SignInF = () => {
     );
 };
 
-export default SignInF;
+export default Account;
