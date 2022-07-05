@@ -118,3 +118,21 @@
 
     color: #000000;
 }
+
+.Table tfoot td {
+    vertical-align: bottom;
+    height: 98px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+
+    /* gray/text */
+
+    color: #616161;
+}

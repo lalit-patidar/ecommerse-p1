@@ -1,25 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../../css/message/message.css';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { ReactComponent as RightArrowLogo } from '../../assets/svg/Message/right-arrow.svg';
+import { ReactComponent as OptionLogo } from "../../assets/svg/Message/option.svg";
 
-import { Container, Row, Col, Button, Form, FormControl } from 'react-bootstrap';
+import { Container, Row, Col, Button, Form, FormControl, Collapse, Overlay } from 'react-bootstrap';
 import Table from './Table';
+import NewMessage from './NewMessage';
 import { createNewFolder } from '../../actions/message';
 import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
 
 const Message = () => {
+
     const folders = useSelector(state => state.message.folders);
     const dispatch = useDispatch();
     const [currentSection, setCurrentSection] = useState('');
     const [currentInboxSubSection, setCurrentInboxSubSection] = useState(1);
     const [currentFolderSubSection, setCurrentFolderSubSection] = useState(folders.length === 0 ? -1 : 0);
     const unreadMsgs = useSelector(state => state.message.messages.filter(msg => (msg.location === "Inbox" && msg.unread)));
+    const unreadMsgsInFolder = useSelector(state => state.message.messages.filter(msg => (msg.location.startsWith("Folders-") && msg.unread)));
     const [unreadMsgCount, setUnreadMsgCount] = useState(0);
     const [unreadMsgsFromMemCount, setUnreadMsgsFromMemCount] = useState(0);
     const [unreadMsgsFromAgentCount, setUnreadMsgsFromAgentCount] = useState(0);
+    const [unreadMsgsCountInFolder, setUnreadMsgsCountInFolder] = useState([]);
     const [newFolderName, setNewFolderName] = useState('');
+
+    const newMsgClicked = () => {
+        setCurrentSection("new Message");
+    }
 
     const sectionClicked = (e) => {
         if (e.target.type === "radio")
@@ -45,12 +54,18 @@ const Message = () => {
         setUnreadMsgsFromMemCount(unreadMsgs.filter(msg => msg.from === "member").length);
     }, unreadMsgs);
 
+    useEffect(() => {
+        setUnreadMsgsCountInFolder(folders.map(folder => (
+            unreadMsgsInFolder.filter(msg => msg.location === ("Folders-" + folder.id)).length
+        )))
+    }, unreadMsgsInFolder);
+
     // console.log(currentSection, currentInboxSubSection)
     return (
         <div className='body'>
             <Row>
                 <Col>
-                    <Button width="168px" height="42px" variant="primary">New message</Button>
+                    <Button width="168px" height="42px" onClick={newMsgClicked} variant="primary">New message</Button>
                     <Form onChange={sectionClicked} id={currentSection}>
                         <br />
                         <div className={currentSection === 'Inbox' ? "section-active" : "section"}>
@@ -65,7 +80,7 @@ const Message = () => {
                                 name='section'
                                 id='Inbox'
                             />
-                            {currentSection === 'Inbox' ?
+                            <Collapse in={currentSection === "Inbox"}>
                                 <Container>
                                     <Row onClick={() => setCurrentInboxSubSection(1)} className={currentInboxSubSection === 1 ? 'subsection-active' : 'subsection'}>
                                         <Col xs={1}>{currentInboxSubSection === 1 ? <RightArrowLogo /> : ''}</Col>
@@ -83,7 +98,7 @@ const Message = () => {
                                         <Col xs={2}>{unreadMsgsFromAgentCount}</Col>
                                     </Row>
                                 </Container>
-                                : ''}
+                            </Collapse>
                         </div>
                         <br />
                         <div className={currentSection === 'Sent' ? "section-active" : "section"}>
@@ -123,7 +138,7 @@ const Message = () => {
                                 name='section'
                                 id='Folders'
                             />
-                            {currentSection === "Folders" ? (
+                            <Collapse in={currentSection === "Folders"}>
                                 <div className='folder-subsection'>
                                     {currentFolderSubSection === -1 ? (
                                         <div>
@@ -145,11 +160,17 @@ const Message = () => {
                                     )}
                                     <Container>
                                         {folders.map((folder, index) => (
-                                            <Row key={index} onClick={() => setCurrentFolderSubSection(index)} className={currentFolderSubSection === index ? 'subsection-active' : 'subsection'}>
+                                            <Row key={index} onClick={() => setCurrentFolderSubSection(folder.id)} className={currentFolderSubSection === folder.id ? 'subsection-active' : 'subsection'}>
                                                 <Col xs={1}>{currentFolderSubSection === index ? <RightArrowLogo /> : ''}</Col>
                                                 <Col xs={7}>{folder.name}</Col>
-                                                <Col xs={2}>{unreadMsgCount}</Col>
-                                                <Col xs={1}>.</Col>
+                                                <Col xs={2}>{unreadMsgsCountInFolder[index] > 0 ? unreadMsgsCountInFolder[index] : ''}</Col>
+                                                <Col xs={1}>{currentFolderSubSection === index ? (
+                                                    <div>
+                                                        <OptionLogo />
+
+                                                    </div>
+                                                ) : ''}</Col>
+
                                             </Row>
                                         ))}
                                     </Container>
@@ -161,12 +182,22 @@ const Message = () => {
                                     ) : ""}
 
                                 </div>
-                            ) : ''}
+                            </Collapse>
                         </div>
                     </Form>
                 </Col>
                 <Col xs={9}>
-                    <Table section={currentSection} subsection={currentInboxSubSection} />
+                    {currentSection === "new Message" ? (
+                        <NewMessage />
+                    ) : (
+                        currentSection === "Inbox" ? <Table section={currentSection} subsection={currentInboxSubSection} /> : (
+                            currentSection === "Folders" ? <Table section={currentSection + "-" + currentFolderSubSection} /> : (
+                                <Table section={currentSection} />
+                            )
+                        )
+                    )}
+
+
                 </Col>
             </Row>
         </div >
