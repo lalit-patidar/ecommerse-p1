@@ -65,19 +65,11 @@ const SellerCentralOrderCancellations = () => {
     const sortOption = [
         {
             value: "1",
-            label: "Date sold (ascending)",
+            label: "Date requested (ascending)",
         },
         {
             value: "2",
-            label: "Date sold (descending)",
-        },
-        {
-            value: "3",
-            label: "Ship by date (ascending)",
-        },
-        {
-            value: "4",
-            label: "Ship by date (descending)",
+            label: "Date requested (descending)",
         },
     ];
 
@@ -163,73 +155,77 @@ const SellerCentralOrderCancellations = () => {
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            <div className="ui-table-checkbox">
-                                                <p>22 May 2017</p>
+                                        <td width={"25%"}>
+                                            <div className="status-box">
+                                                <p><strong>Status:</strong></p>
+                                                <p className="mb-3">Awaiting your action</p>
+                                                <p>Date requested: 22 Sep 2017</p>
+                                                <p>Order ID: <span> 12345678-123456</span></p>
+                                                <p>Buyer: buyer’s_username</p>
                                             </div>
                                         </td>
                                         <td>
-                                            <div className="ui-table-photo">
-                                                <img
-                                                    src={ProductImg}
-                                                    alt="product"
-                                                />
+                                            <p><strong>Reason:</strong></p>
+                                            <p className="text-danger"><strong>Order created by mistake</strong></p>
+                                            <div className="d-flex">
+                                                <div className="ui-table-photo">
+                                                    <img
+                                                        src={ProductImg}
+                                                        alt="product"
+                                                    />
+                                                </div>
+                                                <div className="ui-table-photo-info ps-3">
+                                                    <p>
+                                                        Norton Security Deluxe 2016
+                                                        - 1Year / 3 Devices
+                                                        (Windows, Max OS, Android
+                                                        and IOS)
+                                                    </p>
+                                                    <ul>
+                                                        <li>NSLN: 123456789012</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td width={"25%"}>
+                                            <button className="btn btn-primary w-100">View details</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width={"25%"}>
+                                            <div className="status-box">
+                                                <p><strong>Status:</strong></p>
+                                                <p className="mb-3">Awaiting your action</p>
+                                                <p>Date requested: 22 Sep 2017</p>
+                                                <p>Order ID: <span> 12345678-123456</span></p>
+                                                <p>Buyer: buyer’s_username</p>
                                             </div>
                                         </td>
                                         <td>
-                                            <div className="ui-table-photo-info">
-                                                <p>
-                                                    Norton Security Deluxe 2016
-                                                    - 1Year / 3 Devices
-                                                    (Windows, Max OS, Android
-                                                    and IOS)
-                                                </p>
-                                                <ul>
-                                                    <li>NSLN: 123456789012</li>
-                                                    <li>
-                                                        Size: S, Main Color:
-                                                        Blue
-                                                    </li>
-                                                    <li>Quantity: 1</li>
-                                                    <li>
-                                                        Item price: US $1,234.56
-                                                    </li>
-                                                </ul>
+                                            <p><strong>Reason:</strong></p>
+                                            <p className="text-danger"><strong>Delivery cost too high</strong></p>
+                                            <div className="d-flex">
+                                                <div className="ui-table-photo">
+                                                    <img
+                                                        src={ProductImg}
+                                                        alt="product"
+                                                    />
+                                                </div>
+                                                <div className="ui-table-photo-info ps-3">
+                                                    <p>
+                                                        Norton Security Deluxe 2016
+                                                        - 1Year / 3 Devices
+                                                        (Windows, Max OS, Android
+                                                        and IOS)
+                                                    </p>
+                                                    <ul>
+                                                        <li>NSLN: 123456789012</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </td>
-                                        <td>
-                                            <div className="ui-table-action-btn">
-                                                <Dropdown>
-                                                    <Dropdown.Toggle>
-                                                        Buy shipping label
-                                                        <MdOutlineKeyboardArrowDown />
-                                                    </Dropdown.Toggle>
-
-                                                    <Dropdown.Menu>
-                                                        <Dropdown.Item href="#/action-1">
-                                                            Confirm shpment
-                                                        </Dropdown.Item>
-                                                        <Dropdown.Item href="#/action-2">
-                                                            Contact buyer
-                                                        </Dropdown.Item>
-                                                        <Dropdown.Item href="#/action-3">
-                                                            Sell similar
-                                                        </Dropdown.Item>
-                                                        <Dropdown.Item href="#/action-3">
-                                                            Relist
-                                                        </Dropdown.Item>
-                                                        <Dropdown.Item href="#/action-3">
-                                                            Cancel
-                                                        </Dropdown.Item>
-                                                        <Dropdown.Item href="#/action-3">
-                                                            Issue a refund
-                                                        </Dropdown.Item>
-                                                        <Dropdown.Item href="#/action-3">
-                                                            Report this buyer
-                                                        </Dropdown.Item>
-                                                    </Dropdown.Menu>
-                                                </Dropdown>
-                                            </div>
+                                        <td width={"25%"}>
+                                            <button className="btn btn-primary w-100">View details</button>
                                         </td>
                                     </tr>
                                 </tbody>
