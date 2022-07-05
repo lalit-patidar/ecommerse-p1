@@ -22,6 +22,7 @@ import Listings from "../pages/Listings/Listings";
 import TextATemporaryPasswordMsg from "../pages/Messages/199";
 import MyNichoShop from "../pages/MyNichoShop";
 import Account from "../pages/MyNichoShop/Account";
+import ChangeAccountType from "../pages/MyNichoShop/Account/ChangeAccountType";
 import CloseAccount from "../pages/MyNichoShop/Account/CloseAccount";
 import CloseRequest from "../pages/MyNichoShop/Account/CloseRequest";
 import RequestCancel from "../pages/MyNichoShop/Account/RequestCancel";
@@ -38,7 +39,6 @@ import Order from "../pages/MyNichoShop/Purchases/Order";
 import PurchaseClaim from "../pages/MyNichoShop/Purchases/PurchaseClaim";
 import PurchaseList from "../pages/MyNichoShop/Purchases/PurchaseList";
 import PurchaseOpen from "../pages/MyNichoShop/Purchases/PurchaseOpen";
-import SellerCentralOrdersClaims from "../pages/MyNichoShop/Purchases/SellerCentralClaim/SellerCentralOrdersClaims";
 import SellerCentral from "../pages/MyNichoShop/SellerCentral";
 import ContactBuyer from "../pages/MyNichoShop/SellerCentral/ContactBuyer";
 import SellerCentralOrder from "../pages/MyNichoShop/SellerCentral/Order";
@@ -49,6 +49,7 @@ import OrderDetails from "../pages/MyNichoShop/SellerCentral/Order/SellerCentral
 import OrderInvoice from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/OrderInvoice";
 import ViewDetails from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/ViewDetails";
 import ProductInfo from "../pages/MyNichoShop/SellerCentral/ProductInfo";
+import SellerCentralOrdersClaims from "../pages/MyNichoShop/SellerCentral/SellerCentralClaim/SellerCentralOrdersClaims";
 import ConfirmShipment from "../pages/MyNichoShop/SellerCentral/Shipment";
 import WatchList from "../pages/MyNichoShop/WatchList";
 
@@ -141,6 +142,7 @@ const RootRoute = () => {
                     MyNichoShop > sellercentral > product-info
                     MyNichoShop > sellercentral > confirm-shipment
                     MyNichoShop > sellercentral > contact-buyer
+                    MyNichoShop > sellercentral > seller-central-order-claims
                     MyNichoShop > help-content > browse-help
                     MyNichoShop > help-content > contact-us
                     MyNichoShop > help-content > call-us
@@ -152,7 +154,6 @@ const RootRoute = () => {
                     MyNichoShop > account > close-request
                     MyNichoShop > account > request-cancel
                     MyNichoShop > account > request-process
-                    MyNichoShop > purchase > seller-central-order-claims
                     MyNichoShop > purchase > purchase-claim
                     MyNichoShop > purchase > purchase-list
                     MyNichoShop > purchase > purchase-open
@@ -202,6 +203,10 @@ const RootRoute = () => {
                     element={<ConfirmShipment />}
                 />
                 <Route
+                    path="/sellercentral/seller-central-order-claims"
+                    element={<SellerCentralOrdersClaims />}
+                />
+                <Route
                     path="/help-content/contact-buyer"
                     element={<ContactBuyer />}
                 />
@@ -221,24 +226,24 @@ const RootRoute = () => {
                 />
                 <Route path="/account" element={<Account />} />
                 <Route
-                    path="account/close-account"
+                    path="/account/close-account"
                     element={<CloseAccount />}
                 />
                 <Route
-                    path="account/close-request"
+                    path="/account/close-request"
                     element={<CloseRequest />}
                 />
                 <Route
-                    path="account/request-cancel"
+                    path="/account/request-cancel"
                     element={<RequestCancel />}
                 />
                 <Route
-                    path="account/request-process"
+                    path="/account/request-process"
                     element={<RequestProcess />}
                 />
                 <Route
-                    path="purchase/seller-central-order-claims"
-                    element={<SellerCentralOrdersClaims />}
+                    path="/account/change-account-type"
+                    element={<ChangeAccountType />}
                 />
                 <Route
                     path="purchase/purchase-claim"

@@ -3,13 +3,17 @@ import Footer from "../../container/Footer/footer";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import ReCAPTCHA from "react-google-recaptcha";
 import "./signin.css";
-import { postRequest } from "../../helper/ajax/ajaxRequest";
 import { Link } from "react-router-dom";
+import { usePostLoginMutation } from "./../../api/services/loginApi";
+import axios from "axios";
 
 const SignIn = () => {
-    let [id, setId] = useState("");
+    const [id, setId] = useState("");
     const [password, setPassword] = useState("");
     const [reCAPTCHA, setRecaptcha] = useState("");
+
+    // rtk login api
+    // const [postLogin, response] = usePostLoginMutation();
 
     const inputValue = (e) => {
         const { name, value } = e.target;
@@ -32,7 +36,7 @@ const SignIn = () => {
         setRecaptcha(value);
     }
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
 
         if (
@@ -40,21 +44,36 @@ const SignIn = () => {
             password.length !== 0 &&
             reCAPTCHA.length !== 0
         ) {
-            postRequest(
-                {},
-                `/admin/auth/login-with-prompt?login=${id}&password=${password}&rememberMe=true&grecaptcha=${reCAPTCHA}`
-            )
+            // const res = await postLogin();
+            // console.log(res);
+            // const res = await fetch({
+            //     url: "https://stage-api.nichoshop.com/api/v1/admin/login?login=developeradmin&password=123456&rememberMe=true&grecaptcha=6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //     },
+            // });
+            // const data = await res.json();
+            // console.log(data);
+
+            // const res = await axios({
+            //     url: "https://stage-api.nichoshop.com/api/v1/admin/login?login=developeradmin&password=123456&rememberMe=true&grecaptcha=6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
+            //     method: "post",
+            // });
+
+            axios({
+                url: "https://stage-api.nichoshop.com/api/v1/admin/login?login=developeradmin&password=123456&rememberMe=true&grecaptcha=6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json;charset=utf-8",
+                    "Access-Control-Allow-Origin": "*",
+                },
+            })
                 .then((res) => {
-                    if (Boolean(res.data.data)) {
-                        setId("");
-                        setPassword("");
-                        setRecaptcha("");
-                        setFormEmpty(false);
-                        window.open(res.data.data);
-                    }
+                    console.log(res.request);
                 })
                 .catch((err) => {
-                    setIdPasswordMatch(true);
+                    console.log(err);
                 });
         } else {
             setFormEmpty(true);
@@ -84,7 +103,7 @@ const SignIn = () => {
                                     <img
                                         src="assets/img/alert-circle.svg"
                                         alt="icon"
-                                    />{" "}
+                                    />
                                     Your email/user ID or password is incorrect.
                                 </span>
                             )}

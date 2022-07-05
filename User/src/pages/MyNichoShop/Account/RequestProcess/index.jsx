@@ -12,13 +12,14 @@ function RequestProcess() {
             <div className="cs_section ne_css account-close-pg close-account">
                 <div className="container_no">
                     <div className="inner_content no_padd">
-                        <div className="inner_content-two close">
+                        {/* <div className="inner_content-two close">
                             <h3 className="all_heading">
                                 Close my NichoShop account
                             </h3>
                             <hr />
-                        </div>
+                        </div> */}
                         <div className="close_inner">
+                            <h4 className="mb-3">Okay, Name</h4>
                             <p>
                                 You're started a process of closing your
                                 NichoShop account, it will take 7 days. When

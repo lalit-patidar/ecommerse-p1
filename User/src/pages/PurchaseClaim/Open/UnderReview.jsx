@@ -9,101 +9,100 @@ import ClaimBtnDialogs from "../../../components/Claims/ClaimBtnDialogs";
 import ButtonBox from "../../../components/Claims/ButtonBox/index.jsx";
 
 const UnderReview = () => {
-  const [claimDetails, setClaimDetails] = useState({});
+    const [claimDetails, setClaimDetails] = useState({});
 
-  useEffect(() => {
-    setClaimDetails({
-      topic: "The claim is under review",
-      brief: {
-        title: "The claim is placed on hold for 48 hours",
-        descr:
-          "NichoShop Customer Support will carefully review all details and will be back soon with a decision.",
-      },
-      claim: {
-        status: "Not recieved item",
-        orderId: "12345678-123456",
-        seller: "seller_username",
-      },
-      item: [
-        {
-          info: "EE PAY AS YOU GO 4G prepaid sim card with preloader US $150.50 forcalls, everything in one package",
-          condition: "New",
-          claimItem: "2 of 3",
-        },
-      ],
-      history: [
-        {
-          date: "28 Sep 2017",
-          topic: "The seller asked us to help",
-        },
-        {
-          date: "28 Sep 2017",
-          topic: "You asked us to help",
-          reason: "The seller hasn't responded yet",
-          comment: "Example of the buyer's comment",
-        },
-        {
-          date: "28 Sep 2017",
-          topic: "You hav eopened a claim for not received item",
-          content:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release ",
-        },
-        {
-          date: "28 Sep 2017",
-          topic: "The seller added shipping details",
-          carrier: "USPS",
-          trackingNumber: "GB12345678901234567890",
-        },
-        {
-          date: "28 Sep 2017",
-          topic: "You have opened a claim for not received item",
-          content:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release ",
-        },
-        {
-          date: "28 Sep 2017",
-          topic: "You have opened a claim for not received item",
-          claimID: "1234567890",
-          claimAmount: "US $1,234.56",
-        },
-        {
-          date: "24 Sep 2017",
-          topic: "The seller marked this order as shipped",
-        },
-        {
-          date: "22 Sep 2017",
-          topic: "You paid for this order",
-          orderDetails: "US $1,234.56(12345678-123456)",
-        },
-      ],
-    });
-  }, []);
+    useEffect(() => {
+        setClaimDetails({
+            topic: "The claim is under review",
+            brief: {
+                title: "The claim is placed on hold for 48 hours",
+                descr: "NichoShop Customer Support will carefully review all details and will be back soon with a decision.",
+            },
+            claim: {
+                status: "Not recieved item",
+                orderId: "12345678-123456",
+                seller: "seller_username",
+            },
+            item: [
+                {
+                    info: "EE PAY AS YOU GO 4G prepaid sim card with preloader US $150.50 forcalls, everything in one package",
+                    condition: "New",
+                    claimItem: "2 of 3",
+                },
+            ],
+            history: [
+                {
+                    date: "28 Sep 2017",
+                    topic: "The seller asked us to help",
+                },
+                {
+                    date: "28 Sep 2017",
+                    topic: "You asked us to help",
+                    reason: "The seller hasn't responded yet",
+                    comment: "Example of the buyer's comment",
+                },
+                {
+                    date: "28 Sep 2017",
+                    topic: "You hav eopened a claim for not received item",
+                    content:
+                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release ",
+                },
+                {
+                    date: "28 Sep 2017",
+                    topic: "The seller added shipping details",
+                    carrier: "USPS",
+                    trackingNumber: "GB12345678901234567890",
+                },
+                {
+                    date: "28 Sep 2017",
+                    topic: "You have opened a claim for not received item",
+                    content:
+                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release ",
+                },
+                {
+                    date: "28 Sep 2017",
+                    topic: "You have opened a claim for not received item",
+                    claimID: "1234567890",
+                    claimAmount: "US $1,234.56",
+                },
+                {
+                    date: "24 Sep 2017",
+                    topic: "The seller marked this order as shipped",
+                },
+                {
+                    date: "22 Sep 2017",
+                    topic: "You paid for this order",
+                    orderDetails: "US $1,234.56(12345678-123456)",
+                },
+            ],
+        });
+    }, []);
 
-  return (
-    <div className="claim-open">
-      <h2>{claimDetails.topic}</h2>
+    return (
+        <div className="claim-open">
+            <h2>{claimDetails.topic}</h2>
 
-      <ClaimBtnDialogs />
+            <ClaimBtnDialogs />
 
-      <div className="claim-open-content">
-        <ClaimHeader brief={claimDetails.brief} />
+            <div className="claim-open-content">
+                <ClaimHeader brief={claimDetails.brief} />
 
-        <ClaimClose />
+                <ClaimClose />
 
-        <ClaimStatus position={"delivered"} />
+                <ClaimStatus position={"delivered"} />
 
-        <div className="claim-open-detail">
-          <div className="item-infor d-lg-flex d-md-block justify-content-between">
-            <ClaimInfo claimInfo={claimDetails.claim} />
+                <div className="claim-open-detail">
+                    <div className="item-infor d-lg-flex d-md-block justify-content-between">
+                        <ClaimInfo claimInfo={claimDetails.claim} />
 
-            <ButtonBox btnBox={[true, true, true]} />
-          </div>
+                        <ButtonBox btnBox={[true, true, true]} />
+                    </div>
 
-          <ClaimDetails details={claimDetails} />
+                    <ClaimDetails details={claimDetails} />
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default UnderReview;

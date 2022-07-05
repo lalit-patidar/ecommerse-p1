@@ -27,6 +27,7 @@ import Menu from "../../../components/menu/Menu";
 // Styles
 import "./account.css";
 import AccountFooter from "../../../components/accountfooter/AccountFooter";
+import BusinessInformation from "./Components/BusinessInformation";
 
 const Account = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -293,7 +294,7 @@ const Account = () => {
                                 <div className="col-md-9 form_left renove_mob"></div>
                                 <div className="col-md-3 form_right full width">
                                     <Link
-                                        to="/user/close-account"
+                                        to="/account/close-account"
                                         className="ine_close"
                                     >
                                         Close my account
@@ -302,6 +303,7 @@ const Account = () => {
                             </div>
                         </div>
                     </div>
+                    <BusinessInformation />
                 </div>
             </div>
             <AccountFooter />

@@ -74,25 +74,16 @@ const CloseAccount = () => {
                                                 onChange={props.handleChange}
                                             >
                                                 <option value="">
-                                                    Choose a category
-                                                </option>
-                                                <option value="personal">
                                                     Personal reason
                                                 </option>
-                                                <option value="account">
+                                                <option value="personal">
                                                     Account issues
                                                 </option>
-                                                <option value="safety">
+                                                <option value="account">
                                                     Safety concern
                                                 </option>
-                                                <option value="choose a category">
-                                                    Choose a category
-                                                </option>
-                                                <option value="choose a category">
-                                                    Choose a category
-                                                </option>
-                                                <option value="choose a category">
-                                                    Choose a category
+                                                <option value="safety">
+                                                    Related to selling
                                                 </option>
                                             </select>
                                             <ErrorMessage name="category">

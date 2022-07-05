@@ -7,11 +7,15 @@ import App from "./App";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./store/app/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
     <BrowserRouter>
-        <App />
+        <Provider store={store}>
+            <App />
+        </Provider>
     </BrowserRouter>
 );
