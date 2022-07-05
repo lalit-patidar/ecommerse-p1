@@ -42,6 +42,7 @@ import PurchaseOpen from "../pages/MyNichoShop/Purchases/PurchaseOpen";
 import SellerCentral from "../pages/MyNichoShop/SellerCentral";
 import ContactBuyer from "../pages/MyNichoShop/SellerCentral/ContactBuyer";
 import SellerCentralOrder from "../pages/MyNichoShop/SellerCentral/Order";
+import SellerCentralOrderCancellations from "../pages/MyNichoShop/SellerCentral/Order/Cancellations";
 import InTransit from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/InTransit";
 import NotYetPaid from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/NotYetPaid";
 import NotYetSheppid from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/NotYetSheppid";
@@ -169,6 +170,10 @@ const RootRoute = () => {
                 <Route
                     path="/sellercentral/order"
                     element={<SellerCentralOrder />}
+                />
+                 <Route
+                    path="/sellercentral/order/cancellations"
+                    element={<SellerCentralOrderCancellations />}
                 />
                 <Route
                     path="/sellercentral/order/not-yet-paid"
