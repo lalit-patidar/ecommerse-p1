@@ -17,21 +17,32 @@ const AccountAddYourAddress = () => {
     const [getFullNameData, setFullNameData] = useState("");
     const [getStreetNumberData, setStreetNumberData] = useState("");
 
+    // error display
+
+    const [isError, setError] = useState(false);
+
     // form all handler
     const countryChangeHandler = (e) => {
-        e.target.value[0] && setCountryData(e.target.value[0]);
+        setCountryData(e.target.value[0]);
     };
 
     const fullNameHandler = (e) => {
-        e.target.value && setFullNameData(e.target.value);
+        setFullNameData(e.target.value);
     };
 
     const streetNumberHandler = (e) => {
-        e.target.value && setStreetNumberData(e.target.value);
+        setStreetNumberData(e.target.value);
     };
 
     // form submit
-    const formSubmitHandler = () => {};
+    const formSubmitHandler = (e) => {
+        e.preventDefault();
+
+        if (getCountryData && getFullNameData && getStreetNumberData) {
+        } else {
+            setError(true);
+        }
+    };
     return (
         <>
             <div className="ui-add-your-address-box">
@@ -43,7 +54,7 @@ const AccountAddYourAddress = () => {
                             </div>
                             <div className="ui-commont-form-box">
                                 <p>Add your address</p>
-                                <form onClick={formSubmitHandler}>
+                                <form onSubmit={formSubmitHandler}>
                                     <div className="mb-3">
                                         <SelectCountry
                                             countryChangeHandler={
@@ -53,13 +64,26 @@ const AccountAddYourAddress = () => {
                                     </div>
                                     <div className="mb-3">
                                         <TextField
+                                            error={
+                                                isError &&
+                                                getFullNameData.length === 0
+                                                    ? true
+                                                    : false
+                                            }
                                             id="outlined-basic"
                                             label="Full name"
                                             variant="outlined"
                                             size="medium"
+                                            value={getFullNameData}
                                             fullWidth
                                             onChange={fullNameHandler}
                                         />
+                                        {isError &&
+                                            getFullNameData.length == 0 && (
+                                                <span className="text-danger">
+                                                    Enter a name.
+                                                </span>
+                                            )}
                                     </div>
                                     <div className="mb-3">
                                         <TextField
@@ -118,7 +142,7 @@ const AccountAddYourAddress = () => {
                                         <PhoneNumber />
                                     </div>
                                     <div className="ui-commont-form-btn">
-                                        <button>Save</button>
+                                        <button type="submit">Save</button>
                                         <button>Cancel</button>
                                     </div>
                                 </form>

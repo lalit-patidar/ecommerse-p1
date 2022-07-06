@@ -3,16 +3,27 @@ import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
-import { Button, ButtonBase, CssBaseline, Divider, FormControl, Grid, MenuItem, Pagination, Select, Tab } from "@mui/material";
+import {
+    Button,
+    ButtonBase,
+    CssBaseline,
+    Divider,
+    FormControl,
+    Grid,
+    MenuItem,
+    Pagination,
+    Select,
+    Tab,
+} from "@mui/material";
 import { Box, styled } from "@mui/system";
 import { red, blue, grey, green } from "@mui/material/colors";
 import { Dropdown, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { setDetailItem, setPublicPage } from "./../../../../actions/actions";
-import './MainPurchase.scss'
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
+import "./MainPurchase.scss";
+import TabPanel from "@mui/lab/TabPanel";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
 import PaginationMain from "../../../../components/PaginationMain/PaginationMain";
 
 const Img = styled("img")({
@@ -53,15 +64,22 @@ function TabPanel1() {
     // const handleChange = (event, newValue) => {
     //     setValue(newValue);
     // };
-    const [value, setValue] = React.useState('2');
+    const [value, setValue] = React.useState("2");
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
-
     return (
-        <Box sx={{ border: "1px solid #CBCBCB", borderRadius: "5px", p: 2, pb: 0 }} className="card-top">
+        <Box
+            sx={{
+                border: "1px solid #CBCBCB",
+                borderRadius: "5px",
+                p: 2,
+                pb: 0,
+            }}
+            className="card-top"
+        >
             {/* <Tabs
                 value={value}
                 onChange={handleChange}
@@ -88,20 +106,31 @@ function TabPanel1() {
                 </Typography>
                 <SelectComponent items={s_items} />
             </Box> */}
-            <Box sx={{ width: '100%', typography: 'body1' }}>
+            <Box sx={{ width: "100%", typography: "body1" }}>
                 <TabContext value={value}>
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                        <TabList onChange={handleChange} aria-label="lab API tabs example">
+                    <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                        <TabList
+                            onChange={handleChange}
+                            aria-label="lab API tabs example"
+                        >
                             <Tab label="Orders" value="1" />
                             <Tab label="Canceled orders" value="2" />
                             <Tab label="Claims" value="3" />
                             <Tab label="Returns" value="4" />
                         </TabList>
                     </Box>
-                    <TabPanel value="1"><b>3 orders</b> in the last 6 months</TabPanel>
-                    <TabPanel value="2"><b>3 canceled orders</b> in the last 6 months</TabPanel>
-                    <TabPanel value="3"><b>3 Claims</b> in the last 6 months</TabPanel>
-                    <TabPanel value="4"><b>3 return</b> in the last 6 months</TabPanel>
+                    <TabPanel value="1">
+                        <b>3 orders</b> in the last 6 months
+                    </TabPanel>
+                    <TabPanel value="2">
+                        <b>3 canceled orders</b> in the last 6 months
+                    </TabPanel>
+                    <TabPanel value="3">
+                        <b>3 Claims</b> in the last 6 months
+                    </TabPanel>
+                    <TabPanel value="4">
+                        <b>3 return</b> in the last 6 months
+                    </TabPanel>
                 </TabContext>
             </Box>
         </Box>
@@ -136,7 +165,7 @@ function ShopItem({ item }) {
     const [trackState, setTrackState] = useState(0);
 
     const navigate = useNavigate();
-    
+
     return (
         <Box
             sx={{
@@ -167,7 +196,7 @@ function ShopItem({ item }) {
                         variant="subtitle1"
                         componet="p"
                         color={grey[500]}
-                        className='cancled'
+                        className="cancled"
                     >
                         Canceled
                     </Typography>
@@ -209,7 +238,10 @@ function ShopItem({ item }) {
             <Box sx={{ m: 2 }}>
                 <Grid container spacing={1}>
                     <Grid item direction="column" xs={12} md={3}>
-                        <Box sx={{ borderRight: "1px solid #cbcbcb" }} className="border-r">
+                        <Box
+                            sx={{ borderRight: "1px solid #cbcbcb" }}
+                            className="border-r"
+                        >
                             <Typography
                                 gutterBottom
                                 variant="subtitle1"
@@ -242,7 +274,11 @@ function ShopItem({ item }) {
                                 className="date_sep seller"
                             >
                             </Typography> */}
-                            <Link underline="hover" className="my-nicho-shop-font Blue_Main date_sep seller" to="">
+                            <Link
+                                underline="hover"
+                                className="my-nicho-shop-font Blue_Main date_sep seller"
+                                to=""
+                            >
                                 {item.sellerName}
                             </Link>
                             <Typography
@@ -270,7 +306,11 @@ function ShopItem({ item }) {
                             >
                                 ORDER#{item.orderNum}
                             </Typography>
-                            <Link underline="hover" className="my-nicho-shop-font Blue_Main" to="">
+                            <Link
+                                underline="hover"
+                                className="my-nicho-shop-font Blue_Main"
+                                to=""
+                            >
                                 view order detail
                             </Link>
                             {/* <Typography
@@ -284,7 +324,11 @@ function ShopItem({ item }) {
                                 view order detail
                             </Typography> */}
                             {/* onClick={()=>dispatch({type: "MOVETODETAIL", value: item.id})} */}
-                            <Link underline="hover"  className="my-nicho-shop-font Blue_Main" to="">
+                            <Link
+                                underline="hover"
+                                className="my-nicho-shop-font Blue_Main"
+                                to=""
+                            >
                                 view order detail
                             </Link>
                         </Box>
@@ -293,30 +337,46 @@ function ShopItem({ item }) {
                         <Box>
                             <Grid container spacing={2}>
                                 {item.items.map((detailItem, index) => (
-                                    <Box className='dis-adjust'
+                                    <Box
+                                        className="dis-adjust"
                                         sx={{
                                             display: "flex",
                                             width: "100%",
                                             p: 2,
                                         }}
                                     >
-                                        <Grid xs={12} sm={2} className='grey-box'>
+                                        <Grid
+                                            xs={12}
+                                            sm={2}
+                                            className="grey-box"
+                                        >
                                             <ButtonBase
                                                 sx={{ width: 150, height: 150 }}
-                                                className='grey_box'
+                                                className="grey_box"
                                             >
                                                 <div className="grey_bg">
-                                                    <img width='100%' src='https://i.picsum.photos/id/873/180/180.jpg?hmac=oIFrgxdiLpPQ4SKy-DLRIM4K-sL1YNhMtR_asBYRbk8' />
+                                                    <img
+                                                        width="100%"
+                                                        src="https://i.picsum.photos/id/873/180/180.jpg?hmac=oIFrgxdiLpPQ4SKy-DLRIM4K-sL1YNhMtR_asBYRbk8"
+                                                    />
                                                 </div>
                                             </ButtonBase>
                                         </Grid>
                                         <Grid container item xs={12} sm={10}>
-                                            <Grid item xs={12} md={8} spacing={2}>
-                                                <Link underline="hover" className="my-nicho-shop-font Blue_Main ee_pay" to=""
+                                            <Grid
+                                                item
+                                                xs={12}
+                                                md={8}
+                                                spacing={2}
+                                            >
+                                                <Link
+                                                    underline="hover"
+                                                    className="my-nicho-shop-font Blue_Main ee_pay"
+                                                    to=""
                                                     sx={{
                                                         fontSize: "20px",
-                                                    }}> 
-                                               
+                                                    }}
+                                                >
                                                     EE PAY AS YOU GO 4G prepaid
                                                     simcard $150.50
                                                 </Link>
@@ -337,7 +397,10 @@ function ShopItem({ item }) {
                                                     className="order_placed"
                                                     gutterBottom
                                                 >
-                                                    Cancled quantity:<b className="dark_txt">6</b>
+                                                    Cancled quantity:
+                                                    <b className="dark_txt">
+                                                        6
+                                                    </b>
                                                     {/* {detailItem.price} */}
                                                 </Typography>
                                                 <Typography
@@ -345,19 +408,34 @@ function ShopItem({ item }) {
                                                     className="order_placed"
                                                     gutterBottom
                                                 >
-                                                    Item price: <b className="dark_txt"> US $
-                                                        {detailItem.price} </b>
+                                                    Item price:{" "}
+                                                    <b className="dark_txt">
+                                                        {" "}
+                                                        US ${
+                                                            detailItem.price
+                                                        }{" "}
+                                                    </b>
                                                 </Typography>
                                                 <Typography
                                                     variant="body2"
                                                     className="order_placed"
                                                     gutterBottom
                                                 >
-                                                    Shipping: <b className="dark_txt"> US $
-                                                        {detailItem.currency}</b>
+                                                    Shipping:{" "}
+                                                    <b className="dark_txt">
+                                                        {" "}
+                                                        US $
+                                                        {detailItem.currency}
+                                                    </b>
                                                 </Typography>
                                             </Grid>
-                                            <Grid item xs={12} md={4} spacing={2} className="dropdown-sec">
+                                            <Grid
+                                                item
+                                                xs={12}
+                                                md={4}
+                                                spacing={2}
+                                                className="dropdown-sec"
+                                            >
                                                 {item.status == 0 ? (
                                                     <Button
                                                         variant="contained"
@@ -366,7 +444,11 @@ function ShopItem({ item }) {
                                                             mt: 2,
                                                             width: "100%",
                                                         }}
-                                                        onClick={() => navigate("/cancleorderdetail")}
+                                                        onClick={() =>
+                                                            navigate(
+                                                                "/cancleorderdetail"
+                                                            )
+                                                        }
                                                     >
                                                         View Cancel details
                                                     </Button>
@@ -381,13 +463,14 @@ function ShopItem({ item }) {
                                                         variant="first"
                                                         style={{
                                                             alignSelf: "left",
-                                                            justifyContent: "end",
+                                                            justifyContent:
+                                                                "end",
                                                         }}
                                                     >
                                                         More actions
                                                     </Dropdown.Toggle>
                                                     {item.status == 0 &&
-                                                        item.payment == 0 ? (
+                                                    item.payment == 0 ? (
                                                         <Dropdown.Menu>
                                                             <Dropdown.Item href="#/action-2">
                                                                 Contact seller
@@ -403,35 +486,41 @@ function ShopItem({ item }) {
                                                         </Dropdown.Menu>
                                                     ) : null}
                                                     {item.status == 0 &&
-                                                        item.payment != 0 ? (
+                                                    item.payment != 0 ? (
                                                         <Dropdown.Menu>
                                                             <Dropdown.Item href="#/action-2">
                                                                 <button>
-                                                                    View seller’s other items
+                                                                    View
+                                                                    seller’s
+                                                                    other items
                                                                 </button>
                                                             </Dropdown.Item>
                                                             <Dropdown.Item href="#/action-2">
                                                                 Contact seller
                                                             </Dropdown.Item>
                                                             <Dropdown.Item href="#/action-3">
-                                                                Leave seller feedback
+                                                                Leave seller
+                                                                feedback
                                                             </Dropdown.Item>
                                                             <Dropdown.Item href="#/action-4">
-                                                                Cancel this order
+                                                                Cancel this
+                                                                order
                                                             </Dropdown.Item>
                                                         </Dropdown.Menu>
                                                     ) : null}
                                                     {item.status >= 5 &&
-                                                        item.tracking == null ? (
+                                                    item.tracking == null ? (
                                                         <Dropdown.Menu>
                                                             <Dropdown.Item href="#/action-2">
-                                                                View similar items
+                                                                View similar
+                                                                items
                                                             </Dropdown.Item>
                                                             <Dropdown.Item href="#/action-2">
                                                                 Contact seller
                                                             </Dropdown.Item>
                                                             <Dropdown.Item href="#/action-3">
-                                                                Not received item
+                                                                Not received
+                                                                item
                                                             </Dropdown.Item>
                                                             <Dropdown.Item href="#/action-4">
                                                                 Return this item
@@ -439,22 +528,26 @@ function ShopItem({ item }) {
                                                         </Dropdown.Menu>
                                                     ) : null}
                                                     {item.status >= 5 &&
-                                                        item.tracking ? (
+                                                    item.tracking ? (
                                                         <Dropdown.Menu>
                                                             <Dropdown.Item href="#/action-2">
-                                                                View similar's other items
+                                                                View similar's
+                                                                other items
                                                             </Dropdown.Item>
                                                             <Dropdown.Item href="#/action-2">
-                                                                View similar items
+                                                                View similar
+                                                                items
                                                             </Dropdown.Item>
                                                             <Dropdown.Item href="#/action-2">
                                                                 Contact seller
                                                             </Dropdown.Item>
                                                             <Dropdown.Item href="#/action-2">
-                                                                Ask to cancel order
+                                                                Ask to cancel
+                                                                order
                                                             </Dropdown.Item>
                                                             <Dropdown.Item href="#/action-3">
-                                                                Not received item
+                                                                Not received
+                                                                item
                                                             </Dropdown.Item>
                                                             <Dropdown.Item href="#/action-4">
                                                                 Return this item
@@ -557,7 +650,7 @@ const ShopItems = [
     {
         id: 12,
         payment: 1, //payment method : Awaiting payment : 0, visa : 1
-        created: '22 September 2017',
+        created: "22 September 2017",
         soldbySeller: 1,
         sellerName: "seller username",
         totalAmount: 12345.6,
@@ -607,12 +700,9 @@ const ShopItems = [
     },
 ];
 
-const cancleOrder = [
-    {}, {}, {},
-]
+const cancleOrder = [{}, {}, {}];
 
 function Main() {
-   
     return (
         <React.Fragment>
             <CssBaseline />
@@ -631,18 +721,18 @@ function Main() {
                     </Typography>
                 </Breadcrumbs>
                 <br />
-                <Typography variant="h3" className="purchase_content" component="h3">
+                <Typography
+                    variant="h3"
+                    className="purchase_content"
+                    component="h3"
+                >
                     Purchases
                 </Typography>
                 <TabPanel1 />
                 {cancleOrder.map((key) => {
-                    return (
-                        ShopItems.map((item) => (
-                            <ShopItem item={item} />
-                        ))
-                    )
+                    return ShopItems.map((item) => <ShopItem item={item} />);
                 })}
-               <PaginationMain/>
+                <PaginationMain />
             </Box>
         </React.Fragment>
     );

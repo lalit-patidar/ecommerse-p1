@@ -5,8 +5,13 @@ import ReCAPTCHA from "react-google-recaptcha";
 import "./signin.css";
 import { Link } from "react-router-dom";
 import { usePostLoginMutation } from "./../../api/services/loginApi";
+import { useSelector } from "react-redux";
 
 const SignIn = () => {
+    const authData = useSelector((state) => state.auth);
+    console.log(authData);
+
+    // store form data
     const [id, setId] = useState("");
     const [password, setPassword] = useState("");
     const [reCAPTCHA, setRecaptcha] = useState("");
