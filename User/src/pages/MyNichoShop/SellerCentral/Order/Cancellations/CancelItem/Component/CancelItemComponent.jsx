@@ -4,7 +4,7 @@ import { Form } from 'react-bootstrap'
 
 
 
-export const CancelItemComponent = ({ isChecked, qty, onCheckChange, availableQuantity, isError, onChangeQty }) => {
+export const CancelItemComponent = ({ checkbox, isChecked, qty, onCheckChange, availableQuantity, isError, onChangeQty }) => {
 
     const handleToggle = () => {
         onCheckChange();
@@ -12,8 +12,9 @@ export const CancelItemComponent = ({ isChecked, qty, onCheckChange, availableQu
 
     return (
         <div className="d-flex p-4">
-            <Form.Check type="checkbox" checked={isChecked} onClick={handleToggle} />
-            <div className="ui-table-photo ms-2">
+            {checkbox &&
+                <Form.Check className='me-2' type="checkbox" checked={isChecked} onClick={handleToggle} />}
+            <div className="ui-table-photo">
                 <img
                     src={ProductImg}
                     alt="product"
