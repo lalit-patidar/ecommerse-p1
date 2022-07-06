@@ -5,15 +5,15 @@ import ReCAPTCHA from "react-google-recaptcha";
 import "./signin.css";
 import { Link } from "react-router-dom";
 import { usePostLoginMutation } from "./../../api/services/loginApi";
-import axios from "axios";
 
 const SignIn = () => {
     const [id, setId] = useState("");
     const [password, setPassword] = useState("");
     const [reCAPTCHA, setRecaptcha] = useState("");
+    const [getError, setError] = useState("");
 
     // rtk login api
-    // const [postLogin, response] = usePostLoginMutation();
+    const [postLogin, { isLoading, isError }] = usePostLoginMutation();
 
     const inputValue = (e) => {
         const { name, value } = e.target;
@@ -44,37 +44,19 @@ const SignIn = () => {
             password.length !== 0 &&
             reCAPTCHA.length !== 0
         ) {
-            // const res = await postLogin();
-            // console.log(res);
-            // const res = await fetch({
-            //     url: "https://stage-api.nichoshop.com/api/v1/admin/login?login=developeradmin&password=123456&rememberMe=true&grecaptcha=6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
-            //     method: "POST",
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //     },
-            // });
-            // const data = await res.json();
-            // console.log(data);
-
-            // const res = await axios({
-            //     url: "https://stage-api.nichoshop.com/api/v1/admin/login?login=developeradmin&password=123456&rememberMe=true&grecaptcha=6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
-            //     method: "post",
-            // });
-
-            axios({
-                url: "https://stage-api.nichoshop.com/api/v1/admin/login?login=developeradmin&password=123456&rememberMe=true&grecaptcha=6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
-                method: "post",
-                headers: {
-                    "Content-Type": "application/json;charset=utf-8",
-                    "Access-Control-Allow-Origin": "*",
-                },
-            })
-                .then((res) => {
-                    console.log(res.request);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
+            // data of form
+            const data = {
+                id: id,
+                pwd: password,
+                reCaptcha: reCAPTCHA,
+            };
+            const res = await postLogin(data);
+            // error msg
+            if (Boolean(res.error)) {
+                setError(res.error.data.error);
+            }
+            // succes redireact url
+            res.data.status && window.open(res.data.data, "_blank");
         } else {
             setFormEmpty(true);
         }
@@ -92,6 +74,12 @@ const SignIn = () => {
                     />
                 </div>
                 <div className="row col-lg-4 col-md-6 col-sm-10 offset-lg-4 offset-md-3 offset-sm-1">
+                    {isError && (
+                        <div className="alert alert-danger" role="alert">
+                            {getError.length !== 0 && getError}
+                        </div>
+                    )}
+
                     <div className="form-layout-signinpage px-4 py-1">
                         <form onSubmit={submitHandler}>
                             <h5 className="text-center my-3">
@@ -161,6 +149,16 @@ const SignIn = () => {
                                 type="submit"
                                 className="button-signinpage my-3 btn btn-primary"
                             >
+                                {isLoading && (
+                                    <div
+                                        className="spinner-border spinner-border-sm me-4"
+                                        role="status"
+                                    >
+                                        <span className="visually-hidden">
+                                            Loading...
+                                        </span>
+                                    </div>
+                                )}
                                 Sign in
                             </button>
                             <div className="row align-right">

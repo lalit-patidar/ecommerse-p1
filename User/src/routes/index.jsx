@@ -22,6 +22,9 @@ import Listings from "../pages/Listings/Listings";
 import TextATemporaryPasswordMsg from "../pages/Messages/199";
 import MyNichoShop from "../pages/MyNichoShop";
 import Account from "../pages/MyNichoShop/Account";
+import AccountAddYourAddress from "../pages/MyNichoShop/Account/AccountAddYourAddress";
+import AccountChangeYourName from "../pages/MyNichoShop/Account/AccountChangeYourName";
+import AccountUpdateYourEmailAddress from "../pages/MyNichoShop/Account/AccountUpdateYourEmailAddress";
 import ChangeAccountType from "../pages/MyNichoShop/Account/ChangeAccountType";
 import CloseAccount from "../pages/MyNichoShop/Account/CloseAccount";
 import CloseRequest from "../pages/MyNichoShop/Account/CloseRequest";
@@ -244,6 +247,22 @@ const RootRoute = () => {
                 <Route
                     path="/account/change-account-type"
                     element={<ChangeAccountType />}
+                />
+                <Route
+                    path="/account/change-your-name"
+                    element={<AccountChangeYourName />}
+                />
+                <Route
+                    path="/account/verify-you"
+                    element={<AccountChangeYourName />}
+                />
+                <Route
+                    path="/account/update-your-email-address"
+                    element={<AccountUpdateYourEmailAddress />}
+                />
+                <Route
+                    path="/account/add-your-address"
+                    element={<AccountAddYourAddress />}
                 />
                 <Route
                     path="purchase/purchase-claim"

@@ -9,13 +9,14 @@ import {
     Select,
     TextField,
 } from "@mui/material";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./businessinformation.scss";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import PhoneNumber from "../../../../../components/PhoneNumber";
 
 const BusinessInformation = () => {
     // all country store
@@ -30,15 +31,27 @@ const BusinessInformation = () => {
         countryApi();
     }, []);
 
-    const [selectCountry, setSelectCountry] = useState("");
-    const countryChangeHandler = (e) => {
-        setSelectCountry(e.target.value);
+    const countryChangeHandler = () => {};
+
+    // phone number handler
+
+    const [getPhoneNumber, setPhoneNumber] = useState("");
+    const [getCountryCode, setCountryCode] = useState("880");
+
+    const phoneHandler = (e) => {
+        setPhoneNumber(e.target.value);
     };
-    // country code handler
-    const [countryCode, setCountryCode] = useState();
-    const countryCodeHandler = (data) => {
+
+    const areaCodeHandler = (data) => {
         setCountryCode(data);
     };
+
+    // is edit address
+    const [isEditAddress, setIsEditAddress] = useState(false);
+    const updateAddressHandlerBtn = () => {
+        setIsEditAddress(true);
+    };
+
     return (
         <>
             <div className="ui-abi-box">
@@ -56,6 +69,7 @@ const BusinessInformation = () => {
                             </Link>
                         </p>
                     </div>
+
                     <div className="ui-abi-body">
                         <div className="ui-abi-bn">
                             <TextField
@@ -64,6 +78,7 @@ const BusinessInformation = () => {
                                 label="Business name"
                             />
                         </div>
+
                         <div className="ui-abi-form-head">
                             <h4>Business address</h4>
                             <p>
@@ -72,101 +87,140 @@ const BusinessInformation = () => {
                             </p>
                         </div>
                         <div className="ui-abi-form-list">
-                            <h4>Name Surname</h4>
-                            <ul>
-                                <li>1234 EL CAMINO REAL</li>
-                                <li>STE - 100386</li>
-                                <li>SUNNYVALE CA 98765-4321</li>
-                                <li>United States</li>
-                                <li>Phone: + 1 234-5678-900</li>
-                            </ul>
-                            <button>Update your business address</button>
+                            {!isEditAddress && (
+                                <>
+                                    <h4>Name Surname</h4>
+                                    <ul>
+                                        <li>1234 EL CAMINO REAL</li>
+                                        <li>STE - 100386</li>
+                                        <li>SUNNYVALE CA 98765-4321</li>
+                                        <li>United States</li>
+                                        <li>Phone: + 1 234-5678-900</li>
+                                    </ul>
+                                    <button onClick={updateAddressHandlerBtn}>
+                                        Update your business address
+                                    </button>
+                                </>
+                            )}
                         </div>
-                        <div className="ui-abi-form">
-                            <div className="mb-3">
-                                <FormControl fullWidth>
-                                    <InputLabel id="demo-simple-select-label">
-                                        Country
-                                    </InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        label="Country"
-                                        onChange={countryChangeHandler}
-                                    >
-                                        {country.map((item, index) => {
-                                            return (
-                                                <MenuItem
-                                                    key={index}
-                                                    value={item.name.common}
-                                                >
-                                                    {item.name.common}
-                                                </MenuItem>
-                                            );
-                                        })}
-                                    </Select>
-                                </FormControl>
-                            </div>
-                            <div className="mb-3">
-                                <TextField
-                                    fullWidth
-                                    id="outlined-basic"
-                                    label="Full name"
-                                />
-                            </div>
-                            <div className="mb-3">
-                                <TextField
-                                    fullWidth
-                                    id="outlined-basic"
-                                    label="Street address"
-                                />
-                            </div>
-                            <div className="mb-3">
-                                <input type="text" className="form-control" />
-                            </div>
-                            <div className="mb-3">
-                                <TextField
-                                    fullWidth
-                                    id="outlined-basic"
-                                    label="Town/City :"
-                                />
-                            </div>
-                            <div className="mb-3">
-                                <TextField
-                                    fullWidth
-                                    id="outlined-basic"
-                                    label="Country"
-                                />
-                            </div>
-                            <div className="mb-3">
-                                <TextField
-                                    fullWidth
-                                    id="outlined-basic"
-                                    label="Postal Code"
-                                />
-                            </div>
-                            <div className="mb-3 ui-phone-codes-select">
-                                <FormControl variant="outlined" fullWidth>
-                                    <InputLabel htmlFor="phone-no">
-                                        Phone No:
-                                    </InputLabel>
-                                    <OutlinedInput
-                                        id="phone-no"
-                                        label="Phone No:"
-                                        startAdornment={
-                                            <InputAdornment position="start">
-                                                <PhoneInput
-                                                    country={"us"}
-                                                    value={countryCode}
-                                                    onChange={
-                                                        countryCodeHandler
-                                                    }
-                                                />
-                                            </InputAdornment>
-                                        }
+                        {isEditAddress && (
+                            <div className="ui-abi-form">
+                                <div className="mb-3">
+                                    <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label">
+                                            Country
+                                        </InputLabel>
+                                        <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            label="Country"
+                                            onChange={countryChangeHandler}
+                                        >
+                                            {country.map((item, index) => {
+                                                return (
+                                                    <MenuItem
+                                                        key={index}
+                                                        value={item.name.common}
+                                                    >
+                                                        {item.name.common}
+                                                    </MenuItem>
+                                                );
+                                            })}
+                                        </Select>
+                                    </FormControl>
+                                </div>
+                                <div className="mb-3">
+                                    <TextField
+                                        fullWidth
+                                        id="outlined-basic"
+                                        label="Full name"
                                     />
-                                </FormControl>
+                                </div>
+                                <div className="mb-3">
+                                    <TextField
+                                        fullWidth
+                                        id="outlined-basic"
+                                        label="Street address"
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <TextField
+                                        fullWidth
+                                        id="outlined-basic"
+                                        label="Town/City :"
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <TextField
+                                        fullWidth
+                                        id="outlined-basic"
+                                        label="Country"
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <TextField
+                                        fullWidth
+                                        id="outlined-basic"
+                                        label="Postal Code"
+                                    />
+                                </div>
+                                <div className="mb-3 ui-phone-codes-select">
+                                    <PhoneNumber
+                                        phoneHandler={phoneHandler}
+                                        areaCodeHandler={areaCodeHandler}
+                                        getAreaCode={getCountryCode}
+                                    />
+                                </div>
                             </div>
+                        )}
+                    </div>
+                    <div className="ui-abi-footer">
+                        <p>VAT / GST Registration information</p>
+                        <div className="ui-abi-footer-form">
+                            <div className="row">
+                                <div className="col-lg-6">
+                                    <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label">
+                                            Country
+                                        </InputLabel>
+                                        <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            label="Country"
+                                        >
+                                            {country.map((item, index) => {
+                                                return (
+                                                    <MenuItem
+                                                        value={item.name.common}
+                                                        key={index}
+                                                    >
+                                                        {item.name.common}
+                                                    </MenuItem>
+                                                );
+                                            })}
+                                        </Select>
+                                    </FormControl>
+                                </div>
+                                <div className="col-lg-6">
+                                    <TextField
+                                        id="outlined-basic"
+                                        label="VAT / GST Registration number"
+                                        variant="outlined"
+                                        type="number"
+                                        fullWidth
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="u-abi-footer-btn">
+                            <button>Save</button>
+                            <button>Cancel</button>
                         </div>
                     </div>
                 </div>

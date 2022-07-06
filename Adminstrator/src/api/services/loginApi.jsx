@@ -7,9 +7,10 @@ export const loginApi = createApi({
     }),
     endpoints: (builder) => ({
         postLogin: builder.mutation({
-            query: () => {
+            query: (data) => {
+                const { id, pwd, reCaptcha } = data;
                 return {
-                    url: `/admin/login?login=developeradmin&password=123456&rememberMe=true&grecaptcha=6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ`,
+                    url: `/admin/login?login=${id}&password=${pwd}&rememberMe=true&grecaptcha=${reCaptcha}`,
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

@@ -8,6 +8,28 @@ code {
 	font-family: 'Inter', sans-serif !important;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol {
+	margin-bottom: 0;
+}
+
+ul,
+ol {
+	padding-left: 0;
+	list-style-type: none;
+}
+
+.btn:focus {
+	box-shadow: none !important;
+}
+
 /**
 * Template Name: Medilab - v4.7.1
 
