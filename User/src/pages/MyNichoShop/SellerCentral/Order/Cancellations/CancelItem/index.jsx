@@ -56,9 +56,9 @@ const CancelItem = () => {
         },
     ];
 
-    const handleCheckChange =(id) => {
+    const handleCheckChange = (id) => {
         const updatedItems = items.map(item => {
-            return item.id === id ? {...item, isChecked: !item.isChecked} : item 
+            return item.id === id ? { ...item, isChecked: !item.isChecked } : item
         })
 
         setItems(updatedItems)
@@ -66,7 +66,7 @@ const CancelItem = () => {
 
     const handleChangeQty = (id, value) => {
         const updatedItems = items.map(item => {
-            return item.id === id ? {...item, qty: value, isError: false} : item 
+            return item.id === id ? { ...item, qty: value, isError: false } : item
         })
 
         setItems(updatedItems)
@@ -74,14 +74,14 @@ const CancelItem = () => {
 
     const handleCancelSubmit = () => {
         const checkedItems = items.map((item) => {
-            if(item.isChecked && Number(item.qty) === 0) {
+            if (item.isChecked && Number(item.qty) === 0) {
                 return {
                     ...item,
                     isError: true
                 }
             }
 
-            if(item.isChecked && Number(item.qty) > Number(item.availableQuantity)) {
+            if (item.isChecked && Number(item.qty) > Number(item.availableQuantity)) {
                 return {
                     ...item,
                     isError: true
@@ -128,9 +128,8 @@ const CancelItem = () => {
                                     <h4 className='text-dark'>Select the items you want to cancel</h4>
                                 </div>
                                 {items.map((item) => {
-                                    return <CancelItemComponent onChangeQty={(e) => handleChangeQty(item.id, e.target.value)} onCheckChange={() => handleCheckChange(item.id)} key={item.id} {...item} />
+                                    return <CancelItemComponent checkbox onChangeQty={(e) => handleChangeQty(item.id, e.target.value)} onCheckChange={() => handleCheckChange(item.id)} key={item.id} {...item} />
                                 })}
-
                                 <div className="p-4 b-t-1">
                                     <Row>
                                         <Col lg="8">
@@ -141,7 +140,7 @@ const CancelItem = () => {
                                             <Form.Group controlId="exampleForm.ControlTextarea1">
                                                 <Form.Label className="fw-bold">Message to the buyer (optional)</Form.Label>
                                                 <Form.Control as="textarea" rows={3} />
-                                                <p className='text-end '>250 character(s) left</p>
+                                                <p className='text-end fs-14'>250 character(s) left</p>
                                             </Form.Group>
                                             <div className="ui-cs-btn d-flex">
                                                 <button className='w-100'

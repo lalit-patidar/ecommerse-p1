@@ -455,3 +455,29 @@
         padding: 0 10px;
     }
 }
+
+.sub-heading-bar {
+    background: #EDF6FF;
+    color: #0072BC;
+}
+
+.brdr-b>li {
+    border-bottom: 1px dashed #cbcbcb;
+
+    &:last-child {
+        border-bottom: 1px solid #cbcbcb;
+
+    }
+}
+
+.brdr-bb {
+    border-bottom: 1px solid #cbcbcb;
+}
+
+.brdr-t {
+    border-top: 1px solid #cbcbcb;
+}
+
+.fs-14 {
+    font-size: 14px;
+}

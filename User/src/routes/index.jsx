@@ -46,12 +46,14 @@ import SellerCentralListing from "../pages/MyNichoShop/SellerCentral/Listing";
 import SellerCentralListingOutOfStock from "../pages/MyNichoShop/SellerCentral/Listing/OutOfStock";
 import SellerCentralOrderCancellations from "../pages/MyNichoShop/SellerCentral/Order/Cancellations";
 import CancelItem from "../pages/MyNichoShop/SellerCentral/Order/Cancellations/CancelItem";
+import CancelledItems from "../pages/MyNichoShop/SellerCentral/Order/Cancellations/CancelledItems";
 import InTransit from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/InTransit";
 import NotYetPaid from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/NotYetPaid";
 import NotYetSheppid from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/NotYetSheppid";
 import OrderDetails from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/OrderDetails";
 import OrderInvoice from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/OrderInvoice";
 import ViewDetails from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/ViewDetails";
+import SellerCentralOverview from "../pages/MyNichoShop/SellerCentral/Overview";
 import ProductInfo from "../pages/MyNichoShop/SellerCentral/ProductInfo";
 import SellerCentralOrdersClaims from "../pages/MyNichoShop/SellerCentral/SellerCentralClaim/SellerCentralOrdersClaims";
 import ConfirmShipment from "../pages/MyNichoShop/SellerCentral/Shipment";
@@ -176,9 +178,19 @@ const RootRoute = () => {
                     path="/sellercentral/order"
                     element={<SellerCentralOrder />}
                 />
+
+                <Route
+                    path="/sellercentral/overview"
+                    element={<SellerCentralOverview />}
+                />
                 <Route
                     path="/sellercentral/order/cancelitems"
                     element={<CancelItem />}
+                />
+
+                <Route
+                    path="/sellercentral/order/cancelleditems"
+                    element={<CancelledItems />}
                 />
 
                 <Route
