@@ -1,6 +1,6 @@
 .menu-container {
-  margin-left: 80px;
-  margin-right: 80px;
+  margin-left: 110px;
+  margin-right: 110px;
 }
 
 .menu-ns .dropdown-toggle::after {
@@ -34,7 +34,9 @@
 }
 
 .menu-ns .nav-item a {
-  color: var(--gray-text) !important;
+  color: var(--text-color-3) !important;
+  font-weight: 500;
+  font-size: 18px;
 }
 
 .menu-ns .nav-link {
@@ -76,6 +78,9 @@
     margin-left: 25px;
     margin-right: 25px;
   }
+  .menu-ns .nav-item a {
+    font-size: 14px;
+  }
 }
 
 @media screen and (max-width: 1366px) {
@@ -83,6 +88,9 @@
     padding: 12px 1rem;
     padding-top: 8px;
     padding-bottom: 9px;
+  }
+  .menu-ns .nav-item a {
+    font-size: 12px;
   }
 }
 
@@ -92,15 +100,11 @@
   }
 } */
 
-/* @media screen and (max-width: 1200px) {
-  .menu-ns {
-    border-top: none;
-    border-bottom: none;
+@media screen and (max-width: 1200px) {
+  .menu-ns .navbar-toggler {
+    flex: 0.01;
   }
 }
-
-*/
-
 @media screen and (max-width: 1198px) {
   .menu-ns .navbar {
     display: flex;
@@ -120,11 +124,6 @@
     margin-left: 0px;
     margin-right: 0px;
   }
-
-  .menu-ns .navbar-toggler {
-    flex: 0.01;
-  }
-
   .menu-ns .nav-item {
     margin-right: 25px;
   }

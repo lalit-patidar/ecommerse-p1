@@ -6,7 +6,7 @@ function Footer() {
   return (
     <footer className="my-nicho-shop-footer">
       <div className="footer-links-container-ns">
-        <ul className="small-text footer-links">
+        <ul className="footer-links">
           <li>
             <a href="">About Us</a>
           </li>

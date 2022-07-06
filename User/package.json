@@ -13,6 +13,7 @@
     "@material-ui/icons": "^4.11.3",
     "@material-ui/lab": "^4.0.0-alpha.61",
     "@mui/icons-material": "^5.8.0",
+    "@mui/lab": "^5.0.0-alpha.89",
     "@mui/material": "^5.8.1",
     "@popperjs/core": "^2.11.0",
     "@reduxjs/toolkit": "^1.8.3",

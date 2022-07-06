@@ -6,15 +6,15 @@ function Copyright() {
     <div className="copyright">
       <p className="small-text">
         Copyright 2017 NichoShop Inc. All rights reserved.{" "}
-        <span className="underline">
+        <span>
           <a href="">User agreement</a>
         </span>
-        .{" "}
-        <span className="underline">
+        ,{" "}
+        <span>
           <a href="">Privicy</a>
         </span>{" "}
         and{" "}
-        <span className="underline">
+        <span>
           <a href="">Cookies</a>
         </span>
         .

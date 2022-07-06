@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import "./Searchbar.css";
 import { Form } from "react-bootstrap";
+import SearchIcon from '@mui/icons-material/Search';
+import Search from '../../assets/cancelled-img/Search.svg'
+import "./Searchbar.css";
 
 const categories = [
   {
@@ -157,7 +159,7 @@ function Searchbar() {
           className="search-bar-input small-text"
           type="text"
           id="header-search"
-          placeholder="Search"
+          placeholder="Search..."
           name="s"
           onChange={handleChange}
         />
@@ -177,13 +179,11 @@ function Searchbar() {
                 return <option value={id}>{category}</option>;
               })}
             </Form.Select>
-            {/* <i class="bi bi-chevron-compact-down"></i>;
-          <p className="smaller-text">All categories</p> */}
           </div>
-          <button className="btn-search" type="submit">
-            <i class="bi bi-search"></i>
-          </button>
         </div>
+        <button className="btn-search" type="submit">
+          <img src={Search} alt='Search' />
+        </button>
       </form>
       {search.length !== 0 ? <Matches /> : null}
     </div>
