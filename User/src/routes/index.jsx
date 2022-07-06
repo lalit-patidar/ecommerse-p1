@@ -39,6 +39,7 @@ import EmailUs from "../pages/MyNichoShop/HelpContact/EmailUs";
 import SendUsDocumentation from "../pages/MyNichoShop/HelpContact/SendUsDocumentation";
 import Messages from "../pages/MyNichoShop/Messages";
 import Order from "../pages/MyNichoShop/Purchases/Order";
+import PurchasesCancelledOrder from "../pages/MyNichoShop/Purchases/PurchasesCancelledOrder";
 import PurchaseClaim from "../pages/MyNichoShop/Purchases/PurchaseClaim";
 import PurchaseList from "../pages/MyNichoShop/Purchases/PurchaseList";
 import PurchaseOpen from "../pages/MyNichoShop/Purchases/PurchaseOpen";
@@ -55,6 +56,7 @@ import ProductInfo from "../pages/MyNichoShop/SellerCentral/ProductInfo";
 import SellerCentralOrdersClaims from "../pages/MyNichoShop/SellerCentral/SellerCentralClaim/SellerCentralOrdersClaims";
 import ConfirmShipment from "../pages/MyNichoShop/SellerCentral/Shipment";
 import WatchList from "../pages/MyNichoShop/WatchList";
+import CancleOrderDetail from "../pages/MyNichoShop/Purchases/Order/CancleOrderDetail";
 
 const RootRoute = () => {
     return (
@@ -166,6 +168,8 @@ const RootRoute = () => {
                 <Route path="/bidding" element={<Bidding />} />
                 <Route path="/watchlist" element={<WatchList />} />
                 <Route path="/purchases/order" element={<Order />} />
+                <Route path="/cancleorderdetail" element={<CancleOrderDetail />} />
+                <Route path="/purchases/cancelled" element={<PurchasesCancelledOrder />} />
                 <Route path="/addresses" element={<Addresses />} />
                 <Route path="/messages" element={<Messages />} />
                 <Route path="/sellercentral" element={<SellerCentral />} />
@@ -289,7 +293,6 @@ const RootRoute = () => {
                 */}
                 <Route path="/shoping-cart" element={<ShopingCart />} />
                 <Route path="/checkout" element={<CheckOut />} />
-
                 {/* 
                     random
                 */}

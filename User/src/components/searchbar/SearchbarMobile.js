@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "./Searchbar.css";
 import { Form } from "react-bootstrap";
+import Search from '../../assets/cancelled-img/Search.svg'
+import "./Searchbar.css";
 
 const categories = [
   {
@@ -167,7 +168,7 @@ function SearchbarMobile() {
             </Form.Select>
           </div>
           <button className="btn-search" type="submit">
-            <i class="bi bi-search"></i>
+            <img src={Search} alt='Search' />
           </button>
         </div>
       </form>
