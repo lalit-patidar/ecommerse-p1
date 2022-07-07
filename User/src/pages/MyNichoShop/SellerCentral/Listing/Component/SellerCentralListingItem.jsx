@@ -1,16 +1,36 @@
-import React from 'react'
-import { Badge, Dropdown, Form } from "react-bootstrap";
+import React, {useRef, useState} from 'react'
+import { useEffect } from 'react';
+import { Alert, Badge, Button, Dropdown, Form, Modal } from "react-bootstrap";
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import ProductImg from "./../../../../../assets/product-img/product.png";
 
 
 
-export default function SellerCentralListingItem({ data, handleItemSelection, checkAll }) {
+export default function SellerCentralListingItem({ data, handleItemSelection, handleSingleItemQuantity, setItemQuantitySuccess, itemQuantitySuccess }) {
+
+    const [showQuantitySaveButton, setShowQuantitySaveButton] = useState(false)
+    const [currentValue, setCurrentValue] = useState(data?.available)
+
+    useEffect(() => {
+        setCurrentValue(data?.available)
+    }, [data?.available])
+
+    function handleFocus(value){
+        setShowQuantitySaveButton(true)
+        setCurrentValue(value)
+    }
+
+    function handleSave(){
+        setShowQuantitySaveButton(false)
+        setItemQuantitySuccess(true)
+        handleSingleItemQuantity(data.id, currentValue)
+    }
+
     return (
         <tr>
             <td>
                 <div className="ui-table-checkbox">
-                    <Form.Check type="checkbox" onChange={(e) => (handleItemSelection(e.target.checked, data.id))} />
+                    <Form.Check type="checkbox" onChange={(e) => (handleItemSelection(e.target.checked, data))} />
                 </div>
             </td>
             <td>
@@ -38,8 +58,12 @@ export default function SellerCentralListingItem({ data, handleItemSelection, ch
             </td>
             <td style={{ width: '10%' }}>
                 <div className="ui-table-listing-status">
-                    <Form.Control type='number' defaultValue={data?.available} />
+                    <Form.Control type='number' value={currentValue}  onChange={(e) => (handleFocus(e.target.value))} />
                 </div>
+                {
+                    showQuantitySaveButton &&
+                    <Button className='text-primary bg-transparent border-0 text-center' onClick={() => (handleSave())}>Save</Button>
+                }
             </td>
             <td>
                 <div className="ui-table-listing-price">
@@ -90,6 +114,12 @@ export default function SellerCentralListingItem({ data, handleItemSelection, ch
                     </Dropdown>
                 </div>
             </td>
+            {/* <Modal show={itemQuantitySuccess} fullscreen='sm' onHide={() => (setItemQuantitySuccess(false))}>
+                <Modal.Header closeButton />
+                <Alert variant="success" className="success-message">
+                    <p>Listing has been updated.</p>
+                </Alert>
+            </Modal> */}
         </tr>
     )
 }
