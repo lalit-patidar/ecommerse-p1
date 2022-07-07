@@ -133,14 +133,10 @@
     grid-template-columns: 1fr 2fr 1fr;
     grid-column-gap: 1rem;
     padding: 1rem 0;
-    
+
     .css-1pahdxg-control,
     .css-1s2u09g-control {
         height: 42px !important;
-    }
-    
-    &.unsold{
-        grid-template-columns: 1fr 1fr 2fr;
     }
 }
 
@@ -482,85 +478,4 @@
 }
 
 
-.confirmation-modal-wrapper{
-    border-radius: 6px;
-    border: 1px solid #CBCBCB;
-    margin-top: 10%;
-}
 
-.custom-radio-button{
-    display: flex;
-    align-items: center;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 22px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-    input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-    }
-
-    .checkmark {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 25px;
-        width: 25px;
-        background-color: transparent;
-        border-radius: 50%;
-        border: 1px solid rgba(0,0,0,0.5);
-    } 
-
-    &:hover input ~ .checkmark {
-    background-color: #ccc;
-    }
-    input:checked ~ .checkmark {
-    background-color: transparent;
-    }
-    .checkmark:after {
-        content: "";
-        position: absolute;
-        display: none;
-    }
-    input:checked ~ .checkmark:after {
-        display: block;
-    }
-    .checkmark:after {
-        top: 1px;
-       left: 1px;
-       width: 90%;
-       height: 90%;
-       border-radius: 50%;
-       background: #2AAC27;
-   }
-   .radio-text{
-    font-size: 14px;
-   }
-}
-
-.selected-items-list{
-    li{
-        list-style-type: disc;
-        margin-left: 20px;
-    }
-}
-
-.confirmation-modal-button{
-    color: white;
-    background-color: #0072BC;
-    width: 35%;
-    margin: 0 10px;
-
-    &.outline{
-        background-color: transparent;
-        border: 1px solid #0072BC;
-        color: #0072BC;
-    }
-}

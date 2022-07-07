@@ -11,11 +11,53 @@ import SellerCentralListingItem from "./Component/SellerCentralListingItem";
 import { ItemList } from './data'
 import ProductImg from "./../../../../assets/product-img/product.png";
 import { useEffect, useState } from "react";
-import DeleteConfirmationModal from "./Component/DeleteConfirmationModal";
-import UpdateConfirmationModal from "./Component/UpdateConfirmationModal";
 
 
 const SellerCentralListing = () => {
+    const allListingOption = [
+        {
+            value: "all-listing",
+            label: "All Listing",
+        },
+        {
+            value: "fixed-price",
+            label: "Fixed Price",
+        },
+        {
+            value: "auction",
+            label: "Auction",
+        },
+        {
+            value: "auction-fixed-price",
+            label: "Auction + Fixed Price",
+        },
+        {
+            value: "classified-ad",
+            label: "Classified ad",
+        },
+    ];
+
+    const searchOption = [
+        {
+            value: "all-listing",
+            label: "All Listing",
+        },
+        {
+            value: "nsln",
+            label: "NSLN",
+        },
+    ];
+
+    const actionOnSelectedOption = [
+        {
+            value: "",
+            label: "None",
+        },
+        {
+            value: "delete",
+            label: "Delete",
+        },
+    ];
     const timeOption = [
         {
             value: "24-hours",
@@ -47,60 +89,18 @@ const SellerCentralListing = () => {
         },
     ];
 
-    const searchOption = [
-        {
-            value: "all-listing",
-            label: "All Listing",
-        },
-        {
-            value: "nsln",
-            label: "NSLN",
-        },
-    ];
-
-    const actionOnSelectedOption = [
-        {
-            value: "",
-            label: "None",
-        },
-        {
-            value: "update",
-            label: "Update Quantity",
-        },
-        {
-            value: "delete",
-            label: "Delete",
-        },
-    ];
-
     const [list, setList] = useState(null)
     const [selectedList, setSelectedList] = useState([])
     const [showActionButton, setShowActionButton] = useState(null)
     const [selectedAction, setSelectedAction] = useState("")
     const [success, setSuccess] = useState(null)
-    const [showConfrimationModal, setShowConfirmationModal] = useState(false)
-    const [itemQuantitySuccess, setItemQuantitySuccess] = useState(false)
-
-
 
     useEffect(() => {
         setList(ItemList)
     }, [ItemList])
 
     function runDeleteList() {
-        const newList = list?.filter(item => (!selectedList.includes(item)))
-        setList(newList)
-    }
-    function runUpdateList(value) {
-        const newList = list?.map(item => {
-            var found = selectedList.find(obj => obj.id === item.id);
-            if (found) {
-                // item = Object.assign(item, found);
-                item.available = value
-            }
-            return item;
-          });
-
+        const newList = list?.filter(item => (!selectedList.includes(item.id)))
         setList(newList)
     }
 
@@ -119,85 +119,40 @@ const SellerCentralListing = () => {
         console.log(selectedAction)
         if (selectedList.length > 0) {
             if (selectedAction === "delete") {
-                setShowConfirmationModal(true)
+                runDeleteList()
+                setSuccess(true)
             }
-            else if (selectedAction === "update") {
-                setShowConfirmationModal(true)
-            }
-        }
-    }
-    
-    function handleFinish(value){
-        if(selectedAction === "delete"){
-            runDeleteList()
-            setShowConfirmationModal(false)
-            setSuccess(true)
             setSelectedList([])
         }
-        else if(selectedAction === "update"){
-            runUpdateList(value)
-            setShowConfirmationModal(false)
-            setSuccess(true)
-        }
+
+        const timer = setTimeout(() => {
+            setSuccess(null)
+        }, 2000)
     }
 
-
-    function handleItemSelection(checked, item) {
+    function handleItemSelection(checked, id) {
         console.log("handleItemSelection", checked)
         if (checked) {
-            setSuccess(false)
             setSelectedList(prev => (
                 [
                     ...prev,
-                    item
+                    id
                 ]
             ))
         }
         else if (!checked) {
             setSelectedList(prev => (
-                prev.filter(e => {
-                    return e.id !== item.id
+                prev.filter(item => {
+                    return item !== id
                 })
             ))
         }
     }
 
-    function handleSingleItemQuantity(id, value){
-        setList(prev => (
-            prev.map(item => {
-                if(item.id === id){
-                    item.available = value
-                    return item
-                }
-                else{
-                    return item
-                }
-
-            })
-        ))
-    }
-
-    useEffect(() => {
-        var timer
-        if(itemQuantitySuccess){
-            timer = setTimeout(() => {
-                setItemQuantitySuccess(false)
-            }, 5000)
-        }
-
-        return () => {
-            clearTimeout(timer)   
-        }
-    }, [itemQuantitySuccess])
-
 
     useEffect(() => {
         console.log(selectedList)
     }, [selectedList])
-
-    useEffect(() => {
-        console.log(list)
-    }, [list])
 
 
     return (
@@ -237,35 +192,27 @@ const SellerCentralListing = () => {
                             <p>Listing</p>
                         </div>
                         {
-                            success && selectedAction === "delete" ?
+                            success ?
                                 <Alert variant="success" className="success-message">
                                     <h5>Listings deleted</h5>
                                     <p>You have successfully deleted your listings.</p>
-                                </Alert>
-                                :
-                            success && selectedAction === "update" ?
-                                <Alert variant="success" className="success-message">
-                                    <h5>Listings Updated</h5>
-                                    <p>You have successfully updated your listings.</p>
                                 </Alert>
                                 :
                                 <></>
                         }
                         <div className="ui-scl-tab-filter-box">
                             <div className="ui-scl-head-tab">
-                                <Link to='/sellercentral/listing/'>
-                                <button>
-                                    <span>{list?.length}</span> Active
-                                </button>
+                                <Link to='/sellercentral/listing'>
+                                    <button>
+                                        <span>99</span> Active
+                                    </button>
                                 </Link>
                                 <button className="active">
                                     <span>0</span> Out of Stock
                                 </button>
-                                <Link to='/sellercentral/listing/unsold'>
-                                    <button>
-                                        <span>8</span> Unsold
-                                    </button>
-                                </Link>
+                                <button>
+                                    <span>8</span> Unsold
+                                </button>
                             </div>
                             <div className="ui-scl-head-filter">
                                 <Select options={timeOption} />
@@ -285,7 +232,7 @@ const SellerCentralListing = () => {
                                     <button>Reset</button>
                                 </div>
                             </div>
-                            <p>Results: {list?.length}</p>
+                            <p>Results: 9</p>
                         </div>
                         <div className="ui-soc-table-head">
                             <div className="ui-soc-table-head-left">
@@ -318,14 +265,6 @@ const SellerCentralListing = () => {
                             </div>
                         </div>
                         <div className="ui-soc-table">
-                            {
-                                itemQuantitySuccess ?
-                                    <Alert variant="success" className="success-message mt-3">
-                                        <p>Listing have been updated.</p>
-                                    </Alert>
-                                    :
-                                    <></>
-                            }
                             <table>
                                 <thead>
                                     <tr>
@@ -344,7 +283,7 @@ const SellerCentralListing = () => {
                                 <tbody>
                                     {
                                         list?.map(item => (
-                                            <SellerCentralListingItem key={item.id} data={item} handleItemSelection={handleItemSelection} handleSingleItemQuantity={handleSingleItemQuantity} itemQuantitySuccess={itemQuantitySuccess} setItemQuantitySuccess={setItemQuantitySuccess} />
+                                            <SellerCentralListingItem key={item.id} data={item} handleItemSelection={handleItemSelection} />
                                         ))
                                     }
                                 </tbody>
@@ -438,15 +377,6 @@ const SellerCentralListing = () => {
                 </Row>
             </Container>
             <Footer />
-            {
-                showConfrimationModal && selectedAction === "delete" ?
-                <DeleteConfirmationModal show={showConfrimationModal} setShow={setShowConfirmationModal} handleFinish={handleFinish} items={selectedList} />
-                :
-                showConfrimationModal && selectedAction === "update" ?
-                <UpdateConfirmationModal show={showConfrimationModal} setShow={setShowConfirmationModal} handleFinish={handleFinish} items={selectedList} />
-                :
-                <></>
-            }
         </div>
     );
 };

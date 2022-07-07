@@ -48,7 +48,6 @@ import ContactBuyer from "../pages/MyNichoShop/SellerCentral/ContactBuyer";
 import SellerCentralOrder from "../pages/MyNichoShop/SellerCentral/Order";
 import SellerCentralListing from "../pages/MyNichoShop/SellerCentral/Listing";
 import SellerCentralListingOutOfStock from "../pages/MyNichoShop/SellerCentral/Listing/OutOfStock";
-import SellerCentralListingUnsold from "../pages/MyNichoShop/SellerCentral/Listing/Unsold";
 import SellerCentralOrderCancellations from "../pages/MyNichoShop/SellerCentral/Order/Cancellations";
 import CancelItem from "../pages/MyNichoShop/SellerCentral/Order/Cancellations/CancelItem";
 import CancellationApproved from "../pages/MyNichoShop/SellerCentral/Order/Cancellations/CancellationApproved";
@@ -342,10 +341,6 @@ const RootRoute = () => {
                 <Route
                     path="sellercentral/listing/out-of-stock"
                     element={<SellerCentralListingOutOfStock />}
-                />
-                <Route
-                    path="sellercentral/listing/unsold"
-                    element={<SellerCentralListingUnsold />}
                 />
 
                 <Route path="/lisft-of-listing" element={<Listings />} />

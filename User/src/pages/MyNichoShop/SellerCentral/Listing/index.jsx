@@ -11,7 +11,6 @@ import SellerCentralListingItem from "./Component/SellerCentralListingItem";
 import { ItemList } from './data'
 import ProductImg from "./../../../../assets/product-img/product.png";
 import { useEffect, useState } from "react";
-import DeleteConfirmationModalLarge from "./Component/DeleteConfirmationModalLarge";
 
 
 const SellerCentralListing = () => {
@@ -65,8 +64,6 @@ const SellerCentralListing = () => {
     const [showActionButton, setShowActionButton] = useState(null)
     const [selectedAction, setSelectedAction] = useState("")
     const [success, setSuccess] = useState(null)
-    const [showConfrimationModal, setShowConfirmationModal] = useState(false)
-    // const [confirm, setConfirm] = useState(false)
 
 
     useEffect(() => {
@@ -74,7 +71,7 @@ const SellerCentralListing = () => {
     }, [ItemList])
 
     function runDeleteList() {
-        const newList = list?.filter(item => (!selectedList.includes(item)))
+        const newList = list?.filter(item => (!selectedList.includes(item.id)))
         setList(newList)
     }
 
@@ -93,34 +90,31 @@ const SellerCentralListing = () => {
         console.log(selectedAction)
         if (selectedList.length > 0) {
             if (selectedAction === "delete") {
-                setShowConfirmationModal(true)
+                runDeleteList()
+                setSuccess(true)
             }
+            setSelectedList([])
         }
-    }
-    
-    function handleFinish(){
-        runDeleteList()
-        setShowConfirmationModal(false)
-        setSuccess(true)
-        setSelectedList([])
+
+        const timer = setTimeout(() => {
+            setSuccess(null)
+        }, 2000)
     }
 
-
-    function handleItemSelection(checked, item) {
+    function handleItemSelection(checked, id) {
         console.log("handleItemSelection", checked)
         if (checked) {
-            setSuccess(false)
             setSelectedList(prev => (
                 [
                     ...prev,
-                    item
+                    id
                 ]
             ))
         }
         else if (!checked) {
             setSelectedList(prev => (
-                prev.filter(e => {
-                    return e.id !== item.id
+                prev.filter(item => {
+                    return item !== id
                 })
             ))
         }
@@ -180,18 +174,16 @@ const SellerCentralListing = () => {
                         <div className="ui-scl-tab-filter-box">
                             <div className="ui-scl-head-tab">
                                 <button className="active">
-                                    <span>{list?.length}</span> Active
+                                    <span>99</span> Active
                                 </button>
                                 <Link to='/sellercentral/listing/out-of-stock'>
                                     <button>
                                         <span>0</span> Out of Stock
                                     </button>
                                 </Link>
-                                <Link to='/sellercentral/listing/unsold'>
-                                    <button>
-                                        <span>8</span> Unsold
-                                    </button>
-                                </Link>
+                                <button>
+                                    <span>8</span> Unsold
+                                </button>
                             </div>
                             <div className="ui-scl-head-filter">
                                 <Select options={allListingOption} />
@@ -211,7 +203,7 @@ const SellerCentralListing = () => {
                                     <button>Reset</button>
                                 </div>
                             </div>
-                            <p>Results: {list?.length}</p>
+                            <p>Results: 9</p>
                         </div>
                         <div className="ui-soc-table-head">
                             <div className="ui-soc-table-head-left">
@@ -356,12 +348,6 @@ const SellerCentralListing = () => {
                 </Row>
             </Container>
             <Footer />
-            {
-                showConfrimationModal ?
-                <DeleteConfirmationModalLarge show={showConfrimationModal} setShow={setShowConfirmationModal} handleFinish={handleFinish} items={selectedList} />
-                :
-                <></>
-            }
         </div>
     );
 };
