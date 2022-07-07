@@ -57,6 +57,7 @@ import SellerCentralOrdersClaims from "../pages/MyNichoShop/SellerCentral/Seller
 import ConfirmShipment from "../pages/MyNichoShop/SellerCentral/Shipment";
 import WatchList from "../pages/MyNichoShop/WatchList";
 import CancleOrderDetail from "../pages/MyNichoShop/Purchases/Order/CancleOrderDetail";
+import AccountUpdateYourRegAddress from "../pages/MyNichoShop/Account/AccountUpdateYourRegAddress";
 
 const RootRoute = () => {
     return (
@@ -168,8 +169,14 @@ const RootRoute = () => {
                 <Route path="/bidding" element={<Bidding />} />
                 <Route path="/watchlist" element={<WatchList />} />
                 <Route path="/purchases/order" element={<Order />} />
-                <Route path="/cancleorderdetail" element={<CancleOrderDetail />} />
-                <Route path="/purchases/cancelled" element={<PurchasesCancelledOrder />} />
+                <Route
+                    path="/cancleorderdetail"
+                    element={<CancleOrderDetail />}
+                />
+                <Route
+                    path="/purchases/cancelled"
+                    element={<PurchasesCancelledOrder />}
+                />
                 <Route path="/addresses" element={<Addresses />} />
                 <Route path="/messages" element={<Messages />} />
                 <Route path="/sellercentral" element={<SellerCentral />} />
@@ -267,6 +274,10 @@ const RootRoute = () => {
                 <Route
                     path="/account/add-your-address"
                     element={<AccountAddYourAddress />}
+                />
+                <Route
+                    path="/account/update-your-reg-address"
+                    element={<AccountUpdateYourRegAddress />}
                 />
                 <Route
                     path="purchase/purchase-claim"

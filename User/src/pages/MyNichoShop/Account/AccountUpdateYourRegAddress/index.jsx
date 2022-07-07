@@ -1,4 +1,4 @@
-import "./accountaddyouraddress.scss";
+// import "./accountaddyouraddress.scss";
 import { ReactComponent as Logo } from "./../../../../assets/logo/logo.svg";
 import SelectCountry from "../../../../components/SelectCountry";
 import {
@@ -11,7 +11,7 @@ import {
 import PhoneNumber from "../../../../components/PhoneNumber";
 import { useState } from "react";
 
-const AccountAddYourAddress = () => {
+const AccountUpdateYourRegAddress = () => {
     // form all data
     const [getCountryData, setCountryData] = useState("");
     const [getFullNameData, setFullNameData] = useState("");
@@ -73,7 +73,7 @@ const AccountAddYourAddress = () => {
                                 <Logo />
                             </div>
                             <div className="ui-commont-form-box">
-                                <p>Add your address</p>
+                                <p>Update your registration address</p>
                                 <form onSubmit={formSubmitHandler}>
                                     <div className="mb-3">
                                         <SelectCountry
@@ -239,4 +239,4 @@ const AccountAddYourAddress = () => {
     );
 };
 
-export default AccountAddYourAddress;
+export default AccountUpdateYourRegAddress;
