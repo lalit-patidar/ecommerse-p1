@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./MyNichoShop.css";
+import "./mynichoshop.css";
 import Menu from "../../components/menu/Menu";
 import Card from "../../components/MyNichoShop/card/Card";
 import Footer from "../../components/MyNichoShop/footer/Footer";

@@ -1,5 +1,5 @@
 import React from "react";
-import "./../../MyNichoShop.css";
+import "./../../mynichoshop.css";
 import Menu from "../../../../components/menu/Menu";
 import Footer from "../../../../components/MyNichoShop/footer/Footer";
 import Main from "./Main.purchases";
