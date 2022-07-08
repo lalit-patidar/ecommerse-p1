@@ -131,10 +131,14 @@
     grid-template-columns: 1fr 1fr 2fr;
     grid-column-gap: 1rem;
     padding: 1rem 0;
-
+    
     .css-1pahdxg-control,
     .css-1s2u09g-control {
         height: 42px !important;
+    }
+    
+    &.short{
+        grid-template-columns: 1fr 2fr 1fr;
     }
 }
 
