@@ -66,6 +66,8 @@ import ConfirmShipment from "../pages/MyNichoShop/SellerCentral/Shipment";
 import WatchList from "../pages/MyNichoShop/WatchList";
 import CancleOrderDetail from "../pages/MyNichoShop/Purchases/Order/CancleOrderDetail";
 import AccountUpdateYourRegAddress from "../pages/MyNichoShop/Account/AccountUpdateYourRegAddress";
+import Returns from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/Returns";
+import Claims from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/Claims";
 
 
 
@@ -246,6 +248,14 @@ const RootRoute = () => {
                 <Route
                     path="/sellercentral/order/order-invoice"
                     element={<OrderInvoice />}
+                />
+                <Route
+                    path="/sellercentral/order/returns"
+                    element={<Returns />}
+                />
+                <Route
+                    path="/sellercentral/order/claims"
+                    element={<Claims />}
                 />
                 <Route
                     path="/sellercentral/product-info"
