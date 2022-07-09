@@ -3,9 +3,10 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const loginApi = createApi({
     reducerPath: "loginApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://stage-api.nichoshop.com/api/v1",
+        baseUrl: process.env.REACT_APP_DOMIAN_API,
     }),
     endpoints: (builder) => ({
+        // login call api
         postLogin: builder.mutation({
             query: (data) => {
                 const { id, pwd, reCaptcha } = data;
@@ -19,7 +20,16 @@ export const loginApi = createApi({
                 };
             },
         }),
+        // login get data api
+        getCheckingDuo: builder.query({
+            query: (data) => {
+                return {
+                    url: `admin/login/status?data=${data}`,
+                    method: "GET",
+                };
+            },
+        }),
     }),
 });
 
-export const { usePostLoginMutation } = loginApi;
+export const { usePostLoginMutation, useGetCheckingDuoQuery } = loginApi;

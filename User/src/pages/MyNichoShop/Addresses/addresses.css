@@ -1,15 +1,19 @@
 .breadcrumb {
-    font-size: 14px;
+	font-size: 14px;
 }
+
 .breadcrumb-item+.breadcrumb-item::before {
-    content: var(--bs-breadcrumb-divider,'>')!important;
+	content: var(--bs-breadcrumb-divider, '>') !important;
 }
-.add_address_select{
-    margin-bottom: 10px;
+
+.add_address_select {
+	margin-bottom: 10px;
 }
+
 .add_address_input {
 	margin-bottom: 10px;
 }
+
 /*--------------------------------------------------------------
 # CS Form
 --------------------------------------------------------------*/
@@ -45,12 +49,15 @@
 input[type=text]:focus {
 	box-shadow: none;
 }
+
 input[type=password]:focus {
 	box-shadow: none;
 }
+
 input[type=select]:focus {
 	box-shadow: none;
 }
+
 .has-float-label .form-control:placeholder-shown:not(:focus)::-webkit-input-placeholder {
 	opacity: .5;
 	color: #000
@@ -150,4 +157,8 @@ button.btn.btn-Cancel:hover {
 	align-items: center;
 	padding: 7px 70px;
 	color: #fff;
+}
+
+.table> :not(:first-child) {
+	border-top: none;
 }

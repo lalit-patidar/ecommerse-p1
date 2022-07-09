@@ -58,6 +58,10 @@ import ConfirmShipment from "../pages/MyNichoShop/SellerCentral/Shipment";
 import WatchList from "../pages/MyNichoShop/WatchList";
 import CancleOrderDetail from "../pages/MyNichoShop/Purchases/Order/CancleOrderDetail";
 import AccountUpdateYourRegAddress from "../pages/MyNichoShop/Account/AccountUpdateYourRegAddress";
+import AccountAddPhoneNumber from "../pages/MyNichoShop/Account/AccountAddPhoneNumber";
+import AddressNotAddedYet from "../pages/MyNichoShop/Addresses/AddressNotAddedYet";
+import AddressAddYourAddress from "../pages/MyNichoShop/Addresses/AddressAddYourAddress";
+import AddressYourShippingAddress from "../pages/MyNichoShop/Addresses/AddressYourShippingAddress";
 
 const RootRoute = () => {
     return (
@@ -160,6 +164,13 @@ const RootRoute = () => {
                     MyNichoShop > account > close-request
                     MyNichoShop > account > request-cancel
                     MyNichoShop > account > request-process
+                    MyNichoShop > account > change-account-type
+                    MyNichoShop > account > change-your-name
+                    MyNichoShop > account > verify-you
+                    MyNichoShop > account > update-your-email-address
+                    MyNichoShop > account > add-your-address
+                    MyNichoShop > account > update-your-reg-address
+                    MyNichoShop > account > add-phone-number
                     MyNichoShop > purchase > purchase-claim
                     MyNichoShop > purchase > purchase-list
                     MyNichoShop > purchase > purchase-open
@@ -178,6 +189,18 @@ const RootRoute = () => {
                     element={<PurchasesCancelledOrder />}
                 />
                 <Route path="/addresses" element={<Addresses />} />
+                <Route
+                    path="/addresses/you-have-not-added-address-yet"
+                    element={<AddressNotAddedYet />}
+                />
+                <Route
+                    path="/addresses/add-your-address"
+                    element={<AddressAddYourAddress />}
+                />
+                <Route
+                    path="/addresses/your-shipping-address"
+                    element={<AddressYourShippingAddress />}
+                />
                 <Route path="/messages" element={<Messages />} />
                 <Route path="/sellercentral" element={<SellerCentral />} />
                 <Route
@@ -280,15 +303,19 @@ const RootRoute = () => {
                     element={<AccountUpdateYourRegAddress />}
                 />
                 <Route
-                    path="purchase/purchase-claim"
+                    path="/account/add-phone-number"
+                    element={<AccountAddPhoneNumber />}
+                />
+                <Route
+                    path="/purchase/purchase-claim"
                     element={<PurchaseClaim />}
                 />
                 <Route
-                    path="purchase/purchase-list"
+                    path="/purchase/purchase-list"
                     element={<PurchaseList />}
                 />
                 <Route
-                    path="purchase/purchase-open"
+                    path="/purchase/purchase-open"
                     element={<PurchaseOpen />}
                 />
 

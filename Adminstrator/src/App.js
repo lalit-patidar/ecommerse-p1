@@ -11,33 +11,45 @@ import TemporaryPassword from "./pages/SignIn/TemporaryPassword";
 import CustomerNote from "./pages/CustomerSupport/CustomerNote/CustomerNote";
 import AgentInfo from "./pages/CustomerSupport/AgentInfo/AgentInfo";
 import AgentReport from "./pages/CustomerSupport/AgentReport/AgentReport";
+import Admin from "./pages/Admin";
+import PrivateRoute from "./routes/PrivateRoute";
+import PublicRoute from "./routes/PublicRoute";
 
 const App = () => {
     return (
         <>
             <Routes>
-                <Route path="/" element={<SignIn />} />
-                <Route path="/administrator" element={<Administrator />} />
-                <Route path="/signin" element={<SignIn />} />
-                <Route
-                    path="/temporary-password"
-                    element={<TemporaryPassword />}
-                />
-                <Route path="/category" element={<Category />} />
+                {/* private route */}
+                <Route element={<PrivateRoute />}>
+                    <Route path="/administrator" element={<Administrator />} />
+                    <Route path="/category" element={<Category />} />
 
-                <Route path="/customer-support" element={<CustomerSupport />} />
-                <Route
-                    path="/customer-support-note"
-                    element={<CustomerNote />}
-                />
-                <Route
-                    path="/customer-support-agent-info"
-                    element={<AgentInfo />}
-                />
-                <Route
-                    path="/customer-support-agent-report"
-                    element={<AgentReport />}
-                />
+                    <Route
+                        path="/customer-support"
+                        element={<CustomerSupport />}
+                    />
+                    <Route
+                        path="/customer-support-note"
+                        element={<CustomerNote />}
+                    />
+                    <Route
+                        path="/customer-support-agent-info"
+                        element={<AgentInfo />}
+                    />
+                    <Route
+                        path="/customer-support-agent-report"
+                        element={<AgentReport />}
+                    />
+                </Route>
+                {/* public route */}
+                <Route element={<PublicRoute />}>
+                    <Route path="/" element={<SignIn />} />
+                    <Route path="/admin" element={<Admin />} />
+                    <Route
+                        path="/temporary-password"
+                        element={<TemporaryPassword />}
+                    />
+                </Route>
             </Routes>
         </>
     );

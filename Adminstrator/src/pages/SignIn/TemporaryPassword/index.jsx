@@ -3,7 +3,6 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import "./../signin.css";
 import ReCAPTCHA from "react-google-recaptcha";
 import Footer from "../../../container/Footer/footer";
-import { postRequest } from "../../../helper/ajax/ajaxRequest";
 
 const TemporaryPassword = () => {
     const [id, setId] = useState("");
@@ -34,23 +33,23 @@ const TemporaryPassword = () => {
     const submitHandler = (e) => {
         e.preventDefault();
 
-        if (id.length !== 0 && reCAPTCHA.length !== 0) {
-            postRequest(
-                {
-                    username: id,
-                },
-                `/admin/auth/temporary-password/request-temporary-password`
-            )
-                .then((res) => {
-                    console.log(res);
-                })
-                .catch((err) => {
-                    setIdPasswordMatch(true);
-                    console.log(err);
-                });
-        } else {
-            setFormEmpty(true);
-        }
+        // if (id.length !== 0 && reCAPTCHA.length !== 0) {
+        //     postRequest(
+        //         {
+        //             username: id,
+        //         },
+        //         `/admin/auth/temporary-password/request-temporary-password`
+        //     )
+        //         .then((res) => {
+        //             console.log(res);
+        //         })
+        //         .catch((err) => {
+        //             setIdPasswordMatch(true);
+        //             console.log(err);
+        //         });
+        // } else {
+        //     setFormEmpty(true);
+        // }
     };
 
     return (
