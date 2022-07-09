@@ -40,9 +40,6 @@ import SendUsDocumentation from "../pages/MyNichoShop/HelpContact/SendUsDocument
 import Messages from "../pages/MyNichoShop/Messages";
 import Order from "../pages/MyNichoShop/Purchases/Order";
 import PurchasesCancelledOrder from "../pages/MyNichoShop/Purchases/PurchasesCancelledOrder";
-// import PurchaseClaim from "../pages/MyNichoShop/Purchases/PurchaseReportItem";
-// import PurchaseList from "../pages/MyNichoShop/Purchases/PurchaseClaim";
-// import PurchaseOpen from "../pages/MyNichoShop/Purchases/PurchaseOpen";
 import SellerCentral from "../pages/MyNichoShop/SellerCentral";
 import ContactBuyer from "../pages/MyNichoShop/SellerCentral/ContactBuyer";
 import SellerCentralOrder from "../pages/MyNichoShop/SellerCentral/Order";
@@ -73,6 +70,8 @@ import AddressYourShippingAddress from "../pages/MyNichoShop/Addresses/AddressYo
 import PurchaseOpen from "../pages/MyNichoShop/Purchases/PurchaseOpen";
 import PurchaseClaim from "../pages/MyNichoShop/Purchases/PurchaseClaim";
 import PurchaseReportItem from "../pages/MyNichoShop/Purchases/PurchaseReportItem";
+import Returns from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/Returns";
+import Claims from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/Claims";
 
 const RootRoute = () => {
     return (
@@ -270,6 +269,14 @@ const RootRoute = () => {
                 <Route
                     path="/sellercentral/order/order-invoice"
                     element={<OrderInvoice />}
+                />
+                <Route
+                    path="/sellercentral/order/returns"
+                    element={<Returns />}
+                />
+                <Route
+                    path="/sellercentral/order/claims"
+                    element={<Claims />}
                 />
                 <Route
                     path="/sellercentral/product-info"
