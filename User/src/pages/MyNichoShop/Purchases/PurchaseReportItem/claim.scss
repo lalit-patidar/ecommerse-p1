@@ -2,6 +2,7 @@
   * {
     font-family: "Inter";
   }
+
   font-size: 100%;
 
   .report {
@@ -18,7 +19,8 @@
       list-style-type: none;
       padding: 0;
       margin: 0;
-      margin-bottom: 20px;
+      margin-bottom: 20px !important;
+
       li {
         display: inline-block;
         font-size: 1em;
@@ -42,6 +44,7 @@
         }
       }
     }
+
     .report-content {
       border: 1px solid #cbcbcb;
       border-radius: 6px;
@@ -145,6 +148,7 @@
             border-bottom: 1px dashed #cbcbcb;
             width: 60%;
           }
+
           &:last-child .item-border {
             border-bottom: 0 !important;
           }
@@ -191,6 +195,7 @@
             width: 250px;
             height: 40px;
             border-radius: 6px;
+
             &:first-child {
               border: 1px solid #0072bc;
               color: #0072bc;
@@ -210,6 +215,7 @@
     }
   }
 }
+
 .purchase-footer {
   padding-top: 20px;
   border-top: 1px solid #cbcbcb;
@@ -228,6 +234,7 @@
 @media only screen and (max-width: 1220px) {
   .purchase-claim {
     font-size: 80%;
+
     .report {
       .order {
         li {

@@ -1,13 +1,15 @@
 import Menu from "../../../../components/menu/Menu";
-import Footer from "./Footer";
-import Report from "./Report";
+import Footer from "../PurchaseReportItem/Footer";
+import Breadcrumb from "./Breadcrumb";
+import Content from "./Content";
+import "./list.scss";
 
 const PurchaseClaim = () => {
     return (
-        <div className="purchase-claim">
-            {/* <Header /> */}
+        <div className="purchase-claim-list">
             <Menu />
-            <Report />
+            <Breadcrumb />
+            <Content />
             <Footer />
         </div>
     );

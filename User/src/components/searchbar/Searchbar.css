@@ -60,10 +60,11 @@
   align-items: center;
   border: 1px solid var(--light-gray);
   color: var(--gray);
-  height: 41px;
+  /* height: 41px; */
   /* width: 50px;
   max-width: 500px; */
   /* max-width: 150px; */
+  padding: 0 1rem;
 }
 
 #category {

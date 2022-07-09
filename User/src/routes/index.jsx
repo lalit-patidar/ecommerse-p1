@@ -40,18 +40,26 @@ import SendUsDocumentation from "../pages/MyNichoShop/HelpContact/SendUsDocument
 import Messages from "../pages/MyNichoShop/Messages";
 import Order from "../pages/MyNichoShop/Purchases/Order";
 import PurchasesCancelledOrder from "../pages/MyNichoShop/Purchases/PurchasesCancelledOrder";
-import PurchaseClaim from "../pages/MyNichoShop/Purchases/PurchaseClaim";
-import PurchaseList from "../pages/MyNichoShop/Purchases/PurchaseList";
-import PurchaseOpen from "../pages/MyNichoShop/Purchases/PurchaseOpen";
+// import PurchaseClaim from "../pages/MyNichoShop/Purchases/PurchaseReportItem";
+// import PurchaseList from "../pages/MyNichoShop/Purchases/PurchaseClaim";
+// import PurchaseOpen from "../pages/MyNichoShop/Purchases/PurchaseOpen";
 import SellerCentral from "../pages/MyNichoShop/SellerCentral";
 import ContactBuyer from "../pages/MyNichoShop/SellerCentral/ContactBuyer";
 import SellerCentralOrder from "../pages/MyNichoShop/SellerCentral/Order";
+import SellerCentralListing from "../pages/MyNichoShop/SellerCentral/Listing";
+import SellerCentralListingOutOfStock from "../pages/MyNichoShop/SellerCentral/Listing/OutOfStock";
+import SellerCentralOrderCancellations from "../pages/MyNichoShop/SellerCentral/Order/Cancellations";
+import CancelItem from "../pages/MyNichoShop/SellerCentral/Order/Cancellations/CancelItem";
+import CancellationApproved from "../pages/MyNichoShop/SellerCentral/Order/Cancellations/CancellationApproved";
+import CancelledItems from "../pages/MyNichoShop/SellerCentral/Order/Cancellations/CancelledItems";
+import OrderCancelled from "../pages/MyNichoShop/SellerCentral/Order/Cancellations/OrderCancelled";
 import InTransit from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/InTransit";
 import NotYetPaid from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/NotYetPaid";
 import NotYetSheppid from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/NotYetSheppid";
 import OrderDetails from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/OrderDetails";
 import OrderInvoice from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/OrderInvoice";
 import ViewDetails from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/ViewDetails";
+import SellerCentralOverview from "../pages/MyNichoShop/SellerCentral/Overview";
 import ProductInfo from "../pages/MyNichoShop/SellerCentral/ProductInfo";
 import SellerCentralOrdersClaims from "../pages/MyNichoShop/SellerCentral/SellerCentralClaim/SellerCentralOrdersClaims";
 import ConfirmShipment from "../pages/MyNichoShop/SellerCentral/Shipment";
@@ -62,6 +70,9 @@ import AccountAddPhoneNumber from "../pages/MyNichoShop/Account/AccountAddPhoneN
 import AddressNotAddedYet from "../pages/MyNichoShop/Addresses/AddressNotAddedYet";
 import AddressAddYourAddress from "../pages/MyNichoShop/Addresses/AddressAddYourAddress";
 import AddressYourShippingAddress from "../pages/MyNichoShop/Addresses/AddressYourShippingAddress";
+import PurchaseOpen from "../pages/MyNichoShop/Purchases/PurchaseOpen";
+import PurchaseClaim from "../pages/MyNichoShop/Purchases/PurchaseClaim";
+import PurchaseReportItem from "../pages/MyNichoShop/Purchases/PurchaseReportItem";
 
 const RootRoute = () => {
     return (
@@ -172,7 +183,7 @@ const RootRoute = () => {
                     MyNichoShop > account > update-your-reg-address
                     MyNichoShop > account > add-phone-number
                     MyNichoShop > purchase > purchase-claim
-                    MyNichoShop > purchase > purchase-list
+                    MyNichoShop > purchase > purchase-report-item
                     MyNichoShop > purchase > purchase-open
                 */}
 
@@ -181,7 +192,7 @@ const RootRoute = () => {
                 <Route path="/watchlist" element={<WatchList />} />
                 <Route path="/purchases/order" element={<Order />} />
                 <Route
-                    path="/cancleorderdetail"
+                    path="/purchases/order/cancleorderdetail"
                     element={<CancleOrderDetail />}
                 />
                 <Route
@@ -206,6 +217,35 @@ const RootRoute = () => {
                 <Route
                     path="/sellercentral/order"
                     element={<SellerCentralOrder />}
+                />
+
+                <Route
+                    path="/sellercentral/overview"
+                    element={<SellerCentralOverview />}
+                />
+                <Route
+                    path="/sellercentral/order/cancelitems"
+                    element={<CancelItem />}
+                />
+
+                <Route
+                    path="/sellercentral/order/cancelleditems"
+                    element={<CancelledItems />}
+                />
+
+                <Route
+                    path="/sellercentral/order/ordercancelled"
+                    element={<OrderCancelled />}
+                />
+
+                <Route
+                    path="/sellercentral/order/cancellations"
+                    element={<SellerCentralOrderCancellations />}
+                />
+
+                <Route
+                    path="/sellercentral/order/cancellationapproved"
+                    element={<CancellationApproved />}
                 />
                 <Route
                     path="/sellercentral/order/not-yet-paid"
@@ -306,13 +346,14 @@ const RootRoute = () => {
                     path="/account/add-phone-number"
                     element={<AccountAddPhoneNumber />}
                 />
+
                 <Route
                     path="/purchase/purchase-claim"
                     element={<PurchaseClaim />}
                 />
                 <Route
-                    path="/purchase/purchase-list"
-                    element={<PurchaseList />}
+                    path="/purchase/purchase-report-item"
+                    element={<PurchaseReportItem />}
                 />
                 <Route
                     path="/purchase/purchase-open"
@@ -320,8 +361,16 @@ const RootRoute = () => {
                 />
 
                 {/* 
-                    ListOfListign
+                    ListOfListing
                 */}
+                <Route
+                    path="sellercentral/listing"
+                    element={<SellerCentralListing />}
+                />
+                <Route
+                    path="sellercentral/listing/out-of-stock"
+                    element={<SellerCentralListingOutOfStock />}
+                />
 
                 <Route path="/lisft-of-listing" element={<Listings />} />
 
