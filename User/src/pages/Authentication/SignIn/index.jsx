@@ -1,5 +1,5 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as Logo } from "./../../../assets/logo/logo.svg";
 import GoogleImg from "./../../../assets/form-social/google.png";
 import AppleImg from "./../../../assets/form-social/apple.png";
@@ -9,8 +9,15 @@ import { useRef, useState } from "react";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
 import { TextField } from "@mui/material";
 import "react-phone-number-input/style.css";
+import { usePostLoginMutation } from "../../../api/services/authApi";
+import { setLocalstore } from "../../../helper/localstore/localstore";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const SignIn = () => {
+    const navigate = useNavigate();
+    // login api
+    const [loginApi, { isLoading }] = usePostLoginMutation();
+
     const pwdInputRef = useRef();
 
     // is password show & hidden
@@ -30,6 +37,7 @@ const SignIn = () => {
     // submit form
     const [getEmail, setEmail] = useState("");
     const [getPassword, setPassword] = useState("");
+    const [getCaptcha, setCaptcha] = useState("");
 
     const [getFormSubmit, setFormSubmit] = useState(false);
 
@@ -47,6 +55,28 @@ const SignIn = () => {
     const formHandler = async (e) => {
         e.preventDefault();
         setFormSubmit(true);
+
+        if (
+            getEmail.length !== 0 &&
+            getPassword !== 0 &&
+            getCaptcha.length !== 0
+        ) {
+            const formData = {
+                login: getEmail,
+                password: getPassword,
+                grecaptcha: getCaptcha,
+            };
+            const res = await loginApi(formData);
+
+            if (res.data) {
+                setLocalstore("_userLogin", res.data);
+                navigate("/", { replace: true });
+            }
+        }
+    };
+
+    const captchaHandler = (value) => {
+        setCaptcha(value);
     };
     return (
         <>
@@ -118,7 +148,30 @@ const SignIn = () => {
                                                 "Enter Password"}
                                         </span>
                                     </Form.Group>
+                                    <ReCAPTCHA
+                                        className="mt-3 captcha"
+                                        sitekey="6Lef6nQgAAAAADoRd2Ps76UfUklHu1v5k_BIYCw1"
+                                        onChange={captchaHandler}
+                                        style={{
+                                            display: "block !important",
+                                        }}
+                                    />
+                                    {getFormSubmit && getCaptcha.length < 1 && (
+                                        <span className="ui-form-lable-error text-center d-blcok">
+                                            Captcha is required!
+                                        </span>
+                                    )}
                                     <Button variant="primary" type="submit">
+                                        {isLoading && (
+                                            <div
+                                                class="spinner-border spinner-border-sm me-3"
+                                                role="status"
+                                            >
+                                                <span class="visually-hidden">
+                                                    Loading...
+                                                </span>
+                                            </div>
+                                        )}
                                         Sign in
                                     </Button>
                                 </Form>

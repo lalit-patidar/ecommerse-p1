@@ -11,15 +11,16 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "./custom.scss";
 import App from "./App";
 
-import { createStore } from "redux";
-import allReducers from "./reducers";
+// import { createStore } from "redux";
+// import allReducers from "./reducers";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { store } from "./store/app/store";
 
-const store = createStore(
-    allReducers,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+// const store = createStore(
+//     allReducers,
+//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+// );
 
 ReactDOM.render(
     <React.StrictMode>

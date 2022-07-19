@@ -135,12 +135,7 @@
   font-size: 22px;
 }
 
-.authContainer
-  .authFormSection
-  .authFormBox
-  .textField
-  .error
-  label.Mui-focused {
+.authContainer .authFormSection .authFormBox .textField .error label.Mui-focused {
   color: #ff6666 !important;
 }
 
@@ -216,7 +211,7 @@
   width: 125px;
 }
 
-.countryCodeInput > div:before {
+.countryCodeInput>div:before {
   display: none;
 }
 
@@ -355,7 +350,7 @@
   border-radius: 6px;
 }
 
-.signUpContainer .successfullSignup .toolTipsHover > .redirectLink {
+.signUpContainer .successfullSignup .toolTipsHover>.redirectLink {
   font-weight: 500;
   font-size: 18px;
   color: #0072bc;
@@ -388,13 +383,7 @@
   color: #000000;
 }
 
-.signUpContainer
-  .successfullSignup
-  .toolTipsHover
-  .tooltipBox
-  ul
-  li
-  .redirectLink {
+.signUpContainer .successfullSignup .toolTipsHover .tooltipBox ul li .redirectLink {
   font-weight: 500;
   font-size: 16px;
   color: #0072bc;
@@ -444,6 +433,7 @@
   font-size: 20px;
   margin-right: 5px;
 }
+
 .choose-method .formTitle h2 {
   font-style: normal;
   font-weight: 600 !important;
@@ -464,10 +454,12 @@
   margin-bottom: 20px;
   padding-bottom: 24px;
 }
+
 .choose-method .authFormBox {
   border: unset !important;
   padding: 0px !important;
 }
+
 .choose-method a.choose-option strong svg {
   fill: #1FAEFF;
   font-size: 40px;
@@ -489,9 +481,11 @@
   color: #6C757D;
   word-break: break-all;
 }
+
 .choose-method form p {
   margin-bottom: 15px !important;
 }
+
 .choose-method .choose-option-txt h2 {
   font-style: normal;
   font-weight: 600;
@@ -504,12 +498,27 @@
   float: left;
   margin-bottom: 14px;
 }
-.choose-method .authFormBox .formTitle {border: unset !important;margin-bottom: 0 !important;}
+
+.choose-method .authFormBox .formTitle {
+  border: unset !important;
+  margin-bottom: 0 !important;
+}
+
 .choose-method p.formError {
   margin-bottom: 0 !important;
 }
-.choose-method p.formError strong {color: #000;font-weight: 400;}
-.choose-method strong img {position: relative;top: 12px;margin-right: 12px;}
+
+.choose-method p.formError strong {
+  color: #000;
+  font-weight: 400;
+}
+
+.choose-method strong img {
+  position: relative;
+  top: 12px;
+  margin-right: 12px;
+}
+
 .choose-method .choose-option-txt p {
   font-style: normal;
   font-weight: 400;
@@ -519,81 +528,143 @@
   margin-bottom: 10px !important;
 }
 
-.choose-method .choose-option-txt span {font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 140%;
-color: #6C757D;}
-.choose-method p.failedMsg {align-items: flex-start !important;display: flex;border: 1px solid #FF6666;
-  border-radius: 6px;padding: 15px;margin-bottom: 15px !important;font-style: normal;
+.choose-method .choose-option-txt span {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+  color: #6C757D;
+}
+
+.choose-method p.failedMsg {
+  align-items: flex-start !important;
+  display: flex;
+  border: 1px solid #FF6666;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 15px !important;
+  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 140%;
-  }
-.choose-method .failedMsg svg {
-    font-size: 28px !important;
 }
-.PasswordAssistance header .col-lg-6 img {display: block;margin: auto;}
-ul.forget-pass-options {text-align: center;list-style: none;padding: 0px;margin-top: 26px;}
-ul.forget-pass-options li {margin-bottom: 10px;font-style: normal;
-font-weight: 400;
-font-size: 18px;
-line-height: 140%;text-align: center;color: #1C1C1C;}
 
-ul.forget-pass-options li a {font-style: normal;
-font-weight: 500;
-font-size: 16px;
-line-height: 140%;text-align: center;color: #0072BC;}
-.forget-pass .authFormBox p {margin-bottom: 12px !important;}
+.choose-method .failedMsg svg {
+  font-size: 28px !important;
+}
+
+.PasswordAssistance header .col-lg-6 img {
+  display: block;
+  margin: auto;
+}
+
+ul.forget-pass-options {
+  text-align: center;
+  list-style: none;
+  padding: 0px;
+  margin-top: 26px;
+}
+
+ul.forget-pass-options li {
+  margin-bottom: 10px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 140%;
+  text-align: center;
+  color: #1C1C1C;
+}
+
+ul.forget-pass-options li a {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  text-align: center;
+  color: #0072BC;
+}
+
+.forget-pass .authFormBox p {
+  margin-bottom: 12px !important;
+}
+
 .forget-pass .authFormBox .textField {
-    margin-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
+
 .temp-password form p {
-    margin-bottom: 12px !important;
+  margin-bottom: 12px !important;
 }
-.temp-password-btn {display: grid;grid-template-columns: 1fr 1fr;align-items: center;justify-content: center;text-align: center;grid-column-gap: 25px;}
-.temp-password-btn a.noBgThemeBtn {border: 1px solid #0072bc;
-    border-radius: 6px;
-    font-weight: 400;
-    font-size: 16px;
-    text-align: center;padding: 10px 15px;color: #0072bc;margin-bottom: 0px !important;}
+
+.temp-password-btn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  grid-column-gap: 25px;
+}
+
+.temp-password-btn a.noBgThemeBtn {
+  border: 1px solid #0072bc;
+  border-radius: 6px;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  padding: 10px 15px;
+  color: #0072bc;
+  margin-bottom: 0px !important;
+}
+
 .add-number form .textField p {
-    margin-bottom: 20px !important;
+  margin-bottom: 20px !important;
 }
-.add-number .not-now{
+
+.add-number .not-now {
   text-align: center;
   margin-top: 20px;
 }
-.resend-suc{
+
+.resend-suc {
   text-align: center;
   margin-top: 20px;
 }
+
 /* ----------------------------------------------------------------
 	Responsive Design
 -----------------------------------------------------------------*/
 
 @media (max-width: 575px) {
-.create-pass .authFormBox {
+  .create-pass .authFormBox {
     padding: 30px 20px !important;
-}
-.choose-method a.choose-option {
+  }
+
+  .choose-method a.choose-option {
     padding: 20px 24px;
-}
-.temp-password .authFormBox {
+  }
+
+  .temp-password .authFormBox {
     padding: 30px 20px !important;
-}
-footer p {
-  font-size: 14px !important;
-}
-.choose-method .choose-option-txt h2 {
-  margin-top: 24px !important;
-}
+  }
+
+  footer p {
+    font-size: 14px !important;
+  }
+
+  .choose-method .choose-option-txt h2 {
+    margin-top: 24px !important;
+  }
+
   .authContainer .authFormSection .authFormBox {
     padding: 20px;
   }
-  .authContainer header p, .authContainer footer p, .authContainer .agreementText {
+
+  .authContainer header p,
+  .authContainer footer p,
+  .authContainer .agreementText {
     font-size: 16px;
-}
+  }
+
   .authFormSection {
     padding: 40px 15px;
   }
@@ -620,11 +691,21 @@ footer p {
   }
 
   .signUpContainer .successfullSignup .borderBox p,
-  .signUpContainer .successfullSignup .toolTipsHover > .redirectLink {
+  .signUpContainer .successfullSignup .toolTipsHover>.redirectLink {
     font-size: 16px;
   }
 
   .signUpContainer .successfullSignup .toolTipsHover .tooltipBox {
     left: -15px;
   }
+}
+
+
+.ui-form-content .captcha > div{
+  display: flex;
+  justify-content: center;
+}
+
+.ui-form-content .captcha iframe:first-of-type {
+  display: block;
 }

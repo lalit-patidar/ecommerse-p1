@@ -11,11 +11,16 @@ import { BsEyeSlash, BsEye } from "react-icons/bs";
 import { TextField } from "@mui/material";
 
 import "react-phone-number-input/style.css";
+import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 import { useNavigate } from "react-router-dom";
+import { usePostRegisterMutation } from "../../../api/services/authApi";
 // import FacebookLogin from "react-facebook-login";
 
 const Registration = () => {
+    // api
+    const [regApi, { isLoading }] = usePostRegisterMutation();
+
     const pwdInputRef = useRef();
     const navigate = useNavigate();
 
@@ -104,87 +109,93 @@ const Registration = () => {
     // form data submit
     const formHandler = async (e) => {
         e.preventDefault();
-        setFormSubmit(true);
 
-        // if (isFormSelected === 1) {
-        //   if (
-        //     inputChecker(getFullName) &&
-        //     inputChecker(getEmail) &&
-        //     inputChecker(getPassword)
-        //   ) {
-        //     if (getPwdLength && getNumOrSimble && getPwdInSensitive) {
-        //       // sign up api call
-        //       postAjaxCall({
-        //         email: getEmail,
-        //         grecaptcha: "6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
-        //         fullName: getFullName,
-        //         accountType: "PERSONAL",
-        //         password: getPassword,
-        //       })
-        //         .then((res) => {
-        //           setStore("signup_data", res.data);
-        //           // navigate("/join/mail-activation");
-        //         })
-        //         .catch((err) => {
-        //           Toastify({
-        //             text: err.response.data.error,
-        //             className: "ui-error-popup",
-        //             duration: 2500,
-        //             close: false,
-        //             style: {
-        //               background: "linear-gradient(to right, #00b09b, #96c93d)",
-        //             },
-        //           }).showToast();
-        //           console.log(err.response.data.error);
-        //         });
-        //     } else {
-        //       alert(
-        //         "Password must be at least 8 characters long, contain at least one number and one special character"
-        //       );
-        //     }
-        //   } else {
-        //     alert("Please fill all the fields");
-        //   }
-        // } else if (isFormSelected === 0) {
-        //   if (
-        //     inputChecker(getFullName) &&
-        //     inputChecker(getEmail) &&
-        //     inputChecker(getPassword)
-        //   ) {
-        //     if (getPwdLength && getNumOrSimble && getPwdInSensitive) {
-        //       // sign up api call
-        //       postAjaxCall({
-        //         email: getEmail,
-        //         grecaptcha: "6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
-        //         fullName: getFullName,
-        //         accountType: "BUSINESS",
-        //         password: getPassword,
-        //       })
-        //         .then((res) => {
-        //           setStore("signup_data", res.data);
-        //           navigate("/join/mail-activation");
-        //         })
-        //         .catch((err) => {
-        //           Toastify({
-        //             text: err.response.data.error,
-        //             className: "ui-error-popup",
-        //             duration: 2500,
-        //             close: false,
-        //             style: {
-        //               background: "linear-gradient(to right, #00b09b, #96c93d)",
-        //             },
-        //           }).showToast();
-        //           console.log(err.response.data.error);
-        //         });
-        //     } else {
-        //       alert(
-        //         "Password must be at least 8 characters long, contain at least one number and one special character"
-        //       );
-        //     }
-        //   } else {
-        //     alert("Please fill all the fields");
-        //   }
-        // }
+        if (isFormSelected === 1) {
+            setFormSubmit(true);
+            if (
+                getFullName.length !== 0 &&
+                getEmail.length !== 0 &&
+                getPassword !== 0
+            ) {
+                const res = await regApi({
+                    email: getEmail,
+                    grecaptcha: "6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
+                    name: getFullName,
+                    accountType: 1,
+                    password: getPassword,
+                });
+
+                if (res.error) {
+                    console.log(res);
+                }
+
+                if (res.data?.status) {
+                    setFullName("");
+                    setEmail("");
+                    setPassword("");
+                    navigate("/signin", { replace: true });
+                }
+            } else {
+                setFormSubmit(true);
+                Toastify({
+                    text: "Form is empty!",
+                    className: "info",
+                    style: {
+                        background:
+                            "linear-gradient(to right, #00b09b, #96c93d)",
+                        size: 10,
+                    },
+                    close: true,
+                }).showToast();
+            }
+        } else if (isFormSelected === 0) {
+            setFormSubmit(true);
+            if (
+                getFullName.length !== 0 &&
+                getEmail.length !== 0 &&
+                getPassword !== 0
+            ) {
+                const res = await regApi({
+                    email: getEmail,
+                    grecaptcha: "6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
+                    name: getFullName,
+                    accountType: 2,
+                    password: getPassword,
+                });
+
+                if (res.error) {
+                    console.log(res);
+                    Toastify({
+                        text: res.error.data.error,
+                        className: "info",
+                        style: {
+                            background:
+                                "linear-gradient(to right, #00b09b, #96c93d)",
+                            size: 10,
+                        },
+                        close: true,
+                    }).showToast();
+                }
+
+                if (res.data?.status) {
+                    setFullName("");
+                    setEmail("");
+                    setPassword("");
+                    navigate("/signin", { replace: true });
+                }
+            } else {
+                Toastify({
+                    text: "Form is empty!",
+                    className: "info",
+                    style: {
+                        background:
+                            "linear-gradient(to right, #00b09b, #96c93d)",
+                        size: 10,
+                    },
+                    close: true,
+                }).showToast();
+            }
+        }
     };
 
     // social auth
@@ -446,6 +457,7 @@ const Registration = () => {
                                                     label="Legal business name"
                                                     variant="outlined"
                                                     size="small"
+                                                    value={getFullName}
                                                     fullWidth
                                                     onChange={fullnameHandler}
                                                     error={
@@ -468,6 +480,7 @@ const Registration = () => {
                                                     label="Legal business email"
                                                     variant="outlined"
                                                     size="small"
+                                                    value={getEmail}
                                                     fullWidth
                                                     onChange={emailHandler}
                                                     error={
@@ -492,6 +505,7 @@ const Registration = () => {
                                                         fullWidth
                                                         type="password"
                                                         ref={pwdInputRef}
+                                                        value={getPassword}
                                                         onChange={pwdHandler}
                                                         error={
                                                             getFormSubmit &&

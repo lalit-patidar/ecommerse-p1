@@ -58,7 +58,6 @@ import OrderInvoice from "../pages/MyNichoShop/SellerCentral/Order/SellerCentral
 import ViewDetails from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/ViewDetails";
 import SellerCentralOverview from "../pages/MyNichoShop/SellerCentral/Overview";
 import ProductInfo from "../pages/MyNichoShop/SellerCentral/ProductInfo";
-import SellerCentralOrdersClaims from "../pages/MyNichoShop/SellerCentral/SellerCentralClaim/SellerCentralOrdersClaims";
 import ConfirmShipment from "../pages/MyNichoShop/SellerCentral/Shipment";
 import WatchList from "../pages/MyNichoShop/WatchList";
 import CancleOrderDetail from "../pages/MyNichoShop/Purchases/Order/CancleOrderDetail";
@@ -72,25 +71,32 @@ import PurchaseClaim from "../pages/MyNichoShop/Purchases/PurchaseClaim";
 import PurchaseReportItem from "../pages/MyNichoShop/Purchases/PurchaseReportItem";
 import Returns from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/Returns";
 import Claims from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/Claims";
+import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
 
 const RootRoute = () => {
     return (
         <>
             <Routes>
-                {/* 
-                    HomePage > ./
-                    HomePage > recently-viewed-items
-                    HomePage > todays-deals
-                */}
+                {/* private routes */}
+                <Route element={<PrivateRoute />}>
+                    {/* 
+                        HomePage > ./
+                        HomePage > recently-viewed-items
+                        HomePage > todays-deals
+                    */}
+                    <Route path="/" element={<HomePage />} />
+                </Route>
 
-                <Route path="/" element={<HomePage />} />
                 <Route
                     path="/recently-viewed-items"
                     element={<RecentlyViewedItems />}
                 />
                 <Route path="/todays-deals" element={<TodaysDeals />} />
 
-                {/* 
+                {/* public routes */}
+                <Route element={<PublicRoute />}>
+                    {/* 
                     Authentication > registration
                     Authentication > signin
                     Authentication > single-use-code
@@ -102,9 +108,10 @@ const RootRoute = () => {
                     Authentication > change-your-name
                     Authentication > change-your-password
                 */}
+                    <Route path="/registration" element={<Registration />} />
+                    <Route path="/signin" element={<SignIn />} />
+                </Route>
 
-                <Route path="/registration" element={<Registration />} />
-                <Route path="/signin" element={<SignIn />} />
                 <Route path="/single-use-code" element={<SingleUseCode />} />
                 <Route
                     path="/text-a-temporary-password"
@@ -285,10 +292,6 @@ const RootRoute = () => {
                 <Route
                     path="/sellercentral/confirm-shipment"
                     element={<ConfirmShipment />}
-                />
-                <Route
-                    path="/sellercentral/seller-central-order-claims"
-                    element={<SellerCentralOrdersClaims />}
                 />
                 <Route
                     path="/help-content/contact-buyer"
