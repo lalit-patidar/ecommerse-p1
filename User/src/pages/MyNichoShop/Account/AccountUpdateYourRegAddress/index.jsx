@@ -93,7 +93,7 @@ const AccountUpdateYourRegAddress = () => {
                                             id="outlined-basic"
                                             label="Full name"
                                             variant="outlined"
-                                            size="medium"
+                                            size="small"
                                             value={getFullNameData}
                                             fullWidth
                                             onChange={fullNameHandler}
@@ -110,7 +110,7 @@ const AccountUpdateYourRegAddress = () => {
                                             id="outlined-basic"
                                             label="Street and number, P.O. box, c/o."
                                             variant="outlined"
-                                            size="medium"
+                                            size="small"
                                             fullWidth
                                             onChange={streetNumberHandler}
                                             error={
@@ -141,7 +141,7 @@ const AccountUpdateYourRegAddress = () => {
                                             id="outlined-basic"
                                             label="Apartment, suite, unit, building, floor, etc."
                                             variant="outlined"
-                                            size="medium"
+                                            size="small"
                                             fullWidth
                                         />
                                     </div>
@@ -150,7 +150,7 @@ const AccountUpdateYourRegAddress = () => {
                                             id="outlined-basic"
                                             label="City"
                                             variant="outlined"
-                                            size="medium"
+                                            size="small"
                                             fullWidth
                                             onChange={cityHandler}
                                             error={
@@ -168,7 +168,7 @@ const AccountUpdateYourRegAddress = () => {
                                         )}
                                     </div>
                                     <div className="mb-3">
-                                        <FormControl fullWidth>
+                                        <FormControl fullWidth size="small">
                                             <InputLabel id="demo-simple-select-label">
                                                 State
                                             </InputLabel>
@@ -205,7 +205,7 @@ const AccountUpdateYourRegAddress = () => {
                                             id="outlined-basic"
                                             label="Postcode"
                                             variant="outlined"
-                                            size="medium"
+                                            size="small"
                                             fullWidth
                                             onChange={postCodeHandler}
                                             error={
@@ -222,7 +222,7 @@ const AccountUpdateYourRegAddress = () => {
                                                 </span>
                                             )}
                                     </div>
-                                    <div className="mb-3 ui-phone-codes-select">
+                                    <div className="mb-3 ">
                                         <PhoneNumber />
                                     </div>
                                     <div className="ui-commont-form-btn">

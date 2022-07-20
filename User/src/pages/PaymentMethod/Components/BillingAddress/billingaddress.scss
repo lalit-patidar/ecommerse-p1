@@ -1,0 +1,96 @@
+.ui-bab-head {
+    h4 {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 26px;
+        color: #1C1C1C;
+        padding: 1rem 0
+    }
+}
+
+.ui-ba-botton {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    button {
+        width: 100%;
+        border-radius: 6px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+        height: 40px;
+        border: 1px solid transparent;
+        background: none;
+        transition: all .3s;
+
+        &:first-of-type {
+            background: #0072BC;
+            color: #fff;
+
+            &:hover {
+                background-color: #0463a3;
+            }
+        }
+
+        &:last-of-type {
+            color: #0072BC;
+            border-color: #0072BC;
+        }
+    }
+}
+
+.ui-bab-list {
+    padding-bottom: 1.4rem;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        li {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 21px;
+            color: #1C1C1C;
+        }
+    }
+
+    button {
+        background: none;
+        border: none;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 120%;
+        color: #0072BC;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 8px;
+        transition: all .3s;
+
+        &:hover {
+            color: #0463a3;
+        }
+
+    }
+}
+
+.ui-ana-btn {
+    button {
+        background: none;
+        border: none;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 120%;
+        color: #0072BC;
+
+        svg {
+            margin-right: 6px;
+        }
+    }
+}

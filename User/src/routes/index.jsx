@@ -73,6 +73,7 @@ import Returns from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetai
 import Claims from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetails/Claims";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
+import PaymentMethod from "../pages/PaymentMethod";
 
 const RootRoute = () => {
     return (
@@ -374,11 +375,11 @@ const RootRoute = () => {
                     ListOfListing
                 */}
                 <Route
-                    path="sellercentral/listing"
+                    path="/sellercentral/listing"
                     element={<SellerCentralListing />}
                 />
                 <Route
-                    path="sellercentral/listing/out-of-stock"
+                    path="/sellercentral/listing/out-of-stock"
                     element={<SellerCentralListingOutOfStock />}
                 />
 
@@ -391,8 +392,9 @@ const RootRoute = () => {
                 <Route path="/shoping-cart" element={<ShopingCart />} />
                 <Route path="/checkout" element={<CheckOut />} />
                 {/* 
-                    random
+                    payment method
                 */}
+                <Route path="/payment-method" element={<PaymentMethod />} />
             </Routes>
         </>
     );

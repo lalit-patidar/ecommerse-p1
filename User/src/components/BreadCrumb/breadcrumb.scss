@@ -1,0 +1,36 @@
+.ui-bread-crumb {
+    ul {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        li {
+            font-size: 14px;
+            font-weight: 400;
+
+            a {
+                color: #6C757D;
+
+
+            }
+
+            &:first-child {
+                a {
+                    &:first-of-type {
+                        color: #0072BC;
+                    }
+                }
+            }
+
+            svg {
+                margin-left: 8px;
+            }
+
+            &:last-child {
+                svg {
+                    display: none;
+                }
+            }
+        }
+    }
+}
