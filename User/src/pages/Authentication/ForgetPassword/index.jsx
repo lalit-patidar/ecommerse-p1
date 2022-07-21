@@ -70,7 +70,6 @@ const ForgetPassword = () => {
         setFormSubmit(true);
 
         if (getEmail.length !== 0 && getCaptcha.length !== 0) {
-
             //alert("ok");
             dispatch(loadUser(getEmail,getCaptcha))
         }

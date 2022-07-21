@@ -10,7 +10,7 @@ import { BsEyeSlash, BsEye } from "react-icons/bs";
 import { TextField } from "@mui/material";
 import "react-phone-number-input/style.css";
 import { usePostLoginMutation } from "../../../api/services/authApi";
-import { setLocalstore } from "../../../helper/localstore/localstore";
+import { setLocalstore ,removeLocalstore} from "../../../helper/localstore/localstore";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useLocation, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,7 +29,7 @@ const SignIn = () => {
     const dispatch = useDispatch();
     //const alert = useAlert();
   
-    const { error, user, isAuthenticated } = useSelector(state=>state.user)
+    const { error, user, isAuthenticated,signin } = useSelector(state=>state.user)
 
     console.log(user);
     console.log(isAuthenticated);
@@ -124,11 +124,13 @@ const SignIn = () => {
           dispatch(clearErrors());
         }
     
-        if (isAuthenticated) {
+        if (signin) {
             setLocalstore("_userLogin",user);
             navigate("/add-mobile-number");
+            setCaptcha("")
+            removeLocalstore("_grecaptcha");
         }
-      }, [dispatch, navigate,recaptchaRef, isAuthenticated, error, ]);
+      }, [dispatch, navigate,setCaptcha,signin,recaptchaRef, error ]);
 
 
     return (

@@ -34,15 +34,14 @@ const AddMobileNumber = () => {
 
     const data = getLocalstore("_userLogin")
     console.log(data);
-    if(data.phone != null)
+    if(data.phone != null && data.phoneConfirmed == "true")
     {
         navigate("/")
     }
 
-    const { error, message } = useSelector(state=>state.mobile)
+    const { error, message,add_mob } = useSelector(state=>state.mobile)
 
-    console.log(error);
-    console.log(message);
+
 //    console.log(isAuthenticated);
     const [authSpinner, setAuthSpinner] = useState(false);
 
@@ -79,11 +78,11 @@ const AddMobileNumber = () => {
           dispatch(clearErrors());
         }
     
-        if (message) {
+        if (add_mob) {
             //setLocalstore("_userLogin",user);
             navigate("/verify-its-you-phone");
         }
-      }, [dispatch, navigate, message, error]);
+      }, [dispatch, navigate,add_mob, message, error]);
 
 
 
@@ -93,9 +92,9 @@ const AddMobileNumber = () => {
             <div className="signUpContainer authContainer add-number">
                 {/* Header  */}
                 <Header>
-                    Already a member?
+                    
                     <Link to="/user/signin" className="redirectLink ms-1">
-                        Sign In
+                        
                     </Link>
                 </Header>
                 {/* Header End  */}

@@ -27,7 +27,7 @@ const Registration = () => {
 
     const [regApi, { isLoading }] = usePostRegisterMutation();
 
-    const { error, isAuthenticated } = useSelector(state=>state.user)
+    const { error, signup } = useSelector(state=>state.user)
     console.log(error);
     const pwdInputRef = useRef();
     const navigate = useNavigate();
@@ -189,10 +189,11 @@ const Registration = () => {
           dispatch(clearErrors());
         }
     
-        if (isAuthenticated) {
+        if (signup) {
           navigate("/signin");
+          setCaptcha("")
         }
-      }, [dispatch, navigate, isAuthenticated, recaptchaRef1,recaptchaRef2,error, ]);
+      }, [dispatch, navigate,setCaptcha,signup, recaptchaRef1,recaptchaRef2,error, ]);
 
     return (
         <>

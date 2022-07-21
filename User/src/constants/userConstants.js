@@ -18,4 +18,8 @@ export const ADD_MOBILE_REQUEST = "LOAD_USER_REQUEST";
 export const ADD_MOBILE_SUCCESS = "LOAD_USER_SUCCESS";
 export const ADD_MOBILE_FAIL    = "LOAD_USER_FAIL";
 
+export const ADD_MOBILE_verify_REQUEST = "LOAD_USER_REQUEST";
+export const ADD_MOBILE_verify_SUCCESS = "LOAD_USER_SUCCESS";
+export const ADD_MOBILE_verify_FAIL    = "LOAD_USER_FAIL";
+
 export const CLEAR_ERRORS = "CLEAR_ERRORS";

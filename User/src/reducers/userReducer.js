@@ -14,6 +14,10 @@ import {
     ADD_MOBILE_REQUEST,
     ADD_MOBILE_SUCCESS,
     ADD_MOBILE_FAIL,  
+
+    ADD_MOBILE_verify_REQUEST,
+    ADD_MOBILE_verify_SUCCESS,
+    ADD_MOBILE_verify_FAIL ,  
     CLEAR_ERRORS,
  } from "../constants/userConstants";
 
@@ -24,16 +28,29 @@ import {
             case REGISTER_USER_REQUEST:
             case LOGIN_REQUEST:
             case LOAD_USER_REQUEST:
-            case ADD_MOBILE_REQUEST:
                 return {
                     loading:true,
                     isAuthenticated:false,
                 };
             
             case REGISTER_USER_SUCCESS:
+              return {
+                ...state,
+                loading:false,
+                signup:true,
+                isAuthenticated:true,
+                user:action.payload.data,
+            };
+
             case LOGIN_SUCCESS:
+              return {
+                ...state,
+                loading:false,
+                signin:true,
+                isAuthenticated:true,
+                user:action.payload.data,
+            };
             case LOAD_USER_SUCCESS:
-            case ADD_MOBILE_SUCCESS:
                 return {
                     ...state,
                     loading:false,
@@ -51,7 +68,6 @@ import {
                     error:action.payload,
                 };
                 
-            case ADD_MOBILE_FAIL:
             case LOAD_USER_FAIL:
                   return {
                     loading: false,
@@ -107,9 +123,10 @@ import {
   };
 
 
-export const mobileReducer = (state = {}, action) => {
+export const mobileReducer = (state = { user: {} }, action) => {
     switch (action.type) {
       case ADD_MOBILE_REQUEST:
+      case ADD_MOBILE_verify_REQUEST:
         return {
           ...state,
           loading: true,
@@ -120,10 +137,20 @@ export const mobileReducer = (state = {}, action) => {
         return {
           ...state,
           loading: false,
+          add_mob:true,
           message: action.payload.data,
         };
 
+      case ADD_MOBILE_verify_SUCCESS:
+          return {
+            ...state,
+            loading: false,
+            verify:true,
+            message: action.payload.data,
+          };
+
         case ADD_MOBILE_FAIL:
+        case ADD_MOBILE_verify_FAIL:
         return {
           ...state,
           loading: false,
