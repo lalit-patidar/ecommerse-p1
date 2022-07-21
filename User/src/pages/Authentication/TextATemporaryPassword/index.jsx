@@ -1,5 +1,5 @@
 // React
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // 3rd party components
@@ -13,7 +13,11 @@ import {
 import { ErrorMessage, Formik } from "formik";
 import { BsExclamationOctagon } from "react-icons/bs";
 import * as yup from "yup";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { clearErrors, tempPassword } from "../../../actions/userActions";
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
 // Compoenents
 // import Header from "../../components/auth/Header";
 // import Footer from "../../components/auth/Footer";
@@ -24,6 +28,16 @@ import Footer from "../../../components/auth/Footer";
 import Header from "../../../components/header/Header";
 
 const TextATemporaryPassword = () => {
+
+    
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const { error,txt_pwd,message } = useSelector(state=>state.forgotPassword)
+    console.log(error);
+    console.log(txt_pwd);
+    console.log(message);
+
     const [authSpinner, setAuthSpinner] = useState(false);
 
     const UsernameSchema = yup.object({
@@ -31,6 +45,32 @@ const TextATemporaryPassword = () => {
             .string("Enter your Email or Username")
             .required("This email or username doesn't exit."),
     });
+
+    useEffect(() => {
+        if (error) {
+            //alert.show(error);
+            Toastify(
+                {
+                text: error,
+                className: "info",
+                style: {
+                    background:
+                        "linear-gradient(to right, #00b09b, #96c93d)",
+                    size: 10,
+                },
+                close: true,
+            }
+            ).showToast();
+          //alert.error(error);
+          dispatch(clearErrors());
+        }
+    
+        if (txt_pwd) {
+            //setLocalstore("_userLogin",user);
+            navigate("/choose-method");
+        }
+      }, [dispatch, navigate,txt_pwd, error,message]);
+
 
     return (
         <main>
@@ -58,8 +98,11 @@ const TextATemporaryPassword = () => {
                                 }}
                                 validationSchema={UsernameSchema}
                                 onSubmit={(values, { setSubmitting }) => {
-                                    alert(JSON.stringify(values, null, 2));
-                                    setSubmitting(false);
+                                    //alert(JSON.stringify(values, null, 2));
+                                    setSubmitting(true);
+                                    const email = values.username
+                                    console.log(email);
+                                    dispatch(tempPassword(email))
                                 }}
                             >
                                 {(props) => (

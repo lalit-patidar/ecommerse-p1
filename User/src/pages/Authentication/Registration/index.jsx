@@ -191,9 +191,8 @@ const Registration = () => {
     
         if (signup) {
           navigate("/signin");
-          setCaptcha("")
         }
-      }, [dispatch, navigate,setCaptcha,signup, recaptchaRef1,recaptchaRef2,error, ]);
+      }, [dispatch, navigate,signup, recaptchaRef1,recaptchaRef2,error, ]);
 
     return (
         <>

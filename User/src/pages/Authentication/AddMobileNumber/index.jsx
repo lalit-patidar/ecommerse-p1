@@ -34,6 +34,7 @@ const AddMobileNumber = () => {
 
     const data = getLocalstore("_userLogin")
     console.log(data);
+
     if(data.phone != null && data.phoneConfirmed == "true")
     {
         navigate("/")
@@ -112,7 +113,7 @@ const AddMobileNumber = () => {
                                     countryCode: "+1",
                                 }}
                                 validationSchema={AddNumberSchema}
-                                onSubmit={(values, { setSubmitting }) => {
+                                onSubmit={async(values, { setSubmitting }) => {
                                     //alert(JSON.stringify(values, null, 2));
                                     setSubmitting(true);
                                     const countryCodes = values.countryCode.replace(/[^\w\s*]/gi, '')

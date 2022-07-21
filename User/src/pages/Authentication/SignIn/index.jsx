@@ -23,6 +23,7 @@ const Querystring = require('querystring');
 
 const SignIn = () => {
 
+      
     const recaptchaRef = useRef(null)
 
     const navigate = useNavigate();
@@ -123,14 +124,12 @@ const SignIn = () => {
           //alert.error(error);
           dispatch(clearErrors());
         }
-    
         if (signin) {
             setLocalstore("_userLogin",user);
             navigate("/add-mobile-number");
-            setCaptcha("")
             removeLocalstore("_grecaptcha");
         }
-      }, [dispatch, navigate,setCaptcha,signin,recaptchaRef, error ]);
+      }, [dispatch, navigate,signin,recaptchaRef, error ]);
 
 
     return (

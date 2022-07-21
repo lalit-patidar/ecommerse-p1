@@ -22,4 +22,8 @@ export const ADD_MOBILE_verify_REQUEST = "LOAD_USER_REQUEST";
 export const ADD_MOBILE_verify_SUCCESS = "LOAD_USER_SUCCESS";
 export const ADD_MOBILE_verify_FAIL    = "LOAD_USER_FAIL";
 
+export const TXT_PSWD_REQUEST = "LOAD_USER_REQUEST";
+export const TXT_PSWD_SUCCESS = "LOAD_USER_SUCCESS";
+export const TXT_PSWD_FAIL    = "LOAD_USER_FAIL";
+
 export const CLEAR_ERRORS = "CLEAR_ERRORS";

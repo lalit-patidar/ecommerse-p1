@@ -15,8 +15,8 @@ import "toastify-js/src/toastify.css";
 
 const VerifyItsYouPhone = () => {
 
-    const data = getLocalstore("_userLogin")
-    console.log(data);
+    //const data = getLocalstore("_userLogin")
+    //console.log(data);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -32,15 +32,14 @@ const VerifyItsYouPhone = () => {
 
     const soccodeHandler = (e) => {
         setSocCode(e.target.value);
-    };
-    console.log(getSocCode);
-    console.log(typeof getSocCode);
+    }
     // form data submit
-    const formHandler = (e) => {
+    const formHandler = async(e) => {
         e.preventDefault();
         setFormSubmit(true);
+        
         var datas ={
-            suc_type:4,
+            suc_type:"4",
             suc:getSocCode,
         }
         console.log(datas);
