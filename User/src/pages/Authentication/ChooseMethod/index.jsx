@@ -28,6 +28,7 @@ import Text from "../../../assets/authentication/get-text.svg";
 import "./../auth.css";
 
 const ChooseMethod = () => {
+    
     const [authSpinner, setAuthSpinner] = useState(false);
 
     const UsernameSchema = yup.object({

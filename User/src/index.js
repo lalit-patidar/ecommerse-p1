@@ -1,8 +1,8 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 
 import "./index.css";
-import Popper from "@popperjs/core";
+//import Popper from "@popperjs/core";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 /*import "bootstrap/dist/css/bootstrap.min.css";*/
@@ -11,26 +11,40 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "./custom.scss";
 import App from "./App";
 
-// import { createStore } from "redux";
-// import allReducers from "./reducers";
+//import { createStore } from "redux";
+//import allReducers from "./reducers";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import { store } from "./store/app/store";
+import store from "../src/redux/store";
+
+//import {persistor} from "../src/redux/store";
+//import { PersistGate } from 'redux-persist/integration/react';
+//import { positions, transitions, Provider as AlertProvider } from "react-alert";
+//import AlertTemplate from "react-alert-template-basic";
 
 // const store = createStore(
 //     allReducers,
 //     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 // );
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+
+// const options={
+//     timeout:5000,
+//     position:positions.BOTTOM_CENTER,
+//     transition:transitions.SCALE,
+//   };
+
+  
+root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
+                <BrowserRouter>
+                    <App/>
+                </BrowserRouter>
         </Provider>
-    </React.StrictMode>,
-    document.getElementById("root")
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

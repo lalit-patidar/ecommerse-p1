@@ -62,7 +62,7 @@ const NavbarContainer = () => {
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-2">
                     <button className="custom-button register-btn small-text">
-                        <Link to="/signup">Sign Up</Link>
+                        <Link to="/registration">Sign Up</Link>
                     </button>
                 </Dropdown.Item>
             </DropdownButton>
@@ -130,7 +130,7 @@ const NavbarContainer = () => {
                             </Dropdown.Item>
                             <Dropdown.Item href="#/action-2">
                                 <button className="custom-button register-btn small-text">
-                                    <Link to="/signup">Sign Up</Link>
+                                    <Link to="/registration">Sign Up</Link>
                                 </button>
                             </Dropdown.Item>
                         </DropdownButton>

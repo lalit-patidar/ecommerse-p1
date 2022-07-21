@@ -6,9 +6,12 @@ import GoogleImg from "./../../../assets/form-social/google.png";
 import AppleImg from "./../../../assets/form-social/apple.png";
 import FbImg from "./../../../assets/form-social/fb.png";
 import FormFooter from "../../../components/FormFooter/FormFooter";
-import { useRef, useState } from "react";
+import { useRef, useState ,useEffect} from "react";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
 import { TextField } from "@mui/material";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useDispatch, useSelector } from "react-redux";
+import { clearErrors, register } from "../../../actions/userActions";
 
 import "react-phone-number-input/style.css";
 import Toastify from "toastify-js";
@@ -19,11 +22,16 @@ import { usePostRegisterMutation } from "../../../api/services/authApi";
 
 const Registration = () => {
     // api
+    const recaptchaRef1 = useRef(null)
+    const recaptchaRef2 = useRef(null)
+
     const [regApi, { isLoading }] = usePostRegisterMutation();
 
+    const { error, isAuthenticated } = useSelector(state=>state.user)
+    console.log(error);
     const pwdInputRef = useRef();
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     // is password show & hidden
     const [isPwdShow, setPwdShow] = useState(false);
 
@@ -52,6 +60,7 @@ const Registration = () => {
     const [getTotalLength, setTotalLength] = useState(0);
 
     const [getFormSubmit, setFormSubmit] = useState(false);
+    const [getCaptcha, setCaptcha] = useState("");
 
     // 2 type form  tab
     const [isFormSelected, setFormSelected] = useState(1);
@@ -112,89 +121,39 @@ const Registration = () => {
 
         if (isFormSelected === 1) {
             setFormSubmit(true);
-            if (
-                getFullName.length !== 0 &&
-                getEmail.length !== 0 &&
-                getPassword !== 0
-            ) {
-                const res = await regApi({
-                    email: getEmail,
-                    grecaptcha: "6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
-                    name: getFullName,
-                    accountType: 1,
-                    password: getPassword,
-                });
+            
+                // const res = await regApi({
+                //     email: getEmail,
+                //     grecaptcha: getCaptcha,
+                //     name: getFullName,
+                //     accountType: 1,
+                //     password: getPassword,
+                // });
 
-                if (res.error) {
-                    console.log(res);
-                }
+                const data = {
+                        email: getEmail,
+                        grecaptcha: getCaptcha,
+                        name: getFullName,
+                        accountType: 1,
+                        password: getPassword,
+                    };
+                console.log(data);
+               
+                dispatch(register(data))
+           
 
-                if (res.data?.status) {
-                    setFullName("");
-                    setEmail("");
-                    setPassword("");
-                    navigate("/signin", { replace: true });
-                }
-            } else {
-                setFormSubmit(true);
-                Toastify({
-                    text: "Form is empty!",
-                    className: "info",
-                    style: {
-                        background:
-                            "linear-gradient(to right, #00b09b, #96c93d)",
-                        size: 10,
-                    },
-                    close: true,
-                }).showToast();
-            }
         } else if (isFormSelected === 0) {
             setFormSubmit(true);
-            if (
-                getFullName.length !== 0 &&
-                getEmail.length !== 0 &&
-                getPassword !== 0
-            ) {
-                const res = await regApi({
-                    email: getEmail,
-                    grecaptcha: "6Ld9ZTgdAAAAAFN8gTK7t4qY9kg5UPwSDxIANoOQ",
-                    name: getFullName,
-                    accountType: 2,
-                    password: getPassword,
-                });
 
-                if (res.error) {
-                    console.log(res);
-                    Toastify({
-                        text: res.error.data.error,
-                        className: "info",
-                        style: {
-                            background:
-                                "linear-gradient(to right, #00b09b, #96c93d)",
-                            size: 10,
-                        },
-                        close: true,
-                    }).showToast();
-                }
-
-                if (res.data?.status) {
-                    setFullName("");
-                    setEmail("");
-                    setPassword("");
-                    navigate("/signin", { replace: true });
-                }
-            } else {
-                Toastify({
-                    text: "Form is empty!",
-                    className: "info",
-                    style: {
-                        background:
-                            "linear-gradient(to right, #00b09b, #96c93d)",
-                        size: 10,
-                    },
-                    close: true,
-                }).showToast();
-            }
+            const data = {
+                email: getEmail,
+                grecaptcha: getCaptcha,
+                name: getFullName,
+                accountType: 2,
+                password: getPassword,
+            };
+            console.log(data);
+        dispatch(register(data))
         }
     };
 
@@ -205,6 +164,35 @@ const Registration = () => {
     // const componentClicked = (data) => {
     //     console.log(data);
     // };
+
+    const captchaHandler = (value) => {
+        //console.log(value);
+        setCaptcha(value);
+    };
+
+    useEffect(() => {
+        if (error) {
+            //alert.show(error);
+            Toastify(
+                {
+                text: error,
+                className: "info",
+                style: {
+                    background:
+                        "linear-gradient(to right, #00b09b, #96c93d)",
+                    size: 10,
+                },
+                close: true,
+            }
+            ).showToast();
+          //alert.error(error);
+          dispatch(clearErrors());
+        }
+    
+        if (isAuthenticated) {
+          navigate("/signin");
+        }
+      }, [dispatch, navigate, isAuthenticated, recaptchaRef1,recaptchaRef2,error, ]);
 
     return (
         <>
@@ -307,6 +295,9 @@ const Registration = () => {
                                                         variant="outlined"
                                                         size="small"
                                                         fullWidth
+                                                        inputProps={{
+                                                            minLength:8
+                                                        }}
                                                         type="password"
                                                         ref={pwdInputRef}
                                                         onChange={pwdHandler}
@@ -339,6 +330,20 @@ const Registration = () => {
                                                         "Enter Password"}
                                                 </span>
                                             </Form.Group>
+                                            <ReCAPTCHA
+                                                ref={recaptchaRef1}
+                                                className="mt-3 captcha"
+                                                sitekey="6Lef6nQgAAAAADoRd2Ps76UfUklHu1v5k_BIYCw1"
+                                                onChange={captchaHandler}
+                                                style={{
+                                                    display: "block !important",
+                                                }}
+                                            />
+                                            {getFormSubmit && getCaptcha.length < 1 && (
+                                                <span className="ui-form-lable-error text-center d-blcok">
+                                                    Captcha is required! Refresh the page
+                                                </span>
+                                            )}
                                             <div className="ui-pwd-strength">
                                                 {getTotalLength === 0 ? (
                                                     <>
@@ -534,6 +539,21 @@ const Registration = () => {
                                                         "Please make your password unique."}
                                                 </span>
                                             </Form.Group>
+                                            <ReCAPTCHA
+                                                ref={recaptchaRef2}
+
+                                                className="mt-3 captcha"
+                                                sitekey="6Lef6nQgAAAAADoRd2Ps76UfUklHu1v5k_BIYCw1"
+                                                onChange={captchaHandler}
+                                                style={{
+                                                    display: "block !important",
+                                                }}
+                                            />
+                                            {getFormSubmit && getCaptcha.length < 1 && (
+                                                <span className="ui-form-lable-error text-center d-blcok">
+                                                    Captcha is required! Refresh the page
+                                                </span>
+                                            )}
                                             {/* <div className="ui-phone-no">
                                                 <FormControl
                                                     variant="outlined"
@@ -669,6 +689,7 @@ const Registration = () => {
                                                     passwort for miltiple sites.
                                                 </li>
                                             </ul>
+
                                             <Button
                                                 variant="primary"
                                                 type="submit"

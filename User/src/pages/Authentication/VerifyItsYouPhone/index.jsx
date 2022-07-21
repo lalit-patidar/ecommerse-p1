@@ -7,8 +7,13 @@ import { TextField } from "@mui/material";
 
 import "react-phone-number-input/style.css";
 import FormFooter from "../../../components/FormFooter/FormFooter";
+import { getLocalstore } from "../../../helper/localstore/localstore";
 
 const VerifyItsYouPhone = () => {
+
+    const data = getLocalstore("_userLogin")
+    console.log(data);
+
     const navigate = useNavigate();
     const [getSocCode, setSocCode] = useState("");
 
@@ -23,6 +28,7 @@ const VerifyItsYouPhone = () => {
         e.preventDefault();
         setFormSubmit(true);
     };
+    
     return (
         <>
             <div className="ui-form-box">
@@ -36,7 +42,7 @@ const VerifyItsYouPhone = () => {
                                 <h4>Verify that it’s you</h4>
                                 <p className="text-start ui-add-mob-info mb-3">
                                     We’re texting a Single-Use Code (SUC) to
-                                    this mobile number: XXX XXXX1234
+                                    this mobile number
                                 </p>
 
                                 <Form onSubmit={formHandler}>

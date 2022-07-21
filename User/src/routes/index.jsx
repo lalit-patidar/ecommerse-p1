@@ -60,6 +60,7 @@ import SellerCentralOverview from "../pages/MyNichoShop/SellerCentral/Overview";
 import ProductInfo from "../pages/MyNichoShop/SellerCentral/ProductInfo";
 import ConfirmShipment from "../pages/MyNichoShop/SellerCentral/Shipment";
 import WatchList from "../pages/MyNichoShop/WatchList";
+import ForgetPassword from "../pages/Authentication/ForgetPassword/index"
 import CancleOrderDetail from "../pages/MyNichoShop/Purchases/Order/CancleOrderDetail";
 import AccountUpdateYourRegAddress from "../pages/MyNichoShop/Account/AccountUpdateYourRegAddress";
 import AccountAddPhoneNumber from "../pages/MyNichoShop/Account/AccountAddPhoneNumber";
@@ -139,6 +140,10 @@ const RootRoute = () => {
                 <Route
                     path="/change-your-password"
                     element={<ChangeYourPassword />}
+                />
+                <Route
+                    path="/forget-password"
+                    element={<ForgetPassword/>}
                 />
                 <Route
                     path="/add-mobile-number"

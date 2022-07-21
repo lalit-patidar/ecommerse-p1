@@ -5,8 +5,13 @@ import MNSPurchases from "./MNSPurchases";
 import MNSMessages from "./MNSMessages";
 import MNSClaim from "./MNSClaim";
 import { combineReducers } from "redux";
+import { forgotPasswordReducer, mobileReducer, userReducer } from "./userReducer";
 
 const allReducers = combineReducers({
+  user : userReducer,
+  forgotPassword:forgotPasswordReducer,
+  mobile:mobileReducer,
+
   // user: authReducer,
   hideSearchBar: hideSearchBarReducer,
   showNotif: showNotifReducer,

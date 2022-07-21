@@ -1,20 +1,38 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "./../../../assets/logo/logo.svg";
 import GoogleImg from "./../../../assets/form-social/google.png";
 import AppleImg from "./../../../assets/form-social/apple.png";
 import FbImg from "./../../../assets/form-social/fb.png";
 import FormFooter from "../../../components/FormFooter/FormFooter";
-import { useRef, useState } from "react";
+import { useRef, useState , useEffect} from "react";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
 import { TextField } from "@mui/material";
 import "react-phone-number-input/style.css";
 import { usePostLoginMutation } from "../../../api/services/authApi";
 import { setLocalstore } from "../../../helper/localstore/localstore";
 import ReCAPTCHA from "react-google-recaptcha";
+import { useLocation, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+//import { useAlert } from "react-alert";
+import { clearErrors, login } from "../../../actions/userActions";
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
+const Querystring = require('querystring');
+
 
 const SignIn = () => {
+
+    const recaptchaRef = useRef(null)
+
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    //const alert = useAlert();
+  
+    const { error, user, isAuthenticated } = useSelector(state=>state.user)
+
+    console.log(user);
+    console.log(isAuthenticated);
     // login api
     const [loginApi, { isLoading }] = usePostLoginMutation();
 
@@ -61,23 +79,58 @@ const SignIn = () => {
             getPassword !== 0 &&
             getCaptcha.length !== 0
         ) {
-            const formData = {
+            // const formData = {
+            //     login: getEmail,
+            //     password: getPassword,
+            //     grecaptcha: getCaptcha,
+            // };
+
+            const formData = Querystring['stringify']({
                 login: getEmail,
                 password: getPassword,
                 grecaptcha: getCaptcha,
-            };
-            const res = await loginApi(formData);
+            })
+            dispatch(login(formData));
+            // const res = await loginApi(formData);
 
-            if (res.data) {
-                setLocalstore("_userLogin", res.data);
-                navigate("/", { replace: true });
-            }
+            // if (res.data) {
+            //     setLocalstore("_userLogin", res.data);
+            //     navigate("/", { replace: true });
+            // }
         }
     };
 
     const captchaHandler = (value) => {
+        console.log(value);
         setCaptcha(value);
     };
+
+    useEffect(() => {
+        if (error) {
+            //alert.show(error);
+            Toastify(
+                {
+                text: error,
+                className: "info",
+                style: {
+                    background:
+                        "linear-gradient(to right, #00b09b, #96c93d)",
+                    size: 10,
+                },
+                close: true,
+            }
+            ).showToast();
+          //alert.error(error);
+          dispatch(clearErrors());
+        }
+    
+        if (isAuthenticated) {
+            setLocalstore("_userLogin",user);
+            navigate("/add-mobile-number");
+        }
+      }, [dispatch, navigate,recaptchaRef, isAuthenticated, error, ]);
+
+
     return (
         <>
             <div className="ui-form-box">
@@ -149,6 +202,7 @@ const SignIn = () => {
                                         </span>
                                     </Form.Group>
                                     <ReCAPTCHA
+                                        ref={recaptchaRef}
                                         className="mt-3 captcha"
                                         sitekey="6Lef6nQgAAAAADoRd2Ps76UfUklHu1v5k_BIYCw1"
                                         onChange={captchaHandler}
@@ -158,7 +212,7 @@ const SignIn = () => {
                                     />
                                     {getFormSubmit && getCaptcha.length < 1 && (
                                         <span className="ui-form-lable-error text-center d-blcok">
-                                            Captcha is required!
+                                            Captcha is required! Refresh the page
                                         </span>
                                     )}
                                     <Button variant="primary" type="submit">
@@ -188,7 +242,7 @@ const SignIn = () => {
                                         <Link to="/text-a-temporary-password">
                                             Text a temporary password
                                         </Link>
-                                        <Link to="/user/forgot-password">
+                                        <Link to="/forget-password">
                                             Forgot your password?
                                         </Link>
                                     </div>

@@ -1,5 +1,5 @@
 // React
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // 3rd party components
@@ -12,7 +12,11 @@ import {
 } from "@mui/material";
 import { ErrorMessage, Formik } from "formik";
 import * as yup from "yup";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { clearErrors, AddMobile } from "../../../actions/userActions";
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
 // Compoenents
 import Header from "../../../components/auth/Header";
 import Footer from "../../../components/auth/Footer";
@@ -21,7 +25,25 @@ import Footer from "../../../components/auth/Footer";
 import "./../auth.css";
 import MuiPhoneNumber from "material-ui-phone-number";
 
+import { getLocalstore } from "../../../helper/localstore/localstore";
+
 const AddMobileNumber = () => {
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const data = getLocalstore("_userLogin")
+    console.log(data);
+    if(data.phone != null)
+    {
+        navigate("/")
+    }
+
+    const { error, message } = useSelector(state=>state.mobile)
+
+    console.log(error);
+    console.log(message);
+//    console.log(isAuthenticated);
     const [authSpinner, setAuthSpinner] = useState(false);
 
     const AddNumberSchema = yup.object({
@@ -35,8 +57,36 @@ const AddMobileNumber = () => {
             .string("Enter your SUC")
             .required(
                 "The code you entered is different from the one we texted."
-            ),
+        ),
     });
+
+    useEffect(() => {
+        if (error) {
+            //alert.show(error);
+            Toastify(
+                {
+                text: error,
+                className: "info",
+                style: {
+                    background:
+                        "linear-gradient(to right, #00b09b, #96c93d)",
+                    size: 10,
+                },
+                close: true,
+            }
+            ).showToast();
+          //alert.error(error);
+          dispatch(clearErrors());
+        }
+    
+        if (message) {
+            //setLocalstore("_userLogin",user);
+            navigate("/verify-its-you-phone");
+        }
+      }, [dispatch, navigate, message, error]);
+
+
+
 
     return (
         <main>
@@ -64,11 +114,17 @@ const AddMobileNumber = () => {
                                 }}
                                 validationSchema={AddNumberSchema}
                                 onSubmit={(values, { setSubmitting }) => {
-                                    alert(JSON.stringify(values, null, 2));
-                                    setSubmitting(false);
+                                    //alert(JSON.stringify(values, null, 2));
+                                    setSubmitting(true);
+                                    const countryCodes = values.countryCode.replace(/[^\w\s*]/gi, '')
+                                    const phone = countryCodes+values.phoneNumber
+                                    //console.log(values.countryCode+values.phoneNumber);
+                                    console.log(phone);
+                                    dispatch(AddMobile(phone));
                                 }}
                             >
                                 {(props) => (
+
                                     <form onSubmit={props.handleSubmit}>
                                         {authSpinner ? (
                                             <div className="formSpinner">
