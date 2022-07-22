@@ -73,6 +73,28 @@ export const register = (userData) => async (dispatch) => {
     }
 };
 
+export const ResendEmail = (email) => async (dispatch) => {
+  try {
+    dispatch({ type: REGISTER_USER_REQUEST });
+
+    const config = { headers: { "Content-Type": "application/json" } };
+    //const config = { headers: { "Content-Type": "multipart/form-data" } };
+    const data = await axios.post(
+      `${Base_url}/signup/resend-email`,
+      email,
+      config
+    );
+
+    dispatch({ type: REGISTER_USER_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: REGISTER_USER_FAIL,
+      payload: error.response.data.error,
+    });
+  }
+};
+
+
 
   
   // Forgot Password
@@ -116,7 +138,7 @@ export const register = (userData) => async (dispatch) => {
         dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.error });
       }
 };
- 
+
 
 // Add mobile no
 export const AddMobile = (phone) => async (dispatch) => {

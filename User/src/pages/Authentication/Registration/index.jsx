@@ -12,6 +12,7 @@ import { TextField } from "@mui/material";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, register } from "../../../actions/userActions";
+import { setLocalstore } from "../../../helper/localstore/localstore";
 
 import "react-phone-number-input/style.css";
 import Toastify from "toastify-js";
@@ -27,8 +28,9 @@ const Registration = () => {
 
     const [regApi, { isLoading }] = usePostRegisterMutation();
 
-    const { error, signup } = useSelector(state=>state.user)
+    const { error, signup,user } = useSelector(state=>state.user)
     console.log(error);
+    console.log(user);
     const pwdInputRef = useRef();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -137,7 +139,7 @@ const Registration = () => {
                         accountType: 1,
                         password: getPassword,
                     };
-                console.log(data);
+                //console.log(data);
                
                 dispatch(register(data))
            
@@ -152,7 +154,7 @@ const Registration = () => {
                 accountType: 2,
                 password: getPassword,
             };
-            console.log(data);
+            //console.log(data);
         dispatch(register(data))
         }
     };
@@ -190,9 +192,12 @@ const Registration = () => {
         }
     
         if (signup) {
-          navigate("/signin");
+            //console.log(getEmail);
+            //console.log(getFullName);
+          setLocalstore("signup_data",user);
+          navigate("/join-verify",{email: getEmail,name: getFullName});
         }
-      }, [dispatch, navigate,signup, recaptchaRef1,recaptchaRef2,error, ]);
+      }, [dispatch, navigate,signup, getEmail,getFullName,recaptchaRef1,recaptchaRef2,error, ]);
 
     return (
         <>

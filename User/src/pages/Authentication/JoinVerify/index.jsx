@@ -3,19 +3,65 @@ import { Col, Container, Row } from "react-bootstrap";
 import OutsideClickHandler from "react-outside-click-handler";
 import { getStore } from "./../../../helper/storeHelper";
 import { ReactComponent as Logo } from "./../../../assets/logo/logo.svg";
+import { useDispatch,useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { clearErrors, ResendEmail } from "../../../actions/userActions";
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
 
-const JoinVerify = () => {
+const JoinVerify = ({email,name}) => {
     /**
      * sign up : email verification data store
      */
+
+    const dispatch = useDispatch();
+    
     const [getSignUpInfo, setSignUpInfo] = useState();
+    const [getMailBoxClicked, setIsMailBoxClicked] = useState(false);
+
+    const { error, message,user } = useSelector(state=>state.user)
+
+    console.log(message);
+    console.log(user);
+    console.log(error);
+    //console.log(getSignUpInfo);
+
+    const ResendEmails = async (e) => {
+        e.preventDefault();
+        const datas = {
+            user:getSignUpInfo.email
+        }
+        dispatch(ResendEmail(datas));
+    }
+
     useEffect(() => {
         const data = getStore("signup_data");
         setSignUpInfo(data);
-    }, []);
+
+        if (error) {
+            //alert.show(error);
+            Toastify(
+                {
+                text: error,
+                className: "info",
+                style: {
+                    background:
+                        "linear-gradient(to right, #00b09b, #96c93d)",
+                    size: 10,
+                },
+                close: true,
+            }
+            ).showToast();
+          //alert.error(error);
+          dispatch(clearErrors());
+        }
+
+    }, [dispatch,user,error,message]);
 
     // main options
-    const [getMailBoxClicked, setIsMailBoxClicked] = useState(false);
+    
+
+
     return (
         <>
             <div className="ui-join-mail-activation mb-4">
@@ -70,7 +116,7 @@ const JoinVerify = () => {
                                                                 If you haven’t
                                                                 received the
                                                                 email
-                                                                <button>
+                                                                <button onClick={ResendEmails}>
                                                                     Click here
                                                                     to resend
                                                                     the email
@@ -82,10 +128,13 @@ const JoinVerify = () => {
                                                                 Still not
                                                                 received?
                                                                 <button>
-                                                                    Try using
-                                                                    another
-                                                                    email
-                                                                    address
+                                                                    <Link to="/registration">
+                                                                        Try using
+                                                                        another
+                                                                        email
+                                                                        address
+                                                                    </Link>
+                                                                    
                                                                 </button>
                                                             </p>
                                                         </li>

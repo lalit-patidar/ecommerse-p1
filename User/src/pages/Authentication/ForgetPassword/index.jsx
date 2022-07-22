@@ -96,7 +96,7 @@ const ForgetPassword = () => {
     
         if (isAuthenticated) {
             console.log("hello");
-            navigate("/choose-method");
+            navigate("/choose-method",{email:getEmail});
         }
       }, [dispatch, navigate, isAuthenticated, recaptchaRef,error, ]);
 

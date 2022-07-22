@@ -27,8 +27,9 @@ import Text from "../../../assets/authentication/get-text.svg";
 // Styles
 import "./../auth.css";
 
-const ChooseMethod = () => {
+const ChooseMethod = (email) => {
     
+    console.log(email);
     const [authSpinner, setAuthSpinner] = useState(false);
 
     const UsernameSchema = yup.object({
@@ -64,6 +65,7 @@ const ChooseMethod = () => {
                                 onSubmit={(values, { setSubmitting }) => {
                                     alert(JSON.stringify(values, null, 2));
                                     setSubmitting(false);
+                                    console.log(values);
                                 }}
                             >
                                 {(props) => (

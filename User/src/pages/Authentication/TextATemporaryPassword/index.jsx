@@ -32,6 +32,8 @@ const TextATemporaryPassword = () => {
     
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [getEmail, setEmail] = useState("");
+
 
     const { error,txt_pwd,message } = useSelector(state=>state.forgotPassword)
     console.log(error);
@@ -39,7 +41,7 @@ const TextATemporaryPassword = () => {
     console.log(message);
 
     const [authSpinner, setAuthSpinner] = useState(false);
-
+    console.log(getEmail);
     const UsernameSchema = yup.object({
         username: yup
             .string("Enter your Email or Username")
@@ -67,7 +69,7 @@ const TextATemporaryPassword = () => {
     
         if (txt_pwd) {
             //setLocalstore("_userLogin",user);
-            navigate("/choose-method");
+            navigate("/choose-method",{email:getEmail});
         }
       }, [dispatch, navigate,txt_pwd, error,message]);
 
@@ -102,6 +104,7 @@ const TextATemporaryPassword = () => {
                                     setSubmitting(true);
                                     const email = values.username
                                     console.log(email);
+                                    setEmail(email)
                                     dispatch(tempPassword(email))
                                 }}
                             >
