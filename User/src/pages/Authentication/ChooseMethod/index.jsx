@@ -1,5 +1,5 @@
 // React
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { Link } from "react-router-dom";
 
 // 3rd party components
@@ -26,10 +26,32 @@ import Email from "../../../assets/authentication/email.svg";
 import Text from "../../../assets/authentication/get-text.svg";
 // Styles
 import "./../auth.css";
+import { getStore } from "./../../../helper/storeHelper";
+import { clearErrors, EmailSuc ,TextSuc} from "../../../actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-const ChooseMethod = (email) => {
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
+
+
+const ChooseMethod = () => {
     
-    console.log(email);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const datas = getStore("choose_method");
+    //console.log(datas);
+
+    const { error,message,email_pwd } = useSelector(state=>state.forgotPassword)
+    const { errors,txt_pwd,messages } = useSelector(state=>state.mobile)
+    
+    console.log(errors);
+    console.log(txt_pwd);
+    console.log(message);
+    console.log(email_pwd);
+
+
     const [authSpinner, setAuthSpinner] = useState(false);
 
     const UsernameSchema = yup.object({
@@ -38,6 +60,99 @@ const ChooseMethod = (email) => {
             .required("This email or username doesn't exit."),
     });
 
+    const Email_suc = async(e) => {
+        e.preventDefault();
+        //alert(datas.email);
+        if(datas.email){
+            dispatch(EmailSuc(datas.email))
+        }
+    };
+
+    const Text_suc = async(e) => {
+        e.preventDefault();
+        if(datas.phone){
+            console.log("phone");
+            dispatch(TextSuc(datas.phone))
+            //alert(datas.phone);
+        } else {
+            //alert("Phone no is not verified")
+            Toastify(
+                {
+                text: "Phone no is not verified",
+                className: "info",
+                style: {
+                    background:
+                        "linear-gradient(to right, #00b09b, #96c93d)",
+                    size: 10,
+                },
+                close: true,
+            }
+            ).showToast();
+          //alert.error(error);
+          dispatch(clearErrors());
+        }
+        
+    };
+
+    useEffect(() => {
+        if (errors) {
+            //alert.show(error);
+            Toastify(
+                {
+                text: error,
+                className: "info",
+                style: {
+                    background:
+                        "linear-gradient(to right, #00b09b, #96c93d)",
+                    size: 10,
+                },
+                close: true,
+            }
+            ).showToast();
+          //alert.error(error);
+          dispatch(clearErrors());
+        }
+
+        if (error) {
+            //alert.show(error);
+            Toastify(
+                {
+                text: error,
+                className: "info",
+                style: {
+                    background:
+                        "linear-gradient(to right, #00b09b, #96c93d)",
+                    size: 10,
+                },
+                close: true,
+            }
+            ).showToast();
+          //alert.error(error);
+          dispatch(clearErrors());
+        }
+        
+        if (email_pwd) {
+            if(message.status == "true"){
+                navigate("/verify-its-you-email");
+            }
+            //setLocalstore("_userLogin",user);
+            
+        }
+        if (txt_pwd) {
+            if(messages.status == "true"){
+                navigate("/verify-its-you-phone");
+            }
+            //setLocalstore("_userLogin",user);
+            
+        }
+
+
+      }, [dispatch, navigate,txt_pwd,email_pwd, error,message]);
+
+
+
+
+    
     return (
         <main>
             <div className="signInContainer authContainer">
@@ -64,8 +179,8 @@ const ChooseMethod = (email) => {
                                 validationSchema={UsernameSchema}
                                 onSubmit={(values, { setSubmitting }) => {
                                     alert(JSON.stringify(values, null, 2));
-                                    setSubmitting(false);
-                                    console.log(values);
+                                    setSubmitting(true);
+                                    //console.log(values);
                                 }}
                             >
                                 {(props) => (
@@ -77,7 +192,7 @@ const ChooseMethod = (email) => {
                                         ) : null}
                                         <Link
                                             className="choose-option"
-                                            to={"/auth/signup"}
+                                            to="" onClick={Email_suc}
                                         >
                                             <strong>
                                                 <img
@@ -95,7 +210,7 @@ const ChooseMethod = (email) => {
 
                                         <Link
                                             className="choose-option"
-                                            to={"/auth/signup"}
+                                            to="" onClick={Text_suc}
                                         >
                                             <strong>
                                                 <img
@@ -110,6 +225,7 @@ const ChooseMethod = (email) => {
                                                 <strong>+XXXX XXXXX1234</strong>
                                             </p>
                                         </Link>
+
                                     </form>
                                 )}
                             </Formik>

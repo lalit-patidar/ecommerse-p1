@@ -8,6 +8,9 @@ import {
     FORGOT_PASSWORD_REQUEST,
     FORGOT_PASSWORD_SUCCESS,
     FORGOT_PASSWORD_FAIL,
+    TEMP_PASSWORD_REQUEST,
+    TEMP_PASSWORD_SUCCESS,
+    TEMP_PASSWORD_FAIL,
     LOAD_USER_REQUEST,
     LOAD_USER_SUCCESS,
     LOAD_USER_FAIL,
@@ -19,7 +22,17 @@ import {
     ADD_MOBILE_verify_FAIL ,  
     TXT_PSWD_REQUEST,
     TXT_PSWD_SUCCESS,
-    TXT_PSWD_FAIL,   
+    TXT_PSWD_FAIL,  
+    
+    EMAIL_PSWD_REQUEST,
+    EMAIL_PSWD_SUCCESS,
+    EMAIL_PSWD_FAIL,   
+
+    
+    EMAIL_verify_REQUEST,
+    EMAIL_verify_SUCCESS,
+    EMAIL_verify_FAIL,
+
     CLEAR_ERRORS,
   } from "../constants/userConstants";
   import axios from "axios";
@@ -125,13 +138,19 @@ export const ResendEmail = (email) => async (dispatch) => {
 
 
     // Load User
-  export const loadUser = (user,getceptcha) => async (dispatch) => {
+  //export const loadUser = (user,getceptcha) => async (dispatch) => {
+  export const loadUser = (user) => async (dispatch) => {
       try {
         dispatch({ type: LOAD_USER_REQUEST });
     
         const data = await axios.get(
-          `${Base_url}/login/check-user?user=${user}&greptcha=${getceptcha}`,
+          `${Base_url}/login/check-user?user=${user}`,
         );
+        
+        // const data = await axios.get(
+        //   `${Base_url}/login/check-user?user=${user}&greptcha=${getceptcha}`,
+        // );
+
         dispatch({ type: LOAD_USER_SUCCESS, payload: data });
         
       } catch (error) {
@@ -175,7 +194,58 @@ export const VerifyMobile = (datas) => async (dispatch) => {
 
  
 // text temp password
-export const tempPassword = (email) => async (dispatch) => {
+export const TempPassword = (email) => async (dispatch) => {
+  try {
+    dispatch({ type: TEMP_PASSWORD_REQUEST });
+
+    // console.log(email);
+    const data = await axios.get(
+      `${Base_url}/login/check-user?user=${email}`,
+    );
+
+    dispatch({ type: TEMP_PASSWORD_SUCCESS, payload: data });
+    
+  } catch (error) {
+    dispatch({ type: TEMP_PASSWORD_FAIL, payload: error.response.data.error });
+  }
+};
+
+
+ 
+// text Email SUC
+export const EmailSuc = (email) => async (dispatch) => {
+  try {
+    dispatch({ type: EMAIL_PSWD_REQUEST });
+
+    const data = await axios.post(
+      `${Base_url}/login/get-suc-email?email=${email}`,
+    );
+
+    dispatch({ type: EMAIL_PSWD_SUCCESS, payload: data });
+    
+  } catch (error) {
+    dispatch({ type: EMAIL_PSWD_FAIL, payload: error.response.data.error });
+  }
+};
+
+
+// verify text Email SUC
+export const VerifyEmailSuc = (datas) => async (dispatch) => {
+  try {
+    dispatch({ type: EMAIL_verify_REQUEST });
+
+    const data = await axios.post(
+      `${Base_url}/login/confirm-suc?suc_type=${datas.suc_type}&suc=${datas.suc}`,
+    );
+
+    dispatch({ type: EMAIL_verify_SUCCESS, payload: data });
+    
+  } catch (error) {
+    dispatch({ type: EMAIL_verify_FAIL, payload: error.response.data.error });
+  }
+};
+
+export const TextSuc = (email) => async (dispatch) => {
   try {
     dispatch({ type: TXT_PSWD_REQUEST });
 
@@ -186,7 +256,7 @@ export const tempPassword = (email) => async (dispatch) => {
     dispatch({ type: TXT_PSWD_SUCCESS, payload: data });
     
   } catch (error) {
-    dispatch({ type: TXT_PSWD_FAIL, payload: error.response.data });
+    dispatch({ type: TXT_PSWD_FAIL, payload: error.response.data.error });
   }
 };
 

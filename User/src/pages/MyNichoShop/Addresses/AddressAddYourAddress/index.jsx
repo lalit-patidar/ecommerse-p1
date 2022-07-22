@@ -11,6 +11,15 @@ import {
 import PhoneNumber from "../../../../components/PhoneNumber";
 import { useState } from "react";
 
+import {
+    InputAdornment,
+    OutlinedInput,
+} from "@mui/material";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import "../../../../components/PhoneNumber/phonenumber.scss";
+
+
 const AddressAddYourAddress = () => {
     // form all data
     const [getCountryData, setCountryData] = useState("");
@@ -19,7 +28,19 @@ const AddressAddYourAddress = () => {
     const [getCityData, setCityData] = useState("");
     const [getStateData, setStateData] = useState("");
     const [getPostCodeData, setPostCodeData] = useState("");
+    const [getAreaCode, setAreaCode] = useState("");
 
+    console.log(getAreaCode);
+    const data = {
+        country:getCountryData,
+        name:getFullNameData,
+        street:getStreetNumberData,
+        city:getCityData,
+        state:getStateData,
+        zip:getPostCodeData,
+        code:getAreaCode,
+    }
+    console.log(data);
     // error display
 
     const [isError, setError] = useState(false);
@@ -27,6 +48,10 @@ const AddressAddYourAddress = () => {
     // form all handler
     const countryChangeHandler = (e) => {
         setCountryData(e.target.value[0]);
+    };
+
+    const areaCodeHandler = (e) => {
+        setAreaCode(e.target.value);
     };
 
     const fullNameHandler = (e) => {
@@ -47,6 +72,10 @@ const AddressAddYourAddress = () => {
 
     const postCodeHandler = (e) => {
         setPostCodeData(e.target.value);
+    };
+
+    const phoneHandler = (e) => {
+        //setPostCodeData(e.target.value);
     };
 
     // form submit
@@ -223,7 +252,23 @@ const AddressAddYourAddress = () => {
                                             )}
                                     </div>
                                     <div className="mb-3 ui-phone-codes-select">
-                                        <PhoneNumber />
+                                        {/* <PhoneNumber email="indore"/> */}
+                                        <InputLabel htmlFor="phone-no">Phone No:</InputLabel>
+                                        <OutlinedInput
+                                            id="phone-no"
+                                            label="Phone No:"
+                                            onChange={phoneHandler}
+                                            type="number"
+                                            startAdornment={
+                                                <InputAdornment position="start">
+                                                    <PhoneInput
+                                                        country={"us"}
+                                                        value={getAreaCode}
+                                                        onChange={areaCodeHandler}
+                                                    />
+                                                </InputAdornment>
+                                            }
+                                        />
                                     </div>
                                     <div className="ui-commont-form-btn">
                                         <button type="submit">Save</button>

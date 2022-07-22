@@ -195,7 +195,7 @@ const Registration = () => {
             //console.log(getEmail);
             //console.log(getFullName);
           setLocalstore("signup_data",user);
-          navigate("/join-verify",{email: getEmail,name: getFullName});
+          navigate("/join-verify");
         }
       }, [dispatch, navigate,signup, getEmail,getFullName,recaptchaRef1,recaptchaRef2,error, ]);
 

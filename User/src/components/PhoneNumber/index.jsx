@@ -9,7 +9,10 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import "./phonenumber.scss";
 
-const PhoneNumber = ({ phoneHandler, areaCodeHandler, getAreaCode }) => {
+const PhoneNumber = ({ phoneHandler, areaCodeHandler, getAreaCode ,email}) => {
+    
+    console.log(email);
+    
     return (
         <>
             <div className="ui-phone-codes-select">

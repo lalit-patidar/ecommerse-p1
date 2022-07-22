@@ -24,10 +24,10 @@ const VerifyItsYouPhone = () => {
 
     const [getFormSubmit, setFormSubmit] = useState(false);
 
-    const { error, message ,verify} = useSelector(state=>state.mobile)
+    const { error, messages ,verify} = useSelector(state=>state.mobile)
 
     console.log(error);
-    console.log(message);
+    console.log(messages);
     console.log(verify);
 
     const soccodeHandler = (e) => {
@@ -68,7 +68,7 @@ const VerifyItsYouPhone = () => {
             //setLocalstore("_userLogin",user);
             navigate("/");
         }
-      }, [dispatch, navigate, message, error]);
+      }, [dispatch, navigate,verify, messages, error]);
 
 
 

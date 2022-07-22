@@ -9,7 +9,7 @@ import { clearErrors, ResendEmail } from "../../../actions/userActions";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 
-const JoinVerify = ({email,name}) => {
+const JoinVerify = () => {
     /**
      * sign up : email verification data store
      */

@@ -69,9 +69,11 @@ const ForgetPassword = () => {
         e.preventDefault();
         setFormSubmit(true);
 
-        if (getEmail.length !== 0 && getCaptcha.length !== 0) {
+        //if (getEmail.length !== 0 && getCaptcha.length !== 0) {
+        if (getEmail.length !== 0) {
             //alert("ok");
-            dispatch(loadUser(getEmail,getCaptcha))
+            //dispatch(loadUser(getEmail,getCaptcha))
+            dispatch(loadUser(getEmail))
         }
     };
 
@@ -95,8 +97,9 @@ const ForgetPassword = () => {
         }
     
         if (isAuthenticated) {
-            console.log("hello");
-            navigate("/choose-method",{email:getEmail});
+            // console.log("hello");
+            setLocalstore("choose_method",user);
+            navigate("/choose-method");
         }
       }, [dispatch, navigate, isAuthenticated, recaptchaRef,error, ]);
 
@@ -138,7 +141,7 @@ const ForgetPassword = () => {
                                                 "Please enter your email address"}
                                         </span>
                                     </Form.Group>
-                                    <ReCAPTCHA
+                                    {/* <ReCAPTCHA
                                         ref={recaptchaRef}
                                         className="mt-3 captcha"
                                         sitekey="6Lef6nQgAAAAADoRd2Ps76UfUklHu1v5k_BIYCw1"
@@ -151,7 +154,7 @@ const ForgetPassword = () => {
                                         <span className="ui-form-lable-error text-center d-blcok">
                                             Captcha is required! Refresh the page
                                         </span>
-                                    )}
+                                    )} */}
                                     <Button variant="primary" type="submit">
                                         {isLoading && (
                                             <div

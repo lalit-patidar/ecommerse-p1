@@ -15,12 +15,13 @@ import { BsExclamationOctagon } from "react-icons/bs";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { clearErrors, tempPassword } from "../../../actions/userActions";
+import { clearErrors, TempPassword } from "../../../actions/userActions";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 // Compoenents
 // import Header from "../../components/auth/Header";
 // import Footer from "../../components/auth/Footer";
+import { setLocalstore } from "../../../helper/localstore/localstore";
 
 // Styles
 import "./textatemporarypassword.css";
@@ -35,9 +36,9 @@ const TextATemporaryPassword = () => {
     const [getEmail, setEmail] = useState("");
 
 
-    const { error,txt_pwd,message } = useSelector(state=>state.forgotPassword)
+    const { error,temp_pwd,message } = useSelector(state=>state.forgotPassword)
     console.log(error);
-    console.log(txt_pwd);
+    console.log(temp_pwd);
     console.log(message);
 
     const [authSpinner, setAuthSpinner] = useState(false);
@@ -66,12 +67,13 @@ const TextATemporaryPassword = () => {
           //alert.error(error);
           dispatch(clearErrors());
         }
-    
-        if (txt_pwd) {
-            //setLocalstore("_userLogin",user);
+        
+        if (temp_pwd) { 
+            var user = message.data;
+            setLocalstore("choose_method",user);
             navigate("/choose-method",{email:getEmail});
         }
-      }, [dispatch, navigate,txt_pwd, error,message]);
+      }, [dispatch, navigate,temp_pwd, error,message]);
 
 
     return (
@@ -103,9 +105,9 @@ const TextATemporaryPassword = () => {
                                     //alert(JSON.stringify(values, null, 2));
                                     setSubmitting(true);
                                     const email = values.username
-                                    console.log(email);
+                                    //console.log(email);
                                     setEmail(email)
-                                    dispatch(tempPassword(email))
+                                    dispatch(TempPassword(email));
                                 }}
                             >
                                 {(props) => (

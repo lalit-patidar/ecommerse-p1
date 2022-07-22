@@ -7,10 +7,30 @@ import { TextField } from "@mui/material";
 
 import "react-phone-number-input/style.css";
 import FormFooter from "../../../components/FormFooter/FormFooter";
+import { getStore } from "./../../../helper/storeHelper";
+import { clearErrors, EmailSuc } from "../../../actions/userActions";
+import { useDispatch,useSelector } from "react-redux";
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
+
 
 const VerifyItsYouEmail = () => {
+
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [getSocCode, setSocCode] = useState("");
+
+    // const { error,message,email_pwd } = useSelector(state=>state.forgotPassword)
+
+    const { error, message ,email_verify} = useSelector(state=>state.email)
+
+
+    console.log(error);
+    console.log(message);
+    console.log(email_verify);
+
+    const data = getStore("choose_method");
+    console.log(data);
 
     const [getFormSubmit, setFormSubmit] = useState(false);
 
@@ -18,11 +38,34 @@ const VerifyItsYouEmail = () => {
         setSocCode(e.target.value);
     };
 
+    
+    const ResendEmailsSUC = async (e) => {
+        e.preventDefault();
+        const email = data.email;
+
+        dispatch(EmailSuc(email));
+        Toastify(
+            {
+            text: "We’ve sent a Single-Use Code (SUC) to this email address",
+            className: "info",
+            style: {
+                background:
+                    "linear-gradient(to right, #00b09b, #96c93d)",
+                size: 10,
+            },
+            close: true,
+        }
+        ).showToast();
+
+    }
+
+
     // form data submit
     const formHandler = (e) => {
         e.preventDefault();
         setFormSubmit(true);
     };
+
     return (
         <>
             <div className="ui-form-box">
@@ -36,7 +79,7 @@ const VerifyItsYouEmail = () => {
                                 <h4>Verify that it’s you</h4>
                                 <p className="text-start ui-add-mob-info mb-3">
                                     We’ve sent a Single-Use Code (SUC) to this
-                                    email address: example@domain.com
+                                    email address: {data?.email}
                                 </p>
 
                                 <Form onSubmit={formHandler}>
@@ -90,7 +133,7 @@ const VerifyItsYouEmail = () => {
                                     </div>
                                     <p className="ui-vy-footer-link">
                                         Still no code?{" "}
-                                        <Link to="/">Resend SUC</Link>
+                                        <Link to="" onClick={ResendEmailsSUC}>Resend SUC</Link>
                                     </p>
                                 </Form>
                             </div>

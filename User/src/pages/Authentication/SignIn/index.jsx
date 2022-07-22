@@ -125,9 +125,14 @@ const SignIn = () => {
           dispatch(clearErrors());
         }
         if (signin) {
+            
             setLocalstore("_userLogin",user);
+
             navigate("/add-mobile-number");
             removeLocalstore("_grecaptcha");
+            removeLocalstore("signup_data");
+            removeLocalstore("choose_method");
+
         }
       }, [dispatch, navigate,signin,recaptchaRef, error ]);
 
@@ -202,6 +207,7 @@ const SignIn = () => {
                                                 "Enter Password"}
                                         </span>
                                     </Form.Group>
+                                    <div class="g-recaptcha" data-callback="verifyCallback"></div>
                                     <ReCAPTCHA
                                         ref={recaptchaRef}
                                         className="mt-3 captcha"
