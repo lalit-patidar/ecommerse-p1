@@ -13,7 +13,7 @@ const CreateListing = () => {
             <div className="main-create-list">
                 <div className="main-logo">
                     <Logo />
-                    <h3>Create a listing</h3>
+                    {/* <h3>Create a listing</h3> */}
                 </div>
                 <CreatelistSearch />
                 <BrowseCategory />

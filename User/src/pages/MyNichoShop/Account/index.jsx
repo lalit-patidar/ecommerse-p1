@@ -1,5 +1,5 @@
 // React
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 // 3rd party components
@@ -28,11 +28,28 @@ import Menu from "../../../components/menu/Menu";
 import "./account.css";
 import AccountFooter from "../../../components/accountfooter/AccountFooter";
 import BusinessInformation from "./Components/BusinessInformation";
+import { useDispatch, useSelector } from "react-redux";
+import { getLocalstore } from "../../../helper/localstore/localstore";
+import axios from "axios";
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
 
 const Account = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [authSpinner, setAuthSpinner] = useState(false);
+    const dispatch = useDispatch();
 
+    const [userDetails, setUserDetails] = useState(null);
+    const [email, setemail] = useState(null);
+    const [firstName, setfirstName] = useState(null);
+    const [lastName, setlastName] = useState(null);
+    const [phone, setphone] = useState(null);
+    const [username, setusername] = useState(null);
+    const [address, setaddress] = useState([]);
+    
+    
+    
+    
     const accountSchema = yup.object({
         user_name: yup
             .string("Enter your Name here")
@@ -60,11 +77,119 @@ const Account = () => {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
+    const toast = (msg, color) => {
+        Toastify(
+            {
+            text: msg,
+            className: "info",
+            style: {
+                background:
+                color,
+                size: 10,
+            },
+            close: true,
+        }
+        ).showToast();
+    }
+    const updateusername = async () => {
+        try{
+            var formdata = {
+                "userid":userDetails.id,
+                "newUsername":username
+            };
+            const data = await axios.put(
+                `${process.env.REACT_APP_API_DOMAIN}/account/changeUsername`,
+                formdata
+            );
+            toast('Updated successfully', "linear-gradient(to right, #00b09b, #96c93d)")
+        }catch(e){
+            toast(e.response.data.error, "linear-gradient(to right, #00b09b, #ff0000)")
+        }
+    }
+
+    const updateemail = async () => {
+        try{
+            var formdata = {
+                "userid":userDetails.id,
+                "newEmail":email
+            };
+            const data = await axios.put(
+                `${process.env.REACT_APP_API_DOMAIN}/account/changeEmail`,
+                formdata
+            );
+            toast('Updated successfully', "linear-gradient(to right, #00b09b, #96c93d)")
+        }catch(e){
+            toast(e.response.data.error, "linear-gradient(to right, #00b09b, #ff0000)")
+        }
+    }
+
+    const updatephone = async () => {
+        try{
+            var formdata = {
+                "userid":userDetails.id,
+                "newPhone":username
+            };
+            const data = await axios.put(
+                `${process.env.REACT_APP_API_DOMAIN}/account/changePhone`,
+                formdata
+            );
+            toast('Updated successfully', "linear-gradient(to right, #00b09b, #96c93d)")
+        }catch(e){
+            toast(e.response.data.error, "linear-gradient(to right, #00b09b, #ff0000)")
+        }
+    }
+
+    // const updatepassword = async () => {
+    //     try{
+    //         var formdata = {
+    //             "userid":userDetails.id,
+    //             "newUsername":username
+    //         };
+    //         const data = await axios.put(
+    //             `${process.env.REACT_APP_API_DOMAIN}/account/changeUsername`,
+    //             formdata
+    //         );
+    //         toast('Updated successfully', "linear-gradient(to right, #00b09b, #96c93d)")
+    //     }catch(e){
+    //         toast(e.response.data.error, "linear-gradient(to right, #00b09b, #ff0000)")
+    //     }
+    // }
+
+    const checkuser = async () => {
+        var u = await getLocalstore('_userLogin');
+        if(u && u.id){
+            setUserDetails(u);
+            setemail(u.email);
+            setfirstName(u.firstName);
+            setlastName(u.lastName);
+            setphone(u.phone);
+            setusername(u.username);
+            getaddress();
+        }
+    }
+    const getaddress = async () => {
+        try{
+            const data = await axios.get(
+                `${process.env.REACT_APP_API_DOMAIN}/address/list`
+            );
+            if(data.data){
+                setaddress(data.data.list);
+                console.log(data.data);
+            }
+        }catch(e){
+            console.log(e);
+        }
+    }
+
+    useEffect(()=>{
+        checkuser();
+    },[])
 
     return (
         <div className="home-page">
-            <Header />
             <Menu />
+            {userDetails ? (
+
             <div className="cs_section ne_css account-pg">
                 <div className="container_no">
                     <Breadcrumbs />
@@ -124,9 +249,12 @@ const Account = () => {
                                                     </label>
                                                     <TextField
                                                         fullWidth
-                                                        value="username"
+                                                        value={username}
                                                         variant="outlined"
                                                         size="small"
+                                                        onChange={event=>{
+                                                            setusername(event.target.value);
+                                                        }}
                                                     />
                                                 </div>
                                             </div>
@@ -134,6 +262,7 @@ const Account = () => {
                                                 <button
                                                     type="submit"
                                                     className="themeBtn w-100"
+                                                    onClick={updateusername}
                                                 >
                                                     Edit
                                                 </button>
@@ -169,9 +298,12 @@ const Account = () => {
                                                     </label>
                                                     <TextField
                                                         fullWidth
-                                                        value="example@domain.com"
+                                                        value={email}
                                                         variant="outlined"
                                                         size="small"
+                                                        onChange={event=>{
+                                                            setemail(event.target.value);
+                                                        }}
                                                     />
                                                 </div>
                                             </div>
@@ -179,6 +311,7 @@ const Account = () => {
                                                 <button
                                                     type="submit"
                                                     className="themeBtn w-100"
+                                                    onClick={updateemail}
                                                 >
                                                     Edit
                                                 </button>
@@ -246,9 +379,12 @@ const Account = () => {
                                                     </label>
                                                     <TextField
                                                         fullWidth
-                                                        value="+1234567890"
+                                                        value={phone}
                                                         variant="outlined"
                                                         size="small"
+                                                        onChange={event=>{
+                                                            setphone(event.target.value);
+                                                        }}
                                                     />
                                                 </div>
                                             </div>
@@ -256,6 +392,7 @@ const Account = () => {
                                                 <button
                                                     type="submit"
                                                     className="themeBtn w-100"
+                                                    onClick={updatephone}
                                                 >
                                                     Edit
                                                 </button>
@@ -271,7 +408,7 @@ const Account = () => {
                                     <p className="top_text">
                                         Registration address
                                     </p>
-                                    <h4 className="ine_haed">Name Family</h4>
+                                    <h4 className="ine_haed">Name {firstName+' '+lastName}</h4>
                                     <div className="info_div">
                                         <p>1234 EL CAMINO REAL</p>
                                         <p>STE - 100386</p>
@@ -281,12 +418,14 @@ const Account = () => {
                                     </div>
                                 </div>
                                 <div className="col-md-3 form_right full_width">
+                                    <a href="/account/add-your-address">
                                     <button
                                         type="button"
                                         className="btn btn-primary Edit"
                                     >
                                         Edit
                                     </button>
+                                    </a>
                                 </div>
                             </div>
                             <hr />
@@ -306,6 +445,7 @@ const Account = () => {
                     <BusinessInformation />
                 </div>
             </div>
+            ): null}
             <AccountFooter />
         </div>
     );
