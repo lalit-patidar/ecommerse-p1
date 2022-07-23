@@ -38,7 +38,8 @@ const Category = () => {
     };
     const [movecate, setmovecate] = useState(null);
     const [moveto, setmoveto] = useState(null);
-
+    const [categorydisplay, setcategorydisplay] = useState([]);
+    const [subcategory, setsubcategory] = useState([]);
     const addCategoryValue = (e) => {
         const { name, value } = e.target;
         switch (name) {
@@ -76,6 +77,9 @@ const Category = () => {
         Axios.get(process.env.REACT_APP_DOMIAN_API+"/admin/category/all").then(
             (res) => {
                 if(res.data.length > 0){
+                    res.data.forEach(e=>{
+                        console.log(e.category.specifics);
+                    })
                     setInitialdata(res.data);
                 }
             }
@@ -262,6 +266,13 @@ const Category = () => {
                 })
             })
         }
+        if(c.specifics == ""){
+            c.specifics = [];
+        }else{
+            if(!Array.isArray(c.specifics)){
+                c.specifics = JSON.parse(c.specifics)
+            }
+        }
         setcategoryspecifics(c);
     }
     const movecat = (cat) => {
@@ -346,6 +357,17 @@ const Category = () => {
                                                 onClick={() => {
                                                     toggle(index);
                                                     setmulcondition(category.category);
+                                                    var cate = {
+                                                        id: category.category.id,
+                                                        index: 0,
+                                                        name: category.category.name
+                                                    }
+                                                    setcategorydisplay([cate])
+                                                    if(category.children){
+                                                        setsubcategory(category.children)
+                                                    }else{
+                                                        setsubcategory([]);
+                                                    }
                                                 }}
                                                 type="button"
                                                 data-bs-toggle="collapse"
@@ -397,9 +419,37 @@ const Category = () => {
                                         data-bs-parent="#accordionExample"
                                     >
                                         <div className="accordion-body row p-4">
+                                            <div className="col-lg-12">
+                                                <div className="row">
+                                                    <p className="categorytopname">
+                                                        {categorydisplay.map((c, indexs)=>{ 
+                                                            const result = ( <span className="mar-2" onClick={()=>{
+                                                                var ds = [];
+                                                                categorydisplay.forEach((s, m)=>{
+                                                                    if(m <= indexs){
+                                                                        ds.push(s);
+                                                                    }
+                                                                })
+                                                                if(indexs > 0){
+                                                                    var car = category;
+                                                                    for(var i = 0; i<=indexs; i++){
+                                                                        setmulcondition(car.category);
+                                                                        setsubcategory(car.children);
+                                                                        car = car.children && car.children[categorydisplay[i].index] ? car.children[categorydisplay[i].index] : [];
+                                                                    }
+                                                                }else{
+                                                                    setmulcondition(category.category);
+                                                                    category.children ? setsubcategory(category.children) : setsubcategory([]);
+                                                                }
+                                                                setcategorydisplay(ds);
+                                                            }}>{c.name} {" > "}</span> ); return result;
+                                                        })} 
+                                                    </p>
+                                                </div>
+                                            </div>
                                             <div className="col-lg-5 mb-4">
                                                 <div className="row">
-                                                    {category.children && category.children.map(
+                                                    {subcategory && subcategory.map(
                                                         (category, index) => {
                                                             const result = (
                                                                 <div
@@ -409,6 +459,19 @@ const Category = () => {
                                                                     {/* onClick={() => getActionData(category.category.name.id)} */}
                                                                     <a className="col-10 colorblack" onClick={()=>{
                                                                             setmulcondition(category.category);
+                                                                            var c = categorydisplay;
+                                                                            c.push({
+                                                                                id: category.category.id,
+                                                                                index: index,
+                                                                                name: category.category.name
+                                                                            })
+                                                                            setcategorydisplay(c)
+                                                                            if(category.children){
+                                                                                setsubcategory(category.children)
+                                                                            }else{
+                                                                                setsubcategory([]);
+                                                                            }
+                        
                                                                         }}>
                                                                         <span>
                                                                             &nbsp;
@@ -504,9 +567,7 @@ const Category = () => {
                                                                 className="btn btn-outline-success"
                                                                 onClick={() =>
                                                                     AddSubCategory(
-                                                                        category
-                                                                            .category
-                                                                            .id
+                                                                        categorydisplay[categorydisplay.length - 1].id
                                                                     )
                                                                 }
                                                             >

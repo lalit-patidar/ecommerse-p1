@@ -76,7 +76,7 @@ import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import PaymentMethod from "../pages/PaymentMethod";
 
-import Selling from "../pages/MyNichoShop/SellerCentral/Selling";
+import StartSelling from "../pages/MyNichoShop/SellerCentral/StartSelling";
 import CreateListing from "../pages/MyNichoShop/SellerCentral/CreateListing/CreateListing";
 import CreateListing_multiple from "../pages/MyNichoShop/SellerCentral/CreateListing_multiple/CreateListing_multiple";
 
@@ -100,7 +100,7 @@ const RootRoute = () => {
                 />
                 <Route path="/todays-deals" element={<TodaysDeals />} />
 
-                <Route path="/Selling" element={<Selling /> } />
+                <Route path="/StartSelling" element={<StartSelling /> } />
                 <Route path="/CreateListing" element={<CreateListing /> } />
                 <Route path="/CreateListing_multiple" element={<CreateListing_multiple /> } />
 

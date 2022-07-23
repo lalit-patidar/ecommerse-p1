@@ -20,7 +20,7 @@ import Businessinfo1 from "./component1/Businessinfo1/Businessinfo1";
 import Bankaccount1 from "./component1/Bankaccount1/Bankaccount1";
 import { useState } from "react";
 
-const Selling = () => {
+const StartSelling = () => {
     const [address, setAddress] = useState(true);
     const [bank, setbank] = useState(false);
     return (
@@ -54,4 +54,4 @@ const Selling = () => {
     );
 }
 
-export default Selling;
+export default StartSelling;

@@ -77,3 +77,12 @@
 .ml-3{
     margin-left: 17px;
 }
+.categorytopname{
+    cursor: pointer;
+    color: blueviolet;
+    font-size: 14px;
+    font-weight: bold;
+}
+.mar-2{
+    margin-right: 5px;
+}
