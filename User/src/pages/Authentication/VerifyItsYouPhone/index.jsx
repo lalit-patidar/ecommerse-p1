@@ -1,5 +1,5 @@
 import { Container, Row, Col, Form } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate,useLocation } from "react-router-dom";
 import { ReactComponent as Logo } from "./../../../assets/logo/logo.svg";
 import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
@@ -7,7 +7,7 @@ import { TextField } from "@mui/material";
 
 import "react-phone-number-input/style.css";
 import FormFooter from "../../../components/FormFooter/FormFooter";
-import { getLocalstore } from "../../../helper/localstore/localstore";
+import { getLocalstore,setLocalstore ,removeLocalstore} from "../../../helper/localstore/localstore";
 import { clearErrors, VerifyMobile } from "../../../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import Toastify from "toastify-js";
@@ -15,8 +15,12 @@ import "toastify-js/src/toastify.css";
 
 const VerifyItsYouPhone = () => {
 
-    //const data = getLocalstore("_userLogin")
+    const user = getLocalstore("_userLogin")
+    const data = getLocalstore("verifyphone")
+
     //console.log(data);
+
+    const location = useLocation();
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -24,11 +28,14 @@ const VerifyItsYouPhone = () => {
 
     const [getFormSubmit, setFormSubmit] = useState(false);
 
-    const { error, messages ,verify} = useSelector(state=>state.mobile)
+    const { error, messagess ,verify} = useSelector(state=>state.otp)
 
     console.log(error);
-    console.log(messages);
+    console.log(messagess);
     console.log(verify);
+
+    const mobno = location.state;
+    console.log(mobno);
 
     const soccodeHandler = (e) => {
         setSocCode(e.target.value);
@@ -65,12 +72,13 @@ const VerifyItsYouPhone = () => {
           dispatch(clearErrors());
         } 
         if (verify) {
-            //setLocalstore("_userLogin",user);
+            user.phone = "+"+data;
+            user.phoneConfirmed = "true";
+            setLocalstore("_userLogin",user);
             navigate("/");
+            removeLocalstore("verifyphone");
         }
-      }, [dispatch, navigate,verify, messages, error]);
-
-
+      }, [dispatch, navigate,verify, messagess, error]);
 
 
     return (

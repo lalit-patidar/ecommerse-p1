@@ -22,8 +22,7 @@ const VerifyItsYouEmail = () => {
 
     // const { error,message,email_pwd } = useSelector(state=>state.forgotPassword)
 
-    const { error, message ,email_verify} = useSelector(state=>state.email)
-
+    const { error, message ,email_verify} = useSelector(state=>state.email);
 
     console.log(error);
     console.log(message);

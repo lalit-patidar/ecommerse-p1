@@ -5,7 +5,7 @@ import MNSPurchases from "./MNSPurchases";
 import MNSMessages from "./MNSMessages";
 import MNSClaim from "./MNSClaim";
 import { combineReducers } from "redux";
-import { AddressReducer, EmailReducer, forgotPasswordReducer, mobileReducer, userReducer } from "./userReducer";
+import { AddressReducer, EmailReducer, forgotPasswordReducer, mobileReducer, mobileVerifyReducer, userReducer } from "./userReducer";
 
 const allReducers = combineReducers({
   user : userReducer,
@@ -13,6 +13,7 @@ const allReducers = combineReducers({
   mobile:mobileReducer,
   email:EmailReducer,
   address:AddressReducer,
+  otp:mobileVerifyReducer,
   
   // user: authReducer,
   hideSearchBar: hideSearchBarReducer,

@@ -25,7 +25,7 @@ import Footer from "../../../components/auth/Footer";
 import "./../auth.css";
 import MuiPhoneNumber from "material-ui-phone-number";
 
-import { getLocalstore } from "../../../helper/localstore/localstore";
+import { getLocalstore ,setLocalstore} from "../../../helper/localstore/localstore";
 
 const AddMobileNumber = () => {
 
@@ -35,7 +35,7 @@ const AddMobileNumber = () => {
     const data = getLocalstore("_userLogin")
     console.log(data);
 
-    if(data.phone != null && data.phoneConfirmed == "true")
+    if(data.phoneConfirmed == "true")
     {
         navigate("/")
     }
@@ -45,6 +45,7 @@ const AddMobileNumber = () => {
 
 //    console.log(isAuthenticated);
     const [authSpinner, setAuthSpinner] = useState(false);
+    const [getphone, setphone] = useState("");
 
     const AddNumberSchema = yup.object({
         phoneNumber: yup
@@ -81,9 +82,10 @@ const AddMobileNumber = () => {
     
         if (add_mob) {
             //setLocalstore("_userLogin",user);
-            navigate("/verify-its-you-phone");
+            setLocalstore("verifyphone",getphone);
+            navigate("/verify-its-you-phone",{state:{mobno:setphone}});
         }
-      }, [dispatch, navigate,add_mob, message, error]);
+      }, [dispatch, navigate,add_mob,data, message, error]);
 
 
 
@@ -119,6 +121,7 @@ const AddMobileNumber = () => {
                                     const countryCodes = values.countryCode.replace(/[^\w\s*]/gi, '')
                                     const phone = countryCodes+values.phoneNumber
                                     //console.log(values.countryCode+values.phoneNumber);
+                                    setphone(phone)
                                     console.log(phone);
                                     dispatch(AddMobile(phone));
                                 }}

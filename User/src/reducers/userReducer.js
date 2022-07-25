@@ -135,9 +135,8 @@ export const forgotPasswordReducer = (state = {}, action) => {
             message: action.payload,
           };
 
-          
 
-            case EMAIL_PSWD_SUCCESS:
+      case EMAIL_PSWD_SUCCESS:
             return {
               ...state,
               loading: false,
@@ -178,7 +177,6 @@ export const mobileReducer = (state = { mobile: {} }, action) => {
 
     switch (action.type) {
       case ADD_MOBILE_REQUEST:
-      case ADD_MOBILE_verify_REQUEST:
         case TXT_PSWD_REQUEST:
         return {
           ...state,
@@ -194,14 +192,6 @@ export const mobileReducer = (state = { mobile: {} }, action) => {
           message: action.payload.data,
         };
 
-      case ADD_MOBILE_verify_SUCCESS:
-          return {
-            ...state,
-            loading: false,
-            verify:true,
-            messages: action.payload.data,
-          };
-
           case TXT_PSWD_SUCCESS:
             return {
               ...state,
@@ -212,7 +202,6 @@ export const mobileReducer = (state = { mobile: {} }, action) => {
 
 
         case ADD_MOBILE_FAIL:
-        case ADD_MOBILE_verify_FAIL:
         return {
           ...state,
           loading: false,
@@ -237,6 +226,40 @@ export const mobileReducer = (state = { mobile: {} }, action) => {
     }
 };
 
+export const mobileVerifyReducer = (state = { otp: {} }, action) => {
+
+  switch (action.type) {
+    case ADD_MOBILE_verify_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+
+    case ADD_MOBILE_verify_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          verify:true,
+          messagess: action.payload.data,
+        };
+
+      case ADD_MOBILE_verify_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
 
  
 export const EmailReducer = (state = { email: {} }, action) => {
@@ -291,8 +314,8 @@ export const AddressReducer = (state = { address: [] }, action) => {
       return {
         ...state,
         loading: false,
-        addr:true,
-        add_addr: action.payload.data,
+        add_address:true,
+        message: action.payload.data,
       };
 
       case ADD_ADDRESS_FAIL:

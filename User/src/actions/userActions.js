@@ -107,11 +107,9 @@ export const ResendEmail = (email) => async (dispatch) => {
   }
 };
 
-
-
   
   // Forgot Password
-  export const forgotPassword = (email) => async (dispatch) => {
+export const forgotPassword = (email) => async (dispatch) => {
     try {
       dispatch({ type: FORGOT_PASSWORD_REQUEST });
   
@@ -244,6 +242,7 @@ export const VerifyEmailSuc = (datas) => async (dispatch) => {
     dispatch({ type: EMAIL_verify_FAIL, payload: error.response.data.error });
   }
 };
+
 
 export const TextSuc = (email) => async (dispatch) => {
   try {

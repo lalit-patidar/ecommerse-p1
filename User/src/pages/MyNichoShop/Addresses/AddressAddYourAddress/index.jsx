@@ -9,38 +9,50 @@ import {
     TextField,
 } from "@mui/material";
 import PhoneNumber from "../../../../components/PhoneNumber";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 
 import {
     InputAdornment,
     OutlinedInput,
 } from "@mui/material";
-import PhoneInput from "react-phone-input-2";
+// import PhoneInput from "react-phone-input-2";
+import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css'
+
 import "react-phone-input-2/lib/style.css";
 import "../../../../components/PhoneNumber/phonenumber.scss";
-
+import {clearErrors,AddAddress} from "../../../../actions/addressAction";
+import { useLocation, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
 
 const AddressAddYourAddress = () => {
+
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    //const alert = useAlert();
+  
+    const { error, add_address } = useSelector(state=>state.address)
+
+    console.log(error);
+    console.log(add_address);
+
     // form all data
     const [getCountryData, setCountryData] = useState("");
     const [getFullNameData, setFullNameData] = useState("");
     const [getStreetNumberData, setStreetNumberData] = useState("");
+    const [getApartmentData, setApartmentData] = useState("");
     const [getCityData, setCityData] = useState("");
     const [getStateData, setStateData] = useState("");
     const [getPostCodeData, setPostCodeData] = useState("");
-    const [getAreaCode, setAreaCode] = useState("");
+    //const [getAreaCode, setAreaCode] = useState("");
+    const [value, setValue] = useState()
 
-    console.log(getAreaCode);
-    const data = {
-        country:getCountryData,
-        name:getFullNameData,
-        street:getStreetNumberData,
-        city:getCityData,
-        state:getStateData,
-        zip:getPostCodeData,
-        code:getAreaCode,
-    }
-    console.log(data);
+
+    console.log(value);
+    console.log(getCountryData);
     // error display
 
     const [isError, setError] = useState(false);
@@ -50,9 +62,9 @@ const AddressAddYourAddress = () => {
         setCountryData(e.target.value[0]);
     };
 
-    const areaCodeHandler = (e) => {
-        setAreaCode(e.target.value);
-    };
+    // const areaCodeHandler = (e) => {
+    //     setAreaCode(e.target.value);
+    // };
 
     const fullNameHandler = (e) => {
         setFullNameData(e.target.value);
@@ -73,25 +85,64 @@ const AddressAddYourAddress = () => {
     const postCodeHandler = (e) => {
         setPostCodeData(e.target.value);
     };
-
-    const phoneHandler = (e) => {
-        //setPostCodeData(e.target.value);
+    const apartmentHandler = (e) => {
+        setApartmentData(e.target.value);
     };
 
+    
     // form submit
     const formSubmitHandler = (e) => {
         e.preventDefault();
 
         if (
-            getCountryData &&
             getFullNameData &&
             getStreetNumberData &&
             getCityData
         ) {
+            const data = {
+                name:getFullNameData,
+                address1:getStreetNumberData,
+                address2:getApartmentData,
+                city:getCityData,
+                state:getStateData,
+                zip:getPostCodeData,
+                //country:"india",
+                country:getCountryData,
+                phone:value,
+                addressType:1,
+                status:1
+            }
+
+            dispatch(AddAddress(data))
         } else {
             setError(true);
         }
     };
+
+
+    useEffect(() => {
+        if (error) {
+            //alert.show(error);
+            Toastify(
+                {
+                text: error,
+                className: "info",
+                style: {
+                    background:
+                        "linear-gradient(to right, #00b09b, #96c93d)",
+                    size: 10,
+                },
+                close: true,
+            }
+            ).showToast();
+          //alert.error(error);
+          dispatch(clearErrors());
+        }
+        if (add_address) {
+            navigate("/addresses");
+        }
+      }, [dispatch, navigate,add_address, error ]);
+
     return (
         <>
             <div className="ui-add-your-address-box">
@@ -128,7 +179,7 @@ const AddressAddYourAddress = () => {
                                             onChange={fullNameHandler}
                                         />
                                         {isError &&
-                                            getFullNameData.length == 0 && (
+                                            getFullNameData.length === 0 && (
                                                 <span className="text-danger">
                                                     Enter a name.
                                                 </span>
@@ -172,6 +223,8 @@ const AddressAddYourAddress = () => {
                                             variant="outlined"
                                             size="medium"
                                             fullWidth
+                                            value={getApartmentData}
+                                            onChange={apartmentHandler}
                                         />
                                     </div>
                                     <div className="mb-3">
@@ -184,13 +237,13 @@ const AddressAddYourAddress = () => {
                                             onChange={cityHandler}
                                             error={
                                                 isError &&
-                                                getCityData.length == 0
+                                                getCityData.length === 0
                                                     ? true
                                                     : false
                                             }
                                         />
 
-                                        {isError && getCityData.length == 0 && (
+                                        {isError && getCityData.length === 0 && (
                                             <span className="text-danger">
                                                 Enter a city name.
                                             </span>
@@ -253,8 +306,14 @@ const AddressAddYourAddress = () => {
                                     </div>
                                     <div className="mb-3 ui-phone-codes-select">
                                         {/* <PhoneNumber email="indore"/> */}
-                                        <InputLabel htmlFor="phone-no">Phone No:</InputLabel>
-                                        <OutlinedInput
+                                        <PhoneInput
+                                                        // country="US"
+                                                        defaultCountry="US"
+                                                        value={value}
+                                                        onChange={setValue}
+                                                    />
+                                        {/* <InputLabel htmlFor="phone-no">Phone No:</InputLabel> */}
+                                        {/* <OutlinedInput
                                             id="phone-no"
                                             label="Phone No:"
                                             onChange={phoneHandler}
@@ -265,10 +324,11 @@ const AddressAddYourAddress = () => {
                                                         country={"us"}
                                                         value={getAreaCode}
                                                         onChange={areaCodeHandler}
-                                                    />
+                                                    /> 
+
                                                 </InputAdornment>
                                             }
-                                        />
+                                        /> */}
                                     </div>
                                     <div className="ui-commont-form-btn">
                                         <button type="submit">Save</button>
