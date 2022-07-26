@@ -26,7 +26,7 @@ import { useLocation, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
-
+import axios from "axios";
 const AddressAddYourAddress = () => {
 
 
@@ -51,16 +51,30 @@ const AddressAddYourAddress = () => {
     const [value, setValue] = useState()
 
 
-    console.log(value);
-    console.log(getCountryData);
-    // error display
+    // console.log(value);
+    // console.log(getCountryData);
+    
+    const getGeoInfo = () => {
+        axios
+          .get("https://ipapi.co/json/")
+          .then((response) => {
+            let data = response.data;
+            console.log(data.country);
+            setCountryData(data.country_code)
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      };
 
+
+    // error display
     const [isError, setError] = useState(false);
 
     // form all handler
-    const countryChangeHandler = (e) => {
-        setCountryData(e.target.value[0]);
-    };
+    // const countryChangeHandler = (e) => {
+    //     setCountryData(e.target.value[0]);
+    // };
 
     // const areaCodeHandler = (e) => {
     //     setAreaCode(e.target.value);
@@ -106,7 +120,6 @@ const AddressAddYourAddress = () => {
                 city:getCityData,
                 state:getStateData,
                 zip:getPostCodeData,
-                //country:"india",
                 country:getCountryData,
                 phone:value,
                 addressType:1,
@@ -121,6 +134,8 @@ const AddressAddYourAddress = () => {
 
 
     useEffect(() => {
+        getGeoInfo();
+
         if (error) {
             //alert.show(error);
             Toastify(
@@ -155,13 +170,13 @@ const AddressAddYourAddress = () => {
                             <div className="ui-commont-form-box">
                                 <p>Add your address</p>
                                 <form onSubmit={formSubmitHandler}>
-                                    <div className="mb-3">
+                                    {/* <div className="mb-3">
                                         <SelectCountry
                                             countryChangeHandler={
                                                 countryChangeHandler
                                             }
                                         />
-                                    </div>
+                                    </div> */}
                                     <div className="mb-3">
                                         <TextField
                                             error={
@@ -308,7 +323,7 @@ const AddressAddYourAddress = () => {
                                         {/* <PhoneNumber email="indore"/> */}
                                         <PhoneInput
                                                         // country="US"
-                                                        defaultCountry="US"
+                                                        defaultCountry={getCountryData}
                                                         value={value}
                                                         onChange={setValue}
                                                     />
