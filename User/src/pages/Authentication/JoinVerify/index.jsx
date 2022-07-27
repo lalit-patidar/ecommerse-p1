@@ -8,12 +8,13 @@ import { Link } from "react-router-dom";
 import { clearErrors, ResendEmail } from "../../../actions/userActions";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
+import { useNavigate } from "react-router";
 
 const JoinVerify = () => {
     /**
      * sign up : email verification data store
      */
-
+     const navigate = useNavigate();
     const dispatch = useDispatch();
     
     const [getSignUpInfo, setSignUpInfo] = useState();
@@ -25,13 +26,29 @@ const JoinVerify = () => {
     console.log(user);
     console.log(error);
     //console.log(getSignUpInfo);
-
+    
+    const Reg = ()=>{
+        navigate("/registration")
+    }
+    
     const ResendEmails = async (e) => {
         e.preventDefault();
         const datas = {
             user:getSignUpInfo.email
         }
         dispatch(ResendEmail(datas));
+        Toastify(
+            {
+            text: `activation link has been sent to:${getSignUpInfo?.email}`,
+            className: "info",
+            style: {
+                background:
+                    "linear-gradient(to right, #00b09b, #96c93d)",
+                size: 10,
+            },
+            close: true,
+        }
+        ).showToast();
     }
 
     useEffect(() => {
@@ -128,7 +145,7 @@ const JoinVerify = () => {
                                                                 Still not
                                                                 received?
                                                                 <button>
-                                                                    <Link to="/registration">
+                                                                    <Link to="/registration" onClick={Reg}>
                                                                         Try using
                                                                         another
                                                                         email

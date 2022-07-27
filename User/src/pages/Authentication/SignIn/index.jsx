@@ -16,10 +16,9 @@ import { useLocation, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 //import { useAlert } from "react-alert";
 import { clearErrors, login } from "../../../actions/userActions";
-import Toastify from "toastify-js";
 import AppleLogin from 'react-apple-login'
 import AppleSignin from 'react-apple-signin-auth';
-
+import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 
 const Querystring = require('querystring');

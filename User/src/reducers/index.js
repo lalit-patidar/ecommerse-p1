@@ -5,15 +5,25 @@ import MNSPurchases from "./MNSPurchases";
 import MNSMessages from "./MNSMessages";
 import MNSClaim from "./MNSClaim";
 import { combineReducers } from "redux";
-import { AddressReducer, EmailReducer, forgotPasswordReducer, mobileReducer, mobileVerifyReducer, userReducer } from "./userReducer";
+import { AddressReducer, EmailReducer, ForgotPasswordReducer, MobileReducer, MobileVerifyReducer, UserReducer } from "./userReducers";
+import storage from 'redux-persist/lib/storage'
+import {persistReducer} from "redux-persist";
+
+
+// const persistConfig={
+//   key:'root',
+//   storage,
+//   //whitelist:['user','forgotPassword','mobile','email','address','otp']
+//   whitelist:[]
+// }
 
 const allReducers = combineReducers({
-  user : userReducer,
-  forgotPassword:forgotPasswordReducer,
-  mobile:mobileReducer,
+  user : UserReducer,
+  forgotPassword:ForgotPasswordReducer,
+  mobile:MobileReducer,
   email:EmailReducer,
   address:AddressReducer,
-  otp:mobileVerifyReducer,
+  otp:MobileVerifyReducer,
   
   // user: authReducer,
   hideSearchBar: hideSearchBarReducer,
@@ -27,3 +37,4 @@ const allReducers = combineReducers({
 });
 
 export default allReducers;
+//export default persistReducer(persistConfig,allReducers);

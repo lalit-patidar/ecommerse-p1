@@ -34,7 +34,9 @@
 
   <title>Nick Shop</title>
   
-  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script async src="https://www.google.com/recaptcha/api.js?render=6Lef6nQgAAAAADoRd2Ps76UfUklHu1v5k_BIYCw1"></script>
+
 
   <style>
     script {
@@ -46,9 +48,6 @@
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-  <!-- <script src="https://www.google.com/recaptcha/api.js?render=6Lef6nQgAAAAADoRd2Ps76UfUklHu1v5k_BIYCw1"></script> -->
-
-  <script src="https://www.google.com/recaptcha/api.js"></script>
 
   <!--
       This HTML file is a template.
@@ -60,6 +59,31 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+
+
+    
+    <!-- References for the optional jQuery function to enhance end-user prompts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="form.js"></script>
+
 </body>
 
 </html>
+
+<!-- <script>
+  grecaptcha.ready(function() {
+    grecaptcha.execute('6Lef6nQgAAAAADoRd2Ps76UfUklHu1v5k_BIYCw1', {action: 'homepage'}).then(function(token) {
+       // console.log(token);
+       document.getElementById("token").value = token;
+    });
+    // refresh token every minute to prevent expiration
+    setInterval(function(){
+      grecaptcha.execute('6Lef6nQgAAAAADoRd2Ps76UfUklHu1v5k_BIYCw1', {action: 'homepage'}).then(function(token) {
+        console.log( 'refreshed token:', token );
+        document.getElementById("token").value = token;
+      });
+    }, 60000);
+
+  });
+</script> -->

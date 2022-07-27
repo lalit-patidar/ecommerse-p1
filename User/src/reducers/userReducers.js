@@ -15,10 +15,9 @@ import {
     TEMP_PASSWORD_SUCCESS,
     TEMP_PASSWORD_FAIL,  
 
-
-    LOAD_USER_REQUEST,
-    LOAD_USER_SUCCESS,
-    LOAD_USER_FAIL,
+    // LOAD_USER_REQUEST,
+    // LOAD_USER_SUCCESS,
+    // LOAD_USER_FAIL,
 
     ADD_MOBILE_REQUEST,
     ADD_MOBILE_SUCCESS,
@@ -47,13 +46,13 @@ import {
     CLEAR_ERRORS,
  } from "../constants/userConstants";
 
-export const userReducer = (state = {user :{}}, action)=>{
+export const UserReducer = (state = {}, action)=>{
     
     switch(action.type)
     {
             case REGISTER_USER_REQUEST:
             case LOGIN_REQUEST:
-            case LOAD_USER_REQUEST:
+            // case LOAD_USER_REQUEST:
                 return {
                     loading:true,
                     isAuthenticated:false,
@@ -76,13 +75,14 @@ export const userReducer = (state = {user :{}}, action)=>{
                 isAuthenticated:true,
                 user:action.payload.data,
             };
-            case LOAD_USER_SUCCESS:
-                return {
-                    ...state,
-                    loading:false,
-                    isAuthenticated:true,
-                    user:action.payload.data,
-                };
+            // case LOAD_USER_SUCCESS:
+            //     return {
+            //         ...state,
+            //         loading:false,
+            //         //load:true,
+            //         isAuthenticated:true,
+            //         load:action.payload.data,
+            //     };
 
             case LOGIN_FAIL:
             case REGISTER_USER_FAIL:
@@ -94,13 +94,13 @@ export const userReducer = (state = {user :{}}, action)=>{
                     error:action.payload,
                 };
                 
-            case LOAD_USER_FAIL:
-                  return {
-                    loading: false,
-                    isAuthenticated: false,
-                    user: null,
-                    error: action.payload,
-                  };
+            // case LOAD_USER_FAIL:
+            //       return {
+            //         loading: false,
+            //         isAuthenticated: false,
+            //         user: null,
+            //         error: action.payload,
+            //       };
             
             case CLEAR_ERRORS:
                 return {
@@ -115,7 +115,7 @@ export const userReducer = (state = {user :{}}, action)=>{
 }
 
 
-export const forgotPasswordReducer = (state = {}, action) => {
+export const ForgotPasswordReducer = (state = {forgotPassword:{}}, action) => {
     
   switch (action.type) {
       case FORGOT_PASSWORD_REQUEST:
@@ -126,15 +126,23 @@ export const forgotPasswordReducer = (state = {}, action) => {
           loading: true,
           error: null,
         };
+
         
+        case FORGOT_PASSWORD_SUCCESS:
+          return {
+            ...state,
+            loading: false,
+            fp:true,
+            message: action.payload.data,
+        };
+ 
         case TEMP_PASSWORD_SUCCESS:
           return {
             ...state,
             loading: false,
-            temp_pwd:true,
-            message: action.payload,
+            //temp_pwd:true,
+            temp_pwd: action.payload.data,
           };
-
 
       case EMAIL_PSWD_SUCCESS:
             return {
@@ -142,15 +150,10 @@ export const forgotPasswordReducer = (state = {}, action) => {
               loading: false,
               email_pwd:true,
               message: action.payload.data,
-            };
+      };
 
               
-      case FORGOT_PASSWORD_SUCCESS:
-        return {
-          ...state,
-          loading: false,
-          message: action.payload,
-        };
+
 
         case FORGOT_PASSWORD_FAIL:
         case EMAIL_PSWD_FAIL:
@@ -173,7 +176,7 @@ export const forgotPasswordReducer = (state = {}, action) => {
 };
 
 
-export const mobileReducer = (state = { mobile: {} }, action) => {
+export const MobileReducer = (state = {mobile:{}}, action) => {
 
     switch (action.type) {
       case ADD_MOBILE_REQUEST:
@@ -189,16 +192,16 @@ export const mobileReducer = (state = { mobile: {} }, action) => {
           ...state,
           loading: false,
           add_mob:true,
-          message: action.payload.data,
+          message: action.payload,
         };
 
-          case TXT_PSWD_SUCCESS:
-            return {
+        case TXT_PSWD_SUCCESS:
+          return {
               ...state,
               loading: false,
               txt_pwd:true,
-              messages: action.payload.data,
-            };
+              message: action.payload,
+          };
 
 
         case ADD_MOBILE_FAIL:
@@ -226,7 +229,8 @@ export const mobileReducer = (state = { mobile: {} }, action) => {
     }
 };
 
-export const mobileVerifyReducer = (state = { otp: {} }, action) => {
+
+export const MobileVerifyReducer = (state = {}, action) => {
 
   switch (action.type) {
     case ADD_MOBILE_verify_REQUEST:
@@ -262,7 +266,7 @@ export const mobileVerifyReducer = (state = { otp: {} }, action) => {
 };
 
  
-export const EmailReducer = (state = { email: {} }, action) => {
+export const EmailReducer = (state = {}, action) => {
 
     switch (action.type) {
       case EMAIL_verify_REQUEST:
@@ -300,7 +304,7 @@ export const EmailReducer = (state = { email: {} }, action) => {
 
 
 
-export const AddressReducer = (state = { address: [] }, action) => {
+export const AddressReducer = (state = {}, action) => {
 
   switch (action.type) {
     case ADD_ADDRESS_REQUEST:
@@ -335,3 +339,74 @@ export const AddressReducer = (state = { address: [] }, action) => {
       return state;
   }
 };
+
+
+
+
+
+// export const userReducer = (state = {user :{}}, action)=>{
+    
+//   switch(action.type)
+//   {
+//           case REGISTER_USER_REQUEST:
+//           case LOGIN_REQUEST:
+//           case LOAD_USER_REQUEST:
+//               return {
+//                   loading:true,
+//                   isAuthenticated:false,
+//               };
+          
+//           case REGISTER_USER_SUCCESS:
+//             return {
+//               ...state,
+//               loading:false,
+//               signup:true,
+//               isAuthenticated:true,
+//               user:action.payload.data,
+//           };
+
+//           case LOGIN_SUCCESS:
+//             return {
+//               ...state,
+//               loading:false,
+//               signin:true,
+//               isAuthenticated:true,
+//               user:action.payload.data,
+//           };
+//           case LOAD_USER_SUCCESS:
+//               return {
+//                   ...state,
+//                   loading:false,
+//                   isAuthenticated:true,
+//                   user:action.payload.data,
+//               };
+
+//           case LOGIN_FAIL:
+//           case REGISTER_USER_FAIL:
+//               return {
+//                   ...state,
+//                   loading:false,
+//                   isAuthenticated:false,
+//                   user:null,
+//                   error:action.payload,
+//               };
+              
+//           case LOAD_USER_FAIL:
+//                 return {
+//                   loading: false,
+//                   isAuthenticated: false,
+//                   user: null,
+//                   error: action.payload,
+//                 };
+          
+//           case CLEAR_ERRORS:
+//               return {
+//                   ...state,
+//                   error:null,
+//               };
+          
+//           default:
+//               return state;
+
+//   }
+// }

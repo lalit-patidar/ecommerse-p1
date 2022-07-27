@@ -41,18 +41,26 @@ const ChooseMethod = () => {
     const dispatch = useDispatch();
 
     const datas = getStore("choose_method");
-    //console.log(datas);
+    datas.phone = "+919630196313";
+    console.log(datas);
 
-    const { error,message,email_pwd } = useSelector(state=>state.forgotPassword)
-    const { errors,txt_pwd,messages } = useSelector(state=>state.mobile)
+    const { error,email_pwd } = useSelector(state=>state.forgotPassword)
+    const { errors,txt_pwd,message } = useSelector(state=>state.mobile)
     
     console.log(errors);
+    console.log(error);
     console.log(txt_pwd);
-    console.log(message);
     console.log(email_pwd);
+    console.log(message);
 
 
     const [authSpinner, setAuthSpinner] = useState(false);
+    const [emailsuc,setemailsuc] = useState(false);
+    const [textsuc,settextsuc] = useState(false);
+
+    console.log("email",emailsuc);
+    console.log("text",textsuc);
+
 
     const UsernameSchema = yup.object({
         username: yup
@@ -61,18 +69,21 @@ const ChooseMethod = () => {
     });
 
     const Email_suc = async(e) => {
+        
         e.preventDefault();
         //alert(datas.email);
-        if(datas.email){
-            dispatch(EmailSuc(datas.email))
-        }
+        const email = datas.email
+        dispatch(EmailSuc(email))
+        setemailsuc(true);
     };
 
     const Text_suc = async(e) => {
         e.preventDefault();
         if(datas.phone){
             console.log("phone");
-            dispatch(TextSuc(datas.phone))
+            const phone = datas.phone
+            dispatch(TextSuc(phone))
+            settextsuc(true);
             //alert(datas.phone);
         } else {
             //alert("Phone no is not verified")
@@ -130,27 +141,23 @@ const ChooseMethod = () => {
           //alert.error(error);
           dispatch(clearErrors());
         }
-        
+
         if (email_pwd) {
-            if(message.status == "true"){
+            if(emailsuc){
+                console.log("email");
                 navigate("/verify-its-you-email");
+                setemailsuc(false);
             }
-            //setLocalstore("_userLogin",user);
-            
         }
-        if (txt_pwd) {
-            if(messages.status == "true"){
+        if (message) {
+            if(textsuc){
+                console.log("phone");
                 navigate("/verify-its-you-phone");
+                settextsuc(false);
+                //setLocalstore("_userLogin",user);
             }
-            //setLocalstore("_userLogin",user);
-            
         }
-
-
-      }, [dispatch, navigate,txt_pwd,email_pwd, error,message]);
-
-
-
+      }, [dispatch, navigate,setemailsuc,settextsuc,txt_pwd,email_pwd, error]);
 
     
     return (
@@ -158,7 +165,7 @@ const ChooseMethod = () => {
             <div className="signInContainer authContainer">
                 <Header>
                     Already a member?
-                    <Link to="/user/signin" className="redirectLink ms-1">
+                    <Link to="/signin" className="redirectLink ms-1">
                         Sign In
                     </Link>
                 </Header>
@@ -178,9 +185,9 @@ const ChooseMethod = () => {
                                 }}
                                 validationSchema={UsernameSchema}
                                 onSubmit={(values, { setSubmitting }) => {
-                                    alert(JSON.stringify(values, null, 2));
+                                    // alert(JSON.stringify(values, null, 2));
                                     setSubmitting(true);
-                                    //console.log(values);
+                                    console.log("values",values);
                                 }}
                             >
                                 {(props) => (
@@ -203,8 +210,8 @@ const ChooseMethod = () => {
                                                 Get an email
                                             </strong>
                                             <p className="formError">
-                                                We’ll send a code to your email
-                                                example@gmail.com
+                                                We’ll send a code to your email: {""}
+                                                {datas.email}
                                             </p>
                                         </Link>
 
@@ -222,7 +229,7 @@ const ChooseMethod = () => {
                                             </strong>
                                             <p className="formError">
                                                 We’ll text a code to your phone{" "}
-                                                <strong>+XXXX XXXXX1234</strong>
+                                                <strong>{datas?.phone}</strong>
                                             </p>
                                         </Link>
 

@@ -8,7 +8,7 @@ import { TextField } from "@mui/material";
 import "react-phone-number-input/style.css";
 import FormFooter from "../../../components/FormFooter/FormFooter";
 import { getLocalstore,setLocalstore ,removeLocalstore} from "../../../helper/localstore/localstore";
-import { clearErrors, VerifyMobile } from "../../../actions/userActions";
+import { clearErrors, VerifyMobile } from "../../../actions/mobileActions";
 import { useDispatch, useSelector } from "react-redux";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
@@ -27,7 +27,7 @@ const VerifyItsYouPhone = () => {
     const [getSocCode, setSocCode] = useState("");
 
     const [getFormSubmit, setFormSubmit] = useState(false);
-
+    const [otps, setotps] = useState(false);
     const { error, messagess ,verify} = useSelector(state=>state.otp)
 
     console.log(error);
@@ -51,6 +51,7 @@ const VerifyItsYouPhone = () => {
         }
         console.log(datas);
         dispatch(VerifyMobile(datas))
+        setotps(true)
     };
 
     useEffect(() => {
@@ -72,11 +73,14 @@ const VerifyItsYouPhone = () => {
           dispatch(clearErrors());
         } 
         if (verify) {
-            user.phone = "+"+data;
-            user.phoneConfirmed = "true";
-            setLocalstore("_userLogin",user);
-            navigate("/");
-            removeLocalstore("verifyphone");
+            if(otps){
+                user.phone = "+"+data;
+                user.phoneConfirmed = "true";
+                setLocalstore("_userLogin",user);
+                navigate("/");
+                removeLocalstore("verifyphone");
+                setotps(false)
+            }
         }
       }, [dispatch, navigate,verify, messagess, error]);
 

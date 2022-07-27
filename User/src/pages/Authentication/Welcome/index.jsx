@@ -2,21 +2,46 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "./../../../assets/logo/logo.svg";
 import FormFooter from "../../../components/FormFooter/FormFooter";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
 import { TextField } from "@mui/material";
+import ReCAPTCHA from "react-google-recaptcha";
+import { getLocalstore } from "../../../helper/localstore/localstore";
+import { clearErrors, login } from "../../../actions/userActions";
+import { useLocation, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
+import { setLocalstore ,removeLocalstore} from "../../../helper/localstore/localstore";
 
 import "react-phone-number-input/style.css";
 
+const Querystring = require('querystring');
+
 const Welcome = () => {
     const pwdInputRef = useRef();
+    const recaptchaRef = useRef(null)
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    
+    const { error, user, isAuthenticated,signin } = useSelector(state=>state.user)
+
+    const data = getLocalstore("_userLogin")
+    console.log(data);
 
     // is password show & hidden
     const [isPwdShow, setPwdShow] = useState(false);
+    const [getCaptcha, setCaptcha] = useState("");
+    const [getsignin, setsignin] = useState(false);
+
+    // submit form
+    const [getPassword, setPassword] = useState("");
+    const [getFormSubmit, setFormSubmit] = useState(false);
 
     // pasword show & hidden
     const isPwdShowedHandler = () => {
-        if (pwdInputRef.current.querySelector("input").type == "password") {
+        if (pwdInputRef.current.querySelector("input").type === "password") {
             pwdInputRef.current.querySelector("input").type = "text";
             setPwdShow(true);
         } else {
@@ -25,10 +50,6 @@ const Welcome = () => {
         }
     };
 
-    // submit form
-    const [getPassword, setPassword] = useState("");
-
-    const [getFormSubmit, setFormSubmit] = useState(false);
 
     // full name input handler
 
@@ -36,11 +57,72 @@ const Welcome = () => {
         setPassword(e.target.value);
     };
 
+    // captcha handler
+    const captchaHandler = (value) => {
+        console.log(value);
+        setCaptcha(value);
+
+    };
+
+
     // form data submit
     const formHandler = async (e) => {
         e.preventDefault();
         setFormSubmit(true);
+        
+        if (
+            getPassword !== 0 &&
+            getCaptcha.length !== 0
+        ) {
+            // const formData = {
+            //     login: getEmail,
+            //     password: getPassword,
+            //     grecaptcha: getCaptcha,
+            // };
+
+            const formData = Querystring['stringify']({
+                login: data.email,
+                password: getPassword,
+                grecaptcha: getCaptcha,
+            })
+            dispatch(login(formData));
+            setsignin(true);
+        }
     };
+    useEffect(() => {
+        if (error) {
+            //alert.show(error);
+            Toastify(
+                {
+                text: error,
+                className: "info",
+                style: {
+                    background:
+                        "linear-gradient(to right, #00b09b, #96c93d)",
+                    size: 10,
+                },
+                close: true,
+            }
+            ).showToast();
+          //alert.error(error);
+          dispatch(clearErrors());
+        }
+        if (signin) {
+            if(getsignin){
+                setLocalstore("_userLogin",user);
+                navigate("/");
+                removeLocalstore("_grecaptcha");
+                removeLocalstore("signup_data");
+                removeLocalstore("choose_method");
+            }
+
+            
+        }
+      }, [dispatch, navigate,signin,recaptchaRef, error ]);
+
+
+
+
     return (
         <>
             <div className="ui-form-box">
@@ -53,7 +135,7 @@ const Welcome = () => {
                             <div className="ui-form-content">
                                 <h4>Welcome</h4>
                                 <div className="ui-welcome-form-info pb-4 mb-4 border-bottom">
-                                    <p>email@domain.com</p>
+                                    <p>{data?.email}</p>
                                     <p>Not you? Switch account</p>
                                     <p>
                                         Please sign in again to make changes to
@@ -98,6 +180,20 @@ const Welcome = () => {
                                                 "Enter Password"}
                                         </span>
                                     </Form.Group>
+                                    <ReCAPTCHA
+                                        ref={recaptchaRef}
+                                        className="mt-3 captcha"
+                                        sitekey="6Lef6nQgAAAAADoRd2Ps76UfUklHu1v5k_BIYCw1"
+                                        onChange={captchaHandler}
+                                        style={{
+                                            display: "block !important",
+                                        }}
+                                    />
+                                    {getFormSubmit && getCaptcha.length < 1 && (
+                                        <span className="ui-form-lable-error text-center d-blcok">
+                                            Captcha is required! Refresh the page
+                                        </span>
+                                    )}
                                     <Button variant="primary" type="submit">
                                         Sign in
                                     </Button>

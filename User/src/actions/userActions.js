@@ -11,15 +11,9 @@ import {
     TEMP_PASSWORD_REQUEST,
     TEMP_PASSWORD_SUCCESS,
     TEMP_PASSWORD_FAIL,
-    LOAD_USER_REQUEST,
-    LOAD_USER_SUCCESS,
-    LOAD_USER_FAIL,
-    ADD_MOBILE_REQUEST,
-    ADD_MOBILE_SUCCESS,
-    ADD_MOBILE_FAIL,  
-    ADD_MOBILE_verify_REQUEST,
-    ADD_MOBILE_verify_SUCCESS,
-    ADD_MOBILE_verify_FAIL ,  
+    // LOAD_USER_REQUEST,
+    // LOAD_USER_SUCCESS,
+    // LOAD_USER_FAIL,
     TXT_PSWD_REQUEST,
     TXT_PSWD_SUCCESS,
     TXT_PSWD_FAIL,  
@@ -43,7 +37,7 @@ const Base_url = "https://stage-api.nichoshop.com/api/v1";
 export const login = (formData) => async (dispatch) => {
     try {
       dispatch({ type: LOGIN_REQUEST });
-      console.log(formData);
+      //console.log(formData);
       const config = {headers: {
                             "Content-Type": "application/x-www-form-urlencoded",
                             "Access-Control-Allow-Origin": "*",
@@ -86,6 +80,7 @@ export const register = (userData) => async (dispatch) => {
     }
 };
 
+// Email verification
 export const ResendEmail = (email) => async (dispatch) => {
   try {
     dispatch({ type: REGISTER_USER_REQUEST });
@@ -107,90 +102,57 @@ export const ResendEmail = (email) => async (dispatch) => {
   }
 };
 
-  
-  // Forgot Password
+// Forgot Password
 export const forgotPassword = (email) => async (dispatch) => {
     try {
       dispatch({ type: FORGOT_PASSWORD_REQUEST });
   
-      const config = { headers: { "Content-Type": "application/json" } };
+      // const config = { headers: { "Content-Type": "application/json" } };
   
-      const data = await axios.post(
-        `${Base_url}/signup`,
-        email,
-        config
+      // const data = await axios.post(
+      //   `${Base_url}/signup`,
+      //   email,
+      //   config
+      // );
+
+      const data = await axios.get(
+        `${Base_url}/login/check-user?user=${email}`,
       );
   
       dispatch({ 
         type: FORGOT_PASSWORD_SUCCESS, 
-        payload: data.message });
+        payload: data });
 
     } catch (error) {
       dispatch({
         type: FORGOT_PASSWORD_FAIL,
-        payload: error.response.data.message,
+        payload: error.response.data.error,
       });
     }
-  };
-
-
-
-    // Load User
-  //export const loadUser = (user,getceptcha) => async (dispatch) => {
-  export const loadUser = (user) => async (dispatch) => {
-      try {
-        dispatch({ type: LOAD_USER_REQUEST });
-    
-        const data = await axios.get(
-          `${Base_url}/login/check-user?user=${user}`,
-        );
-        
-        // const data = await axios.get(
-        //   `${Base_url}/login/check-user?user=${user}&greptcha=${getceptcha}`,
-        // );
-
-        dispatch({ type: LOAD_USER_SUCCESS, payload: data });
-        
-      } catch (error) {
-        dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.error });
-      }
 };
 
 
-// Add mobile no
-export const AddMobile = (phone) => async (dispatch) => {
-      try {
-        dispatch({ type: ADD_MOBILE_REQUEST });
+//   //export const loadUser = (user,getceptcha) => async (dispatch) => {
+//   export const loadUser = (user) => async (dispatch) => {
+//       try {
+//         dispatch({ type: LOAD_USER_REQUEST });
     
-        const data = await axios.post(
-          `${Base_url}/login/add-phone?phone=${phone}`,
-        );
-    
-        dispatch({ type: ADD_MOBILE_SUCCESS, payload: data });
+//         const data = await axios.get(
+//           `${Base_url}/login/check-user?user=${user}`,
+//         );
         
-      } catch (error) {
-        dispatch({ type: ADD_MOBILE_FAIL, payload: error.response.data.error });
-      }
-};
+//         // const data = await axios.get(
+//         //   `${Base_url}/login/check-user?user=${user}&greptcha=${getceptcha}`,
+//         // );
+
+//         dispatch({ type: LOAD_USER_SUCCESS, payload: data });
+        
+//       } catch (error) {
+//         dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.error });
+//       }
+// };
 
 
-// mobile no verify
-export const VerifyMobile = (datas) => async (dispatch) => {
-  try {
-    dispatch({ type: ADD_MOBILE_verify_REQUEST });
-
-    const data = await axios.post(
-      `${Base_url}/login/confirm-suc?suc_type=${datas.suc_type}&suc=${datas.suc}`,
-    );
-
-    dispatch({ type: ADD_MOBILE_verify_SUCCESS, payload: data });
-    
-  } catch (error) {
-    dispatch({ type: ADD_MOBILE_verify_FAIL, payload: error.response.data.error });
-  }
-};
-
- 
 // text temp password
 export const TempPassword = (email) => async (dispatch) => {
   try {
@@ -208,21 +170,26 @@ export const TempPassword = (email) => async (dispatch) => {
   }
 };
 
-
  
 // text Email SUC
 export const EmailSuc = (email) => async (dispatch) => {
   try {
     dispatch({ type: EMAIL_PSWD_REQUEST });
 
+    console.log("email suc",email);
     const data = await axios.post(
       `${Base_url}/login/get-suc-email?email=${email}`,
     );
-
-    dispatch({ type: EMAIL_PSWD_SUCCESS, payload: data });
+    console.log("data",data);
+    dispatch({ 
+        type: EMAIL_PSWD_SUCCESS, 
+        payload: data 
+    });
     
   } catch (error) {
-    dispatch({ type: EMAIL_PSWD_FAIL, payload: error.response.data.error });
+    dispatch({ 
+        type: EMAIL_PSWD_FAIL, 
+        payload: error.response.data.error });
   }
 };
 
@@ -243,13 +210,13 @@ export const VerifyEmailSuc = (datas) => async (dispatch) => {
   }
 };
 
-
-export const TextSuc = (email) => async (dispatch) => {
+// Text phone SUC
+export const TextSuc = (phones) => async (dispatch) => {
   try {
     dispatch({ type: TXT_PSWD_REQUEST });
 
     const data = await axios.post(
-      `${Base_url}/login/get-suc-email?email=${email}`,
+      `${Base_url}/login/get-suc-email?email=${phones}`,
     );
 
     dispatch({ type: TXT_PSWD_SUCCESS, payload: data });

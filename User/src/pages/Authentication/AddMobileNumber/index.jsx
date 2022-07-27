@@ -14,7 +14,7 @@ import { ErrorMessage, Formik } from "formik";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { clearErrors, AddMobile } from "../../../actions/userActions";
+import { clearErrors, AddMobile } from "../../../actions/mobileActions";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 // Compoenents
@@ -35,7 +35,7 @@ const AddMobileNumber = () => {
     const data = getLocalstore("_userLogin")
     console.log(data);
 
-    if(data.phoneConfirmed == "true")
+    if(data.phoneConfirmed === "true")
     {
         navigate("/")
     }
@@ -46,6 +46,7 @@ const AddMobileNumber = () => {
 //    console.log(isAuthenticated);
     const [authSpinner, setAuthSpinner] = useState(false);
     const [getphone, setphone] = useState("");
+    const [getphones, setphones] = useState(false);
 
     const AddNumberSchema = yup.object({
         phoneNumber: yup
@@ -81,12 +82,15 @@ const AddMobileNumber = () => {
         }
     
         if (add_mob) {
-            //setLocalstore("_userLogin",user);
-            setLocalstore("verifyphone",getphone);
-            navigate("/verify-its-you-phone",{state:{mobno:setphone}});
+            if(getphones){
+                //setLocalstore("_userLogin",user);
+                setLocalstore("verifyphone",getphone);
+                navigate("/verify-its-you-phone");
+                setphones(false)
+            }
+            
         }
       }, [dispatch, navigate,add_mob,data, message, error]);
-
 
 
 
@@ -124,6 +128,7 @@ const AddMobileNumber = () => {
                                     setphone(phone)
                                     console.log(phone);
                                     dispatch(AddMobile(phone));
+                                    setphones(true)
                                 }}
                             >
                                 {(props) => (

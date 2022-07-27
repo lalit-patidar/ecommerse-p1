@@ -13,7 +13,7 @@ import { usePostLoginMutation } from "../../../api/services/authApi";
 import { setLocalstore } from "../../../helper/localstore/localstore";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, loadUser } from "../../../actions/userActions";
+import { clearErrors,forgotPassword } from "../../../actions/userActions";
 
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
@@ -29,11 +29,11 @@ const ForgetPassword = () => {
 
     const pwdInputRef = useRef();
 
-    const { error, isAuthenticated,user } = useSelector(state=>state.user)
+    const { error,fp,message } = useSelector(state=>state.forgotPassword)
 
     console.log(error);
-    console.log(isAuthenticated);
-    console.log(user);
+    console.log(fp);
+    console.log(message);
     // is password show & hidden
     const [isPwdShow, setPwdShow] = useState(false);
 
@@ -73,7 +73,7 @@ const ForgetPassword = () => {
         if (getEmail.length !== 0) {
             //alert("ok");
             //dispatch(loadUser(getEmail,getCaptcha))
-            dispatch(loadUser(getEmail))
+            dispatch(forgotPassword(getEmail))
         }
     };
 
@@ -96,12 +96,12 @@ const ForgetPassword = () => {
           dispatch(clearErrors());
         }
     
-        if (isAuthenticated) {
+        if (message) {
             // console.log("hello");
-            setLocalstore("choose_method",user);
+            setLocalstore("choose_method",message);
             navigate("/choose-method");
         }
-      }, [dispatch, navigate, isAuthenticated, recaptchaRef,error, ]);
+      }, [dispatch, navigate,fp,message,recaptchaRef,error]);
 
 
     return (

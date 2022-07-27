@@ -36,12 +36,14 @@ const TextATemporaryPassword = () => {
     const [getEmail, setEmail] = useState("");
 
 
-    const { error,temp_pwd,message } = useSelector(state=>state.forgotPassword)
+    const { error,fp,message } = useSelector(state=>state.forgotPassword)
     console.log(error);
-    console.log(temp_pwd);
+    console.log(fp);
     console.log(message);
 
     const [authSpinner, setAuthSpinner] = useState(false);
+    const [otpss, setotpss] = useState(false);
+
     console.log(getEmail);
     const UsernameSchema = yup.object({
         username: yup
@@ -68,12 +70,15 @@ const TextATemporaryPassword = () => {
           dispatch(clearErrors());
         }
         
-        if (temp_pwd) { 
-            var user = message.data;
-            setLocalstore("choose_method",user);
-            navigate("/choose-method",{email:getEmail});
+        if (fp) { 
+            if(otpss){
+                var user = message;
+                setLocalstore("choose_method",user);
+                navigate("/choose-method",{email:getEmail});
+            }
+            
         }
-      }, [dispatch, navigate,temp_pwd, error,message]);
+      }, [dispatch, navigate, error,message]);
 
 
     return (
@@ -108,6 +113,7 @@ const TextATemporaryPassword = () => {
                                     //console.log(email);
                                     setEmail(email)
                                     dispatch(TempPassword(email));
+                                    setotpss(true)
                                 }}
                             >
                                 {(props) => (

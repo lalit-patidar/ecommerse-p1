@@ -79,10 +79,11 @@ import PaymentMethod from "../pages/PaymentMethod";
 import StartSelling from "../pages/MyNichoShop/SellerCentral/StartSelling";
 import CreateListing from "../pages/MyNichoShop/SellerCentral/CreateListing/CreateListing";
 import CreateListing_multiple from "../pages/MyNichoShop/SellerCentral/CreateListing_multiple/CreateListing_multiple";
+import { BrowserRouter } from "react-router-dom";
 
 const RootRoute = () => {
     return (
-        <>
+        <BrowserRouter>
             <Routes>
                 {/* private routes */}
                 <Route element={<PrivateRoute />}>
@@ -409,7 +410,7 @@ const RootRoute = () => {
                 */}
                 <Route path="/payment-method" element={<PaymentMethod />} />
             </Routes>
-        </>
+        </BrowserRouter>
     );
 };
 
