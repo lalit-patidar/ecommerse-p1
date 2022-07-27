@@ -78,7 +78,8 @@ import PaymentMethod from "../pages/PaymentMethod";
 
 import StartSelling from "../pages/MyNichoShop/SellerCentral/StartSelling";
 import CreateListing from "../pages/MyNichoShop/SellerCentral/CreateListing/CreateListing";
-import CreateListing_multiple from "../pages/MyNichoShop/SellerCentral/CreateListing_multiple/CreateListing_multiple";
+import CreateListing_multiple from "../pages/MyNichoShop/SellerCentral/CreateListing_multiple/CreateListing_multiple";ß
+import CreateListing from "../pages/MyNichoShop/SellerCentral/listing_detail/CreateListing";
 
 const RootRoute = () => {
     return (
@@ -103,6 +104,7 @@ const RootRoute = () => {
                 <Route path="/StartSelling" element={<StartSelling /> } />
                 <Route path="/CreateListing" element={<CreateListing /> } />
                 <Route path="/CreateListing_multiple" element={<CreateListing_multiple /> } />
+                <Route path="/listing_detail" element={<CreateListing /> } />
 
                 {/* public routes */}
                 <Route element={<PublicRoute />}>
