@@ -126,7 +126,7 @@ const Category = () => {
         })
         var update = {
             "conditions": ccs,
-            "specifics":[]
+            "specifics":categoryspecifics.specifics
         }
         Axios.put(process.env.REACT_APP_DOMIAN_API+"/admin/category/" + cs.id, update,
         ).then((res) => {
@@ -203,7 +203,17 @@ const Category = () => {
             ccc.specifics.push(
                 specificsValue,
             );
-            setcategoryspecifics(ccc);
+            setcategoryspecifics(ccc);    
+            var update = {
+                "conditions": categoryspecifics.conditions,
+                "specifics":ccc.specifics
+            }
+            Axios.put(process.env.REACT_APP_DOMIAN_API+"/admin/category/" + cs.id, update,
+            ).then((res) => {
+                if (res.status == 200 && res.data && res.data.status == "true") {
+                    toggleShowA();
+                }
+            });    
         }
     }
     const categorydelete = (category) => {
