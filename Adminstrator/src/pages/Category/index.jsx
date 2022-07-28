@@ -77,9 +77,21 @@ const Category = () => {
         Axios.get(process.env.REACT_APP_DOMIAN_API+"/admin/category/all").then(
             (res) => {
                 if(res.data.length > 0){
-                    res.data.forEach(e=>{
-                        console.log(e.category.specifics);
-                    })
+                    if(categorydisplay.length > 0){
+                        var se = res.data;
+                        categorydisplay.forEach(c=>{
+                            se.forEach(e=>{
+                                if(e.category.id == c.id){
+                                    if(e.children){
+                                        se = e.children;
+                                    }else{
+                                        se = [];
+                                    }
+                                }
+                            })
+                        })
+                        setsubcategory(se);
+                    }
                     setInitialdata(res.data);
                 }
             }
@@ -126,8 +138,9 @@ const Category = () => {
         })
         var update = {
             "conditions": ccs,
-            "specifics":categoryspecifics.specifics
+            "specifics":cs.specifics
         }
+        
         Axios.put(process.env.REACT_APP_DOMIAN_API+"/admin/category/" + cs.id, update,
         ).then((res) => {
             if (res.status == 200 && res.data && res.data.status == "true") {
@@ -204,16 +217,7 @@ const Category = () => {
                 specificsValue,
             );
             setcategoryspecifics(ccc);    
-            var update = {
-                "conditions": categoryspecifics.conditions,
-                "specifics":ccc.specifics
-            }
-            Axios.put(process.env.REACT_APP_DOMIAN_API+"/admin/category/" + cs.id, update,
-            ).then((res) => {
-                if (res.status == 200 && res.data && res.data.status == "true") {
-                    toggleShowA();
-                }
-            });    
+            updateconditionandspecifics(ccc);
         }
     }
     const categorydelete = (category) => {
@@ -276,12 +280,14 @@ const Category = () => {
                 })
             })
         }
-        if(c.specifics == ""){
+        if(c.specifics && c.specifics == ""){
             c.specifics = [];
-        }else{
+        }else if(c.specifics){
             if(!Array.isArray(c.specifics)){
                 c.specifics = JSON.parse(c.specifics)
             }
+        }else{
+            c.specifics = [];
         }
         setcategoryspecifics(c);
     }
@@ -435,17 +441,21 @@ const Category = () => {
                                                         {categorydisplay.map((c, indexs)=>{ 
                                                             const result = ( <span className="mar-2" onClick={()=>{
                                                                 var ds = [];
+                                                                // console.log(categorydisplay);
                                                                 categorydisplay.forEach((s, m)=>{
                                                                     if(m <= indexs){
                                                                         ds.push(s);
                                                                     }
                                                                 })
                                                                 if(indexs > 0){
+                                                                    setmulcondition(category.category);
+                                                                    setsubcategory(category.children);
                                                                     var car = category;
-                                                                    for(var i = 0; i<=indexs; i++){
+                                                                    for(var i = 0; i<indexs; i++){
+                                                                        car = car.children && car.children[categorydisplay[i+1].index] ? car.children[categorydisplay[i+1].index] : [];
                                                                         setmulcondition(car.category);
                                                                         setsubcategory(car.children);
-                                                                        car = car.children && car.children[categorydisplay[i].index] ? car.children[categorydisplay[i].index] : [];
+                                                                        // console.log(car);
                                                                     }
                                                                 }else{
                                                                     setmulcondition(category.category);
@@ -610,19 +620,6 @@ const Category = () => {
                                                                     }}
                                                                     labelledBy="Choose a condition"
                                                                 />
-                                                                {/* <select className="form-control" multiple="true">
-                                                                    <option>
-                                                                        Choose a
-                                                                        condition
-                                                                    </option>
-                                                                    {conditions.map(
-                                                                    (c, index) => {
-                                                                        const results = (
-                                                                            <option value={c.id}>{c.name}</option>
-                                                                        )
-                                                                    return results}
-                                                                    )}
-                                                                </select> */}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -643,27 +640,30 @@ const Category = () => {
                                                                         <div className="row">
                                                                             <div className="col-10">
                                                                                 <select className="form-control" onChange={(e)=>{
-                                                                                    var ccc = Object.assign({}, categoryspecifics);
-                                                                                    var o = {};
-                                                                                    specifics.forEach(s=>{
-                                                                                        if(s.id == e.target.value){
-                                                                                            o = {
-                                                                                                'id': s.id,
-                                                                                                'name': s.name,
-                                                                                                'defaultValue': s.defaultValue,
-                                                                                                'required': ccc.specifics[csindex].required
-                                                                                            }                                                                        
-                                                                                        }
-                                                                                    });
-                                                                                    ccc[csindex].specifics = o;
-                                                                                    setcategoryspecifics(ccc);
+                                                                                    if(e.target.value){
+                                                                                        var ccc = Object.assign({}, categoryspecifics);
+                                                                                        var o = {};
+                                                                                        specifics.forEach(s=>{
+                                                                                            if(s.id == e.target.value){
+                                                                                                o = {
+                                                                                                    'id': s.id,
+                                                                                                    'name': s.name,
+                                                                                                    'defaultValue': s.defaultValue,
+                                                                                                    'required': ccc.specifics[csindex].required ? ccc.specifics[csindex].required : false
+                                                                                                }                                                                        
+                                                                                            }
+                                                                                        });
+                                                                                        ccc.specifics[csindex] = o;
+                                                                                        setcategoryspecifics(ccc);
+                                                                                        updateconditionandspecifics(ccc);
+                                                                                    }
                                                                                 }}>
                                                                                 <option>Select </option>
                                                                                     {specifics.map(
                                                                                     (c, index) => {
                                                                                         const results = (
                                                                                             (cs.id == c.id) ?
-                                                                                            <option value={c.id} selected>{c.name}</option>
+                                                                                            <option value={c.id} selected={true}>{c.name}</option>
                                                                                             :
                                                                                             <option value={c.id}>{c.name}</option>
                                                                                         )
@@ -682,11 +682,12 @@ const Category = () => {
                                                                                 <input
                                                                                     className="form-check-input p-2"
                                                                                     type="checkbox"
-                                                                                    value={cs.required}
+                                                                                    defaultChecked={cs.required}
                                                                                     onChange={(e)=>{
                                                                                         var ccc = Object.assign({}, categoryspecifics);
                                                                                         ccc.specifics[csindex].required = !ccc.specifics[csindex].required;
                                                                                         setcategoryspecifics(ccc);
+                                                                                        updateconditionandspecifics(ccc);
                                                                                     }}
                                                                                     id="flexCheckDefault"
                                                                                 />
@@ -828,28 +829,49 @@ const Category = () => {
                     <div className="modal-content p-3">
                         <div className="modal-header">
                             <h5 className="modal-title">
-                                Move iPod and MP3 Players Accessories to:
+                                Move {movecate && movecate.name} to:
                             </h5>
                         </div>
                         <div className="modal-body">
                             {category && category.map((category, index) => {
-                                const list = (
+                                const list = (movecate && movecate.id != category.category.id) && (
                                     <p key="index">
                                         {category.children &&
                                         category.children ? (
-                                            <span className="fa fa-plus">
+                                            <a className="fa fa-plus"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target={
+                                                "#moveto_"+category.category.id
+                                            }
+                                            aria-expanded="false"
+                                            aria-controls={
+                                                category.category.name
+                                            }
+                                             >
                                                <b className={moveto && moveto.id == category.category.id ? 'color-green' : ''} onClick={()=>{setmoveto(category.category)}}> &nbsp;{category.category.name}</b>
-                                            </span>
+                                            </a>
                                         ) : (
-                                            <span className="fa ml-3">
+                                            <a className="fa ml-3" data-toggle="collapse" href={"#moveto_"+category.category.id} role="button" aria-expanded="false" aria-controls={"#moveto_"+category.category.id}>
                                                 <b className={moveto && moveto.id == category.category.id ? 'color-green' : ''} onClick={()=>{setmoveto(category.category)}}> &nbsp;{category.category.name}</b>
-                                            </span>
+                                            </a>
                                         )}
+                                        <span className="collapse multi-collapse" id={"moveto_"+category.category.id} >
                                         {category.children && category.children.map(
                                             (category, index) => {
-                                                const data = (
-                                                    <p className="mx-3">
-                                                        <i className="fa fa-mius"></i>{" "}
+                                                const data = (movecate && movecate.id != category.category.id) && (
+                                                    <p className="mx-3 ">
+                                                        <i className={category.children ? "fa fa-plus" : null}
+                                                            type="button"
+                                                            data-bs-toggle="collapse"
+                                                            data-bs-target={
+                                                                "#moveto_"+category.category.id
+                                                            }
+                                                            aria-expanded="false"
+                                                            aria-controls={
+                                                                category.category.name
+                                                            }
+                                                        ></i>{" "}
                                                         <span className={moveto && moveto.id == category.category.id ? 'color-green' : ''} onClick={()=>{setmoveto(category.category)}}>
                                                             {
                                                                 category
@@ -857,11 +879,98 @@ const Category = () => {
                                                                     .name
                                                             }
                                                         </span>
+                                                        <span className="collapse multi-collapse" id={"moveto_"+category.category.id}>
+                                                            {category.children && category.children.map(
+                                                                (category, index) => {
+                                                                    const data = (movecate && movecate.id != category.category.id) && (
+                                                                        <p className="mx-3">
+                                                                            <i className={category.children ? "fa fa-plus" : null}
+                                                                                type="button"
+                                                                                data-bs-toggle="collapse"
+                                                                                data-bs-target={
+                                                                                    "#moveto_"+category.category.id
+                                                                                }
+                                                                                aria-expanded="false"
+                                                                                aria-controls={
+                                                                                    category.category.name
+                                                                                }
+                                                                            ></i>{" "}
+                                                                            <span className={moveto && moveto.id == category.category.id ? 'color-green' : ''} onClick={()=>{setmoveto(category.category)}}>
+                                                                                {
+                                                                                    category
+                                                                                        .category
+                                                                                        .name
+                                                                                }
+                                                                            </span>
+                                                                            <span className="collapse multi-collapse" id={"moveto_"+category.category.id}>
+                                                                            {category.children && category.children.map(
+                                                                                (category, index) => {
+                                                                                    const data = (movecate && movecate.id != category.category.id) && (
+                                                                                        <p className="mx-3">
+                                                                                            <i className={category.children ? "fa fa-plus" : null}
+                                                                                                type="button"
+                                                                                                data-bs-toggle="collapse"
+                                                                                                data-bs-target={
+                                                                                                    "#moveto_"+category.category.id
+                                                                                                }
+                                                                                                aria-expanded="false"
+                                                                                                aria-controls={
+                                                                                                    category.category.name
+                                                                                                }></i>{" "}
+                                                                                            <span className={moveto && moveto.id == category.category.id ? 'color-green' : ''} onClick={()=>{setmoveto(category.category)}}>
+                                                                                                {
+                                                                                                    category
+                                                                                                        .category
+                                                                                                        .name
+                                                                                                }
+                                                                                            </span>
+                                                                                            <span className="collapse multi-collapse" id={"moveto_"+category.category.id}>
+                                                                                                {category.children && category.children.map(
+                                                                                                    (category, index) => {
+                                                                                                        const data = (movecate && movecate.id != category.category.id) && (
+                                                                                                            <p className="mx-3">
+                                                                                                                <i className={category.children ? "fa fa-plus" : null}
+                                                                                                                    type="button"
+                                                                                                                    data-bs-toggle="collapse"
+                                                                                                                    data-bs-target={
+                                                                                                                        "#moveto_"+category.category.id
+                                                                                                                    }
+                                                                                                                    aria-expanded="false"
+                                                                                                                    aria-controls={
+                                                                                                                        category.category.name
+                                                                                                                    }></i>{" "}
+                                                                                                                <span className={moveto && moveto.id == category.category.id ? 'color-green' : ''} onClick={()=>{setmoveto(category.category)}}>
+                                                                                                                    {
+                                                                                                                        category
+                                                                                                                            .category
+                                                                                                                            .name
+                                                                                                                    }
+                                                                                                                </span>
+                                                                                                            </p>
+                                                                                                        );
+                                                                                                        return data;
+                                                                                                    }
+                                                                                                )}
+                                                                                                </span>
+                                                                                        </p>
+                                                                                    );
+                                                                                    return data;
+                                                                                }
+                                                                            )}
+                                                                            </span>
+
+                                                                        </p>
+                                                                    );
+                                                                    return data;
+                                                                }
+                                                            )}
+                                                        </span>
                                                     </p>
                                                 );
                                                 return data;
                                             }
                                         )}
+                                        </span>
                                     </p>
                                 );
                                 return list;
