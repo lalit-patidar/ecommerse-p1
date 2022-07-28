@@ -20,15 +20,18 @@ import AppleLogin from 'react-apple-login'
 import AppleSignin from 'react-apple-signin-auth';
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
+import { useCookies } from "react-cookie";
+import Cookies from 'js-cookie'
 
 const Querystring = require('querystring');
 
 
 
-
 const SignIn = () => {
 
-      
+    const [cookies, setCookie] = useCookies("RememberMe_Nichoshop");
+
+
     console.log(process.env.REACT_APP_APPLE);
 
     const recaptchaRef = useRef(null)
@@ -39,7 +42,7 @@ const SignIn = () => {
   
     const { error, user, isAuthenticated,signin } = useSelector(state=>state.user)
 
-    console.log(user);
+    console.log("user",user);
     // login api
     const [loginApi, { isLoading }] = usePostLoginMutation();
 
@@ -275,16 +278,20 @@ const SignIn = () => {
             ).showToast();
           //alert.error(error);
           dispatch(clearErrors());
+        } else {
+            if (signin) {
+                setCookie("RememberMe_Nichoshop", user, {
+                     path: "/"
+                   });
+                // Cookies.set('users', user);
+                setLocalstore("_userLogin",user);
+                navigate("/add-mobile-number");
+                removeLocalstore("_grecaptcha");
+                removeLocalstore("signup_data");
+                removeLocalstore("choose_method");
+            }
         }
-        if (signin) {
-    
-            setLocalstore("_userLogin",user);
-            navigate("/add-mobile-number");
-            removeLocalstore("_grecaptcha");
-            removeLocalstore("signup_data");
-            removeLocalstore("choose_method");
-            
-        }
+        
       }, [dispatch, navigate,signin,recaptchaRef, error ]);
 
 

@@ -41,7 +41,7 @@ const ChooseMethod = () => {
     const dispatch = useDispatch();
 
     const datas = getStore("choose_method");
-    datas.phone = "+919630196313";
+    // datas.phone = "919630196313";
     console.log(datas);
 
     const { error,email_pwd } = useSelector(state=>state.forgotPassword)
@@ -149,7 +149,7 @@ const ChooseMethod = () => {
                 setemailsuc(false);
             }
         }
-        if (message) {
+        if (txt_pwd) {
             if(textsuc){
                 console.log("phone");
                 navigate("/verify-its-you-phone");
@@ -157,7 +157,7 @@ const ChooseMethod = () => {
                 //setLocalstore("_userLogin",user);
             }
         }
-      }, [dispatch, navigate,setemailsuc,settextsuc,txt_pwd,email_pwd, error]);
+      }, [dispatch, navigate,txt_pwd,email_pwd, error]);
 
     
     return (

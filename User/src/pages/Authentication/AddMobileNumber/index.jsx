@@ -26,9 +26,15 @@ import "./../auth.css";
 import MuiPhoneNumber from "material-ui-phone-number";
 
 import { getLocalstore ,setLocalstore} from "../../../helper/localstore/localstore";
+// import { useCookies } from "react-cookie";
+import Cookies from 'js-cookie'
 
 const AddMobileNumber = () => {
 
+
+    // const [cookies, setCookie] = useCookies("RememberMe_Nichoshop");
+    console.log(Cookies.get("RememberMe_Nichoshop"));
+    
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -65,6 +71,7 @@ const AddMobileNumber = () => {
     useEffect(() => {
         if (error) {
             //alert.show(error);
+            setphones(false)
             Toastify(
                 {
                 text: error,
@@ -79,18 +86,18 @@ const AddMobileNumber = () => {
             ).showToast();
           //alert.error(error);
           dispatch(clearErrors());
-        }
-    
-        if (add_mob) {
-            if(getphones){
-                //setLocalstore("_userLogin",user);
-                setLocalstore("verifyphone",getphone);
-                navigate("/verify-its-you-phone");
-                setphones(false)
+        } else {
+            if (add_mob) {
+                if(getphones){
+                    //setLocalstore("_userLogin",user);
+                    setLocalstore("verifyphone",getphone);
+                    navigate("/verify-its-you-phone");
+                    setphones(false)
+                }
             }
-            
         }
-      }, [dispatch, navigate,add_mob,data, message, error]);
+       
+      }, [dispatch, navigate,data, message, error]);
 
 
 

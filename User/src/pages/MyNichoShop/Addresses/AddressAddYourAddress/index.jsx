@@ -49,7 +49,7 @@ const AddressAddYourAddress = () => {
     const [getPostCodeData, setPostCodeData] = useState("");
     //const [getAreaCode, setAreaCode] = useState("");
     const [value, setValue] = useState()
-
+    const [setaddr,getaddr] = useState(false);
 
     // console.log(value);
     // console.log(getCountryData);
@@ -127,6 +127,7 @@ const AddressAddYourAddress = () => {
             }
 
             dispatch(AddAddress(data))
+            getaddr(true)
         } else {
             setError(true);
         }
@@ -138,6 +139,7 @@ const AddressAddYourAddress = () => {
 
         if (error) {
             //alert.show(error);
+            getaddr(false)
             Toastify(
                 {
                 text: error,
@@ -152,10 +154,15 @@ const AddressAddYourAddress = () => {
             ).showToast();
           //alert.error(error);
           dispatch(clearErrors());
+        } else {
+            if (add_address) {
+                if(setaddr){
+                    navigate("/addresses");
+                    getaddr(false)
+                }
+            }
         }
-        if (add_address) {
-            navigate("/addresses");
-        }
+        
       }, [dispatch, navigate,add_address, error ]);
 
     return (

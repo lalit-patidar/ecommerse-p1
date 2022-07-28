@@ -22,6 +22,7 @@ import store from "../src/redux/store";
 import { PersistGate } from 'redux-persist/integration/react';
 import { positions, transitions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
+import { CookiesProvider } from "react-cookie";
 
 // const store = createStore(
 //     allReducers,
@@ -41,9 +42,11 @@ root.render(
 
         <Provider store={store}>
             <AlertProvider template={AlertTemplate} {...options}>
+            <CookiesProvider>
                 {/* <PersistGate loading={null} persistor={persistor}> */}
                     <App/>
                 {/* </PersistGate> */}
+                </CookiesProvider>
             </AlertProvider>
         </Provider>
 

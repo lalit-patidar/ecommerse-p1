@@ -53,7 +53,7 @@ const ForgetPassword = () => {
     const [getCaptcha, setCaptcha] = useState("");
 
     const [getFormSubmit, setFormSubmit] = useState(false);
-
+    const [getfp,setfp]=useState(false)
     // full name input handler
 
     const emailHandler = (e) => {
@@ -69,17 +69,17 @@ const ForgetPassword = () => {
         e.preventDefault();
         setFormSubmit(true);
 
-        //if (getEmail.length !== 0 && getCaptcha.length !== 0) {
-        if (getEmail.length !== 0) {
+        if (getEmail.length !== 0 && getCaptcha.length !== 0) {
             //alert("ok");
-            //dispatch(loadUser(getEmail,getCaptcha))
-            dispatch(forgotPassword(getEmail))
+            dispatch(forgotPassword(getEmail,getCaptcha))
+            setfp(true)
         }
     };
 
     useEffect(() => {
         if (error) {
             //alert.show(error);
+            setfp(false);
             Toastify(
                 {
                 text: error,
@@ -94,14 +94,19 @@ const ForgetPassword = () => {
             ).showToast();
           //alert.error(error);
           dispatch(clearErrors());
+        } else {
+
+            if (message) {
+                if(getfp){
+                    // console.log("hello");
+                    setLocalstore("choose_method",message);
+                    navigate("/choose-method");
+                    setfp(false);
+                }      
+            }
         }
     
-        if (message) {
-            // console.log("hello");
-            setLocalstore("choose_method",message);
-            navigate("/choose-method");
-        }
-      }, [dispatch, navigate,fp,message,recaptchaRef,error]);
+      }, [dispatch, navigate,setfp,fp,message,recaptchaRef,error]);
 
 
     return (
@@ -141,7 +146,7 @@ const ForgetPassword = () => {
                                                 "Please enter your email address"}
                                         </span>
                                     </Form.Group>
-                                    {/* <ReCAPTCHA
+                                    <ReCAPTCHA
                                         ref={recaptchaRef}
                                         className="mt-3 captcha"
                                         sitekey="6Lef6nQgAAAAADoRd2Ps76UfUklHu1v5k_BIYCw1"
@@ -154,7 +159,7 @@ const ForgetPassword = () => {
                                         <span className="ui-form-lable-error text-center d-blcok">
                                             Captcha is required! Refresh the page
                                         </span>
-                                    )} */}
+                                    )}
                                     <Button variant="primary" type="submit">
                                         {isLoading && (
                                             <div

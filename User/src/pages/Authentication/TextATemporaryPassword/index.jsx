@@ -1,5 +1,5 @@
 // React
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useRef } from "react";
 import { Link } from "react-router-dom";
 
 // 3rd party components
@@ -22,6 +22,7 @@ import "toastify-js/src/toastify.css";
 // import Header from "../../components/auth/Header";
 // import Footer from "../../components/auth/Footer";
 import { setLocalstore } from "../../../helper/localstore/localstore";
+import ReCAPTCHA from "react-google-recaptcha";
 
 // Styles
 import "./textatemporarypassword.css";
@@ -30,15 +31,22 @@ import Header from "../../../components/header/Header";
 
 const TextATemporaryPassword = () => {
 
-    
+    const recaptchaRef = useRef(null)
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [getEmail, setEmail] = useState("");
+    const [getCaptcha, setCaptcha] = useState("");
+    const [getFormSubmit, setFormSubmit] = useState(false);
+
+    const captchaHandler = (value) => {
+        setCaptcha(value);
+    };
 
 
-    const { error,fp,message } = useSelector(state=>state.forgotPassword)
+    const { error,temp_pwd,message } = useSelector(state=>state.forgotPassword)
     console.log(error);
-    console.log(fp);
+    console.log(temp_pwd);
     console.log(message);
 
     const [authSpinner, setAuthSpinner] = useState(false);
@@ -54,6 +62,7 @@ const TextATemporaryPassword = () => {
     useEffect(() => {
         if (error) {
             //alert.show(error);
+            setotpss(false)
             Toastify(
                 {
                 text: error,
@@ -68,17 +77,19 @@ const TextATemporaryPassword = () => {
             ).showToast();
           //alert.error(error);
           dispatch(clearErrors());
+        } else {
+            if (temp_pwd) { 
+                if(otpss){
+                    var user = message;
+                    setLocalstore("choose_method",user);
+                    navigate("/choose-method",{email:getEmail});
+                    setotpss(false)
+                }
+            }
         }
         
-        if (fp) { 
-            if(otpss){
-                var user = message;
-                setLocalstore("choose_method",user);
-                navigate("/choose-method",{email:getEmail});
-            }
-            
-        }
-      }, [dispatch, navigate, error,message]);
+        
+      }, [dispatch, navigate,temp_pwd, error,message]);
 
 
     return (
@@ -109,10 +120,11 @@ const TextATemporaryPassword = () => {
                                 onSubmit={(values, { setSubmitting }) => {
                                     //alert(JSON.stringify(values, null, 2));
                                     setSubmitting(true);
+                                    setFormSubmit(true);
                                     const email = values.username
                                     //console.log(email);
                                     setEmail(email)
-                                    dispatch(TempPassword(email));
+                                    dispatch(TempPassword(email,getCaptcha));
                                     setotpss(true)
                                 }}
                             >
@@ -155,6 +167,22 @@ const TextATemporaryPassword = () => {
                                                 )}
                                             </ErrorMessage>
                                         </div>
+                                        <ReCAPTCHA
+                                        ref={recaptchaRef}
+                                        className="mt-3 captcha"
+                                        sitekey="6Lef6nQgAAAAADoRd2Ps76UfUklHu1v5k_BIYCw1"
+                                        onChange={captchaHandler}
+                                        style={{
+                                            display: "flex",
+                                            "justify-content": "center",
+                                            "margin-bottom": "1rem"
+                                        }}
+                                        />
+                                        {getFormSubmit && getCaptcha.length < 1 && (
+                                            <span className="ui-form-lable-error text-center d-blcok">
+                                                Captcha is required! Refresh the page
+                                            </span>
+                                        )}
                                         <div className="temp-password-btn">
                                             <button
                                                 type="submit"

@@ -129,31 +129,17 @@ export const ForgotPasswordReducer = (state = {forgotPassword:{}}, action) => {
 
         
         case FORGOT_PASSWORD_SUCCESS:
+        case TEMP_PASSWORD_SUCCESS:
+        case EMAIL_PSWD_SUCCESS:
           return {
             ...state,
             loading: false,
             fp:true,
+            temp_pwd:true,
+            email_pwd:true,
             message: action.payload.data,
         };
  
-        case TEMP_PASSWORD_SUCCESS:
-          return {
-            ...state,
-            loading: false,
-            //temp_pwd:true,
-            temp_pwd: action.payload.data,
-          };
-
-      case EMAIL_PSWD_SUCCESS:
-            return {
-              ...state,
-              loading: false,
-              email_pwd:true,
-              message: action.payload.data,
-      };
-
-              
-
 
         case FORGOT_PASSWORD_FAIL:
         case EMAIL_PSWD_FAIL:
@@ -188,21 +174,14 @@ export const MobileReducer = (state = {mobile:{}}, action) => {
         };
         
       case ADD_MOBILE_SUCCESS:
+        case TXT_PSWD_SUCCESS:
         return {
           ...state,
           loading: false,
           add_mob:true,
+          txt_pwd:true,
           message: action.payload,
         };
-
-        case TXT_PSWD_SUCCESS:
-          return {
-              ...state,
-              loading: false,
-              txt_pwd:true,
-              message: action.payload,
-          };
-
 
         case ADD_MOBILE_FAIL:
         return {

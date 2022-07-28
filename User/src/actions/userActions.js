@@ -103,7 +103,7 @@ export const ResendEmail = (email) => async (dispatch) => {
 };
 
 // Forgot Password
-export const forgotPassword = (email) => async (dispatch) => {
+export const forgotPassword = (email,getceptcha) => async (dispatch) => {
     try {
       dispatch({ type: FORGOT_PASSWORD_REQUEST });
   
@@ -116,7 +116,7 @@ export const forgotPassword = (email) => async (dispatch) => {
       // );
 
       const data = await axios.get(
-        `${Base_url}/login/check-user?user=${email}`,
+        `${Base_url}/login/check-user?user=${email}&greptcha=${getceptcha}`,
       );
   
       dispatch({ 
@@ -154,13 +154,13 @@ export const forgotPassword = (email) => async (dispatch) => {
 
 
 // text temp password
-export const TempPassword = (email) => async (dispatch) => {
+export const TempPassword = (phone,getceptcha) => async (dispatch) => {
   try {
     dispatch({ type: TEMP_PASSWORD_REQUEST });
 
     // console.log(email);
     const data = await axios.get(
-      `${Base_url}/login/check-user?user=${email}`,
+      `${Base_url}/login/check-user?user=${phone}&greptcha=${getceptcha}`,
     );
 
     dispatch({ type: TEMP_PASSWORD_SUCCESS, payload: data });
