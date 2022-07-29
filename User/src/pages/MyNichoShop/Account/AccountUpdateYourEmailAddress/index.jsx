@@ -5,6 +5,7 @@ import { ReactComponent as Logo } from "./../../../../assets/logo/logo.svg";
 import axios from "axios";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
+import { getLocalstore } from "../../../../helper/localstore/localstore";
 
 const AccountUpdateYourEmailAddress = () => {
     const [userDetails, setUserDetails] = useState(null);
@@ -24,6 +25,20 @@ const AccountUpdateYourEmailAddress = () => {
         }catch(e){
             toast(e.response.data.error, "linear-gradient(to right, #00b09b, #ff0000)")
         }
+    }
+    const toast = (msg, color) => {
+        Toastify(
+            {
+            text: msg,
+            className: "info",
+            style: {
+                background:
+                color,
+                size: 10,
+            },
+            close: true,
+        }
+        ).showToast();
     }
 
     const checkuser = async () => {
