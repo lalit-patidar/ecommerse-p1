@@ -30,7 +30,7 @@ const JoinVerify = () => {
     const Reg = ()=>{
         navigate("/registration")
     }
-    
+
     const ResendEmails = async (e) => {
         e.preventDefault();
         const datas = {
@@ -171,3 +171,5 @@ const JoinVerify = () => {
 };
 
 export default JoinVerify;
+
+

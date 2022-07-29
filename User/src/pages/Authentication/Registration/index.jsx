@@ -21,8 +21,18 @@ import { useNavigate } from "react-router-dom";
 import { usePostRegisterMutation } from "../../../api/services/authApi";
 // import FacebookLogin from "react-facebook-login";
 import AppleSignin from 'react-apple-signin-auth';
+import ReactDOM from "react-dom/client";
 
-const Registration = () => {
+// Recaptcha V3
+//import { withRouter } from "react-router-dom";
+//import {withRouter} from 'react-router';
+import {
+    GoogleReCaptchaProvider,
+    withGoogleReCaptcha
+  } from 'react-google-recaptcha-v3';
+
+
+const Register = () => {
     // api
     const recaptchaRef1 = useRef(null)
     const recaptchaRef2 = useRef(null)
@@ -64,7 +74,7 @@ const Registration = () => {
 
     const [getFormSubmit, setFormSubmit] = useState(false);
     const [getCaptcha, setCaptcha] = useState("");
-
+    const [getsignup, setsignup] = useState(false)
     // 2 type form  tab
     const [isFormSelected, setFormSelected] = useState(1);
     const peronalHendler = () => {
@@ -77,6 +87,7 @@ const Registration = () => {
         setEmail("");
         setPassword("");
     };
+
     const businessHendler = () => {
         setFormSelected(0);
         setPwdShow(false);
@@ -121,7 +132,8 @@ const Registration = () => {
     // form data submit
     const formHandler = async (e) => {
         e.preventDefault();
-
+        // const token = await props.googleReCaptchaProps.executeRecaptcha('register');
+        // console.log("token",token);
         if (isFormSelected === 1) {
             setFormSubmit(true);
             
@@ -143,6 +155,7 @@ const Registration = () => {
                 //console.log(data);
                
                 dispatch(register(data))
+                setsignup(true)
            
 
         } else if (isFormSelected === 0) {
@@ -157,6 +170,8 @@ const Registration = () => {
             };
             //console.log(data);
         dispatch(register(data))
+        setsignup(true)
+
         }
     };
 
@@ -175,7 +190,7 @@ const Registration = () => {
 
 
 
-        // Google Login
+    // Google Login
     const googleLogin = () => {
         window.gapi.auth.signIn({
             callback: function(authResponse) {
@@ -340,16 +355,24 @@ const Registration = () => {
             ).showToast();
           //alert.error(error);
           dispatch(clearErrors());
+        } else {
+            if (signup) {
+                if(getsignup){
+                    //console.log(getEmail);
+                    //console.log(getFullName);
+                    setLocalstore("signup_data",user);
+                    navigate("/join-verify");
+                    setsignup(false)
+                }
+          
+            }
         }
     
-        if (signup) {
-            //console.log(getEmail);
-            //console.log(getFullName);
-          setLocalstore("signup_data",user);
-          navigate("/join-verify");
-        }
-      }, [dispatch, navigate,signup, getEmail,getFullName,recaptchaRef1,recaptchaRef2,error, ]);
+        
+    }, [dispatch, navigate,signup, getEmail,getFullName,recaptchaRef1,recaptchaRef2,error, ]);
 
+    
+    
     return (
         <>
             <div className="ui-form-box">
@@ -933,4 +956,25 @@ const Registration = () => {
     );
 };
 
-export default Registration;
+// export default Registration;
+
+// const Register = withGoogleReCaptcha(UnwrappedRegister);
+
+
+// function Register() {
+//     return (
+//       <GoogleReCaptchaProvider reCaptchaKey={process.env.REACT_APP_CAPTCHA_V3}>
+//         <WrappedRegister/>
+//       </GoogleReCaptchaProvider>
+//     )
+// }
+
+
+// ReactDOM.render(
+//     <GoogleReCaptchaProvider reCaptchaKey={process.env.REACT_APP_CAPTCHA_V3}>
+//         <Register/>
+//     </GoogleReCaptchaProvider>,
+//     document.getElementById('app')
+// )
+
+export default Register;

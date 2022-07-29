@@ -45,6 +45,7 @@ const Account = () => {
     const [lastName, setlastName] = useState(null);
     const [phone, setphone] = useState(null);
     const [username, setusername] = useState(null);
+    const [acctype, setacctype] = useState(null);
     const [address, setaddress] = useState([]);
     
     
@@ -159,6 +160,7 @@ const Account = () => {
         var u = await getLocalstore('_userLogin');
         if(u && u.id){
             setUserDetails(u);
+            setacctype(u.accountType)
             setemail(u.email);
             setfirstName(u.firstName);
             setlastName(u.lastName);
@@ -212,7 +214,7 @@ const Account = () => {
                                                     </label>
                                                     <TextField
                                                         fullWidth
-                                                        value="Personal"
+                                                        value={acctype===1?"Personal":"Bussiness"}
                                                         variant="outlined"
                                                         size="small"
                                                     />

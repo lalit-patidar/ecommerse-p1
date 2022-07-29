@@ -9,14 +9,18 @@ import "react-phone-number-input/style.css";
 import FormFooter from "../../../components/FormFooter/FormFooter";
 import { getLocalstore,setLocalstore ,removeLocalstore} from "../../../helper/localstore/localstore";
 import { clearErrors, VerifyMobile } from "../../../actions/mobileActions";
+import { TextSuc} from "../../../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
+import { useCookies } from "react-cookie";
 
 const VerifyItsYouPhone = () => {
 
     const user = getLocalstore("_userLogin")
     const data = getLocalstore("verifyphone")
+
+    const [cookies, setCookie] = useCookies("RememberMe_Nichoshop");
 
     //console.log(data);
 
@@ -27,7 +31,7 @@ const VerifyItsYouPhone = () => {
     const [getSocCode, setSocCode] = useState("");
 
     const [getFormSubmit, setFormSubmit] = useState(false);
-    const [otps, setotps] = useState(false);
+    const [otpss, setotpss] = useState(false);
     const { error, messagess ,verify} = useSelector(state=>state.otp)
 
     console.log(error);
@@ -51,12 +55,31 @@ const VerifyItsYouPhone = () => {
         }
         console.log(datas);
         dispatch(VerifyMobile(datas))
-        setotps(true)
+        setotpss(true)
     };
+    const ResendTextsSUC = async (e) => {
+        e.preventDefault();
+        dispatch(TextSuc(data));
+        setotpss(false)
+        Toastify(
+            {
+            text: `We’ve sent a Single-Use Code (SUC) to this ${data} Mobile no`,
+            className: "info",
+            style: {
+                background:
+                    "linear-gradient(to right, #00b09b, #96c93d)",
+                size: 10,
+            },
+            close: true,
+        }
+    ).showToast();
+
+    }
 
     useEffect(() => {
         if (error) {
             //alert.show(error);
+            setotpss(false);
             Toastify(
                 {
                 text: error,
@@ -71,17 +94,22 @@ const VerifyItsYouPhone = () => {
             ).showToast();
           //alert.error(error);
           dispatch(clearErrors());
-        } 
-        if (verify) {
-            if(otps){
-                user.phone = "+"+data;
-                user.phoneConfirmed = "true";
-                setLocalstore("_userLogin",user);
-                navigate("/");
-                removeLocalstore("verifyphone");
-                setotps(false)
+        } else {
+            if (verify) {
+                if(otpss){
+                    user.phone = "+"+data;
+                    user.phoneConfirmed = "true";
+                    setLocalstore("_userLogin",user);
+                    setCookie("RememberMe_Nichoshop", user, {
+                        path: "/"
+                    });
+                    navigate("/");
+                    removeLocalstore("verifyphone");
+                    setotpss(false)
+                }
             }
         }
+       
       }, [dispatch, navigate,verify, messagess, error]);
 
 
@@ -152,7 +180,7 @@ const VerifyItsYouPhone = () => {
                                     </div>
                                     <p className="ui-vy-footer-link">
                                         Still no code?{" "}
-                                        <Link to="/">Resend SUC</Link>
+                                        <Link to=""onClick={ResendTextsSUC}>Resend SUC</Link>
                                     </p>
                                     <p className="ui-vpm-footer">
                                         Mobile charges may apply

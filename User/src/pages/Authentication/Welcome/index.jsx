@@ -92,6 +92,7 @@ const Welcome = () => {
     useEffect(() => {
         if (error) {
             //alert.show(error);
+            setsignin(false);
             Toastify(
                 {
                 text: error,
@@ -106,18 +107,19 @@ const Welcome = () => {
             ).showToast();
           //alert.error(error);
           dispatch(clearErrors());
-        }
-        if (signin) {
-            if(getsignin){
-                setLocalstore("_userLogin",user);
-                navigate("/");
-                removeLocalstore("_grecaptcha");
-                removeLocalstore("signup_data");
-                removeLocalstore("choose_method");
+        } else {
+            if (signin) {
+                if(getsignin){
+                    setLocalstore("_userLogin",user);
+                    navigate("/");
+                    removeLocalstore("_grecaptcha");
+                    removeLocalstore("signup_data");
+                    removeLocalstore("choose_method");
+                    setsignin(false);
+                }
             }
-
-            
         }
+        
       }, [dispatch, navigate,signin,recaptchaRef, error ]);
 
 
@@ -207,10 +209,10 @@ const Welcome = () => {
                                         />
                                     </div>
                                     <div className="ui-stay-signin-link">
-                                        <Link to="/user/temporary-password">
+                                        <Link to="/text-a-temporary-password">
                                             Text a temporary password
                                         </Link>
-                                        <Link to="/user/forgot-password">
+                                        <Link to="/forget-password">
                                             Forgot your password?
                                         </Link>
                                     </div>
@@ -219,7 +221,7 @@ const Welcome = () => {
                             <div className="ui-form-link">
                                 <p>
                                     Create new a account,{" "}
-                                    <Link to="/user/signup">
+                                    <Link to="/registration">
                                         Create an account
                                     </Link>
                                 </p>
