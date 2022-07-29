@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
-const CreatelistSearch = () => {
+const CreatelistSearch = (props) => {
   const [searchData, setSearchData] = useState(false);
 
-  const onHandlechange = () => {
+  const onHandlechange = (e) => {
     setSearchData(true);
+    props.changetext(e.target.value);
   };
 
   return (
@@ -28,15 +29,23 @@ const CreatelistSearch = () => {
             <span>Search</span>
           </button>
         </div>
-        {searchData ? (
+        {props.filtertext.length > 0 ? (
           <div className="searchlist">
-            <h3>
-              Home, Furniture & DIY > Cookware, Dining & Bar > Tableware,
-              Serving & Linen Cups & Saucers
-            </h3>
-            <h3>Baby > Baby Feeding > Cups/Dishes/Utensils </h3>
-            <h3>Antiques > Asian Oriented Antiques > Chinese > Glasses/Cups</h3>
-            <h3>Displayed categories don’t match to my item</h3>
+            {props.filtertext.map(
+              (filters, i) => {
+                const result = (
+                  <h3>
+                    {filters.length > 0 && filters.map(
+                        (cat, index) => {
+                            const results = (
+                              <span className="firstcap">{filters.length > index+1 ? cat.name+' > ' : cat.name}</span>
+                            )
+                        return results}
+                    )}
+                  </h3>
+                )
+                return result}
+            )}
           </div>
         ) : (
           <p></p>

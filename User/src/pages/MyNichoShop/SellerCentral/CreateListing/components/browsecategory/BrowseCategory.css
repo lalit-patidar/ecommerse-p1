@@ -22,10 +22,29 @@ select::-ms-expand {
 }
 .selectdiv {
     position: relative;
+    padding: 2px;
 }
 select {
     width: 68%;
 }
+.selected{
+    background-color: #EDF6FF !important;
+}
+.Fontblack{
+    color: #333;
+}
+.selected > .Fontblack{
+    color: #0072BC;
+}
+
+.selected:after {
+    content: '>';
+    font: 17px "Consolas", monospace;
+    color: #0072BC !important;
+    right: 8%;
+    position: absolute;
+}
+
 .selectdiv:after {
     content: '>';
     font: 17px "Consolas", monospace;
@@ -34,7 +53,7 @@ select {
     /* -moz-transform: rotate(90deg); */
     /* -ms-transform: rotate(90deg); */
     /* transform: rotate(90deg); */
-    right: 28%;
+    right: 8%;
     position: absolute;
 }
 .main-category {
