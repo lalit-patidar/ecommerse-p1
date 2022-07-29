@@ -99,6 +99,7 @@ const ForgetPassword = () => {
             if (message) {
                 if(getfp){
                     // console.log("hello");
+                    message.type = "Forget_OTP";
                     setLocalstore("choose_method",message);
                     navigate("/choose-method");
                     setfp(false);

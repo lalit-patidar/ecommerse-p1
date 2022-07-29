@@ -1,8 +1,143 @@
+import React, { useState ,useEffect} from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { ReactComponent as Logo } from "./../../../assets/logo/logo.svg";
 import { Link } from "react-router-dom";
+import { getStore } from "./../../../helper/storeHelper";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { clearErrors, EmailSuc ,TextSuc} from "../../../actions/userActions";
+
+
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
+
 
 const SingleUseCode = () => {
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const datas = getStore("single-use-code");    
+    //datas.phone = "919630196313";
+
+
+    const [emailsuc,setemailsuc] = useState(false);
+    const [textsuc,settextsuc] = useState(false);
+
+
+    const { error,email_pwd } = useSelector(state=>state.forgotPassword)
+    const { errors,txt_pwd,message } = useSelector(state=>state.mobile)
+
+    console.log(errors);
+    console.log(error);
+    console.log(txt_pwd);
+    console.log(email_pwd);
+    console.log(message);
+
+
+    const Email_suc = async(e) => {
+        e.preventDefault();
+        //alert(datas.email);
+        const email = datas.email
+        dispatch(EmailSuc(email))
+        setemailsuc(true);
+        settextsuc(false);
+
+    };
+
+    const Text_suc = async(e) => {
+        e.preventDefault();
+        if(datas?.phone){
+            console.log("phone");
+            const phone = datas.phone
+            dispatch(TextSuc(phone))
+            settextsuc(true);
+            setemailsuc(false);
+            //alert(datas.phone);
+        } else {
+            //alert("Phone no is not verified")
+            settextsuc(false);
+            setemailsuc(false);
+            Toastify(
+                {
+                text: "Phone no is not verified",
+                className: "info",
+                style: {
+                    background:
+                        "linear-gradient(to right, #00b09b, #96c93d)",
+                    size: 10,
+                },
+                close: true,
+            }
+            ).showToast();
+          //alert.error(error);
+          dispatch(clearErrors());
+        }
+        
+    };
+
+    useEffect(() => {
+        if (errors) {
+            //alert.show(error);
+            setemailsuc(false);
+            settextsuc(false);
+            Toastify(
+                {
+                text: error,
+                className: "info",
+                style: {
+                    background:
+                        "linear-gradient(to right, #00b09b, #96c93d)",
+                    size: 10,
+                },
+                close: true,
+            }
+            ).showToast();
+          //alert.error(error);
+          dispatch(clearErrors());
+        }
+
+        if (error) {
+            //alert.show(error);
+            setemailsuc(false);
+            settextsuc(false);
+            Toastify(
+                {
+                text: error,
+                className: "info",
+                style: {
+                    background:
+                        "linear-gradient(to right, #00b09b, #96c93d)",
+                    size: 10,
+                },
+                close: true,
+            }
+            ).showToast();
+          //alert.error(error);
+          dispatch(clearErrors());
+        }
+
+        if (email_pwd) {
+            if(emailsuc){
+                console.log("email");
+                navigate("/verify-its-you-email");
+                setemailsuc(false);
+                settextsuc(false);
+            }
+        }
+        if (txt_pwd) {
+            if(textsuc){
+                console.log("phone");
+                navigate("/verify-its-you-phone");
+                settextsuc(false);
+                setemailsuc(false);
+                //setLocalstore("_userLogin",user);
+            }
+        }
+      }, [dispatch, navigate,txt_pwd,email_pwd, error]);
+
+
+
     return (
         <div>
             <Container>
@@ -13,7 +148,7 @@ const SingleUseCode = () => {
                         </div>
                         <div className="ui-single-code-info">
                             <h4>How do you want to get your single-use code</h4>
-                            <Link to="/">
+                            <Link to="" onClick={Email_suc}>
                                 <div className="ui-single-code-box mb-3">
                                     <svg
                                         width="51"
@@ -23,8 +158,8 @@ const SingleUseCode = () => {
                                         xmlns="http://www.w3.org/2000/svg"
                                     >
                                         <path
-                                            fill-rule="evenodd"
-                                            clip-rule="evenodd"
+                                            fillRule="evenodd"
+                                            clipRule="evenodd"
                                             d="M49.227 31.5258C48.6712 31.8343 48.0432 31.9976 47.4038 31.9999H3.64657C3.00606 32.0054 2.37598 31.8416 1.82336 31.5258L16.4091 17.3036L19.9947 20.7999C20.7263 21.4866 21.5945 22.0197 22.5458 22.3662C23.497 22.7128 24.511 22.8654 25.5252 22.8147C26.5387 22.86 27.5512 22.7049 28.5016 22.3586C29.4521 22.0124 30.3208 21.4821 31.0556 20.7999L34.6412 17.3036L49.227 31.5258ZM50.5032 30.2221L35.9175 15.9999L50.5032 1.77777C50.8196 2.31964 50.9871 2.93201 50.9894 3.55554V28.4443C51.0461 29.0742 50.874 29.7034 50.5032 30.2221ZM0.486331 30.2221C0.169955 29.6802 0.00248257 29.0679 0.000140596 28.4443V3.55554C-0.00556454 2.93099 0.162456 2.31662 0.486331 1.77777L15.0721 15.9999L0.486331 30.2221ZM49.227 0.474072L29.7186 19.4962C29.1631 20.0167 28.505 20.4217 27.7841 20.6865C27.0633 20.9514 26.2947 21.0706 25.5252 21.0369C24.7556 21.0706 23.987 20.9514 23.2662 20.6865C22.5453 20.4217 21.8872 20.0167 21.3318 19.4962L1.82336 0.474072C2.37908 0.165581 3.0071 0.00228359 3.64657 0H47.4038C48.0432 0.00227502 48.6712 0.165573 49.227 0.474072Z"
                                             fill="#1FAEFF"
                                         />
@@ -32,14 +167,14 @@ const SingleUseCode = () => {
                                     <div className="ui-scb-right">
                                         <p>Get an email</p>
                                         <p>
-                                            We’ll send a code to your email
-                                            example@gmail.com
+                                            We’ll send a code to your email {" "}
+                                            <b>{datas?.email}</b>
                                         </p>
                                     </div>
                                 </div>
                             </Link>
 
-                            <Link to="/">
+                            <Link to="" onClick={Text_suc}>
                                 <div className="ui-single-code-box">
                                     <svg
                                         width="51"
@@ -57,8 +192,8 @@ const SingleUseCode = () => {
                                     <div className="ui-scb-right">
                                         <p>Get a text</p>
                                         <p>
-                                            We’ll text a code to your phone
-                                            <b>+XXXX XXXXX1234</b>
+                                            We’ll text a code to your phone{" "}
+                                            <b>{datas?.phone}</b>
                                         </p>
                                     </div>
                                 </div>

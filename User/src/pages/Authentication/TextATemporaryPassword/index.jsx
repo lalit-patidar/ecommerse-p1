@@ -81,8 +81,9 @@ const TextATemporaryPassword = () => {
             if (temp_pwd) { 
                 if(otpss){
                     var user = message;
-                    setLocalstore("choose_method",user);
-                    navigate("/choose-method",{email:getEmail});
+                    user.type = "OTP";
+                    setLocalstore("single-use-code",user);
+                    navigate("/single-use-code",{email:getEmail});
                     setotpss(false)
                 }
             }

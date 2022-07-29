@@ -38,10 +38,12 @@ export const login = (formData) => async (dispatch) => {
     try {
       dispatch({ type: LOGIN_REQUEST });
       //console.log(formData);
-      const config = {headers: {
-                            "Content-Type": "application/x-www-form-urlencoded",
-                            "Access-Control-Allow-Origin": "*",
-                          } 
+      const config = {
+                headers: {
+                          "Content-Type": "application/x-www-form-urlencoded",
+                            // "Access-Control-Allow-Origin": "*",
+                          },
+                          withCredentials: true
                       };
       //const config = { headers: { "Content-Type": "multipart/form-data" } };
 
@@ -50,7 +52,7 @@ export const login = (formData) => async (dispatch) => {
         formData,
         config
       );
-  
+
       dispatch({ type: LOGIN_SUCCESS, payload: data });
     } catch (error) {
       dispatch({ type: LOGIN_FAIL, payload: error.response.data.error });

@@ -18,7 +18,14 @@ import { useCookies } from "react-cookie";
 const VerifyItsYouPhone = () => {
 
     const user = getLocalstore("_userLogin")
+
+    // Add Phone no
     const data = getLocalstore("verifyphone")
+
+    // forget Password
+    const dataa = getLocalstore("choose_method");
+    // temporary password
+    const dataz = getLocalstore("single-use-code");
 
     const [cookies, setCookie] = useCookies("RememberMe_Nichoshop");
 
@@ -95,21 +102,36 @@ const VerifyItsYouPhone = () => {
           //alert.error(error);
           dispatch(clearErrors());
         } else {
-            if (verify) {
-                if(otpss){
-                    user.phone = "+"+data;
-                    user.phoneConfirmed = "true";
-                    setLocalstore("_userLogin",user);
-                    setCookie("RememberMe_Nichoshop", user, {
-                        path: "/"
-                    });
-                    navigate("/");
-                    removeLocalstore("verifyphone");
-                    setotpss(false)
+            if(dataa?.type ==="Forget_OTP"){
+                if (verify) {
+                    if(otpss){
+                        navigate("/change-new-password");
+                        removeLocalstore("verifyphone");
+                        //removeLocalstore("choose_method");
+                        removeLocalstore("single-use-code");
+                        setotpss(false)
+                    }
                 }
-            }
+            } else{
+                    if (verify) {
+                        if(otpss){
+                            if(data?.type === "add_phone"){
+                                user.phone = "+"+data;
+                                user.phoneConfirmed = "true";
+                                setLocalstore("_userLogin",user);
+                            }
+                            setCookie("RememberMe_Nichoshop", user, {
+                                path: "/"
+                            });
+                            navigate("/");
+                            removeLocalstore("verifyphone");
+                            removeLocalstore("choose_method");
+                            removeLocalstore("single-use-code");
+                            setotpss(false)
+                        }
+                    }
+                }
         }
-       
       }, [dispatch, navigate,verify, messagess, error]);
 
 

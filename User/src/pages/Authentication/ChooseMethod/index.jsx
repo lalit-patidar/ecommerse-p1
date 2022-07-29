@@ -42,7 +42,7 @@ const ChooseMethod = () => {
 
     const datas = getStore("choose_method");
     // datas.phone = "919630196313";
-    console.log(datas);
+    // console.log(datas);
 
     const { error,email_pwd } = useSelector(state=>state.forgotPassword)
     const { errors,txt_pwd,message } = useSelector(state=>state.mobile)
@@ -68,25 +68,28 @@ const ChooseMethod = () => {
             .required("This email or username doesn't exit."),
     });
 
-    const Email_suc = async(e) => {
-        
+    const Email_suc = async(e) => {   
         e.preventDefault();
         //alert(datas.email);
         const email = datas.email
         dispatch(EmailSuc(email))
         setemailsuc(true);
+        settextsuc(false);
     };
 
     const Text_suc = async(e) => {
         e.preventDefault();
-        if(datas.phone){
+        if(datas?.phone){
             console.log("phone");
             const phone = datas.phone
             dispatch(TextSuc(phone))
             settextsuc(true);
+            setemailsuc(false);
             //alert(datas.phone);
         } else {
             //alert("Phone no is not verified")
+            settextsuc(false);
+            setemailsuc(false);
             Toastify(
                 {
                 text: "Phone no is not verified",
@@ -108,6 +111,7 @@ const ChooseMethod = () => {
     useEffect(() => {
         if (errors) {
             //alert.show(error);
+            settextsuc(false);
             Toastify(
                 {
                 text: error,
@@ -126,6 +130,7 @@ const ChooseMethod = () => {
 
         if (error) {
             //alert.show(error);
+            setemailsuc(false);
             Toastify(
                 {
                 text: error,
@@ -211,7 +216,7 @@ const ChooseMethod = () => {
                                             </strong>
                                             <p className="formError">
                                                 We’ll send a code to your email: {""}
-                                                {datas.email}
+                                                {datas?.email}
                                             </p>
                                         </Link>
 

@@ -122,6 +122,9 @@ const CreateNewPassword = () => {
                                                     id="new_password"
                                                     name="new_password"
                                                     placeholder="New password"
+                                                    inputProps={{
+                                                        minLength:8
+                                                    }}
                                                     type={
                                                         showPassword
                                                             ? "text"

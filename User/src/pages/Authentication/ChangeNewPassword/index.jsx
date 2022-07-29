@@ -5,6 +5,8 @@ import FormFooter from "../../../components/FormFooter/FormFooter";
 import { useRef, useState } from "react";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
 import { TextField } from "@mui/material";
+import { getLocalstore,setLocalstore ,removeLocalstore} from "../../../helper/localstore/localstore";
+
 
 import "react-phone-number-input/style.css";
 
@@ -13,6 +15,9 @@ const ChangeNewPassword = () => {
 
     // is password show & hidden
     const [isPwdShow, setPwdShow] = useState(false);
+
+    const data = getLocalstore("choose_method");
+    console.log(data);
 
     // pasword show & hidden
     const isPwdShowedHandler = () => {
@@ -37,6 +42,8 @@ const ChangeNewPassword = () => {
     const [getFormSubmit, setFormSubmit] = useState(false);
 
     // full name input handler
+
+    console.log(getPassword);
 
     const pwdHandler = (e) => {
         setPassword(e.target.value);
@@ -65,7 +72,15 @@ const ChangeNewPassword = () => {
     const formHandler = async (e) => {
         e.preventDefault();
         setFormSubmit(true);
+
+        const datas = {
+            password : getPassword,
+            username : data?.username,
+            //token:""
+        }
+        console.log(datas);
     };
+
     return (
         <>
             <div className="ui-form-box">
@@ -91,6 +106,9 @@ const ChangeNewPassword = () => {
                                                 size="small"
                                                 fullWidth
                                                 type="password"
+                                                inputProps={{
+                                                    minLength:8
+                                                }}
                                                 ref={pwdInputRef}
                                                 onChange={pwdHandler}
                                                 value={getPassword}
@@ -208,11 +226,11 @@ const ChangeNewPassword = () => {
                                     <Button variant="primary" type="submit">
                                         Sign in
                                     </Button>
-                                    <div className="d-flex justify-content-center">
+                                    {/* <div className="d-flex justify-content-center">
                                         <button className="ui-add-mob-not-now">
                                             Resend SUC
                                         </button>
-                                    </div>
+                                    </div> */}
                                 </Form>
                             </div>
                         </Col>

@@ -1,14 +1,15 @@
 import { Container, Row, Col, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as Logo } from "./../../../assets/logo/logo.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 
 import "react-phone-number-input/style.css";
 import FormFooter from "../../../components/FormFooter/FormFooter";
-import { getStore } from "./../../../helper/storeHelper";
-import { clearErrors, EmailSuc } from "../../../actions/userActions";
+import { getLocalstore ,removeLocalstore} from "../../../helper/localstore/localstore";
+
+import { clearErrors, EmailSuc,VerifyEmailSuc } from "../../../actions/userActions";
 import { useDispatch,useSelector } from "react-redux";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
@@ -18,7 +19,6 @@ const VerifyItsYouEmail = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [getSocCode, setSocCode] = useState("");
 
     // const { error,message,email_pwd } = useSelector(state=>state.forgotPassword)
 
@@ -28,16 +28,17 @@ const VerifyItsYouEmail = () => {
     console.log(message);
     console.log(email_verify);
 
-    const data = getStore("choose_method");
-    console.log(data);
+    const data = getLocalstore("choose_method");
+    const dataz = getLocalstore("single-use-code");
 
     const [getFormSubmit, setFormSubmit] = useState(false);
+    const [getSocCode, setSocCode] = useState("");
+    const [emailotpss, setemailotpss] = useState(false);
 
     const soccodeHandler = (e) => {
         setSocCode(e.target.value);
     };
 
-    
     const ResendEmailsSUC = async (e) => {
         e.preventDefault();
         const email = data.email;
@@ -45,7 +46,7 @@ const VerifyItsYouEmail = () => {
         dispatch(EmailSuc(email));
         Toastify(
             {
-            text: "We’ve sent a Single-Use Code (SUC) to this email address",
+            text: `We’ve sent a Single-Use Code (SUC) to ${(data?.email)?(data?.email):(dataz?.email)}`,
             className: "info",
             style: {
                 background:
@@ -55,15 +56,78 @@ const VerifyItsYouEmail = () => {
             close: true,
         }
         ).showToast();
-
     }
-
 
     // form data submit
     const formHandler = (e) => {
         e.preventDefault();
         setFormSubmit(true);
+        if(data?.type ==="Forget_OTP"){
+            console.log(data.type);
+            var datas ={
+                suc_type:"0",
+                suc:getSocCode,
+            }
+            console.log(datas);
+            dispatch(VerifyEmailSuc(datas))
+            setemailotpss(true);
+        } else {
+            var datass ={
+                suc_type:"2",
+                suc:getSocCode,
+            }
+            console.log(datass);
+            dispatch(VerifyEmailSuc(datass))
+            setemailotpss(true);
+        }
+        
     };
+
+
+    useEffect(() => {
+        if (error) {
+            //alert.show(error);
+            setemailotpss(false);
+            Toastify(
+                {
+                text: error,
+                className: "info",
+                style: {
+                    background:
+                        "linear-gradient(to right, #00b09b, #96c93d)",
+                    size: 10,
+                },
+                close: true,
+            }
+            ).showToast();
+          //alert.error(error);
+          dispatch(clearErrors());
+        } 
+        else {
+            if(data?.type ==="Forget_OTP"){
+                if (email_verify) {
+                    if(emailotpss){
+                        navigate("/change-new-password");
+                        //removeLocalstore("choose_method");
+                        removeLocalstore("verifyphone");
+                        removeLocalstore("single-use-code");
+                        setemailotpss(false);
+                    }
+                }
+            } else {
+                if (email_verify) {
+                    if(emailotpss){
+                        navigate("/");
+                        removeLocalstore("single-use-code");
+                        removeLocalstore("verifyphone");
+                        removeLocalstore("choose_method");
+                        setemailotpss(false);
+                    }
+                }
+            }
+        }
+      }, [dispatch, navigate, error]);
+
 
     return (
         <>
@@ -78,7 +142,7 @@ const VerifyItsYouEmail = () => {
                                 <h4>Verify that it’s you</h4>
                                 <p className="text-start ui-add-mob-info mb-3">
                                     We’ve sent a Single-Use Code (SUC) to this
-                                    email address: {data?.email}
+                                    email address: {(data?.email)?(data?.email):(dataz?.email)}
                                 </p>
 
                                 <Form onSubmit={formHandler}>

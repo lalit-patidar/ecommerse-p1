@@ -41,7 +41,7 @@ const AddMobileNumber = () => {
     const data = getLocalstore("_userLogin")
     console.log(data);
 
-    if(data.phoneConfirmed === "true")
+    if(data?.phoneConfirmed === "true")
     {
         navigate("/")
     }
@@ -90,6 +90,7 @@ const AddMobileNumber = () => {
             if (add_mob) {
                 if(getphones){
                     //setLocalstore("_userLogin",user);
+                    getphone.type = "add_phone";
                     setLocalstore("verifyphone",getphone);
                     navigate("/verify-its-you-phone");
                     setphones(false)
