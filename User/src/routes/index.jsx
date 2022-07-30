@@ -104,7 +104,7 @@ const RootRoute = () => {
                 <Route path="/StartSelling" element={<StartSelling /> } />
                 <Route path="/CreateListing" element={<CreateListing /> } />
                 <Route path="/CreateListing_multiple" element={<CreateListing_multiple /> } />
-                <Route path="/listing_detail" element={<CreateListing /> } />
+                <Route path="/listing_detail" element={<SellerCentralListing /> } />
 
                 {/* public routes */}
                 <Route element={<PublicRoute />}>

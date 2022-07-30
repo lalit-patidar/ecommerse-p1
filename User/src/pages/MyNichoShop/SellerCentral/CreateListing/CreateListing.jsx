@@ -9,6 +9,8 @@ import "./CreateListing.css";
 import axios from "axios";
 var filtertexts = [];
 const CreateListing = () => {
+    const [title, settitle] = useState(null);
+    const [selectedcat, setselectedcat] = useState(null);
     const [category, setcategory] = useState([]);
     const [parcategory, setparcategory] = useState([]);
     const [filtertext, setfiltertext] = useState([]);
@@ -60,6 +62,7 @@ const CreateListing = () => {
         // console.log('filtertexts',filtertexts);
     }
     const changetext = async (val) => {
+        settitle(val);
         filtertexts = [];
         setfiltertext([]);
         categoryfilter(60, 0);
@@ -76,6 +79,14 @@ const CreateListing = () => {
             console.log(e);
         }
     }
+    const updatecategory = (s) => {
+        setselectedcat(s[s.length - 1]);
+    }
+    const continuebutton = () => {
+        if(selectedcat && title){
+            // history.push("/createlistingform");
+        }
+    }
     return (
         <>
             <div className="main-create-list">
@@ -85,7 +96,7 @@ const CreateListing = () => {
                 </div>
                 <CreatelistSearch filtertext={filtertext} changetext={changetext} />
                 {category.length > 0 ?
-                    <BrowseCategory category={category} />
+                    <BrowseCategory category={category} updatecategory={updatecategory} continuebutton={continuebutton} />
                     : null
                 }
                 <FinishDraft />

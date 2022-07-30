@@ -15,7 +15,7 @@ const BrowseCategory = (props) => {
     };
 
     const haldeRedirect = () => {
-        // history.push("/createlistingform");
+        props.continuebutton()
     };
     const addsubcategory = (category, index) => {
         var s = selected;
@@ -25,6 +25,7 @@ const BrowseCategory = (props) => {
         }else{
             s.push(category.category.id);
         }
+        props.updatecategory(s);
         setselected(s);
         if(category.children && category.children.length > 0){
             var loop = categoryloop;
