@@ -14,42 +14,43 @@ import AgentReport from "./pages/CustomerSupport/AgentReport/AgentReport";
 import Admin from "./pages/Admin";
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
+import Content from "./pages/Content";
+import ContentDisplay from "./pages/Content/Pages/ContentDisplay";
+import ContentEdit from "./pages/Content/Pages/ContentDisplay/components/ContentEdit";
 
 const App = () => {
     return (
         <>
             <Routes>
                 {/* private route */}
-                <Route element={<PrivateRoute />}>
-                    <Route path="/administrator" element={<Administrator />} />
-                    <Route path="/category" element={<Category />} />
+                <Route element={<PrivateRoute />}></Route>
+                <Route path="/administrator" element={<Administrator />} />
+                <Route path="/category" element={<Category />} />
 
-                    <Route
-                        path="/customer-support"
-                        element={<CustomerSupport />}
-                    />
-                    <Route
-                        path="/customer-support-note"
-                        element={<CustomerNote />}
-                    />
-                    <Route
-                        path="/customer-support-agent-info"
-                        element={<AgentInfo />}
-                    />
-                    <Route
-                        path="/customer-support-agent-report"
-                        element={<AgentReport />}
-                    />
-                </Route>
+                <Route path="/customer-support" element={<CustomerSupport />} />
+                <Route
+                    path="/customer-support-note"
+                    element={<CustomerNote />}
+                />
+                <Route
+                    path="/customer-support-agent-info"
+                    element={<AgentInfo />}
+                />
+                <Route
+                    path="/customer-support-agent-report"
+                    element={<AgentReport />}
+                />
+                <Route path="/content" element={<Content />} />
+                <Route path="/content/display" element={<ContentDisplay />} />
+                <Route path="/content/edit" element={<ContentEdit />} />
                 {/* public route */}
-                <Route element={<PublicRoute />}>
-                    <Route path="/" element={<SignIn />} />
-                    <Route path="/admin" element={<Admin />} />
-                    <Route
-                        path="/temporary-password"
-                        element={<TemporaryPassword />}
-                    />
-                </Route>
+                <Route element={<PublicRoute />}></Route>
+                <Route path="/" element={<SignIn />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route
+                    path="/temporary-password"
+                    element={<TemporaryPassword />}
+                />
             </Routes>
         </>
     );

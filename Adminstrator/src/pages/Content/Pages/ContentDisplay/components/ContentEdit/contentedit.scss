@@ -1,0 +1,41 @@
+.ui-content-edit {
+    padding: 4rem 0;
+
+    &-head {
+        padding-bottom: 10px;
+
+        h4 {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 30px;
+            line-height: 43px;
+            color: #000000;
+            border-bottom: 1px solid #CBCBCB;
+            margin-bottom: 0;
+            padding: 10px 0;
+        }
+
+        p {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 26px;
+            color: #0072BC;
+            border-bottom: 1px solid #CBCBCB;
+            margin-bottom: 0;
+            padding: 10px 0;
+        }
+    }
+
+    &-body {
+        padding: 1rem 0;
+
+        &-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-top: 1px solid #CBCBCB;
+            padding-top: 1rem;
+        }
+    }
+}

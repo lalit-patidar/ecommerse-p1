@@ -1,0 +1,43 @@
+.ui-tab-sidebar {
+    height: 100vh;
+    background: #F8F9FF;
+    padding-top: 30px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+
+    &-menu {
+        width: 300px;
+        margin-left: auto;
+        padding-right: 14px;
+
+        h4 {
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 43px;
+            color: #000;
+            padding-bottom: 20px;
+        }
+    }
+
+    &-btn {
+        display: flex;
+        flex-direction: column;
+
+        button {
+            border-radius: 8px;
+            height: 42px;
+            border: 0;
+            text-align: left;
+            padding: 0 14px;
+            background: none;
+            color: #616161;
+
+            &.active {
+                background: #EDF0FF;
+                color: #0072BC;
+            }
+        }
+    }
+}

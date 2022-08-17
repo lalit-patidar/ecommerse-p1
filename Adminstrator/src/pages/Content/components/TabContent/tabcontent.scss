@@ -1,0 +1,158 @@
+.ui-content-tab-box {
+    padding: 50px;
+    height: 100vh;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .demo-editor {
+        border: 1px solid #ddd;
+        padding: 0 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.ui-content-overview {
+
+    h4 {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 22px;
+        line-height: 26px;
+        color: #0C0C0C;
+        padding-bottom: 2rem;
+    }
+
+    p {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 145%;
+        color: #616161;
+        padding-bottom: 20px;
+    }
+
+    button {
+        background: #0072BC;
+        border-radius: 4px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 21px;
+        text-align: center;
+        color: #FFFFFF;
+        height: 35px;
+        border: none;
+        padding: 0 2rem;
+        margin-bottom: 1.4rem;
+        transition: all .3s;
+
+        &:hover {
+            background-color: #0264a5;
+        }
+    }
+
+    &-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        button {
+            &:first-of-type {
+                background: none;
+                border: 1px solid #CBCBCB;
+                color: #616161;
+
+                &:hover {
+                    background-color: #616161;
+                    color: #FFFFFF;
+                }
+            }
+        }
+    }
+}
+
+.ui-company-facets {
+    ul {
+        padding-left: 0;
+        display: grid;
+        grid-template-columns: 150px 0.8fr;
+
+        li {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 145%;
+            color: #000000;
+
+            &:last-of-type {
+                font-weight: 400;
+                color: #616161;
+            }
+        }
+    }
+}
+
+.ui-image-content {
+
+    h6 {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 145%;
+        color: #000000;
+    }
+
+    &-logo {
+        padding: 10px 0;
+
+        svg {
+            width: 200px;
+        }
+    }
+
+    p {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 145%;
+        color: #0072BC;
+    }
+}
+
+.ui-contect-box {
+    .ui-contact-box-card {
+        h6 {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 145%;
+            color: #000000;
+        }
+
+        ul {
+            padding-left: 0 !important;
+
+            li {
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 145%;
+                color: #616161;
+            }
+        }
+
+        p {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 145%;
+            color: #0072BC;
+            padding-bottom: 0;
+
+            span {
+                color: #616161;
+            }
+        }
+    }
+}

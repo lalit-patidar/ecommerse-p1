@@ -1,0 +1,138 @@
+.ui-content-display-body {
+    padding-bottom: 6rem;
+
+    >h2 {
+        font-weight: 600;
+        font-size: 34px;
+        line-height: 43px;
+        color: #000000;
+        border-bottom: 1px solid #ddd;
+        padding: 20px 0;
+    }
+
+    &-list {
+
+        h4,
+        h6 {
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 26px;
+            color: #000000;
+        }
+
+        p {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 145%;
+            color: #616161;
+
+        }
+
+        h4 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            svg {
+                width: 18px;
+            }
+        }
+
+        ul {
+            list-style-type: disc !important;
+            padding-left: 1.2rem !important;
+
+            li {
+                font-weight: 400;
+                font-size: 16x;
+                line-height: 145%;
+                color: #616161;
+                padding: 4px 0;
+
+                &:first-child {
+                    padding-top: 0;
+                }
+
+                &:last-child {
+                    padding-bottom: 0;
+                }
+            }
+        }
+
+    }
+
+    &-btn {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-top: 1px solid #CBCBCB;
+        padding-top: 2rem;
+    }
+}
+
+.ui-back-btn {
+    background: #FFFFFF;
+    border: 1px solid #0072BC;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    text-align: center;
+    color: #0072BC;
+    height: 35px;
+    padding: 0 1.4rem;
+    transition: all .3s;
+
+    &:hover {
+        background-color: #0072BC;
+        color: #fff;
+    }
+}
+
+.ui-edit-btn {
+    background: #FFFFFF;
+    border: 1px solid #0072BC;
+    background-color: #0072BC;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    text-align: center;
+    color: #fff;
+    height: 35px;
+    padding: 0 1.4rem;
+    transition: all .3s;
+
+    &:hover {
+        background-color: #fff;
+        color: #0072BC;
+    }
+}
+
+.ui-delete-btn {
+
+    background: #FFFFFF;
+    border: 1px solid #616161;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    text-align: center;
+    color: #616161;
+    height: 35px;
+    padding: 0 1.4rem;
+    transition: all .3s;
+
+    &:hover {
+        background-color: #616161;
+        color: #fff;
+    }
+}
+
+.ui-content-display{
+    position: relative;
+}

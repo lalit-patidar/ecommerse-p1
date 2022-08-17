@@ -1,0 +1,36 @@
+.ui-content-delete {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #FFFFFF;
+    box-shadow: 0px 0px 20px rgba(117, 117, 117, 0.25);
+    border-radius: 16px;
+    width: 476px;
+    padding: 30px;
+    text-align: center;
+
+    h4 {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 26px;
+        text-align: center;
+        color: #000000;
+    }
+
+    p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 21px;
+        text-align: center;
+        color: #616161;
+    }
+
+    &-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: center;
+        padding-top: 1rem;
+    }
+}

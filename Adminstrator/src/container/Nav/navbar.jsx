@@ -1,23 +1,27 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./css/navbar.css";
+import { ReactComponent as ChatIcon } from "./../../assets/images/nav/chat-icon.svg";
+import { ReactComponent as SupportIcon } from "./../../assets/images/nav/customer-support.svg";
+import { ReactComponent as SearchIcon } from "./../../assets/images/nav/search-icon.svg";
+import { ReactComponent as CategoryIcon } from "./../../assets/images/nav/categories-icon.svg";
+import { ReactComponent as ContentIcon } from "./../../assets/images/nav/content-icon.svg";
+import { ReactComponent as AdministratorIcon } from "./../../assets/images/nav/administrator-icon.svg";
+import { ReactComponent as MessagesIcon } from "./../../assets/images/nav/messages-icon.svg";
+import { ReactComponent as NsLogo } from "./../../assets/images/nav/ns-logo.svg";
+
 const Nav = () => {
     return (
         <React.Fragment>
             <div className="p-0">
                 <nav className="navbar navbar-expand-sm bg-light justify-content-center">
-                    <img
-                        src="assets/img/NS Logo.svg"
-                        className="logo"
-                        alt="logo"
-                    />
+                    <div className="logo">
+                        <NsLogo />
+                    </div>
                     <ul className="navbar-nav">
                         <li className="nav-item">
                             <NavLink to="/general" className="nav-link">
-                                <img
-                                    src="assets/img/menu/General (Statistic Chart).svg"
-                                    alt="menu"
-                                />
+                                <ChatIcon />
                             </NavLink>
                         </li>
                         <li className="nav-item">
@@ -25,51 +29,32 @@ const Nav = () => {
                                 to="/customer-support"
                                 className="nav-link"
                             >
-                                <img
-                                    src="assets/img/menu/Customer Support.svg"
-                                    alt="menu"
-                                />
+                                <SupportIcon />
                             </NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink to="/search" className="nav-link">
-                                <img
-                                    src="assets/img/menu/Search.svg"
-                                    alt="menu"
-                                />
+                                <SearchIcon />
                             </NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink to="/category" className="nav-link">
-                                <img
-                                    src="assets/img/menu/Categories.svg"
-                                    alt="menu"
-                                />
+                                <CategoryIcon />
                             </NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink to="/content" className="nav-link">
-                                <img
-                                    src="assets/img/menu/Content.svg"
-                                    alt="menu"
-                                />
+                                <ContentIcon />
                             </NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink to="/administrator" className="nav-link">
-                                <img
-                                    src="assets/img/menu/Administrator.svg"
-                                    alt="menu"
-                                />
+                                <AdministratorIcon />
                             </NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink to="/messages" className="nav-link">
-                                <img
-                                    src="assets/img/menu/Messages.svg"
-                                    className="m-auto"
-                                    alt="menu"
-                                />
+                                <MessagesIcon />
                             </NavLink>
                         </li>
                     </ul>
