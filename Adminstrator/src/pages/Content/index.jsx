@@ -8,6 +8,8 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import TabSidebar from "./components/TabSidebar";
 import TabContent from "./components/TabContent";
 import TheNichoShopPolicies from "./Pages/TheNichoShopPolicies";
+import News from "./Pages/News";
+import Careers from "./Pages/Careers";
 
 const Content = () => {
     const navigate = useNavigate();
@@ -66,6 +68,30 @@ const Content = () => {
         },
     ]);
 
+    const [getSafetySidebar, setSafetySidebar] = useState([
+        {
+            id: uuidv4(),
+            title: "Overview",
+            isClicked: true,
+        },
+        {
+            id: uuidv4(),
+            title: "Buy with confidence",
+        },
+        {
+            id: uuidv4(),
+            title: "Sell with confidence",
+        },
+        {
+            id: uuidv4(),
+            title: "Intellectual Property Protection",
+        },
+        {
+            id: uuidv4(),
+            title: "Avoiding scams and reporting fraud",
+        },
+    ]);
+
     const sidebarHandler = (id) => {
         const updated = getSideBarContent.map((item) => {
             if (item.id === id) {
@@ -83,6 +109,25 @@ const Content = () => {
             return item;
         });
         setSidebarContent(updated);
+    };
+
+    const sidebarHandler2 = (id) => {
+        const updated = getSafetySidebar.map((item) => {
+            if (item.id === id) {
+                navigate(
+                    "/content?tab=" +
+                        searchParams.get("tab") +
+                        "&name=" +
+                        item.title.split(" ").join("").toLocaleLowerCase()
+                );
+                if (!item.isClicked) {
+                    getSafetySidebar.map((rem) => (rem.isClicked = false));
+                    item.isClicked = true;
+                }
+            }
+            return item;
+        });
+        setSafetySidebar(updated);
     };
 
     return (
@@ -119,9 +164,25 @@ const Content = () => {
                     <TabContent data={getSideBarContent} />
                 </div>
             )}
+
             {searchParams.get("tab") === "thenichoshop’spolicies" && (
                 <TheNichoShopPolicies />
             )}
+
+            {searchParams.get("tab") === "safetycenter" && (
+                <div className="ui-content-tab">
+                    <TabSidebar
+                        data={getSafetySidebar}
+                        handler={sidebarHandler2}
+                    />
+                    <TabContent data={getSideBarContent} />
+                </div>
+            )}
+
+            {searchParams.get("tab") === "news" && <News />}
+
+            {searchParams.get("tab") === "careers" && <Careers />}
+
             <Footer />
         </>
     );

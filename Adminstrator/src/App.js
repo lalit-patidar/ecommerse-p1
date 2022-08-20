@@ -17,6 +17,8 @@ import PublicRoute from "./routes/PublicRoute";
 import Content from "./pages/Content";
 import ContentDisplay from "./pages/Content/Pages/ContentDisplay";
 import ContentEdit from "./pages/Content/Pages/ContentDisplay/components/ContentEdit";
+import NewsView from "./pages/NewsView";
+import CareerAddCat from "./pages/CareerAddCat";
 
 const App = () => {
     return (
@@ -43,6 +45,8 @@ const App = () => {
                 <Route path="/content" element={<Content />} />
                 <Route path="/content/display" element={<ContentDisplay />} />
                 <Route path="/content/edit" element={<ContentEdit />} />
+                <Route path="/content/news/:id" element={<NewsView />} />
+                <Route path="content/category/add" element={<CareerAddCat />} />
                 {/* public route */}
                 <Route element={<PublicRoute />}></Route>
                 <Route path="/" element={<SignIn />} />

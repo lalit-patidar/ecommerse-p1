@@ -156,3 +156,120 @@
         }
     }
 }
+
+
+.ui-ipp {
+    >ul {
+        &:nth-of-type(1) {
+            display: flex;
+            align-items: center;
+            border-top: 1px solid #CBCBCB;
+            border-bottom: 1px solid #CBCBCB;
+            justify-content: space-between;
+            padding: 1rem 2rem !important;
+
+            li {
+                a {
+                    font-weight: 400;
+                    font-size: 18px;
+                    line-height: 26px;
+                    text-transform: uppercase;
+                }
+            }
+        }
+    }
+
+    &-content {
+        margin-bottom: 1rem;
+        padding: 1rem 2rem !important;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        >p {
+            padding-bottom: 0;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 26px;
+            text-transform: uppercase;
+            color: #0C0C0C;
+        }
+
+        &-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+
+            ul {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                li {
+                    a {
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 145%;
+                        color: #0072BC;
+                    }
+                }
+            }
+        }
+
+    }
+
+    &-btn {
+        border-top: 1px solid #CBCBCB;
+        padding: 1rem 2rem !important;
+        margin-bottom: 3rem;
+
+        button {
+            all: unset;
+            background: none;
+            padding: 0;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 21px;
+            color: #2AAC27;
+
+            &:hover {
+                background: none;
+            }
+
+            svg {
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.ui-scam-content {
+    p {
+        margin-bottom: 0;
+
+        b {
+            display: block;
+            padding-bottom: 8px;
+        }
+    }
+
+    ul {
+        list-style-type: disc !important;
+        padding-left: 1.4rem !important;
+
+        li {
+            padding: 10px;
+
+            &:first-child {
+                padding-top: 0;
+            }
+
+            &:last-child {
+                padding-bottom: 0;
+            }
+        }
+    }
+}

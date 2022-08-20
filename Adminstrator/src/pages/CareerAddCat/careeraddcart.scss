@@ -1,0 +1,26 @@
+.ui-career-add-cat-box {
+    .ui-news-box-head {
+        margin-bottom: 0;
+        padding: 1rem 0;
+    }
+
+    &-head {
+        padding: 1rem 0;
+        border-bottom: 1px solid #CBCBCB;
+
+        p {
+            margin-bottom: 0;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: normal;
+            color: #0072BC;
+        }
+    }
+
+    &-editor {
+        .public-DraftStyleDefault-ltr {
+            border-bottom: 1px solid #ddd;
+            padding: 1rem;
+        }
+    }
+}

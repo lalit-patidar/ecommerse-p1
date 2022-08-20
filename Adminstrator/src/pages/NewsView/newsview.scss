@@ -1,0 +1,44 @@
+.ui-display-blog-box {
+    padding-bottom: 3rem;
+
+    &-head {
+        border-bottom: 1px solid #CBCBCB;
+        padding: 1rem 0;
+        margin-bottom: 3rem;
+
+
+        h4 {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 34px;
+            line-height: 43px;
+            color: #000000;
+            margin-bottom: 0;
+        }
+    }
+
+    &-content {
+        h6 {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 26px;
+            color: #000000;
+            padding-bottom: 1rem;
+        }
+
+        p {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 145%;
+            color: #000000;
+        }
+    }
+
+    &-btn {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-top: 1px solid #CBCBCB;
+        padding-top: 1rem;
+    }
+}

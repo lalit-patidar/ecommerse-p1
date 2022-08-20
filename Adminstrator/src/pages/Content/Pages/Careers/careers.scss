@@ -1,0 +1,27 @@
+.ui-careers-box {
+    padding: 4rem 0 6rem 0;
+
+    &-search {
+        padding-bottom: 3rem;
+
+        &-box {
+            display: flex;
+            align-items: center;
+
+            input {
+                height: 42px;
+                border-radius: 4px 0 0 4px;
+            }
+
+            button {
+                height: 42px;
+                width: 86px;
+                background-color: #0072BC;
+                border: none;
+                border-radius: 0 4px 4px 0;
+                font-size: 20px;
+                color: #fff;
+            }
+        }
+    }
+}
