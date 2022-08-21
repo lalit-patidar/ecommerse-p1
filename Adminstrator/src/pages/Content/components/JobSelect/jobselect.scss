@@ -1,0 +1,79 @@
+.ui-job-select {
+    &-head {
+        h4 {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 145%;
+            text-transform: uppercase;
+            color: #000000;
+        }
+    }
+
+    &-dropdown {
+        margin-bottom: 1rem;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        button {
+            background: #0072BC;
+            border: 1px solid #0072BC;
+            border-radius: 8px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 46px;
+            color: #fff;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 145%;
+            padding: 0 1rem;
+
+            span {
+                transition: all .3s;
+            }
+            
+            &.active{
+                span {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+        ul {
+            padding: 1rem !important;
+            margin-bottom: 0;
+
+            li {
+                padding: 4px 0;
+
+                &:first-child {
+                    padding-top: 0;
+                }
+
+                &:last-child {
+                    padding-bottom: 0;
+                }
+
+                label {
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 145%;
+                    color: #616161;
+                    user-select: none;
+
+                    &.active {
+                        color: #000;
+                        font-weight: 500;
+                    }
+                }
+
+                input {
+                    box-shadow: none !important;
+                }
+            }
+        }
+    }
+}

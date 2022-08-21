@@ -19,6 +19,7 @@ import ContentDisplay from "./pages/Content/Pages/ContentDisplay";
 import ContentEdit from "./pages/Content/Pages/ContentDisplay/components/ContentEdit";
 import NewsView from "./pages/NewsView";
 import CareerAddCat from "./pages/CareerAddCat";
+import JobCategory from "./pages/Content/Pages/JobCategory";
 
 const App = () => {
     return (
@@ -47,6 +48,7 @@ const App = () => {
                 <Route path="/content/edit" element={<ContentEdit />} />
                 <Route path="/content/news/:id" element={<NewsView />} />
                 <Route path="content/category/add" element={<CareerAddCat />} />
+                <Route path="content/job" element={<JobCategory />} />
                 {/* public route */}
                 <Route element={<PublicRoute />}></Route>
                 <Route path="/" element={<SignIn />} />

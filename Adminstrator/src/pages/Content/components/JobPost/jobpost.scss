@@ -1,0 +1,88 @@
+.ui-job-post {
+
+    &-head {
+        padding-bottom: 1rem;
+
+        p {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 145%;
+            color: #000000;
+        }
+    }
+
+    &-pagination {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.8rem 0;
+
+        &-left {
+            p {
+                margin-bottom: 0;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 21px;
+                color: #616161;
+            }
+        }
+
+        &-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            button {
+                height: 40px;
+                width: 40px;
+                border: 0;
+                background: none;
+                font-size: 16px;
+                font-weight: 400;
+                color: #616161;
+                border-radius: 2px;
+
+            }
+
+            &-group {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                button {
+
+                    &:hover,
+                    &.active {
+                        background: #EDF0FF;
+                        font-weight: 500;
+                        color: #0072BC;
+                    }
+
+                }
+            }
+        }
+
+        &-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .form-select {
+                box-shadow: none !important;
+                background: #EDF0FF;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 21px;
+                color: #0072BC;
+            }
+
+            p {
+                margin-bottom: 0;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 21px;
+                color: #616161;
+            }
+        }
+    }
+}

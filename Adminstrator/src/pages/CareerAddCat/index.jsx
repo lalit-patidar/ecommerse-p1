@@ -8,6 +8,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const CareerAddCat = () => {
+    const [isSelectCat, setSelectCat] = useState(false);
+
     const navigate = useNavigate();
     const [editorState, setEditorState] = useState(() =>
         EditorState.createEmpty()
@@ -17,6 +19,10 @@ const CareerAddCat = () => {
 
     const [isEditorSelect, setEditorSelect] = useState(false);
     console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())));
+
+    const addJobHandler = () => {
+        setSelectCat(!isSelectCat);
+    };
     return (
         <>
             <Nav />
@@ -26,8 +32,104 @@ const CareerAddCat = () => {
                         <h2>Careers at NichoShop</h2>
                     </div>
                     <div className="ui-career-add-cat-box-head">
-                        <p>Add a new job category</p>
+                        <button onClick={addJobHandler}>
+                            Add a new job category
+                        </button>
                     </div>
+                    {isSelectCat && (
+                        <div className="row">
+                            <div className="col-lg-12">
+                                <div className="ui-career-add-cat-box-form">
+                                    <div className="row justify-content-between">
+                                        <div className="col-lg-5">
+                                            <div className="mb-3">
+                                                <label>Job category:</label>
+                                                <select className="form-select">
+                                                    <option value="">
+                                                        Choose category
+                                                    </option>
+                                                    <option value="">
+                                                        NichoShop Design 1
+                                                    </option>
+                                                    <option value="">
+                                                        NichoShop Design 2
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div className="mb-3">
+                                                <label>Job type:</label>
+                                                <select className="form-select">
+                                                    <option selected value="">
+                                                        Choose type
+                                                    </option>
+                                                    <option value="">
+                                                        NichoShop Design 1
+                                                    </option>
+                                                    <option value="">
+                                                        NichoShop Design 2
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div className="mb-3">
+                                                <label>Location:</label>
+                                                <select className="form-select">
+                                                    <option selected value="">
+                                                        Choose country
+                                                    </option>
+                                                    <option value="">
+                                                        Bangladesh
+                                                    </option>
+                                                    <option value="">
+                                                        Saudi arab
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div className="mb-3">
+                                                <label>Category:</label>
+                                                <select className="form-select">
+                                                    <option selected value="">
+                                                        Choose a category
+                                                    </option>
+                                                    <option value="">
+                                                        Cat 1
+                                                    </option>
+                                                    <option value="">
+                                                        Cat 2
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div className="mb-3">
+                                                <label>Job title:</label>
+                                                <select className="form-select">
+                                                    <option selected value="">
+                                                        Job title
+                                                    </option>
+                                                    <option value="">
+                                                        Cat 1
+                                                    </option>
+                                                    <option value="">
+                                                        Cat 2
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-6 line">
+                                            <div>
+                                                <label>Hidden comment</label>
+                                                <textarea
+                                                    className="form-control w-100"
+                                                    name=""
+                                                    id=""
+                                                    cols="30"
+                                                    rows="10"
+                                                ></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                     <div className="row">
                         <div className="col-lg-12">
                             <div className="ui-career-add-cat-box-editor">

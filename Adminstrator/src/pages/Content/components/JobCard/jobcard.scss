@@ -1,0 +1,82 @@
+.ui-job-card {
+    background: #F8F8F8;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 1.4rem;
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+
+    &-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+
+
+        &-left {
+            p {
+                &:first-of-type {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 145%;
+                    color: #0072BC;
+                    padding-bottom: 8px;
+                }
+
+                &:last-of-type {
+                    font-weight: 400;
+                    font-size: 18px;
+                    line-height: 145%;
+                    color: #616161;
+                }
+            }
+        }
+
+        &-right {
+            text-align: right;
+
+            p {
+
+                &:first-of-type {
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 145%;
+                    color: #616161;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    justify-content: end;
+                    padding-bottom: 8px;
+                }
+
+                &:last-of-type {
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 145%;
+                    text-align: right;
+                    color: #616161;
+
+                }
+            }
+        }
+    }
+
+    &-content {
+        padding-top: 1rem;
+
+        p {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 145%;
+            color: #616161;
+
+        }
+    }
+}

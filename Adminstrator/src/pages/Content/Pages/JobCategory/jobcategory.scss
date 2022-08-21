@@ -1,0 +1,63 @@
+.ui-job-box {
+    padding: 20px 0 4rem 0;
+}
+
+
+.ui-job-info {
+    &-head {
+        background: #0B80CC;
+        border-radius: 8px;
+        height: 52px;
+        margin-bottom: 1rem;
+
+        h4 {
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 26px;
+            color: #FFFFFF;
+            line-height: 52px;
+            padding: 0 2rem;
+        }
+    }
+
+    &-content {
+        p {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 145%;
+            color: #616161;
+
+        }
+
+        ul {
+            list-style-type: disc !important;
+            padding-left: 1.3rem !important;
+
+            li {
+                color: #616161;
+            }
+        }
+    }
+
+    &-post {
+        &-head {
+            border-bottom: 1px solid #CBCBCB;
+
+            h4 {
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 145%;
+                color: #000000;
+                margin-bottom: 0;
+                padding: 16px 0;
+            }
+        }
+    }
+
+    &-grid{
+        display: grid;
+        grid-template-columns: 400px 1fr;
+        padding: 1rem 0;
+        gap: 4rem
+    }
+}

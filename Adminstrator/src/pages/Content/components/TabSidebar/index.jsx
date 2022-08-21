@@ -25,7 +25,10 @@ const TabSidebar = ({ data, handler }) => {
                                 );
                             })}
                         </div>
-                        <button>Add New</button>
+
+                        <div className="ui-tab-sidebar-add">
+                            <button>Add New</button>
+                        </div>
                     </div>
                 )}
                 {searchParams.get("tab") === "safetycenter" && (
