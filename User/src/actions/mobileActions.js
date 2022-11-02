@@ -10,7 +10,7 @@ import {
   } from "../constants/userConstants";
   import axios from "axios";
   
-const Base_url = "https://stage-api.nichoshop.com/api/v1";
+const Base_url = "https://stage-api.nichoshop.com/api";
 
 
 // Add mobile no
@@ -19,14 +19,12 @@ export const AddMobile = (phone) => async (dispatch) => {
       dispatch({ type: ADD_MOBILE_REQUEST });
   
       const config = { headers: { "Content-Type": "application/json" } };
-      //const config = { headers: { "Content-Type": "multipart/form-data" } };
-        console.log("phone",phone);
       const data = await axios.post(
-        `${Base_url}/login/add-phone?phone=${phone}`,
+        `${Base_url}/user/phone-number`,
+        JSON.stringify(phone),
+        config
       );
-
       dispatch({ type: ADD_MOBILE_SUCCESS, payload: data });
-      
     } catch (error) {
       dispatch({ type: ADD_MOBILE_FAIL, payload: error.response.data.error });
     }
@@ -38,13 +36,11 @@ export const AddMobile = (phone) => async (dispatch) => {
 export const VerifyMobile = (datas) => async (dispatch) => {
 try {
   dispatch({ type: ADD_MOBILE_verify_REQUEST });
-
   const data = await axios.post(
     `${Base_url}/login/confirm-suc?suc_type=${datas.suc_type}&suc=${datas.suc}`,
   );
 
   dispatch({ type: ADD_MOBILE_verify_SUCCESS, payload: data });
-  
 } catch (error) {
   dispatch({ type: ADD_MOBILE_verify_FAIL, payload: error.response.data.error });
 }

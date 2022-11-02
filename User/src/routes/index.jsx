@@ -75,7 +75,7 @@ import Claims from "../pages/MyNichoShop/SellerCentral/Order/SellerCentralDetail
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import PaymentMethod from "../pages/PaymentMethod";
-
+import Congratulations from "../pages/Authentication/Congratulations";
 import StartSelling from "../pages/MyNichoShop/SellerCentral/StartSelling";
 import CreateListing from "../pages/MyNichoShop/SellerCentral/CreateListing/CreateListing";
 import CreateListing_multiple from "../pages/MyNichoShop/SellerCentral/CreateListing_multiple/CreateListing_multiple";
@@ -159,6 +159,7 @@ const RootRoute = () => {
                     path="/add-mobile-number"
                     element={<AddMobileNumber />}
                 />
+                <Route path="/user/signup/confirm" element={<Congratulations />} />
                 <Route path="/join-verify" element={<JoinVerify />} />
                 <Route path="/choose-method" element={<ChooseMethod />} />
                 <Route

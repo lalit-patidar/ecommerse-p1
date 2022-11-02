@@ -1,43 +1,27 @@
-// React
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-// 3rd party components
 import {
-    Breadcrumbs,
-    Checkbox,
-    FormControl,
-    FormControlLabel,
-    IconButton,
-    InputAdornment,
-    InputLabel,
-    OutlinedInput,
-    TextField,
+    Breadcrumbs, FormControl, OutlinedInput,
+    TextField
 } from "@mui/material";
-import { ErrorMessage, Formik } from "formik";
+import { Formik } from "formik";
 import * as yup from "yup";
-import { BsExclamationOctagon } from "react-icons/bs";
-import { FaRegCheckCircle } from "react-icons/fa";
-import { FiEye, FiEyeOff } from "react-icons/fi";
 
 // Compoenents
-import Header from "../../../components/header/Header";
 import Menu from "../../../components/menu/Menu";
 
 // Styles
-import "./account.css";
-import AccountFooter from "../../../components/accountfooter/AccountFooter";
-import BusinessInformation from "./Components/BusinessInformation";
-import { useDispatch, useSelector } from "react-redux";
-import { getLocalstore } from "../../../helper/localstore/localstore";
 import axios from "axios";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
+import AccountFooter from "../../../components/accountfooter/AccountFooter";
+import { getLocalstore } from "../../../helper/localstore/localstore";
+import "./account.css";
+import BusinessInformation from "./Components/BusinessInformation";
 
 const Account = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [authSpinner, setAuthSpinner] = useState(false);
-    const dispatch = useDispatch();
 
     const [userDetails, setUserDetails] = useState(null);
     const [email, setemail] = useState(null);
@@ -156,9 +140,9 @@ const Account = () => {
     //     }
     // }
 
-    const checkuser = async () => {
-        var u = await getLocalstore('_userLogin');
-        if(u && u.id){
+    const checkuser = () => {
+        var u =  getLocalstore('_userLogin');
+        if(u && u.email){
             setUserDetails(u);
             setacctype(u.accountType)
             setemail(u.email);
@@ -176,7 +160,6 @@ const Account = () => {
             );
             if(data.data){
                 setaddress(data.data.list);
-                console.log(data.data);
             }
         }catch(e){
             console.log(e);
@@ -214,7 +197,7 @@ const Account = () => {
                                                     </label>
                                                     <TextField
                                                         fullWidth
-                                                        value={acctype===1?"Personal":"Bussiness"}
+                                                        value={acctype==1?"Personal":"Bussiness"}
                                                         variant="outlined"
                                                         size="small"
                                                     />

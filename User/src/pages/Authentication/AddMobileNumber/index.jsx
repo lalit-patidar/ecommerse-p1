@@ -1,5 +1,5 @@
 // React
-import React, { useState,useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 // 3rd party components
@@ -7,49 +7,38 @@ import {
     FormControl,
     InputAdornment,
     InputLabel,
-    OutlinedInput,
-    TextField,
+    OutlinedInput
 } from "@mui/material";
 import { ErrorMessage, Formik } from "formik";
-import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { clearErrors, AddMobile } from "../../../actions/mobileActions";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
+import * as yup from "yup";
+import { AddMobile, clearErrors } from "../../../actions/mobileActions";
 // Compoenents
-import Header from "../../../components/auth/Header";
 import Footer from "../../../components/auth/Footer";
+import Header from "../../../components/auth/Header";
 
 // Styles
-import "./../auth.css";
 import MuiPhoneNumber from "material-ui-phone-number";
-
-import { getLocalstore ,setLocalstore} from "../../../helper/localstore/localstore";
-// import { useCookies } from "react-cookie";
-import Cookies from 'js-cookie'
+import { getLocalstore, setLocalstore } from "../../../helper/localstore/localstore";
+import "./../auth.css";
 
 const AddMobileNumber = () => {
 
 
     // const [cookies, setCookie] = useCookies("RememberMe_Nichoshop");
-    console.log(Cookies.get("RememberMe_Nichoshop"));
     
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
     const data = getLocalstore("_userLogin")
-    console.log(data);
 
-    if(data?.phoneConfirmed === "true")
-    {
+    if(data?.phoneConfirmed === "true"){
         navigate("/")
     }
 
     const { error, message,add_mob } = useSelector(state=>state.mobile)
-
-
-//    console.log(isAuthenticated);
     const [authSpinner, setAuthSpinner] = useState(false);
     const [getphone, setphone] = useState("");
     const [getphones, setphones] = useState(false);
@@ -70,7 +59,6 @@ const AddMobileNumber = () => {
 
     useEffect(() => {
         if (error) {
-            //alert.show(error);
             setphones(false)
             Toastify(
                 {
@@ -84,12 +72,10 @@ const AddMobileNumber = () => {
                 close: true,
             }
             ).showToast();
-          //alert.error(error);
-          dispatch(clearErrors());
+            dispatch(clearErrors());
         } else {
             if (add_mob) {
                 if(getphones){
-                    //setLocalstore("_userLogin",user);
                     getphone.type = "add_phone";
                     setLocalstore("verifyphone",getphone);
                     navigate("/verify-its-you-phone");
@@ -97,10 +83,7 @@ const AddMobileNumber = () => {
                 }
             }
         }
-       
-      }, [dispatch, navigate,data, message, error]);
-
-
+    }, [dispatch, navigate,data, message, error]);
 
     return (
         <main>
@@ -128,19 +111,15 @@ const AddMobileNumber = () => {
                                 }}
                                 validationSchema={AddNumberSchema}
                                 onSubmit={async(values, { setSubmitting }) => {
-                                    //alert(JSON.stringify(values, null, 2));
                                     setSubmitting(true);
                                     const countryCodes = values.countryCode.replace(/[^\w\s*]/gi, '')
-                                    const phone = countryCodes+values.phoneNumber
-                                    //console.log(values.countryCode+values.phoneNumber);
-                                    setphone(phone)
-                                    console.log(phone);
+                                    const phone = {phoneNumber:('+'+countryCodes+values.phoneNumber)}
+                                    setphone(countryCodes+values.phoneNumber)
                                     dispatch(AddMobile(phone));
                                     setphones(true)
                                 }}
                             >
                                 {(props) => (
-
                                     <form onSubmit={props.handleSubmit}>
                                         {authSpinner ? (
                                             <div className="formSpinner">
@@ -148,7 +127,7 @@ const AddMobileNumber = () => {
                                             </div>
                                         ) : null}
                                         <div className="textField">
-                                            <p>
+                                            <p className="ui-add-mob-info">
                                                 Add a mobile phone number for a
                                                 higher level of protection to
                                                 your NichoShop account. Make

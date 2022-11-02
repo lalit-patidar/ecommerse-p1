@@ -1,29 +1,29 @@
-import React, { useState } from "react";
-import "./MyNichoShop.css";
+import React from "react";
 import Menu from "../../components/menu/Menu";
 import Card from "../../components/MyNichoShop/card/Card";
 import Footer from "../../components/MyNichoShop/footer/Footer";
+import "./MyNichoShop.css";
 
-import Bidding from "../../assets/my-nicho-shop/Bidding.png";
-import Purchases from "../../assets/my-nicho-shop/Purchases.png";
-import SellerCentral from "../../assets/my-nicho-shop/SellerCentral.png";
-import Messages from "../../assets/my-nicho-shop/Messages.png";
-import WatchList from "../../assets/my-nicho-shop/WatchList.png";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Account from "../../assets/my-nicho-shop/Account.png";
 import Addresses from "../../assets/my-nicho-shop/Addresses.png";
-import PaymentMethods from "../../assets/my-nicho-shop/PaymentMethods.png";
+import Bidding from "../../assets/my-nicho-shop/Bidding.png";
 import EmailPreferences from "../../assets/my-nicho-shop/EmailPreferences.png";
 import Help from "../../assets/my-nicho-shop/Help.png";
+import Messages from "../../assets/my-nicho-shop/Messages.png";
+import PaymentMethods from "../../assets/my-nicho-shop/PaymentMethods.png";
+import Purchases from "../../assets/my-nicho-shop/Purchases.png";
+import SellerCentral from "../../assets/my-nicho-shop/SellerCentral.png";
+import WatchList from "../../assets/my-nicho-shop/WatchList.png";
 import Notification from "../../components/notification/Notification";
-import { useSelector, useDispatch } from "react-redux";
-// import { useHistory } from "react-router-dom";
 
 function MyNichoShop({ props }) {
-    const [curPage, SetCurPage] = useState("none");
-    // let history = useHistory();
+
+    const navigate = useNavigate();
 
     const fn_changePage = (path) => {
-        // history.push(path);
+        navigate(path);
     };
 
     const showNotif = useSelector((state) => state.showNotif);
@@ -76,6 +76,7 @@ function MyNichoShop({ props }) {
                         image={Account}
                         alt="Account icon"
                         title="Account"
+                        m_page={fn_changePage}
                         description="Edit your email address, mobile number, password, registration address and business information."
                     />
                     <Card

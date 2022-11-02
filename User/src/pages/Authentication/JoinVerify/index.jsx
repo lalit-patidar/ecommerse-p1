@@ -14,18 +14,13 @@ const JoinVerify = () => {
     /**
      * sign up : email verification data store
      */
-     const navigate = useNavigate();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     
     const [getSignUpInfo, setSignUpInfo] = useState();
     const [getMailBoxClicked, setIsMailBoxClicked] = useState(false);
 
-    const { error, message,user } = useSelector(state=>state.user)
-
-    console.log(message);
-    console.log(user);
-    console.log(error);
-    //console.log(getSignUpInfo);
+    const { error, message } = useSelector(state=>state.user)
     
     const Reg = ()=>{
         navigate("/registration")
@@ -35,7 +30,7 @@ const JoinVerify = () => {
         e.preventDefault();
         const datas = {
             user:getSignUpInfo.email
-        }
+        };
         dispatch(ResendEmail(datas));
         Toastify(
             {
@@ -52,11 +47,10 @@ const JoinVerify = () => {
     }
 
     useEffect(() => {
-        const data = getStore("signup_data");
-        setSignUpInfo(data);
-
+        const userName = getStore("userName");
+        const userEmail = getStore("userEmail");
+        setSignUpInfo({email: userEmail, name:userName});
         if (error) {
-            //alert.show(error);
             Toastify(
                 {
                 text: error,
@@ -69,15 +63,10 @@ const JoinVerify = () => {
                 close: true,
             }
             ).showToast();
-          //alert.error(error);
-          dispatch(clearErrors());
+            dispatch(clearErrors());
         }
 
-    }, [dispatch,user,error,message]);
-
-    // main options
-    
-
+    }, [dispatch,error,message]);
 
     return (
         <>
@@ -91,7 +80,7 @@ const JoinVerify = () => {
                             <div className="ui-join-box">
                                 <div className="ui-join-head">
                                     <h4>
-                                        Hi John, you have successfully joined
+                                        Hi {getSignUpInfo?.name}, you have successfully joined
                                         NichoShop.
                                     </h4>
                                 </div>

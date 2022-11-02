@@ -269,9 +269,15 @@
 }
 
 .ui-add-mob-info {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
     font-size: 16px;
-    font-weight: 500;
-    color: #1C1C1C !important;
+    line-height: 24px;
+    /* or 150% */    
+    text-align: center; 
+    /* Text/Light 2 */
+    color: #81818F;
 }
 
 // single user code page

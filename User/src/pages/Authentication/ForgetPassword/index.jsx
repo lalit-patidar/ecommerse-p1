@@ -1,19 +1,15 @@
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import { ReactComponent as Logo } from "./../../../assets/logo/logo.svg";
-import GoogleImg from "./../../../assets/form-social/google.png";
-import AppleImg from "./../../../assets/form-social/apple.png";
-import FbImg from "./../../../assets/form-social/fb.png";
-import FormFooter from "../../../components/FormFooter/FormFooter";
-import { useRef, useState,useEffect } from "react";
-import { BsEyeSlash, BsEye } from "react-icons/bs";
 import { TextField } from "@mui/material";
-import "react-phone-number-input/style.css";
-import { usePostLoginMutation } from "../../../api/services/authApi";
-import { setLocalstore } from "../../../helper/localstore/localstore";
+import { useEffect, useRef, useState } from "react";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
+import "react-phone-number-input/style.css";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors,forgotPassword } from "../../../actions/userActions";
+import { Link, useNavigate } from "react-router-dom";
+import { clearErrors, forgotPassword } from "../../../actions/userActions";
+import { usePostLoginMutation } from "../../../api/services/authApi";
+import FormFooter from "../../../components/FormFooter/FormFooter";
+import { setLocalstore } from "../../../helper/localstore/localstore";
+import { ReactComponent as Logo } from "./../../../assets/logo/logo.svg";
 
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
@@ -21,22 +17,15 @@ import "toastify-js/src/toastify.css";
 const ForgetPassword = () => {
 
     const recaptchaRef = useRef(null)
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
     // login api
     const [loginApi, { isLoading }] = usePostLoginMutation();
-
     const pwdInputRef = useRef();
-
     const { error,fp,message } = useSelector(state=>state.forgotPassword)
 
-    console.log(error);
-    console.log(fp);
-    console.log(message);
     // is password show & hidden
     const [isPwdShow, setPwdShow] = useState(false);
-
     // pasword show & hidden
     const isPwdShowedHandler = () => {
         if (pwdInputRef.current.querySelector("input").type == "password") {
@@ -51,7 +40,6 @@ const ForgetPassword = () => {
     // submit form
     const [getEmail, setEmail] = useState("");
     const [getCaptcha, setCaptcha] = useState("");
-
     const [getFormSubmit, setFormSubmit] = useState(false);
     const [getfp,setfp]=useState(false)
     // full name input handler
@@ -68,9 +56,7 @@ const ForgetPassword = () => {
     const formHandler = async (e) => {
         e.preventDefault();
         setFormSubmit(true);
-
         if (getEmail.length !== 0 && getCaptcha.length !== 0) {
-            //alert("ok");
             dispatch(forgotPassword(getEmail,getCaptcha))
             setfp(true)
         }
@@ -78,7 +64,6 @@ const ForgetPassword = () => {
 
     useEffect(() => {
         if (error) {
-            //alert.show(error);
             setfp(false);
             Toastify(
                 {
@@ -92,10 +77,8 @@ const ForgetPassword = () => {
                 close: true,
             }
             ).showToast();
-          //alert.error(error);
-          dispatch(clearErrors());
+            dispatch(clearErrors());
         } else {
-
             if (message) {
                 if(getfp){
                     // console.log("hello");
@@ -106,8 +89,7 @@ const ForgetPassword = () => {
                 }      
             }
         }
-    
-      }, [dispatch, navigate,setfp,fp,message,recaptchaRef,error]);
+    }, [dispatch, navigate,setfp,fp,message,recaptchaRef,error]);
 
 
     return (

@@ -44,6 +44,9 @@ import {
     ADD_ADDRESS_FAIL,   
 
     CLEAR_ERRORS,
+    VERIFY_EMAIL_URL_REQUEST,
+    VERIFY_EMAIL_URL_SUCCESS,
+    VERIFY_EMAIL_URL_FAIL,
  } from "../constants/userConstants";
 
 export const UserReducer = (state = {}, action)=>{
@@ -52,6 +55,7 @@ export const UserReducer = (state = {}, action)=>{
     {
             case REGISTER_USER_REQUEST:
             case LOGIN_REQUEST:
+            case VERIFY_EMAIL_URL_REQUEST:
             // case LOAD_USER_REQUEST:
                 return {
                     loading:true,
@@ -63,9 +67,16 @@ export const UserReducer = (state = {}, action)=>{
                 ...state,
                 loading:false,
                 signup:true,
+                isAuthenticated:false,
+              };
+
+            case VERIFY_EMAIL_URL_SUCCESS:
+              return {
+                ...state,
+                loading:false,
                 isAuthenticated:true,
-                user:action.payload.data,
-            };
+                user:action.payload,
+              };
 
             case LOGIN_SUCCESS:
               return {
@@ -73,35 +84,21 @@ export const UserReducer = (state = {}, action)=>{
                 loading:false,
                 signin:true,
                 isAuthenticated:true,
-                user:action.payload.data,
+                user:action.payload,
             };
-            // case LOAD_USER_SUCCESS:
-            //     return {
-            //         ...state,
-            //         loading:false,
-            //         //load:true,
-            //         isAuthenticated:true,
-            //         load:action.payload.data,
-            //     };
 
             case LOGIN_FAIL:
             case REGISTER_USER_FAIL:
+            case VERIFY_EMAIL_URL_FAIL:
                 return {
                     ...state,
                     loading:false,
                     isAuthenticated:false,
                     user:null,
-                    error:action.payload,
+                    error:action.payload.message,
                 };
                 
-            // case LOAD_USER_FAIL:
-            //       return {
-            //         loading: false,
-            //         isAuthenticated: false,
-            //         user: null,
-            //         error: action.payload,
-            //       };
-            
+
             case CLEAR_ERRORS:
                 return {
                     ...state,
@@ -318,74 +315,3 @@ export const AddressReducer = (state = {}, action) => {
       return state;
   }
 };
-
-
-
-
-
-// export const userReducer = (state = {user :{}}, action)=>{
-    
-//   switch(action.type)
-//   {
-//           case REGISTER_USER_REQUEST:
-//           case LOGIN_REQUEST:
-//           case LOAD_USER_REQUEST:
-//               return {
-//                   loading:true,
-//                   isAuthenticated:false,
-//               };
-          
-//           case REGISTER_USER_SUCCESS:
-//             return {
-//               ...state,
-//               loading:false,
-//               signup:true,
-//               isAuthenticated:true,
-//               user:action.payload.data,
-//           };
-
-//           case LOGIN_SUCCESS:
-//             return {
-//               ...state,
-//               loading:false,
-//               signin:true,
-//               isAuthenticated:true,
-//               user:action.payload.data,
-//           };
-//           case LOAD_USER_SUCCESS:
-//               return {
-//                   ...state,
-//                   loading:false,
-//                   isAuthenticated:true,
-//                   user:action.payload.data,
-//               };
-
-//           case LOGIN_FAIL:
-//           case REGISTER_USER_FAIL:
-//               return {
-//                   ...state,
-//                   loading:false,
-//                   isAuthenticated:false,
-//                   user:null,
-//                   error:action.payload,
-//               };
-              
-//           case LOAD_USER_FAIL:
-//                 return {
-//                   loading: false,
-//                   isAuthenticated: false,
-//                   user: null,
-//                   error: action.payload,
-//                 };
-          
-//           case CLEAR_ERRORS:
-//               return {
-//                   ...state,
-//                   error:null,
-//               };
-          
-//           default:
-//               return state;
-
-//   }
-// }
