@@ -1,6 +1,5 @@
 .my-nicho-shop-card {
   display: flex;
-
   padding: 30px;
   width: 398px;
   height: 162px;
@@ -10,6 +9,7 @@
 
   /* Shadow01 */
   box-shadow: 0px 2px 2px #eaeaf1;
+  cursor: pointer;
 }
 
 .my-nicho-shop-card .text-div {

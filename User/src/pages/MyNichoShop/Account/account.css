@@ -374,6 +374,9 @@ h3.all_heading {
   border-radius: 0.25rem;
   padding-left: 0px;
 }
+
+
+
 .form-control:focus {
   color: #212529;
   background-color: #fff;
@@ -465,8 +468,7 @@ p.alert-pay {
 }
 .inner_content {
   background: #ffffff;
-  border: 1px solid #cbcbcb;
-  border-radius: 6px;
+  border-top: 1px solid #cbcbcb;
   padding: 30px;
 }
 h4.ine_haed {
@@ -565,12 +567,13 @@ img.tool:hover + .on\+hob {
 .form_left input {
   border: none;
   padding-left: 0px;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  color: #1c1c1c;
-  line-height: 40px;
+  font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 32px;
+color: #25252E;
+  
 }
 .form_left label {
   font-style: normal;
@@ -1026,6 +1029,18 @@ footer#footer {
     margin-bottom: 20px;
   }
 }
+
+.close-my-account-wrpr {
+  text-align: end;
+  padding: 10px;
+  margin: 0;
+
+}
+
+.flex-space{
+  display: flex;
+  justify-content: space-around;
+}
 @media only screen and (max-width: 800px) {
   .container_no {
     width: 100%;
@@ -1198,6 +1213,10 @@ footer#footer {
   .inner_content.no_padd .inner_content-two {
     padding: 0px !important;
   }
+.edit-btn-width {
+  width: 16% !important;
+}
+
   .inner_content.no_padd {
     padding: 0px;
     background: #ffffff;
@@ -1209,7 +1228,7 @@ footer#footer {
     border-right: 0px;
   }
   .col-md-3.form_right {
-    width: 25%;
+    width: 20% !important;
   }
   button.btn.btn-primary.Edit {
     margin-top: 20px;
@@ -1227,6 +1246,9 @@ footer#footer {
   }
   .col-md-3.form_right.full.width {
     width: 100%;
+  }
+  .btn-col-md{
+    width: 20% !important;
   }
   .col-md-9.form_left.renove_mob {
     display: none;

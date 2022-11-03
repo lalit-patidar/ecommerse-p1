@@ -118,7 +118,7 @@ const NavbarContainer = () => {
                             <p className="cart-num">9</p>
                         </Link>
                     </Dropdown.Item>
-                    <Dropdown.Item href="#/action-4">
+                    <Dropdown.Item href="/mynichoshop">
                         <DropdownButton id="" title="" className="account-drop">
                             <Dropdown.Item href="#/action-1">
                                 <button className="custom-button signin-btn small-text">
