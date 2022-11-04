@@ -7,7 +7,6 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { Formik } from "formik";
 import * as yup from "yup";
 
 // Compoenents
@@ -22,10 +21,37 @@ import { getLocalstore } from "../../../helper/localstore/localstore";
 import "./account.css";
 import BusinessInformation from "./Components/BusinessInformation";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import AccountEdit from "../../../components/accountEdit/account-edit";
+import {useSelector} from "react-redux"
+
+const userData = [
+  {
+    title: "Account type",
+    caption: "Personal",
+  },
+  {
+    title: "User ID",
+    caption: "username",
+  },
+  {
+    title: "Email adress",
+    caption: "example@domain.com",
+  },
+  {
+    title: "Password",
+    caption: "**********",
+  },
+  {
+    title: "Mobile phone number:",
+    caption: "+1 234-5678-900",
+  },
+ 
+];
 
 const Account = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [authSpinner, setAuthSpinner] = useState(false);
+  const [accountDetails, setAccountDetails] = useState(userData);
 
   const [userDetails, setUserDetails] = useState(null);
   const [email, setemail] = useState(null);
@@ -211,237 +237,9 @@ const Account = () => {
             <h3 className="all_heading">Account</h3>
             <div className="inner_content no_padd">
               <div className="inner_content-two">
-                {/* Form Section  */}
-                <Formik
-                  initialValues={{
-                    emailorname: "",
-                  }}
-                >
-                  {(props) => (
-                    <form onSubmit={props.handleSubmit}>
-                      <div className="row out_both">
-                        <div className="col-md-9 form_left">
-                          <div className="textField">
-                            <label for="account">Account Type:</label>
-                            <TextField
-                              fullWidth
-                              value={acctype === 1 ? "Personal" : "Bussiness"}
-                              variant="outlined"
-                              size="small"
-                              className="account-service-title"
-                            />
-                          </div>
-                        </div>
-                        <div
-                          className="col-md-3 form_right "
-                          style={{ width: "16%" }}
-                        >
-                          <button type="submit1" className="themeBtn w-100">
-                            Edit
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  )}
-                </Formik>
-                {/* Form Section End */}
-
-                <hr />
-                {/* Form Section  */}
-                <Formik
-                  initialValues={{
-                    user_name: "",
-                  }}
-                >
-                  {(props) => (
-                    <form onSubmit={props.handleSubmit}>
-                      <div className="row out_both">
-                        <div className="col-md-9 form_left">
-                          <div className="textField">
-                            <label for="user_name">User ID:</label>
-                            <TextField
-                              fullWidth
-                              value={username}
-                              variant="outlined"
-                              size="small"
-                              onChange={(event) => {
-                                setusername(event.target.value);
-                              }}
-                            />
-                          </div>
-                        </div>
-                        <div
-                          className="col-md-3 form_right"
-                          style={{ width: "16%" }}
-                        >
-                          <button
-                            type="submit"
-                            className="themeBtn w-100"
-                            onClick={updateusername}
-                          >
-                            Edit
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  )}
-                </Formik>
-                {/* Form Section End */}
-                <hr />
-
-                {/* Form Section  */}
-                <Formik
-                  initialValues={{
-                    email: "",
-                  }}
-                >
-                  {(props) => (
-                    <form onSubmit={props.handleSubmit} readOnly>
-                      <div className="row out_both">
-                        {authSpinner ? (
-                          <div className="formSpinner">
-                            <div className="loading"></div>
-                          </div>
-                        ) : null}
-                        <div className="col-md-9 form_left">
-                          <div className="textField">
-                            <label for="email">Email address:</label>
-                            <TextField
-                              fullWidth
-                              value={email}
-                              variant="outlined"
-                              size="small"
-                              onChange={(event) => {
-                                setemail(event.target.value);
-                              }}
-                            />
-                          </div>
-                        </div>
-                        <div
-                          className="col-md-3 form_right"
-                          style={{ width: "16%" }}
-                        >
-                          <button
-                            type="submit"
-                            className="themeBtn w-100"
-                            onClick={updateemail}
-                          >
-                            Edit
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  )}
-                </Formik>
-                {/* Form Section End */}
-                <hr />
-
-                {/* Form Section  */}
-                <Formik
-                  initialValues={{
-                    password: "",
-                  }}
-                >
-                  {(props) => (
-                    <form onSubmit={props.handleSubmit}>
-                      <div className="row out_both">
-                        <div className="col-md-9 form_left">
-                          <div className="textField">
-                            <FormControl variant="outlined" size="small">
-                              <label for="Password">Password</label>
-                              <OutlinedInput
-                                value="**********"
-                                label="Password"
-                              />
-                            </FormControl>
-                          </div>
-                        </div>
-                        <div
-                          className="col-md-3 form_right"
-                          style={{ width: "16%" }}
-                        >
-                          <button type="submit" className="themeBtn w-100">
-                            Edit
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  )}
-                </Formik>
-                {/* Form Section End */}
-                <hr />
-
-                {/* Form Section  */}
-                <Formik
-                  initialValues={{
-                    phone_no: "",
-                  }}
-                >
-                  {(props) => (
-                    <form onSubmit={props.handleSubmit}>
-                      <div className="row out_both">
-                        <div className="col-md-9 form_left">
-                          <div className="textField">
-                            <label for="">Mobile phone number:</label>
-                            <TextField
-                              fullWidth
-                              value={phone}
-                              variant="outlined"
-                              size="small"
-                              onChange={(event) => {
-                                setphone(event.target.value);
-                              }}
-                            />
-                          </div>
-                        </div>
-                        <div
-                          className="col-md-3 form_right"
-                          style={{ width: "16%" }}
-                        >
-                          <button
-                            type="submit"
-                            className="themeBtn w-100"
-                            onClick={updatephone}
-                          >
-                            Edit
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  )}
-                </Formik>
-                {/* Form Section End */}
-                <hr />
-                <div className="row out_both second-last">
-                  <div className="col-9">
-                    <div>
-                      <p className="top_text">Registration address</p>
-                      <h4 className="ine_haed">
-                        Name {firstName + " " + lastName}
-                      </h4>
-                      <div className="info_div">
-                        <p>1234 EL CAMINO REAL</p>
-                        <p>STE - 100386</p>
-                        <p>SUNNYVALE CA 98765-4321</p>
-                        <p>United States</p>
-                        <p>Phone: + 1 234-5678-900</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-3">
-                    <a href="/account/add-your-address">
-                      <button
-                        type="button"
-                        className="btn btn-primary"
-                        style={{ width: "60%" }}
-                      >
-                        Edit
-                      </button>
-                    </a>
-                  </div>
-                </div>
-                <hr />
-
+                {accountDetails.map((item,id)=>{
+                  return (<AccountEdit key={id + "id"} title={item.title} caption={item.caption}/>)
+                })}
                 <div className="close-my-account-wrpr">
                   <Link to="/account/close-account" className="ine_close">
                     Close my account
