@@ -10,6 +10,8 @@ import { useState } from "react";
 import AccountFooter from "../../../../components/accountfooter/AccountFooter";
 import { ReactComponent as Logo } from "./../../../../assets/logo/logo.svg";
 import "./accountchangeyourname.scss";
+import ToastError from "../../../../assets/form-social/toast_error.png";
+import showToast from "../../../../helper/toasts/toasts";
 
 const AccountChangeYourName = () => {
   const [userName, setUserName] = useState("");
@@ -24,6 +26,12 @@ const AccountChangeYourName = () => {
   const submitUserNameHandler = () => {
     if (!userName) {
       setCanFormSubmit(false);
+      const toastStyle = {
+        background: "#FFF0F0",
+        size: 10,
+        color: "#FF6666",
+      };
+      showToast("Enter New Name", toastStyle, ToastError);
     } else {
       setCanFormSubmit(true);
       alert("form has submited");

@@ -22,13 +22,13 @@ const footerOptions = [
   },
 ];
 
-function AccountFooter() {
+function AccountFooter({style}) {
   return (
-    <Box className="footer-wrapper">
+    <Box className="footer-wrapper" sx={style}>
       <Box className="footer-option-wrapper">
-        {footerOptions.map((items) => {
+        {footerOptions.map((items, id) => {
           return (
-            <Link to={items.href} className="footer-option-link">
+            <Link key={id + "id"} to={items.href} className="footer-option-link">
               {items.name}
             </Link>
           );
@@ -47,26 +47,5 @@ function AccountFooter() {
   );
 }
 
-{
-  /* <footer id="footer">
-<div className="footer-menu">
-    <div className="footer-menu-wrpr">
-    {footerOptions.map(items => {
-      return ( <Link to={items.href} className="footer-option-link">
-       {items.name}
-    </Link>)
-     })}
-    </div>
-</div>
-<div className="me-md-auto text-center text-md-start">
-  <div className="copyright-wrpr">
-    {" "}
-    &copy; Copyright 2017 nichoShop Inc. All Rights
-    Reserved. User Agreement, Privicy {" "}
-   Cookies
-  </div>
-</div>
-</footer> */
-}
 
 export default AccountFooter;

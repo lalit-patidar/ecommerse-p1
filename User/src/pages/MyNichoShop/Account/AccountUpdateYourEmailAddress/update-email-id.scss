@@ -1,0 +1,106 @@
+.account-change-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  
+    .ui-common-logo {
+      padding: 40px;
+    }
+  
+    .account-content-wrapper {
+      width: 40vw;
+  
+      .change-heading {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 42px;
+        color: #25252e;
+        text-align: center;
+      }
+  
+      .change-caption {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: #81818f;
+        text-align: center;
+        margin-top: 5px;
+      }
+  
+      .text-field-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+  
+        .input-box-wrapper {
+          width: 50%;
+          margin: 36px 0;
+          display: flex;
+          flex-direction: column;
+          .text-field-input {
+            margin-bottom: 5px;
+          }
+          .input-error-lable {
+            color: #FF6666;
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 15px;
+            width: 100%;
+            padding-left: 20px;
+          }
+        }
+  
+        .change-submit-btn {
+          width: 50%;
+          padding: 10px;
+        }
+      }
+    }
+  
+    @media screen and (max-width: 480px) {
+      .account-content-wrapper {
+        width: 100%;
+        padding: 20px;
+  
+        .change-heading {
+          font-weight: 600;
+          font-size: 20px;
+          text-align: start;
+        }
+  
+        .text-field-wrapper {
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+  
+          .input-box-wrapper {
+            width: 100%;
+            margin: 36px 0;
+            .text-field-input {
+              margin-bottom: 5px;
+            }
+          } 
+  
+  
+          .change-submit-btn {
+            width: 100%;
+            padding: 10px;
+          }
+        }
+      }
+    }
+    @media screen and (max-width: 920px) {
+      .account-content-wrapper {
+        width: 80vw;
+        padding: 20px;
+      }
+    }
+  }
+  

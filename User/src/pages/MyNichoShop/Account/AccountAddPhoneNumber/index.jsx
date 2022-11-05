@@ -1,154 +1,80 @@
-// React
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
-// 3rd party components
 import {
-    FormControl,
-    InputAdornment,
-    InputLabel,
-    OutlinedInput,
+    Box,
+    Button,
+    Divider,
     TextField,
-} from "@mui/material";
-import { ErrorMessage, Formik } from "formik";
-import * as yup from "yup";
-
-// Styles
-import MuiPhoneNumber from "material-ui-phone-number";
-import { ReactComponent as Logo } from "./../../../../assets/logo/logo.svg";
-
-const AccountAddPhoneNumber = () => {
-    const [authSpinner, setAuthSpinner] = useState(false);
-
-    const AddNumberSchema = yup.object({
-        phoneNumber: yup
-            .string("Enter your Phone Number")
-            .required("Phone Number Required"),
-    });
-
-    const SUCSchema = yup.object({
-        suc: yup
-            .string("Enter your SUC")
-            .required(
-                "The code you entered is different from the one we texted."
-            ),
-    });
-
+    Typography,
+    Stack,
+  } from "@mui/material";
+  import { useState } from "react";
+  import AccountFooter from "../../../../components/accountfooter/AccountFooter";
+  import { ReactComponent as Logo } from "./../../../../assets/logo/logo.svg";
+  import "./add-phone-number.scss";
+  import showToast from "../../../../helper/toasts/toasts";
+  import ToastError from "../../../../assets/form-social/toast_error.png";
+  
+  const AddPhoneNumber = () => {
+    const [emailId, setEmailId] = useState("");
+    const [canSubmitForm, setCanFormSubmit] = useState(true);
+  
+    const handleChangeInput = (e) => {
+      const { value } = e.target;
+      setEmailId(value);
+      setCanFormSubmit(true);
+    };
+  
+    const submitEmailIdHandler = () => {
+      if (!emailId) {
+        setCanFormSubmit(false);
+        const toastStyle = {
+          background: "#FFF0F0",
+          size: 10,
+          color: "#FF6666",
+        };
+        showToast("Enter New Name", toastStyle, ToastError);
+      } else {
+        setCanFormSubmit(true);
+        alert("form has submited");
+      }
+    };
     return (
-        <main>
-            <div className="signUpContainer authContainer add-number">
-                {/* Header End  */}
-
-                {/* Form Section  */}
-                <section className="authFormSection">
-                    <div className="container">
-                        <div className="ui-common-logo">
-                            <Logo />
-                        </div>
-                        <div className="authFormBox">
-                            <div className="formTitle">
-                                <h2>Add mobile phone number</h2>
-                            </div>
-                            <Formik
-                                initialValues={{
-                                    phoneNumber: "",
-                                    countryCode: "+1",
-                                }}
-                                validationSchema={AddNumberSchema}
-                                onSubmit={(values, { setSubmitting }) => {
-                                    alert(JSON.stringify(values, null, 2));
-                                    setSubmitting(false);
-                                }}
-                            >
-                                {(props) => (
-                                    <form onSubmit={props.handleSubmit}>
-                                        {authSpinner ? (
-                                            <div className="formSpinner">
-                                                <div className="loading"></div>
-                                            </div>
-                                        ) : null}
-                                        <div className="textField">
-                                            <FormControl
-                                                variant="outlined"
-                                                size="small"
-                                                className={
-                                                    props.touched.phoneNumber &&
-                                                    props.errors.phoneNumber
-                                                        ? "error w-100 countryPhoneCode"
-                                                        : "w-100 countryPhoneCode"
-                                                }
-                                            >
-                                                <InputLabel htmlFor="phoneNumber">
-                                                    Legal phone number
-                                                </InputLabel>
-                                                <OutlinedInput
-                                                    id="phoneNumber"
-                                                    name="phoneNumber"
-                                                    type="text"
-                                                    value={
-                                                        props.values.phoneNumber
-                                                    }
-                                                    onChange={
-                                                        props.handleChange
-                                                    }
-                                                    endAdornment={
-                                                        <InputAdornment position="start">
-                                                            <div className="countryCode">
-                                                                <MuiPhoneNumber
-                                                                    disabled
-                                                                    className="countryCodeInput"
-                                                                    defaultCountry={
-                                                                        "us"
-                                                                    }
-                                                                    countryCodeEditable={
-                                                                        false
-                                                                    }
-                                                                    onChange={(
-                                                                        value
-                                                                    ) =>
-                                                                        props.setFieldValue(
-                                                                            "countryCode",
-                                                                            value
-                                                                        )
-                                                                    }
-                                                                />
-                                                            </div>
-                                                        </InputAdornment>
-                                                    }
-                                                    label="phoneNumber"
-                                                />
-                                            </FormControl>
-                                            <ErrorMessage name="phoneNumber">
-                                                {(msg) => (
-                                                    <p className="formError">
-                                                        {msg}
-                                                    </p>
-                                                )}
-                                            </ErrorMessage>
-                                        </div>
-                                        <button
-                                            type="submit"
-                                            className="themeBtn w-100"
-                                        >
-                                            Continue
-                                        </button>
-                                    </form>
-                                )}
-                            </Formik>
-                            <p className="not-now">
-                                <Link to="/">Cancel</Link>
-                            </p>
-                        </div>
-                    </div>
-                </section>
-                {/* Form Section End */}
-
-                {/* message Component */}
-                {/* <SuccessMessage /> */}
-                {/* message Component End */}
-            </div>
-        </main>
+      <Box className="account-change-wrapper">
+        <Box className="ui-common-logo">
+          <Logo />
+        </Box>
+        <Box className="account-content-wrapper">
+          <Typography className="change-heading">Add mobile number</Typography>
+  
+          <Divider sx={{ marginY: "20px", height: 1.5, borderColor: "black" }} />
+          <Typography className="change-caption">
+          Add a mobile phone number for a higher level of protection to your NichoShop 
+          account. Make sure your mobile number is up to date because it is an important part of your account security.
+          </Typography>
+          <Stack className="text-field-wrapper">
+            <Box className="input-box-wrapper">
+              <TextField
+                id="outlined-basic"
+                label="New email address"
+                variant="outlined"
+                className="text-field-input"
+                error={!canSubmitForm}
+                onChange={handleChangeInput}
+                value={emailId}
+              />
+            </Box>
+            <Button
+              variant="contained"
+              className="change-submit-btn"
+              onClick={submitEmailIdHandler}
+            >
+              Save changes
+            </Button>
+          </Stack>
+        </Box>
+        <AccountFooter />
+      </Box>
     );
-};
-
-export default AccountAddPhoneNumber;
+  };
+  
+  export default AddPhoneNumber;
+  
